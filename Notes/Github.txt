@@ -1,0 +1,17 @@
+##I will use github even if it kills me becuase I hate myself
+##when creating a git repo, create the repo, clone the repo, then place stuff inside, this works best
+##never try and pull, unless positive what it does/overwrites, pull to seperate file to test
+
+##CREATE NEW STEPS
+#create a new repo
+#go into folder The City Planner's Duel, naviaget to this in terminal
+#git clone ---repo address---
+#now it creates the desired folder
+#now create the godot project inside this folder that has the git repo (turn of create project folder when making it, its a slider)
+
+
+#right click on the res:// to go into the terminal at right folder
+#git status
+#git add .
+#git commit -m "A initial working build"
+#git push origin main

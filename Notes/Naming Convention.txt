@@ -1,0 +1,27 @@
+variables cannot start with numbers
+
+1x2 I do not want to always hve to write out OneXTwo a bunch
+
+Yes use the word parking lot, as their is parking that is not in a lot
+
+
+The file follows the same naming convetntion as class/node but adds spaces. 
+
+
+class/node Road2Lane ---- var road_2_lane --- type "road_2_lane"
+class/node ParkingLot1x1 --- var parking_lot_1x1 --- type "parking_lot_1x1"
+
+1x2 Parking Lot long opening
+class/node ParkingLot1x2LongOpen --- var parking_lot_1x2_long_open --- type matches the var name
+
+2x2 Junction 5 Inlets
+
+class/node Junction5Inlet2x2 --- var junction_5_inlet_2x2 --- type matches
+
+2x2 Junction 6 Inlets Next
+
+class/node Junction6Inlet2x2Next --- you get the idea
+
+
+
+call a predestrian a human (easier to spell)

@@ -1,0 +1,20 @@
+<svg width="200" height="100" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="196" y="4" width="92" height="192" transform="rotate(90 196 4)" fill="#646262"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M96 4H56V5H96V4ZM96 67H56V68H96V67ZM56 46H96V47H56V46ZM96 25H56V26H96V25Z" fill="#F7F7F7"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M176 44V4H175V44H176ZM116 44V4H115V44H116ZM136 4V44H135V4H136ZM156 44V4H155V44H156Z" fill="#F7F7F7"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M176 96V56H175V96H176ZM116 96V56H115V96H116ZM136 56V96H135V56H136ZM156 96V56H155V96H156Z" fill="#F7F7F7"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M44 4H4V5H44V4ZM44 67H4V68H44V67ZM4 46H44V47H4V46ZM44 25H4V26H44V25Z" fill="#F7F7F7"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4 88V89H10.183L6.09484 94.8386C6.05952 94.889 6.03481 94.9437 6.02024 95H4V96H22V90C22 88.8954 21.1046 88 20 88H4ZM7.20257 95L11.4038 89H14.983L10.8571 94.8925C10.8331 94.9267 10.8141 94.9628 10.7998 95H7.20257ZM19.7595 89H16.2038L12.0026 95H15.5583L19.7595 89ZM16.7791 95L20.7462 89.3343C20.9041 89.5111 21 89.7443 21 90V94.5C21 94.7761 20.7761 95 20.5 95H16.7791Z" fill="#F7FB68"/>
+<rect x="5" y="88" width="8" height="1" transform="rotate(90 5 88)" fill="#F7FB68"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M96 88V89H89.817L93.9052 94.8386C93.9405 94.889 93.9652 94.9437 93.9798 95H96V96H78V90C78 88.8954 78.8954 88 80 88H96ZM92.7974 95L88.5962 89H85.017L89.1429 94.8925C89.1669 94.9267 89.1859 94.9628 89.2002 95H92.7974ZM80.2405 89H83.7962L87.9974 95H84.4417L80.2405 89ZM83.2209 95L79.2538 89.3343C79.0959 89.5111 79 89.7443 79 90V94.5C79 94.7761 79.2239 95 79.5 95H83.2209Z" fill="#F7FB68"/>
+<rect width="8" height="1" transform="matrix(0 1 1 0 95 88)" fill="#F7FB68"/>
+<line x1="4.5" y1="5" x2="4.5" y2="96" stroke="#F7F7F7"/>
+<line x1="195.5" y1="4" x2="195.5" y2="96" stroke="#F7F7F7"/>
+<line x1="196" y1="95.5" x2="96" y2="95.5" stroke="#F7F7F7"/>
+<line x1="56" y1="4.5" x2="44" y2="4.5" stroke="#F7F7F7"/>
+<line x1="195" y1="4.5" x2="96" y2="4.5" stroke="#F7F7F7"/>
+<line x1="95.5" y1="96" x2="95.5" y2="5" stroke="#F7F7F7"/>
+<rect x="78" y="96" width="4" height="56" transform="rotate(90 78 96)" fill="#646262"/>
+<rect x="79" y="96" width="4" height="1" transform="rotate(90 79 96)" fill="#F7F7F7"/>
+<rect x="22" y="96" width="4" height="1" transform="rotate(90 22 96)" fill="#F7F7F7"/>
+</svg>

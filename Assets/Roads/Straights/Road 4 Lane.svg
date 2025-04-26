@@ -1,0 +1,9 @@
+<svg width="200" height="100" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="40" width="120" height="100" fill="#646262"/>
+<line x1="99" x2="99" y2="100" stroke="#F7FB68"/>
+<line x1="101" x2="101" y2="100" stroke="#F7FB68"/>
+<line x1="158.5" x2="158.5" y2="100" stroke="#F7F7F7"/>
+<line x1="41.5" x2="41.5" y2="100" stroke="#F7F7F7"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M130 12V5H129V12H130ZM129 26V19H130V26H129ZM130 40V33H129V40H130ZM129 54V47H130V54H129ZM130 68V61H129V68H130ZM129 82V75H130V82H129ZM130 89V96H129V89H130Z" fill="#F7F7F7"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M71 12V5H70V12H71ZM70 26V19H71V26H70ZM71 40V33H70V40H71ZM70 54V47H71V54H70ZM71 68V61H70V68H71ZM70 82V75H71V82H70ZM71 89V96H70V89H71Z" fill="#F7F7F7"/>
+</svg>
