@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvcx1de0jcvol"]
+
+[ext_resource type="Texture2D" uid="uid://cvay0p44jkovn" path="res://Assets/Walkways/Sidewalk Section.svg" id="1_lyx5f"]
+[ext_resource type="Texture2D" uid="uid://cp8eqpklvh73t" path="res://Assets/Walkways/Sidewalk Endcap.svg" id="2_r0ld5"]
+
+[node name="Sidewalk1Edge" type="Node2D"]
+
+[node name="Section1" type="Sprite2D" parent="."]
+position = Vector2(0, 90)
+texture = ExtResource("1_lyx5f")
+
+[node name="Section2" type="Sprite2D" parent="."]
+position = Vector2(0, 70)
+texture = ExtResource("1_lyx5f")
+
+[node name="Section3" type="Sprite2D" parent="."]
+position = Vector2(0, 50)
+texture = ExtResource("1_lyx5f")
+
+[node name="Section4" type="Sprite2D" parent="."]
+position = Vector2(0, 30)
+texture = ExtResource("1_lyx5f")
+
+[node name="Section5" type="Sprite2D" parent="."]
+position = Vector2(0, 10)
+texture = ExtResource("1_lyx5f")
+
+[node name="Section6" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("1_lyx5f")
+
+[node name="Section7" type="Sprite2D" parent="."]
+position = Vector2(0, -30)
+texture = ExtResource("1_lyx5f")
+
+[node name="Section8" type="Sprite2D" parent="."]
+position = Vector2(0, -50)
+texture = ExtResource("1_lyx5f")
+
+[node name="Section9" type="Sprite2D" parent="."]
+position = Vector2(0, -70)
+texture = ExtResource("1_lyx5f")
+
+[node name="Section10" type="Sprite2D" parent="."]
+position = Vector2(0, -90)
+texture = ExtResource("1_lyx5f")
+
+[node name="Endcap1" type="Sprite2D" parent="."]
+position = Vector2(0, 100)
+texture = ExtResource("2_r0ld5")
+
+[node name="Endcap2" type="Sprite2D" parent="."]
+position = Vector2(0, -100)
+texture = ExtResource("2_r0ld5")

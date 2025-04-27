@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1kdk0oyrix0b"]
+
+[ext_resource type="Texture2D" uid="uid://bcqwchmf3bv66" path="res://Assets/Parking/Parking Lot 1x1.svg" id="1_hehld"]
+
+[node name="ParkingLot1x1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hehld")

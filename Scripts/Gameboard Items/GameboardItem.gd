@@ -17,6 +17,8 @@ class_name GameboardItem
 ##to make accurate placment easier I will often have items Tiled, such as the curtains for parking, allowing me to easily place them where i want in figma
 ##other items such as walkways do not get this treatment, becuase I will be moving them around in the gameworld, and I want to easily get their size (so I can clip to custom grid) without having to adjust for the extra border padding.
 
+
+##Z_indexes, the overal node's z_index call it the gameboard_z_index, keep in mind this is an int, vall z_index's for the various items inside the item, item_z_index
 #what is the type
 #make it easy to see its attachments
 #move
