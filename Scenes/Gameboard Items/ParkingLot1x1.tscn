@@ -1,8 +1,145 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1kdk0oyrix0b"]
+[gd_scene load_steps=13 format=3 uid="uid://d1kdk0oyrix0b"]
 
+[ext_resource type="Script" path="res://Scripts/Gameboard Items/ParkingLot1x1.gd" id="1_0h6xk"]
 [ext_resource type="Texture2D" uid="uid://bcqwchmf3bv66" path="res://Assets/Parking/Parking Lot 1x1.svg" id="1_hehld"]
+[ext_resource type="PackedScene" uid="uid://c5rr36k2oko4t" path="res://Scenes/Zones/Walkways/ZoneSidewalk1Edge.tscn" id="2_1cs3f"]
+[ext_resource type="Texture2D" uid="uid://c3iwwymu6bpn3" path="res://Assets/Parking/Parking Lot Curtain 1x2 Tile 2 Lane.svg" id="2_57qxu"]
+[ext_resource type="Texture2D" uid="uid://cwfrfv63curhi" path="res://Assets/Parking/Parking Lot Curtain 1x2 Tile 4 Lane.svg" id="3_375te"]
+[ext_resource type="PackedScene" uid="uid://qm886n4dojf7" path="res://Scenes/Zones/Walkways/ZoneCrosswalk1Edge.tscn" id="3_niu8v"]
+[ext_resource type="Script" path="res://Scripts/Gameboard Item Components/ParkingSpots.gd" id="4_c00yv"]
+[ext_resource type="PackedScene" uid="uid://bwe0kni7enc73" path="res://Scenes/Zones/Navigation/ZoneNavigationHumanEnd.tscn" id="7_mcloy"]
+[ext_resource type="PackedScene" uid="uid://bhpoy3q21drdt" path="res://Scenes/Zones/Navigation/ZoneNavigationHumanSpawn.tscn" id="8_5op7q"]
+[ext_resource type="PackedScene" uid="uid://cor1diqoib8h1" path="res://Scenes/Zones/Navigation/ZoneNavigationCarEnd.tscn" id="9_iontw"]
+[ext_resource type="PackedScene" uid="uid://c8npqgwi1corb" path="res://Scenes/Zones/Navigation/ZoneNavigationCarSpawn.tscn" id="10_brmes"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohbnh"]
+size = Vector2(184, 184)
 
 [node name="ParkingLot1x1" type="Node2D"]
+script = ExtResource("1_0h6xk")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="MainBody" type="Sprite2D" parent="."]
 texture = ExtResource("1_hehld")
+
+[node name="ParkingSpots" type="Node2D" parent="MainBody"]
+script = ExtResource("4_c00yv")
+
+[node name="ParkingSpot1" type="Node2D" parent="MainBody/ParkingSpots"]
+position = Vector2(-70, -45)
+
+[node name="ParkingSpot2" type="Node2D" parent="MainBody/ParkingSpots"]
+position = Vector2(-28, -45)
+
+[node name="ParkingSpot3" type="Node2D" parent="MainBody/ParkingSpots"]
+position = Vector2(14, -45)
+
+[node name="ParkingSpot4" type="Node2D" parent="MainBody/ParkingSpots"]
+position = Vector2(56, -45)
+
+[node name="ParkingSpot5" type="Node2D" parent="MainBody/ParkingSpots"]
+position = Vector2(-70, 45)
+rotation = 3.14159
+
+[node name="ParkingSpot6" type="Node2D" parent="MainBody/ParkingSpots"]
+position = Vector2(-28, 45)
+rotation = 3.14159
+
+[node name="ParkingSpot7" type="Node2D" parent="MainBody/ParkingSpots"]
+position = Vector2(14, 45)
+rotation = 3.14159
+
+[node name="ParkingSpot8" type="Node2D" parent="MainBody/ParkingSpots"]
+position = Vector2(56, 45)
+rotation = 3.14159
+
+[node name="ZoneWalkwaysContainer" type="Node2D" parent="MainBody"]
+
+[node name="ZoneSidewalk1EdgeObj1" parent="MainBody/ZoneWalkwaysContainer" instance=ExtResource("2_1cs3f")]
+position = Vector2(0, 96)
+
+[node name="ZoneSidewalk1EdgeObj2" parent="MainBody/ZoneWalkwaysContainer" instance=ExtResource("2_1cs3f")]
+position = Vector2(-96, 0)
+rotation = 1.5708
+
+[node name="ZoneSidewalk1EdgeObj3" parent="MainBody/ZoneWalkwaysContainer" instance=ExtResource("2_1cs3f")]
+position = Vector2(0, -96)
+
+[node name="ZoneCrosswalk1EdgeObj1" parent="MainBody/ZoneWalkwaysContainer" instance=ExtResource("3_niu8v")]
+position = Vector2(96, 0)
+rotation = 1.5708
+
+[node name="ZoneMainBody" type="Area2D" parent="MainBody"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainBody/ZoneMainBody"]
+shape = SubResource("RectangleShape2D_ohbnh")
+
+[node name="Curtain2Lane" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(100, 0)
+texture = ExtResource("2_57qxu")
+
+[node name="Curtain4Lane" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(100, 0)
+texture = ExtResource("3_375te")
+
+[node name="ZoneNavigationContainerHuman" type="Node2D" parent="."]
+
+[node name="HumanSpawnEndPair1" type="Node2D" parent="ZoneNavigationContainerHuman"]
+position = Vector2(-100, 0)
+
+[node name="ZoneNavigationHumanEnd" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair1" instance=ExtResource("7_mcloy")]
+
+[node name="ZoneNavigationHumanSpawn" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair1" instance=ExtResource("8_5op7q")]
+
+[node name="HumanSpawnEndPair2" type="Node2D" parent="ZoneNavigationContainerHuman"]
+position = Vector2(100, 0)
+
+[node name="ZoneNavigationHumanEnd" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair2" instance=ExtResource("7_mcloy")]
+
+[node name="ZoneNavigationHumanSpawn" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair2" instance=ExtResource("8_5op7q")]
+
+[node name="HumanSpawnEndPair3" type="Node2D" parent="ZoneNavigationContainerHuman"]
+position = Vector2(0, 100)
+rotation = 1.5708
+
+[node name="ZoneNavigationHumanEnd" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair3" instance=ExtResource("7_mcloy")]
+
+[node name="ZoneNavigationHumanSpawn" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair3" instance=ExtResource("8_5op7q")]
+
+[node name="HumanSpawnEndPair4" type="Node2D" parent="ZoneNavigationContainerHuman"]
+position = Vector2(0, -100)
+rotation = 1.5708
+
+[node name="ZoneNavigationHumanEnd" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair4" instance=ExtResource("7_mcloy")]
+
+[node name="ZoneNavigationHumanSpawn" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair4" instance=ExtResource("8_5op7q")]
+
+[node name="ZoneNavigationContainerCar" type="Node2D" parent="."]
+
+[node name="CarSpawnEndPair1" type="Node2D" parent="ZoneNavigationContainerCar"]
+
+[node name="ZoneNavigationCarEnd" parent="ZoneNavigationContainerCar/CarSpawnEndPair1" instance=ExtResource("9_iontw")]
+position = Vector2(80, -30)
+rotation = 1.5708
+
+[node name="ZoneNavigationCarSpawn" parent="ZoneNavigationContainerCar/CarSpawnEndPair1" instance=ExtResource("10_brmes")]
+position = Vector2(96, 30)
+rotation = 1.5708
+
+[node name="NavigationPaths" type="Node2D" parent="."]
+
+[node name="ErrorLayer" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.0156863, 0, 0.705882)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxjubysojfvu7"
-path="res://.godot/imported/Human Blue.svg-a45fe3d83b7188d5b97823b57d8b3c2c.ctex"
+uid="uid://b20uf1lpxg1pq"
+path="res://.godot/imported/Crosswalk1Edge.svg-9dfd5e90cfe7f28214cd9b719fc1b485.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Agent Transport Tools/Human Blue.svg"
-dest_files=["res://.godot/imported/Human Blue.svg-a45fe3d83b7188d5b97823b57d8b3c2c.ctex"]
+source_file="res://Assets/Walkways/Crosswalk1Edge.svg"
+dest_files=["res://.godot/imported/Crosswalk1Edge.svg-9dfd5e90cfe7f28214cd9b719fc1b485.ctex"]
 
 [params]
 

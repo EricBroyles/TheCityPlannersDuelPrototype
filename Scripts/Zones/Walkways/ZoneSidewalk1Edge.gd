@@ -1,4 +1,4 @@
-extends Area2D
+extends ZoneWalkway
 
 ##Purpose: This Sidewalk Hitbox is intended to allow me to detect when I should be placing a Sidewalk
 
@@ -7,7 +7,7 @@ extends Area2D
 #height = 8
 ##Hitbox Position
 #x = 0
-#y = 92
+#y = 96
 
-const TYPES = preload("res://Scripts/Constants/GameboardItemTypes.gd")
-var request_walkway_type: String = TYPES.SIDEWALK_1_EDGE
+func _ready():
+	request_walkway_type = TYPES.SIDEWALK_1_EDGE
