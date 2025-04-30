@@ -25,3 +25,8 @@ const CROSSWALK_2_EDGE: Dictionary = {"type": "crosswalk_2_edge", "z_index": 50}
 ## ParkingLots 
 const PARKING_LOT_1X1: Dictionary = {"type": "parking_lot_1x1", "z_index": 40}
 const PARKING_LOT_2X2: Dictionary = {"type": "parking_lot_1x1", "z_index": 40}
+
+
+## Roads
+const ROAD_2_LANE: Dictionary = {"type": "road_2_lane", "z_index": 20}
+const ROAD_4_LANE: Dictionary = {"type": "road_4_lane", "z_index": 20}

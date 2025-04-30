@@ -17,17 +17,17 @@ size = Vector2(384, 384)
 [node name="ParkingLot2x2" type="Node2D"]
 script = ExtResource("1_5jpsi")
 
-[node name="FlipContainer" type="Node2D" parent="."]
+[node name="Main" type="Node2D" parent="."]
 
-[node name="MainBody" type="Sprite2D" parent="FlipContainer"]
+[node name="MainBody" type="Sprite2D" parent="Main"]
 texture = ExtResource("1_qt8r6")
 
-[node name="ZoneMainBody" type="Area2D" parent="FlipContainer"]
+[node name="ZoneMainBody" type="Area2D" parent="Main"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipContainer/ZoneMainBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/ZoneMainBody"]
 shape = SubResource("RectangleShape2D_v2gr1")
 
-[node name="ZoneCrosswalk2Edge" parent="FlipContainer" instance=ExtResource("2_g7ttd")]
+[node name="ZoneCrosswalk2Edge" parent="Main" instance=ExtResource("2_g7ttd")]
 
 [node name="Curtain" type="Node2D" parent="."]
 position = Vector2(200, -100)

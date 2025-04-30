@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bj2timnmf1iaj"]
+
+[ext_resource type="Texture2D" uid="uid://df834n4r5dr6t" path="res://Assets/Roads/Straights/Road 2 Lane.svg" id="1_e31p8"]
+[ext_resource type="Script" path="res://Scripts/Gameboard Items/Road2Lane.gd" id="1_fcavr"]
+[ext_resource type="Texture2D" uid="uid://co2mmfpvk1j7l" path="res://Assets/Roads/Straights/Road 2 Lane Half Parking.svg" id="2_mtxkq"]
+[ext_resource type="Texture2D" uid="uid://duhqywnjdia1j" path="res://Assets/Roads/Straights/Road 2 Lane Full Parking.svg" id="3_uq8vm"]
+[ext_resource type="PackedScene" uid="uid://qm886n4dojf7" path="res://Scenes/Zones/Walkways/ZoneCrosswalk1Edge.tscn" id="4_0no1s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwivo"]
+size = Vector2(120, 184)
+
+[node name="Road2Lane" type="Node2D"]
+script = ExtResource("1_fcavr")
+
+[node name="Main" type="Node2D" parent="."]
+
+[node name="MainBody" type="Sprite2D" parent="Main"]
+texture = ExtResource("1_e31p8")
+
+[node name="HalfParking" type="Sprite2D" parent="Main"]
+visible = false
+texture = ExtResource("2_mtxkq")
+
+[node name="FullParking" type="Sprite2D" parent="Main"]
+visible = false
+texture = ExtResource("3_uq8vm")
+
+[node name="ZoneCrosswalk1Edge1" parent="Main" instance=ExtResource("4_0no1s")]
+position = Vector2(0, 100)
+
+[node name="ZoneCrosswalk1Edge2" parent="Main" instance=ExtResource("4_0no1s")]
+position = Vector2(0, -100)
+
+[node name="ZoneMainBody" type="Area2D" parent="Main"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/ZoneMainBody"]
+shape = SubResource("RectangleShape2D_uwivo")
