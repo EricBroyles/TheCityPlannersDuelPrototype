@@ -1,0 +1,27 @@
+extends Node
+
+
+#•	Layer 1: Game Board Tiles
+#•	Layer 2: All roads, curves, junctions, merges, 
+#•	Layer 3: all Buildings
+#•	Layer 4: curtains and parking lot)
+#•	Layer 5: walkways (sidewalks, and crosswalks)
+#•	Layer 6: Cars 
+#•	Layer 7: People
+#•	Layer Last: Parking Symbol, junction level symbols, curve level items, merge symbols
+
+
+##add a elevation tag to only those that have an elevation that is by default not 0. 
+
+##Agent Items
+const CAR:   Dictionary = {"type": "car",   "z_index": 60}
+const HUMAN: Dictionary = {"type": "human", "z_index": 70}
+
+## Walkways
+const SIDEWALK_1_EDGE:  Dictionary = {"type": "sidewalk_1_edge",  "z_index": 51}
+const CROSSWALK_1_EDGE: Dictionary = {"type": "crosswalk_1_edge", "z_index": 50}
+const CROSSWALK_2_EDGE: Dictionary = {"type": "crosswalk_2_edge", "z_index": 50} #this will come latter
+
+## ParkingLots 
+const PARKING_LOT_1X1: Dictionary = {"type": "parking_lot_1x1", "z_index": 40}
+const PARKING_LOT_2X2: Dictionary = {"type": "parking_lot_1x1", "z_index": 40}

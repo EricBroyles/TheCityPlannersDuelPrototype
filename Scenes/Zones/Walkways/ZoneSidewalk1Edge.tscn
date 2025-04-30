@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Zones/Walkways/ZoneSidewalk1Edge.gd" id="1_r2jym"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pgsri"]
-size = Vector2(184, 8)
+size = Vector2(184, 16)
 
 [node name="ZoneSidewalk1Edge" type="Area2D"]
 script = ExtResource("1_r2jym")

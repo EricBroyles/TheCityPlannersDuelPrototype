@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://bie5wctqt2c0p"]
+
+[ext_resource type="Script" path="res://Scripts/Gameboard Items/ParkingLot2x2.gd" id="1_5jpsi"]
+[ext_resource type="Texture2D" uid="uid://ccg2oijuipnex" path="res://Assets/Parking/Parking Lot 2x2.svg" id="1_qt8r6"]
+[ext_resource type="Texture2D" uid="uid://c3iwwymu6bpn3" path="res://Assets/Parking/Parking Lot Curtain 1x2 Tile 2 Lane.svg" id="2_bfqgk"]
+[ext_resource type="PackedScene" uid="uid://f3yjo8y6hjdr" path="res://Scenes/Zones/Walkways/ZoneCrosswalk2Edge.tscn" id="2_g7ttd"]
+[ext_resource type="Texture2D" uid="uid://cwfrfv63curhi" path="res://Assets/Parking/Parking Lot Curtain 1x2 Tile 4 Lane.svg" id="3_gyeoa"]
+[ext_resource type="PackedScene" uid="uid://c8npqgwi1corb" path="res://Scenes/Zones/Navigation/ZoneNavigationCarSpawn.tscn" id="4_m30x1"]
+[ext_resource type="PackedScene" uid="uid://qm886n4dojf7" path="res://Scenes/Zones/Walkways/ZoneCrosswalk1Edge.tscn" id="5_1wnau"]
+[ext_resource type="PackedScene" uid="uid://cor1diqoib8h1" path="res://Scenes/Zones/Navigation/ZoneNavigationCarEnd.tscn" id="5_wxo1p"]
+[ext_resource type="PackedScene" uid="uid://bwe0kni7enc73" path="res://Scenes/Zones/Navigation/ZoneNavigationHumanEnd.tscn" id="8_ydbr4"]
+[ext_resource type="PackedScene" uid="uid://bhpoy3q21drdt" path="res://Scenes/Zones/Navigation/ZoneNavigationHumanSpawn.tscn" id="9_6q5fa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2gr1"]
+size = Vector2(384, 384)
+
+[node name="ParkingLot2x2" type="Node2D"]
+script = ExtResource("1_5jpsi")
+
+[node name="FlipContainer" type="Node2D" parent="."]
+
+[node name="MainBody" type="Sprite2D" parent="FlipContainer"]
+texture = ExtResource("1_qt8r6")
+
+[node name="ZoneMainBody" type="Area2D" parent="FlipContainer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipContainer/ZoneMainBody"]
+shape = SubResource("RectangleShape2D_v2gr1")
+
+[node name="ZoneCrosswalk2Edge" parent="FlipContainer" instance=ExtResource("2_g7ttd")]
+
+[node name="Curtain" type="Node2D" parent="."]
+position = Vector2(200, -100)
+
+[node name="Curtain2Lane" type="Sprite2D" parent="Curtain"]
+position = Vector2(0, 7.62939e-06)
+texture = ExtResource("2_bfqgk")
+
+[node name="Curtain4Lane" type="Sprite2D" parent="Curtain"]
+visible = false
+position = Vector2(0, 7.62939e-06)
+texture = ExtResource("3_gyeoa")
+
+[node name="ZoneCrosswalk1Edge" parent="Curtain" instance=ExtResource("5_1wnau")]
+position = Vector2(0, 7.62939e-06)
+rotation = 1.5708
+
+[node name="ZoneNavigationCarSpawn" parent="Curtain" instance=ExtResource("4_m30x1")]
+position = Vector2(-20, 30)
+rotation = 1.5708
+
+[node name="ZoneNavigationCarEnd" parent="Curtain" instance=ExtResource("5_wxo1p")]
+position = Vector2(-20, -30)
+rotation = 1.5708
+
+[node name="ZoneNavigationHumanEnd" parent="Curtain" instance=ExtResource("8_ydbr4")]
+position = Vector2(0, 7.62939e-06)
+
+[node name="ZoneNavigationHumanSpawn" parent="Curtain" instance=ExtResource("9_6q5fa")]
+position = Vector2(0, 7.62939e-06)

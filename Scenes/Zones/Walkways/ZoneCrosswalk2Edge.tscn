@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Zones/Walkways/ZoneCrosswalk2Edge.gd" id="1_vkbf6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86cun"]
-size = Vector2(368, 8)
+size = Vector2(368, 16)
 
 [node name="ZoneCrosswalk2Edge" type="Area2D"]
 script = ExtResource("1_vkbf6")

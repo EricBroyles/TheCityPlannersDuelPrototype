@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Zones/Navigation/ZoneNavigationHumanEnd.gd" id="1_j8i3i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwu30"]
-size = Vector2(16, 8)
+size = Vector2(16, 16)
 
 [node name="ZoneNavigationHumanEnd" type="Area2D"]
 script = ExtResource("1_j8i3i")
