@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bie5wctqt2c0p"]
+[gd_scene load_steps=13 format=3 uid="uid://bie5wctqt2c0p"]
 
 [ext_resource type="Script" path="res://Scripts/Gameboard Items/ParkingLot2x2.gd" id="1_5jpsi"]
 [ext_resource type="Texture2D" uid="uid://ccg2oijuipnex" path="res://Assets/Parking/Parking Lot 2x2.svg" id="1_qt8r6"]
@@ -11,8 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://bwe0kni7enc73" path="res://Scenes/Zones/Navigation/ZoneNavigationHumanEnd.tscn" id="8_ydbr4"]
 [ext_resource type="PackedScene" uid="uid://bhpoy3q21drdt" path="res://Scenes/Zones/Navigation/ZoneNavigationHumanSpawn.tscn" id="9_6q5fa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2gr1"]
-size = Vector2(384, 384)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdgtq"]
+size = Vector2(54, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trjgl"]
+size = Vector2(94, 120)
 
 [node name="ParkingLot2x2" type="Node2D"]
 script = ExtResource("1_5jpsi")
@@ -22,24 +25,53 @@ script = ExtResource("1_5jpsi")
 [node name="MainBody" type="Sprite2D" parent="Main"]
 texture = ExtResource("1_qt8r6")
 
-[node name="ZoneMainBody" type="Area2D" parent="Main"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/ZoneMainBody"]
-shape = SubResource("RectangleShape2D_v2gr1")
-
 [node name="ZoneCrosswalk2Edge" parent="Main" instance=ExtResource("2_g7ttd")]
+
+[node name="ParkingRows" type="Node2D" parent="Main"]
+position = Vector2(-192, -192)
+
+[node name="Row1" type="Node2D" parent="Main/ParkingRows"]
+position = Vector2(21, 46)
+
+[node name="Row2" type="Node2D" parent="Main/ParkingRows"]
+position = Vector2(21, 138)
+rotation = 3.14159
+
+[node name="Row3" type="Node2D" parent="Main/ParkingRows"]
+position = Vector2(21, 246)
+
+[node name="Row4" type="Node2D" parent="Main/ParkingRows"]
+position = Vector2(21, 338)
+rotation = 3.14159
 
 [node name="Curtain" type="Node2D" parent="."]
 position = Vector2(200, -100)
 
-[node name="Curtain2Lane" type="Sprite2D" parent="Curtain"]
+[node name="Curtain2Lane" type="Node2D" parent="Curtain"]
+visible = false
+
+[node name="Curtain2Lane" type="Sprite2D" parent="Curtain/Curtain2Lane"]
 position = Vector2(0, 7.62939e-06)
 texture = ExtResource("2_bfqgk")
 
-[node name="Curtain4Lane" type="Sprite2D" parent="Curtain"]
+[node name="ZoneCurtain2Lane" type="Area2D" parent="Curtain/Curtain2Lane"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Curtain/Curtain2Lane/ZoneCurtain2Lane"]
+position = Vector2(17, 0)
+shape = SubResource("RectangleShape2D_tdgtq")
+
+[node name="Curtain4Lane" type="Node2D" parent="Curtain"]
 visible = false
+
+[node name="Curtain4Lane" type="Sprite2D" parent="Curtain/Curtain4Lane"]
 position = Vector2(0, 7.62939e-06)
 texture = ExtResource("3_gyeoa")
+
+[node name="ZoneCurtain4Lane" type="Area2D" parent="Curtain/Curtain4Lane"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Curtain/Curtain4Lane/ZoneCurtain4Lane"]
+position = Vector2(37, 0)
+shape = SubResource("RectangleShape2D_trjgl")
 
 [node name="ZoneCrosswalk1Edge" parent="Curtain" instance=ExtResource("5_1wnau")]
 position = Vector2(0, 7.62939e-06)

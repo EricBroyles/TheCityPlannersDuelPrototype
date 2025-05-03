@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqd5er4ryki47"
-path="res://.godot/imported/Road 4 Lane Full Parking.svg-7d63a4cf2192672a5e2f9743a24c3daf.ctex"
+uid="uid://duhqywnjdia1j"
+path="res://.godot/imported/Road 2 Lane Full Parking.svg-b23d8f8594c5c850be0ab86a3796b0e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Roads/Straights/Road 4 Lane Full Parking.svg"
-dest_files=["res://.godot/imported/Road 4 Lane Full Parking.svg-7d63a4cf2192672a5e2f9743a24c3daf.ctex"]
+source_file="res://__Assets/Road 2 Lane Full Parking.svg"
+dest_files=["res://.godot/imported/Road 2 Lane Full Parking.svg-b23d8f8594c5c850be0ab86a3796b0e9.ctex"]
 
 [params]
 

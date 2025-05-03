@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co2mmfpvk1j7l"
-path="res://.godot/imported/Road 2 Lane Half Parking.svg-815a02974873f482183cf9c9864a7c5f.ctex"
+uid="uid://comxethj5kyv7"
+path="res://.godot/imported/Road 4 Lane Half Parking.svg-bee7b5ba3db98d9d5a0ab2d339bb2f53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Roads/Straights/Road 2 Lane Half Parking.svg"
-dest_files=["res://.godot/imported/Road 2 Lane Half Parking.svg-815a02974873f482183cf9c9864a7c5f.ctex"]
+source_file="res://__Assets/Road 4 Lane Half Parking.svg"
+dest_files=["res://.godot/imported/Road 4 Lane Half Parking.svg-bee7b5ba3db98d9d5a0ab2d339bb2f53.ctex"]
 
 [params]
 

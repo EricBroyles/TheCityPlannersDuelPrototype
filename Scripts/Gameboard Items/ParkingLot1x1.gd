@@ -20,7 +20,8 @@ func _init():
 	z_index = GAMEBOARD.PARKING_LOT_1X1["z_index"]
 	
 func _ready():
-	main_body = $MainBody
+	#main_body = $MainBody
+	pass
 	
 	
 	

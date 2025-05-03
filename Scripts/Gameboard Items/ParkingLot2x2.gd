@@ -1,5 +1,6 @@
 extends ParkingLot
 
+class_name ParkingLot2x2
 
 #Elevation: 0 
 #Level: 0 (it does not have levels)
@@ -14,5 +15,5 @@ func _init():
 	z_index = GAMEBOARD.PARKING_LOT_2X2["z_index"]
 	
 
-	
+
 	

@@ -9,7 +9,7 @@ var curtain_start_position: Vector2
 
 
 func _ready():
-	curtain_start_position = curtain.position
+	curtain_start_position = curtain.position ## ISSUE
 	
 	
 
@@ -18,7 +18,7 @@ func _ready():
 
 
 ## ---- Helpers ----
-## Transform Helpers ----------- REMEMBER YOU ARE ALWAYS FLIPPING FROM THE STSRTING POSITION
+## ---- Transform Helpers ----------- REMEMBER YOU ARE ALWAYS FLIPPING FROM THE STSRTING POSITION
 func reset_real_orientation():
 	super()
 	main.scale = Vector2(1,1)
