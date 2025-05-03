@@ -27,10 +27,11 @@ func _init(parking: bool = false):
 		left_parking_active = true
 		right_parking_active = true
 		
-	set_parking()
-	
 	##NOTE: this sets the z_index for this item
 	z_index = GAMEBOARD.ROAD_2_LANE["z_index"]
+	
+func _ready():
+	set_parking()
 	
 
 func set_parking():
