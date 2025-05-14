@@ -5,6 +5,7 @@ class_name Road2Lane
 @onready var right_parking = $Parking/RightParking
 @onready var zone_left_parking = $Parking/ZoneLeftParking
 @onready var zone_right_parking = $Parking/ZoneRightParking
+@onready var left_parking_col = $Parking/LeftParkingColumn
 
 #Elevation: 0 
 #Level: 0 (it does not have levels)
@@ -14,8 +15,7 @@ var is_parking: bool = false
 var left_parking_active: bool = false
 var right_parking_active: bool = false
 
-var left_parking_spots: Array[Vector2]
-var right_parking_spots: Array[Vector2]
+
 
 func _init(parking: bool = false):
 	type = GAMEBOARD.ROAD_2_LANE["type"]
@@ -41,9 +41,11 @@ func set_parking():
 	zone_left_parking.monitoring = left_parking_active
 	zone_right_parking.monitoring = right_parking_active
 	
-func get_parking_spots():
-	##usig the smallest amount of available information this computes where all the parking spots are
-	pass
+func get_parking_spots() -> Dictionary:
+	var left_col_spot: Vector2 = left_parking_col.position
+	return {"left_col":  [left_col_spot, Vector2(left_col_spot.x, -left_col_spot.y)],
+			"right_col": [Vector2(-left_col_spot.x, left_col_spot.y), Vector2(-left_col_spot.x, -left_col_spot.y)]
+	} 
 	
 	
 ##I will have my zones and wait when they experience a on enter then I check what has enetered them and depening on that
@@ -54,9 +56,9 @@ func get_parking_spots():
 #half parking has nothing to do with the flip
 
 func flip_h_real_orientation():
-	##NOTE: This asset is fully symmetric about horizontal axis so flipping this symmetric asset does nothing execpt change orientation of axis
+	##NOTE: This asset is fully symmetric about horizontal axis so flipping this symmetric asset does nothing 
 	return
 	
 func flip_v_real_orientation():
-	##NOTE: This asset is fully symmetric about vertical axis so flipping this symmetric asset does nothing execpt change orientation of axis
+	##NOTE: This asset is fully symmetric about vertical axis so flipping this symmetric asset does nothing
 	return
