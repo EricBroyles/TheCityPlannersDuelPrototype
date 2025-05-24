@@ -1,6 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://crjn5c2upwk07"]
+[gd_scene load_steps=5 format=3 uid="uid://crjn5c2upwk07"]
 
 [ext_resource type="Script" path="res://Scripts/ChallengeGame.gd" id="1_y5k1y"]
+[ext_resource type="Texture2D" uid="uid://cg2u5jhqosdu5" path="res://Assets/Agent Items/Car Blue.svg" id="2_uk6g2"]
+[ext_resource type="FontFile" uid="uid://1gxf6dfpur4s" path="res://Assets - User Interface/Fonts/Harmattan-Regular.ttf" id="3_rxy4d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3s4w"]
 
 [node name="ChallengeGame" type="Node2D"]
 script = ExtResource("1_y5k1y")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_uk6g2")
+
+[node name="TextEdit" type="TextEdit" parent="TextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 840.0
+offset_bottom = 151.0
+theme_override_colors/background_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("3_rxy4d")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_i3s4w")
+text = "1200 III HARMATTAN"
