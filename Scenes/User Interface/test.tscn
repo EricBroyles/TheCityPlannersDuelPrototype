@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bst85xvddq304"]
 
-[ext_resource type="PackedScene" uid="uid://m18rflthckh8" path="res://Scenes/GameboardTiles/GroundTile.tscn" id="1_0x3ow"]
+[ext_resource type="PackedScene" uid="uid://m18rflthckh8" path="res://Scenes/Gameboard Tiles/GroundTile.tscn" id="1_0x3ow"]
 
 [node name="Test" type="Control"]
 layout_mode = 3

@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3ipqcw0vo71m"]
+
+[ext_resource type="Texture2D" uid="uid://di7olm6a64uen" path="res://Assets - User Interface/Areas/Area BW 295x70 _ Right Split.svg" id="1_pycrf"]
+[ext_resource type="FontFile" uid="uid://4r0soj0npanq" path="res://Assets - User Interface/Fonts/harmattan-bold.ttf" id="2_7mc7a"]
+
+[node name="TurnTracker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_pycrf")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 120.0
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = -4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_7mc7a")
+theme_override_font_sizes/normal_font_size = 48
+text = "Turn:"
+scroll_active = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432
+anchor_right = 0.637
+anchor_bottom = 1.0
+offset_left = -7.44
+offset_right = 4.08499
+grow_vertical = 2
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/TextureRect/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_7mc7a")
+theme_override_font_sizes/normal_font_size = 48
+text = "40"
+scroll_active = false
+text_direction = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432
+anchor_right = 0.637
+anchor_bottom = 1.0
+offset_left = 96.56
+offset_right = 108.085
+grow_vertical = 2
+theme_override_constants/margin_top = -4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/TextureRect/MarginContainer3"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_7mc7a")
+theme_override_font_sizes/normal_font_size = 48
+text = "40"
+scroll_active = false
+text_direction = 1

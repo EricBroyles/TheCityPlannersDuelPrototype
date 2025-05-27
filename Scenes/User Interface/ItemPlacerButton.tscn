@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://xq16fjdhhir6"]
+
+[ext_resource type="Texture2D" uid="uid://dv53vsyso2udd" path="res://Assets - User Interface/Buttons/Button BW35 Circle _ i.svg" id="1_j4fpy"]
+[ext_resource type="Texture2D" uid="uid://b6nwcqf3odu6" path="res://Assets - User Interface/Buttons/Button BW70 _ Rotate Arrow.svg" id="2_ll3f4"]
+[ext_resource type="Texture2D" uid="uid://bd0mwch5oe0ss" path="res://Assets - User Interface/Buttons/Button BW70 _ Vertical Flip.svg" id="3_1mqgl"]
+[ext_resource type="Texture2D" uid="uid://bijdh6kkjgb1k" path="res://Assets - User Interface/Buttons/Button BW70 _ Horizontal Flip.svg" id="4_dvgvb"]
+[ext_resource type="Texture2D" uid="uid://cj0dvfpbaft5c" path="res://Assets - User Interface/Buttons/Button BW35 Circle _ X.svg" id="5_pwpdv"]
+
+[node name="ItemPlacerButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 20
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("1_j4fpy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureButton2" type="TextureButton" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_ll3f4")
+
+[node name="TextureButton3" type="TextureButton" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_1mqgl")
+
+[node name="TextureButton4" type="TextureButton" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_dvgvb")
+
+[node name="TextureButton5" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("5_pwpdv")
