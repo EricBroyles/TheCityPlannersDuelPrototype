@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://n58hgraurnkh"]
+
+[ext_resource type="PackedScene" uid="uid://dojmn57hhu1pc" path="res://Scenes/User Interface/ZoningBottomMenu.tscn" id="1_uwap1"]
+
+[node name="BuildPhase" type="Control"]
+layout_mode = 3
+anchor_right = 2.222
+anchor_bottom = 2.16
+offset_right = 0.255859
+offset_bottom = 0.319946
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ZoningBottomMenu" parent="." instance=ExtResource("1_uwap1")]
+offset_left = 425.0
+offset_top = 831.0
+offset_right = 425.0
+offset_bottom = 831.0

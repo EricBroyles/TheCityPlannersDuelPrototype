@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnkbubahk6kgy"
-path="res://.godot/imported/Button GW70 _ Bridge 2 Lane Straight.svg-8f365af7e3bf97f1e639c2e2781b6155.ctex"
+uid="uid://bqngxxafak7wj"
+path="res://.godot/imported/Icon W _ U.svg-58202b71686c65d13f7dfcd67a3cc431.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets - User Interface/Buttons/Button GW70 _ Bridge 2 Lane Straight.svg"
-dest_files=["res://.godot/imported/Button GW70 _ Bridge 2 Lane Straight.svg-8f365af7e3bf97f1e639c2e2781b6155.ctex"]
+source_file="res://Assets - User Interface/Icons/Icon W _ U.svg"
+dest_files=["res://.godot/imported/Icon W _ U.svg-58202b71686c65d13f7dfcd67a3cc431.ctex"]
 
 [params]
 

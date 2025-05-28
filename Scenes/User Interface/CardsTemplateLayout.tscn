@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc27ulgon5is0"]
+
+[ext_resource type="Texture2D" uid="uid://61nhnhkkhwp4" path="res://Assets - User Interface/Areas/Area BW 107x150 _ Card.svg" id="1_6ihuf"]
+[ext_resource type="Texture2D" uid="uid://dw8b7b2pwyejo" path="res://Assets - User Interface/Areas/Area BW 54x75 _ 3 Lines.svg" id="2_4y5g8"]
+[ext_resource type="FontFile" uid="uid://4r0soj0npanq" path="res://Assets - User Interface/Fonts/harmattan-bold.ttf" id="3_7hgsr"]
+
+[node name="CardsTemplateLayout" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -883.0
+offset_top = -150.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_6ihuf")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_6ihuf")
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_6ihuf")
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_6ihuf")
+
+[node name="TextureRect5" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_6ihuf")
+
+[node name="TextureRect6" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_6ihuf")
+
+[node name="TextureRect7" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("1_6ihuf")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("2_4y5g8")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 70
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_7hgsr")
+theme_override_font_sizes/normal_font_size = 32
+text = "20"

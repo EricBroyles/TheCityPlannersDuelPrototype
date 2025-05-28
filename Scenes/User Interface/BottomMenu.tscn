@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://llfojsn3sgg0"]
+
+[ext_resource type="Texture2D" uid="uid://din0qqbxx12jm" path="res://Assets - User Interface/Areas/Area BW 1306x160.svg" id="1_cn74i"]
+[ext_resource type="Texture2D" uid="uid://cj0dvfpbaft5c" path="res://Assets - User Interface/Buttons/Button BW35 Circle _ X.svg" id="2_rm82o"]
+
+[node name="BottomMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_cn74i")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_right = 17.0
+offset_bottom = 55.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect/MarginContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("2_rm82o")

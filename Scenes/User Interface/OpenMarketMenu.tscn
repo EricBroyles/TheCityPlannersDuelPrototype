@@ -1,0 +1,244 @@
+[gd_scene load_steps=15 format=3 uid="uid://hthrwd83elea"]
+
+[ext_resource type="Texture2D" uid="uid://d00cn7l3oe7hl" path="res://Assets - User Interface/Areas/Area BW 513x361.svg" id="1_63gb8"]
+[ext_resource type="Texture2D" uid="uid://bbi0x2t12bjn5" path="res://Assets - User Interface/Icons/Icon W _ Shopping Cart.svg" id="2_l44pt"]
+[ext_resource type="Texture2D" uid="uid://cj0dvfpbaft5c" path="res://Assets - User Interface/Buttons/Button BW35 Circle _ X.svg" id="3_25mag"]
+[ext_resource type="PackedScene" uid="uid://bb7i87b5jo7io" path="res://Scenes/Gameboard Tiles/ResZoneTile.tscn" id="4_mwg5u"]
+[ext_resource type="Texture2D" uid="uid://1fkmkn577ysm" path="res://Assets - User Interface/Icons/Icon W _ R.svg" id="5_l7b7o"]
+[ext_resource type="Texture2D" uid="uid://dfkc4gw0vf6bk" path="res://Assets - User Interface/Buttons/Button GW70 _ 1.svg" id="6_scroo"]
+[ext_resource type="Texture2D" uid="uid://c7skn2o2jjgqj" path="res://Assets - User Interface/Buttons/Button GW70 _ 10.svg" id="7_op0yp"]
+[ext_resource type="Texture2D" uid="uid://bbxpfru6dl3cd" path="res://Assets - User Interface/Buttons/Button GW70 _ 100.svg" id="8_qfxxn"]
+[ext_resource type="Texture2D" uid="uid://d1ptig6nll6m3" path="res://Assets - User Interface/Icons/Icon W _ Stars.svg" id="9_m7xel"]
+[ext_resource type="FontFile" uid="uid://4r0soj0npanq" path="res://Assets - User Interface/Fonts/harmattan-bold.ttf" id="10_mvpgf"]
+[ext_resource type="PackedScene" uid="uid://dqtsf8kl2jy8m" path="res://Scenes/Gameboard Tiles/ComZoneTile.tscn" id="11_ck2d0"]
+[ext_resource type="Texture2D" uid="uid://bloh38y0extra" path="res://Assets - User Interface/Icons/Icon W _ C.svg" id="12_1lcjg"]
+[ext_resource type="PackedScene" uid="uid://bgburaidkfnri" path="res://Scenes/Gameboard Tiles/IndZoneTile.tscn" id="13_o4u28"]
+[ext_resource type="Texture2D" uid="uid://bx7ya71dis2rb" path="res://Assets - User Interface/Icons/Icon W _ I.svg" id="14_sb5ac"]
+
+[node name="OpenMarketMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_63gb8")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 21
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_l44pt")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_right = 17.0
+offset_bottom = 55.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect/MarginContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("3_25mag")
+
+[node name="MarginContainer3" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.22
+anchor_bottom = 1.0
+offset_top = -0.419998
+offset_right = 513.0
+grow_vertical = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ResZoneTile" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer/CenterContainer" instance=ExtResource("4_mwg5u")]
+position = Vector2(35, 35)
+scale = Vector2(0.35, 0.35)
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("5_l7b7o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_scroo")
+
+[node name="TextureButton2" type="TextureButton" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_op0yp")
+
+[node name="TextureButton3" type="TextureButton" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_qfxxn")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("9_m7xel")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("10_mvpgf")
+theme_override_font_sizes/normal_font_size = 30
+text = "1200"
+scroll_active = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="ComZoneTile" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2/CenterContainer" instance=ExtResource("11_ck2d0")]
+position = Vector2(35, 35)
+scale = Vector2(0.35, 0.35)
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("12_1lcjg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_scroo")
+
+[node name="TextureButton2" type="TextureButton" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_op0yp")
+
+[node name="TextureButton3" type="TextureButton" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_qfxxn")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("9_m7xel")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("10_mvpgf")
+theme_override_font_sizes/normal_font_size = 30
+text = "1200"
+scroll_active = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="IndZoneTile" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3/CenterContainer" instance=ExtResource("13_o4u28")]
+position = Vector2(35, 35)
+scale = Vector2(0.35, 0.35)
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("14_sb5ac")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_scroo")
+
+[node name="TextureButton2" type="TextureButton" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_op0yp")
+
+[node name="TextureButton3" type="TextureButton" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_qfxxn")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("9_m7xel")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer3/VBoxContainer/HBoxContainer3/MarginContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("10_mvpgf")
+theme_override_font_sizes/normal_font_size = 30
+text = "1200"
+scroll_active = false

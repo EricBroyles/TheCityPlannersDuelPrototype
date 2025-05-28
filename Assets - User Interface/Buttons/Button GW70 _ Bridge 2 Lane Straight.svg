@@ -9,4 +9,14 @@
 <rect x="52" y="1" width="2" height="1" fill="black"/>
 <rect x="16" y="68" width="2" height="1" fill="black"/>
 <rect x="52" y="68" width="2" height="1" fill="black"/>
+<rect x="34" y="17" width="2" height="7" fill="black"/>
+<path d="M50 37H45V38L46 39V39.5H42V39L43 38V37H27V38L28 39V39.5H24V39L25 38V37H20V35H50V37Z" fill="black"/>
+<path d="M22.5 35.4997C29 27 41 27.0001 47.5 35.4997" stroke="black"/>
+<path d="M43 31.5L45 32.5V35H43V31.5Z" fill="black"/>
+<path d="M25 32.5L27 31.5V35H25V32.5Z" fill="black"/>
+<rect x="29" y="30" width="1" height="5" fill="black"/>
+<rect x="40" y="30" width="1" height="5" fill="black"/>
+<rect x="37.2002" y="29" width="1" height="6" fill="black"/>
+<rect x="31.7998" y="29" width="1" height="6" fill="black"/>
+<rect x="34.5" y="29" width="1" height="6" fill="black"/>
 </svg>

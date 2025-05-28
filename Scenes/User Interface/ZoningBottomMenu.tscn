@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://dojmn57hhu1pc"]
+
+[ext_resource type="PackedScene" uid="uid://llfojsn3sgg0" path="res://Scenes/User Interface/BottomMenu.tscn" id="1_nht3l"]
+[ext_resource type="Texture2D" uid="uid://bqngxxafak7wj" path="res://Assets - User Interface/Icons/Icon W _ U.svg" id="2_2yjix"]
+[ext_resource type="PackedScene" uid="uid://j6ige2sf8s5u" path="res://Scenes/Gameboard Tiles/OwnedUnzonedTile.tscn" id="3_13vei"]
+[ext_resource type="Texture2D" uid="uid://1fkmkn577ysm" path="res://Assets - User Interface/Icons/Icon W _ R.svg" id="4_t42if"]
+[ext_resource type="PackedScene" uid="uid://bb7i87b5jo7io" path="res://Scenes/Gameboard Tiles/ResZoneTile.tscn" id="5_kdx5l"]
+[ext_resource type="Texture2D" uid="uid://bloh38y0extra" path="res://Assets - User Interface/Icons/Icon W _ C.svg" id="6_2teuq"]
+[ext_resource type="PackedScene" uid="uid://dqtsf8kl2jy8m" path="res://Scenes/Gameboard Tiles/ComZoneTile.tscn" id="7_qnvbs"]
+[ext_resource type="Texture2D" uid="uid://bx7ya71dis2rb" path="res://Assets - User Interface/Icons/Icon W _ I.svg" id="8_mpf3t"]
+[ext_resource type="PackedScene" uid="uid://bgburaidkfnri" path="res://Scenes/Gameboard Tiles/IndZoneTile.tscn" id="9_eff3n"]
+
+[node name="ZoningBottomMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="BottomMenu" parent="." instance=ExtResource("1_nht3l")]
+layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_2yjix")
+
+[node name="OwnedUnzonedTile" parent="MarginContainer/VBoxContainer/HBoxContainer/TextureButton" instance=ExtResource("3_13vei")]
+show_behind_parent = true
+position = Vector2(35, 35)
+scale = Vector2(0.35, 0.35)
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_t42if")
+
+[node name="ResZoneTile" parent="MarginContainer/VBoxContainer/HBoxContainer/TextureButton2" instance=ExtResource("5_kdx5l")]
+show_behind_parent = true
+position = Vector2(35, 35)
+scale = Vector2(0.35, 0.35)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("6_2teuq")
+
+[node name="ComZoneTile" parent="MarginContainer/VBoxContainer/HBoxContainer2/TextureButton" instance=ExtResource("7_qnvbs")]
+show_behind_parent = true
+position = Vector2(35, 35)
+scale = Vector2(0.35, 0.35)
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("8_mpf3t")
+
+[node name="IndZoneTile" parent="MarginContainer/VBoxContainer/HBoxContainer2/TextureButton2" instance=ExtResource("9_eff3n")]
+show_behind_parent = true
+position = Vector2(35, 35)
+scale = Vector2(0.35, 0.35)

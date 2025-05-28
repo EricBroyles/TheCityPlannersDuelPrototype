@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpn8b365vxhsx"]
+
+[ext_resource type="PackedScene" uid="uid://llfojsn3sgg0" path="res://Scenes/User Interface/BottomMenu.tscn" id="1_2ivn1"]
+[ext_resource type="Texture2D" uid="uid://diec1vq0n1g5r" path="res://Assets - User Interface/Buttons/Button GW70 _ Walkway.svg" id="2_b2l7w"]
+[ext_resource type="Texture2D" uid="uid://d0pq2isedblsn" path="res://Assets - User Interface/Buttons/Button GW70 _ 2 Lane Road.svg" id="3_sc13d"]
+[ext_resource type="Texture2D" uid="uid://doht0vjrthdc4" path="res://Assets - User Interface/Buttons/Button GW70 _ Joint 2 Lane.svg" id="4_46vha"]
+[ext_resource type="Texture2D" uid="uid://dr0eboewwvjvq" path="res://Assets - User Interface/Buttons/Button GW70 _ 2 Lane Road Parking.svg" id="5_lbvof"]
+[ext_resource type="Texture2D" uid="uid://bfjyathy3n78s" path="res://Assets - User Interface/Buttons/Button GW70 _ 4 Lane Road.svg" id="6_xw1rl"]
+[ext_resource type="Texture2D" uid="uid://b456nu7fyrh3m" path="res://Assets - User Interface/Buttons/Button GW70 _ Joint 4 Lane.svg" id="7_kgely"]
+[ext_resource type="Texture2D" uid="uid://c2hxuh0iow3u0" path="res://Assets - User Interface/Buttons/Button GW70 _ 4 Lane Road Parking.svg" id="8_mpp2w"]
+[ext_resource type="Texture2D" uid="uid://do4dmawex0wyu" path="res://Assets - User Interface/Buttons/Button GW70 _ Merge 2 And 4.svg" id="9_8aj8n"]
+
+[node name="RoadOptionsBottomMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="BottomMenu" parent="." instance=ExtResource("1_2ivn1")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_b2l7w")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("3_sc13d")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("4_46vha")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+texture_normal = ExtResource("5_lbvof")
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+texture_normal = ExtResource("6_xw1rl")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+texture_normal = ExtResource("7_kgely")
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+texture_normal = ExtResource("8_mpp2w")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer6"]
+layout_mode = 2
+texture_normal = ExtResource("9_8aj8n")

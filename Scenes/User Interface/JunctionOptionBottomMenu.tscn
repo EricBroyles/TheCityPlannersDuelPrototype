@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://bgeiy0wr8mplq"]
+
+[ext_resource type="PackedScene" uid="uid://llfojsn3sgg0" path="res://Scenes/User Interface/BottomMenu.tscn" id="1_3vpxa"]
+[ext_resource type="Texture2D" uid="uid://b7skqqc3njqon" path="res://Assets - User Interface/Buttons/Button GW70 _ Junction 1x1.svg" id="2_xi2ld"]
+[ext_resource type="Texture2D" uid="uid://c0oajfhrqs2mt" path="res://Assets - User Interface/Buttons/Button GW70 _ Junction 4 Inlets 1x2.svg" id="3_web3h"]
+[ext_resource type="Texture2D" uid="uid://btm6bnd7l6vun" path="res://Assets - User Interface/Buttons/Button GW70 _ Junction 5 Inlets 1x2.svg" id="4_rxa8h"]
+[ext_resource type="Texture2D" uid="uid://cpd27evn5ikeb" path="res://Assets - User Interface/Buttons/Button GW70 _ Junction 6 Inlets 1x2.svg" id="5_5oeb3"]
+[ext_resource type="Texture2D" uid="uid://dpmtpsap1ioll" path="res://Assets - User Interface/Buttons/Button GW70 _ Junction 2x2.svg" id="6_vf5ji"]
+[ext_resource type="Texture2D" uid="uid://bp8on3cpg6fbp" path="res://Assets - User Interface/Buttons/Button GW70 _ Junction 5 Inlets 2x2.svg" id="7_usltx"]
+[ext_resource type="Texture2D" uid="uid://5qma7r5mub" path="res://Assets - User Interface/Buttons/Button GW70 _ Junction 6 Inlets 2x2 Across.svg" id="8_1fwv8"]
+[ext_resource type="Texture2D" uid="uid://boqt0ukqkhrx8" path="res://Assets - User Interface/Buttons/Button GW70 _ Junction 6 Inlets 2x2 Next.svg" id="9_fn46d"]
+[ext_resource type="Texture2D" uid="uid://cgdlbwrvci2qg" path="res://Assets - User Interface/Buttons/Button GW70 _ Junction 7 Inlets 2x2.svg" id="10_1edqn"]
+[ext_resource type="Texture2D" uid="uid://cc4ltwqi45jiu" path="res://Assets - User Interface/Buttons/Button GW70 _ Junction 8 Inlets 2x2.svg" id="11_imvrs"]
+
+[node name="JunctionOptionBottomMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="BottomMenu" parent="." instance=ExtResource("1_3vpxa")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_xi2ld")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("3_web3h")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("4_rxa8h")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+texture_normal = ExtResource("5_5oeb3")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer4"]
+layout_mode = 2
+texture_normal = ExtResource("6_vf5ji")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer3/VBoxContainer4"]
+layout_mode = 2
+texture_normal = ExtResource("7_usltx")
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+texture_normal = ExtResource("8_1fwv8")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+texture_normal = ExtResource("9_fn46d")
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer6"]
+layout_mode = 2
+texture_normal = ExtResource("10_1edqn")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer6"]
+layout_mode = 2
+texture_normal = ExtResource("11_imvrs")
