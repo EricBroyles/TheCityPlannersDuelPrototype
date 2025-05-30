@@ -17,6 +17,7 @@ anchors_preset = 0
 [node name="BottomMenu" parent="." instance=ExtResource("1_2ivn1")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 12

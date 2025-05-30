@@ -13,61 +13,65 @@
 [node name="ZoningBottomMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="BottomMenu" parent="." instance=ExtResource("1_nht3l")]
 layout_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MarginContainer" type="MarginContainer" parent="BottomMenu"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -653.0
+offset_right = -487.0
+offset_bottom = 152.0
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 7
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomMenu/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureButton" type="TextureButton" parent="BottomMenu/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("2_2yjix")
 
-[node name="OwnedUnzonedTile" parent="MarginContainer/VBoxContainer/HBoxContainer/TextureButton" instance=ExtResource("3_13vei")]
+[node name="OwnedUnzonedTile" parent="BottomMenu/MarginContainer/VBoxContainer/HBoxContainer/TextureButton" instance=ExtResource("3_13vei")]
 show_behind_parent = true
 position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)
 
-[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureButton2" type="TextureButton" parent="BottomMenu/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("4_t42if")
 
-[node name="ResZoneTile" parent="MarginContainer/VBoxContainer/HBoxContainer/TextureButton2" instance=ExtResource("5_kdx5l")]
+[node name="ResZoneTile" parent="BottomMenu/MarginContainer/VBoxContainer/HBoxContainer/TextureButton2" instance=ExtResource("5_kdx5l")]
 show_behind_parent = true
 position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="BottomMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureButton" type="TextureButton" parent="BottomMenu/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("6_2teuq")
 
-[node name="ComZoneTile" parent="MarginContainer/VBoxContainer/HBoxContainer2/TextureButton" instance=ExtResource("7_qnvbs")]
+[node name="ComZoneTile" parent="BottomMenu/MarginContainer/VBoxContainer/HBoxContainer2/TextureButton" instance=ExtResource("7_qnvbs")]
 show_behind_parent = true
 position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)
 
-[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureButton2" type="TextureButton" parent="BottomMenu/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("8_mpf3t")
 
-[node name="IndZoneTile" parent="MarginContainer/VBoxContainer/HBoxContainer2/TextureButton2" instance=ExtResource("9_eff3n")]
+[node name="IndZoneTile" parent="BottomMenu/MarginContainer/VBoxContainer/HBoxContainer2/TextureButton2" instance=ExtResource("9_eff3n")]
 show_behind_parent = true
 position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)

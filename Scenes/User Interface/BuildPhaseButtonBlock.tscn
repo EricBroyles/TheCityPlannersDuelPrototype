@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0edm0jxedn1n"]
+
+[ext_resource type="Texture2D" uid="uid://cohpgvn1l3c2v" path="res://Assets - User Interface/Buttons/Button BW70 _ Buy Land.svg" id="1_pxsgg"]
+[ext_resource type="Texture2D" uid="uid://cigu4fi64jxrn" path="res://Assets - User Interface/Buttons/Button BW70 _ RCI.svg" id="2_ysdnb"]
+[ext_resource type="Texture2D" uid="uid://6hny7cyxvlwy" path="res://Assets - User Interface/Buttons/Button BW70 _ Hammer.svg" id="3_m4ign"]
+[ext_resource type="Texture2D" uid="uid://ch8eknbwldfbk" path="res://Assets - User Interface/Buttons/Button BW70 _ Circle Up Arrow.svg" id="4_vd2j6"]
+[ext_resource type="Texture2D" uid="uid://ckxrwjdtfky7q" path="res://Assets - User Interface/Buttons/Button BW70 _ Trashcan.svg" id="5_p7vn6"]
+[ext_resource type="Texture2D" uid="uid://48s4f4wwjhyg" path="res://Assets - User Interface/Buttons/Button BW70 _ 5 Card Hand.svg" id="6_62w1p"]
+[ext_resource type="Texture2D" uid="uid://dfj673owhc024" path="res://Assets - User Interface/Buttons/Button BW70 _ Shopping Cart.svg" id="7_wx0xu"]
+
+[node name="BuildPhaseButtonBlock" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_pxsgg")
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_ysdnb")
+
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_m4ign")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("4_vd2j6")
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("5_p7vn6")
+
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("6_62w1p")
+
+[node name="TextureButton4" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("7_wx0xu")

@@ -54,7 +54,6 @@ layout_mode = 2
 texture = ExtResource("1_6ihuf")
 
 [node name="TextureRect7" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
 texture = ExtResource("1_6ihuf")
 

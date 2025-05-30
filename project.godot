@@ -13,6 +13,11 @@ config_version=5
 config/name="TheCityPlannersDuelPrototype"
 config/features=PackedStringArray("4.3", "Mobile")
 
+[display]
+
+window/size/viewport_width=2560
+window/size/viewport_height=1400
+
 [rendering]
 
 renderer/rendering_method="mobile"
