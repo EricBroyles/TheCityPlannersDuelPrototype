@@ -1,27 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://crjn5c2upwk07"]
+[gd_scene load_steps=4 format=3 uid="uid://crjn5c2upwk07"]
 
 [ext_resource type="Script" path="res://Scripts/ChallengeGame.gd" id="1_y5k1y"]
-[ext_resource type="Texture2D" uid="uid://cg2u5jhqosdu5" path="res://Assets/Agent Items/Car Blue.svg" id="2_uk6g2"]
-[ext_resource type="FontFile" uid="uid://1gxf6dfpur4s" path="res://Assets - User Interface/Fonts/Harmattan-Regular.ttf" id="3_rxy4d"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3s4w"]
+[ext_resource type="Script" path="res://Scripts/User Interface/ChallengeGameUserInterface.gd" id="2_wetfu"]
+[ext_resource type="PackedScene" uid="uid://dfimjfiiwuhtk" path="res://Scenes/User Interface/BuildPhase.tscn" id="2_wuohv"]
 
 [node name="ChallengeGame" type="Node2D"]
 script = ExtResource("1_y5k1y")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_uk6g2")
+[node name="ChallengeGameUserInterface" type="CanvasLayer" parent="."]
+script = ExtResource("2_wetfu")
 
-[node name="TextEdit" type="TextEdit" parent="TextureRect"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 30.0
-offset_right = 838.0
-offset_bottom = 178.0
-theme_override_colors/background_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("3_rxy4d")
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = SubResource("StyleBoxEmpty_i3s4w")
-text = "1200 III HARMATTAN"
+[node name="BuildPhase" parent="ChallengeGameUserInterface" instance=ExtResource("2_wuohv")]

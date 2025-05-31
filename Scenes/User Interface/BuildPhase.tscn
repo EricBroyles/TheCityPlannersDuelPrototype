@@ -1,6 +1,7 @@
-[gd_scene load_steps=75 format=3 uid="uid://dfimjfiiwuhtk"]
+[gd_scene load_steps=76 format=3 uid="uid://dfimjfiiwuhtk"]
 
 [ext_resource type="Texture2D" uid="uid://din0qqbxx12jm" path="res://Assets - User Interface/Areas/Area BW 1306x160.svg" id="1_ay4le"]
+[ext_resource type="Script" path="res://Scripts/User Interface/BuildPhaseUserInterface.gd" id="1_bkv58"]
 [ext_resource type="Texture2D" uid="uid://cj0dvfpbaft5c" path="res://Assets - User Interface/Buttons/Button BW35 Circle _ X.svg" id="2_053i0"]
 [ext_resource type="Texture2D" uid="uid://cohpgvn1l3c2v" path="res://Assets - User Interface/Buttons/Button BW70 _ Buy Land.svg" id="3_vyd0s"]
 [ext_resource type="Texture2D" uid="uid://cigu4fi64jxrn" path="res://Assets - User Interface/Buttons/Button BW70 _ RCI.svg" id="4_denk2"]
@@ -82,6 +83,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_bkv58")
 
 [node name="BottomLeftButtonBlockMargin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -98,39 +100,39 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomLeftButtonBlockMargin/VBoxContainer"]
+[node name="TopButtonRow" type="HBoxContainer" parent="BottomLeftButtonBlockMargin/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TextureButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/HBoxContainer"]
+[node name="BuyLandButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
 layout_mode = 2
 texture_normal = ExtResource("3_vyd0s")
 
-[node name="TextureButton2" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/HBoxContainer"]
+[node name="ZoningButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
 layout_mode = 2
 texture_normal = ExtResource("4_denk2")
 
-[node name="TextureButton3" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/HBoxContainer"]
+[node name="BuildButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
 layout_mode = 2
 texture_normal = ExtResource("5_5mk3k")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="BottomLeftButtonBlockMargin/VBoxContainer"]
+[node name="BottomButtonRow" type="HBoxContainer" parent="BottomLeftButtonBlockMargin/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TextureButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/HBoxContainer2"]
+[node name="UpgradeButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
 layout_mode = 2
 texture_normal = ExtResource("6_cf037")
 
-[node name="TextureButton2" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/HBoxContainer2"]
+[node name="DeleteButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
 layout_mode = 2
 texture_normal = ExtResource("7_2sg0o")
 
-[node name="TextureButton3" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/HBoxContainer2"]
+[node name="CardButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
 layout_mode = 2
 texture_normal = ExtResource("8_6qj7y")
 
-[node name="TextureButton4" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/HBoxContainer2"]
+[node name="OpenMarketButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
 layout_mode = 2
 texture_normal = ExtResource("9_y0tu4")
 
@@ -172,7 +174,7 @@ theme_override_font_sizes/normal_font_size = 48
 text = "Turn:"
 scroll_active = false
 
-[node name="MarginContainer2" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
+[node name="CurrentTurnMargin" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.432
@@ -184,7 +186,7 @@ grow_vertical = 2
 theme_override_constants/margin_top = -4
 theme_override_constants/margin_right = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/MarginContainer2"]
+[node name="CurrentTurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/CurrentTurnMargin"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
 theme_override_font_sizes/normal_font_size = 48
@@ -192,7 +194,7 @@ text = "40"
 scroll_active = false
 text_direction = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
+[node name="TotalTurnMargin" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.432
@@ -203,7 +205,7 @@ offset_right = 108.085
 grow_vertical = 2
 theme_override_constants/margin_top = -4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/MarginContainer3"]
+[node name="TotalTurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/TotalTurnMargin"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
 theme_override_font_sizes/normal_font_size = 48
@@ -211,7 +213,7 @@ text = "40"
 scroll_active = false
 text_direction = 1
 
-[node name="TextureButton" type="TextureButton" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
+[node name="FinishTurnButton" type="TextureButton" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
 layout_mode = 2
 texture_normal = ExtResource("12_pfxl7")
 
@@ -230,15 +232,15 @@ theme_override_constants/margin_top = 10
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TopBarMargin/HBoxContainer"]
+[node name="LeftButtonBlock" type="VBoxContainer" parent="TopBarMargin/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/VBoxContainer"]
+[node name="PastSimulationsButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/LeftButtonBlock"]
 layout_mode = 2
 texture_normal = ExtResource("13_xsygd")
 
-[node name="TextureButton2" type="TextureButton" parent="TopBarMargin/HBoxContainer/VBoxContainer"]
+[node name="StatsButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/LeftButtonBlock"]
 layout_mode = 2
 size_flags_vertical = 10
 texture_normal = ExtResource("14_6ly0f")
@@ -288,7 +290,7 @@ texture = ExtResource("19_10nbk")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
+[node name="PointsMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
@@ -296,7 +298,7 @@ theme_override_constants/margin_top = -5
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/MarginContainer"]
+[node name="PointsText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/PointsMargin"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -305,7 +307,7 @@ text = "1200
 "
 scroll_active = false
 
-[node name="MarginContainer2" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
+[node name="PeopleMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
@@ -313,7 +315,7 @@ theme_override_constants/margin_top = -6
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/MarginContainer2"]
+[node name="PeopleText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/PeopleMargin"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -322,7 +324,7 @@ text = "1200
 "
 scroll_active = false
 
-[node name="MarginContainer3" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
+[node name="MoneyMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
@@ -330,7 +332,7 @@ theme_override_constants/margin_top = -6
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/MarginContainer3"]
+[node name="MoneyText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/MoneyMargin"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -339,7 +341,7 @@ text = "1200
 "
 scroll_active = false
 
-[node name="MarginContainer4" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
+[node name="ReputationMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
@@ -347,7 +349,7 @@ theme_override_constants/margin_top = -7
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/MarginContainer4"]
+[node name="ReputationText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/ReputationMargin"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -356,7 +358,7 @@ text = "1200
 "
 scroll_active = false
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay"]
+[node name="RightLabelsContainer" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -370,22 +372,22 @@ offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 48
 theme_override_constants/margin_top = -15
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -393,51 +395,51 @@ theme_override_font_sizes/normal_font_size = 40
 text = "Demand"
 scroll_active = false
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer/HBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = -14
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer/HBoxContainer2/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer2/MarginContainer"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
 theme_override_font_sizes/normal_font_size = 36
 text = "R"
 scroll_active = false
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer/HBoxContainer3"]
+[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = -14
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer/HBoxContainer3/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer3/MarginContainer"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
 theme_override_font_sizes/normal_font_size = 36
 text = "C"
 scroll_active = false
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer/HBoxContainer4"]
+[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 23
 theme_override_constants/margin_top = -14
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer2/VBoxContainer/HBoxContainer4/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer4/MarginContainer"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
 theme_override_font_sizes/normal_font_size = 36
@@ -460,13 +462,13 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2"]
+[node name="RDemandMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = -5
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/MarginContainer"]
+[node name="RDemandText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/RDemandMargin"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -475,13 +477,13 @@ theme_override_font_sizes/normal_font_size = 30
 text = "1200"
 scroll_active = false
 
-[node name="MarginContainer2" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2"]
+[node name="CDemandMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = -5
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/MarginContainer2"]
+[node name="CDemandText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/CDemandMargin"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -491,13 +493,13 @@ text = "1200
 "
 scroll_active = false
 
-[node name="MarginContainer3" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2"]
+[node name="IDemandMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = -6
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/MarginContainer3"]
+[node name="IDemandText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/IDemandMargin"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -507,15 +509,15 @@ text = "1200
 "
 scroll_active = false
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="TopBarMargin/HBoxContainer"]
+[node name="RightButtonBlock" type="VBoxContainer" parent="TopBarMargin/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/VBoxContainer2"]
+[node name="SettingsButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/RightButtonBlock"]
 layout_mode = 2
 texture_normal = ExtResource("20_qrtf3")
 
-[node name="TextureButton2" type="TextureButton" parent="TopBarMargin/HBoxContainer/VBoxContainer2"]
+[node name="ViewButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/RightButtonBlock"]
 layout_mode = 2
 size_flags_vertical = 10
 texture_normal = ExtResource("21_4h4cw")
@@ -537,6 +539,7 @@ theme_override_constants/margin_bottom = 10
 [node name="BottomMenuContainer" type="VBoxContainer" parent="BottomMenuMargin"]
 custom_minimum_size = Vector2(1306, 0)
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_constants/separation = 10
 
 [node name="ItemPlacerButtonsMargin" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer"]
@@ -547,7 +550,7 @@ size_flags_horizontal = 4
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer"]
+[node name="ItemInfoButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -557,19 +560,19 @@ texture_normal = ExtResource("22_sqij3")
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
+[node name="Rotate90Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("23_yp6en")
 
-[node name="TextureButton3" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
+[node name="FlipVerticalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("24_d5yyw")
 
-[node name="TextureButton4" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
+[node name="FlipHorizontalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("25_hj3y3")
 
-[node name="TextureButton5" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer"]
+[node name="XButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 texture_normal = ExtResource("2_053i0")
@@ -655,12 +658,11 @@ offset_bottom = 55.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 20
 
-[node name="BottomMenuXButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenyXButtonMargin"]
+[node name="XButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenyXButtonMargin"]
 layout_mode = 2
 texture_normal = ExtResource("2_053i0")
 
 [node name="ZoningOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
-visible = false
 layout_mode = 1
 offset_right = 166.0
 offset_bottom = 152.0
@@ -675,20 +677,20 @@ theme_override_constants/separation = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer"]
+[node name="UnzoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("28_8esui")
 
-[node name="OwnedUnzonedTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/TextureButton" instance=ExtResource("29_ow1hg")]
+[node name="OwnedUnzonedTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/UnzoneButton" instance=ExtResource("29_ow1hg")]
 show_behind_parent = true
 position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer"]
+[node name="RZoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("31_ofg41")
 
-[node name="ResZoneTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/TextureButton2" instance=ExtResource("30_3xbkf")]
+[node name="ResZoneTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/RZoneButton" instance=ExtResource("30_3xbkf")]
 show_behind_parent = true
 position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)
@@ -697,26 +699,27 @@ scale = Vector2(0.35, 0.35)
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2"]
+[node name="CZoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("36_kl0vk")
 
-[node name="ComZoneTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2/TextureButton" instance=ExtResource("35_wksfd")]
+[node name="ComZoneTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2/CZoneButton" instance=ExtResource("35_wksfd")]
 show_behind_parent = true
 position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2"]
+[node name="IZoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("38_5rehw")
 
-[node name="IndZoneTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2/TextureButton2" instance=ExtResource("37_mkajr")]
+[node name="IndZoneTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2/IZoneButton" instance=ExtResource("37_mkajr")]
 show_behind_parent = true
 position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)
 
 [node name="RoadOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
 visible = false
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 12
@@ -730,7 +733,7 @@ theme_override_constants/separation = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer"]
+[node name="WalkwayButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("36_6wgcn")
 
@@ -742,11 +745,11 @@ theme_override_constants/margin_left = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer2/VBoxContainer2"]
+[node name="2LaneRoadButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer2/VBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("37_p2kr2")
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer2/VBoxContainer2"]
+[node name="2LaneJointButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer2/VBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("38_4hjv5")
 
@@ -754,7 +757,7 @@ texture_normal = ExtResource("38_4hjv5")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer3"]
+[node name="2LaneParkingButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("39_u44gd")
 
@@ -762,11 +765,11 @@ texture_normal = ExtResource("39_u44gd")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer4"]
+[node name="4LaneRoadButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer4"]
 layout_mode = 2
 texture_normal = ExtResource("40_0nrna")
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer4"]
+[node name="4LaneJointButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer4"]
 layout_mode = 2
 texture_normal = ExtResource("41_jw04p")
 
@@ -774,7 +777,7 @@ texture_normal = ExtResource("41_jw04p")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer5"]
+[node name="4LaneRoadParkingButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer5"]
 layout_mode = 2
 texture_normal = ExtResource("42_p1mse")
 
@@ -786,12 +789,13 @@ theme_override_constants/margin_left = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer/VBoxContainer6"]
+[node name="Merge2And4Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer/VBoxContainer6"]
 layout_mode = 2
 texture_normal = ExtResource("43_vmj71")
 
 [node name="ParkingOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
 visible = false
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 12
@@ -805,7 +809,7 @@ theme_override_constants/separation = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer"]
+[node name="Parking1x1Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("44_e0w5i")
 
@@ -813,11 +817,11 @@ texture_normal = ExtResource("44_e0w5i")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2"]
+[node name="Parking1x2LongOpeningButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("45_gyb78")
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2"]
+[node name="Parking1x2ShortOpeningButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("46_w6if1")
 
@@ -825,12 +829,13 @@ texture_normal = ExtResource("46_w6if1")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer3"]
+[node name="Parking2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("47_g6e6u")
 
 [node name="JunctionOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
 visible = false
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 12
@@ -844,7 +849,7 @@ theme_override_constants/separation = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer"]
+[node name="Junction1x1Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("48_4n43l")
 
@@ -856,11 +861,11 @@ theme_override_constants/margin_left = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
+[node name="Junction4Inlets1x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("49_cuvhh")
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
+[node name="Junction5Inlets1x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("50_cbt1d")
 
@@ -868,7 +873,7 @@ texture_normal = ExtResource("50_cbt1d")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer3"]
+[node name="Junction6Inlets1x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("51_ysv3c")
 
@@ -880,11 +885,11 @@ theme_override_constants/margin_left = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer3/VBoxContainer4"]
+[node name="Junction2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer3/VBoxContainer4"]
 layout_mode = 2
 texture_normal = ExtResource("52_q84hu")
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer3/VBoxContainer4"]
+[node name="Junction5Inlets2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer3/VBoxContainer4"]
 layout_mode = 2
 texture_normal = ExtResource("53_cbe6h")
 
@@ -892,11 +897,11 @@ texture_normal = ExtResource("53_cbe6h")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer5"]
+[node name="Junction6Inlets2x2AcrossButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer5"]
 layout_mode = 2
 texture_normal = ExtResource("54_wlth0")
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer5"]
+[node name="Junction6Inlets2x2NextButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer5"]
 layout_mode = 2
 texture_normal = ExtResource("55_eqds7")
 
@@ -904,16 +909,17 @@ texture_normal = ExtResource("55_eqds7")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer6"]
+[node name="Junction7Inlets2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer6"]
 layout_mode = 2
 texture_normal = ExtResource("56_ux5gi")
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer6"]
+[node name="Junction8Inlets2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer6"]
 layout_mode = 2
 texture_normal = ExtResource("57_ux6av")
 
 [node name="BrdigeOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
 visible = false
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 12
@@ -927,7 +933,7 @@ theme_override_constants/separation = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/VBoxContainer"]
+[node name="BridgeRampButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("58_yqb4p")
 
@@ -939,7 +945,7 @@ theme_override_constants/margin_left = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
+[node name="BridgeStraightButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("59_1r1hs")
 
@@ -951,7 +957,7 @@ theme_override_constants/margin_left = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/MarginContainer2/VBoxContainer3"]
+[node name="BridgeJointButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/MarginContainer2/VBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("60_wg05m")
 
@@ -968,19 +974,19 @@ theme_override_constants/margin_bottom = 0
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TextureButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
+[node name="RoadOptionsButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("61_tmbwv")
 
-[node name="TextureButton2" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
+[node name="JunctionOptionsButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("62_ib1in")
 
-[node name="TextureButton3" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
+[node name="ParkingOptionsButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("63_15lm8")
 
-[node name="TextureButton4" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
+[node name="BridgeOptionsButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("64_l4t3t")
 
@@ -996,6 +1002,7 @@ grow_horizontal = 2
 theme_override_constants/margin_top = 260
 
 [node name="OpenMarketMenu" type="TextureRect" parent="CenterMenusMargin"]
+visible = false
 layout_mode = 2
 texture = ExtResource("28_bmcps")
 
@@ -1011,7 +1018,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("29_jw7n4")
 
-[node name="MarginContainer2" type="MarginContainer" parent="CenterMenusMargin/OpenMarketMenu"]
+[node name="XButtonMargin" type="MarginContainer" parent="CenterMenusMargin/OpenMarketMenu"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -1022,7 +1029,7 @@ offset_bottom = 55.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 20
 
-[node name="TextureButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer2"]
+[node name="XButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/XButtonMargin"]
 layout_mode = 2
 texture_normal = ExtResource("2_053i0")
 
@@ -1060,15 +1067,15 @@ texture = ExtResource("31_ofg41")
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TextureButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Buy1RButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("32_3nxra")
 
-[node name="TextureButton2" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Buy10RButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("33_lil6s")
 
-[node name="TextureButton3" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Buy100RButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("34_0u0xb")
 
@@ -1092,7 +1099,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer2/MarginContainer"]
+[node name="RPriceText" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -1119,15 +1126,15 @@ texture = ExtResource("36_kl0vk")
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TextureButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
+[node name="Buy1CButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("32_3nxra")
 
-[node name="TextureButton2" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
+[node name="Buy10CButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("33_lil6s")
 
-[node name="TextureButton3" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
+[node name="Buy100CButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("34_0u0xb")
 
@@ -1151,7 +1158,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer"]
+[node name="CPriceText" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -1178,15 +1185,15 @@ texture = ExtResource("38_5rehw")
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TextureButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
+[node name="Buy1IButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("32_3nxra")
 
-[node name="TextureButton2" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
+[node name="Buy10IButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("33_lil6s")
 
-[node name="TextureButton3" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
+[node name="Buy100IButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("34_0u0xb")
 
@@ -1210,7 +1217,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/MarginContainer/HBoxContainer2/MarginContainer"]
+[node name="IPriceText" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/MarginContainer/HBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -1219,6 +1226,7 @@ text = "1200"
 scroll_active = false
 
 [node name="ViewMenu" type="TextureRect" parent="CenterMenusMargin"]
+visible = false
 layout_mode = 2
 texture = ExtResource("39_kup5j")
 
@@ -1234,7 +1242,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("40_7fls8")
 
-[node name="MarginContainer2" type="MarginContainer" parent="CenterMenusMargin/ViewMenu"]
+[node name="XButtonMargin" type="MarginContainer" parent="CenterMenusMargin/ViewMenu"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -1245,7 +1253,7 @@ offset_bottom = 55.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 20
 
-[node name="TextureButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/MarginContainer2"]
+[node name="XButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/XButtonMargin"]
 layout_mode = 2
 texture_normal = ExtResource("2_053i0")
 
@@ -1318,11 +1326,11 @@ theme_override_constants/separation = 10
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="BridgeHideButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("42_6tx07")
 
-[node name="TextureButton2" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="BridgeShowButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
@@ -1331,11 +1339,11 @@ texture_normal = ExtResource("43_k7tsg")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer2"]
+[node name="RHideButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("42_6tx07")
 
-[node name="TextureButton2" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer2"]
+[node name="RShowButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer2"]
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
@@ -1344,11 +1352,11 @@ texture_normal = ExtResource("43_k7tsg")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer3"]
+[node name="CHideButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("42_6tx07")
 
-[node name="TextureButton2" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer3"]
+[node name="CShowButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer3"]
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
@@ -1357,11 +1365,11 @@ texture_normal = ExtResource("43_k7tsg")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer4"]
+[node name="IHideButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer4"]
 layout_mode = 2
 texture_normal = ExtResource("42_6tx07")
 
-[node name="TextureButton2" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer4"]
+[node name="IShowButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer4"]
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
