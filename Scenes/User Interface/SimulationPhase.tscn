@@ -1,0 +1,432 @@
+[gd_scene load_steps=16 format=3 uid="uid://c7n23tfkf68cp"]
+
+[ext_resource type="Script" path="res://Scripts/User Interface/SimulationPhaseUserInterface.gd" id="1_rmpuu"]
+[ext_resource type="Texture2D" uid="uid://5u4gxt64hvke" path="res://Assets - User Interface/Buttons/Button BW70 _ City And Undo Arrow.svg" id="1_rnxl8"]
+[ext_resource type="Texture2D" uid="uid://dbhejrys1dhdh" path="res://Assets - User Interface/Buttons/Button BW70 _ Magnifying Data.svg" id="2_6v4u0"]
+[ext_resource type="Texture2D" uid="uid://b8u2i3a14v2cg" path="res://Assets - User Interface/Areas/Area BW 513x150 _ Even Split.svg" id="3_861fu"]
+[ext_resource type="Texture2D" uid="uid://d1ptig6nll6m3" path="res://Assets - User Interface/Icons/Icon W _ Stars.svg" id="4_4w8hl"]
+[ext_resource type="Texture2D" uid="uid://cklk1kcmj7mtx" path="res://Assets - User Interface/Icons/Icon W _ 3 People.svg" id="5_fcxqj"]
+[ext_resource type="Texture2D" uid="uid://cvb4kkq5vptbb" path="res://Assets - User Interface/Icons/Icon W _ Dollar Sign.svg" id="6_vm3jq"]
+[ext_resource type="Texture2D" uid="uid://dr07aywsbkdwm" path="res://Assets - User Interface/Icons/Icon W _ Handshake.svg" id="7_6wubk"]
+[ext_resource type="FontFile" uid="uid://4r0soj0npanq" path="res://Assets - User Interface/Fonts/harmattan-bold.ttf" id="8_ia8m3"]
+[ext_resource type="Texture2D" uid="uid://cj4jbh4hrhvq" path="res://Assets - User Interface/Buttons/Button BW70 _ Gear.svg" id="9_sb6pi"]
+[ext_resource type="Texture2D" uid="uid://03xqjwjff6de" path="res://Assets - User Interface/Buttons/Button BW70 _ Binoculars.svg" id="10_ib8c0"]
+[ext_resource type="Texture2D" uid="uid://di7olm6a64uen" path="res://Assets - User Interface/Areas/Area BW 295x70 _ Right Split.svg" id="11_8ct8o"]
+[ext_resource type="Texture2D" uid="uid://fq324mwiqkkr" path="res://Assets - User Interface/Buttons/Button BW70 _ Play.svg" id="12_7f38l"]
+[ext_resource type="Texture2D" uid="uid://cdpit7jnqjvpv" path="res://Assets - User Interface/Buttons/Button BW70 _ Pause.svg" id="13_m7kmt"]
+[ext_resource type="Texture2D" uid="uid://osxpppsxxtpj" path="res://Assets - User Interface/Buttons/Button BW70 Long _ Skip.svg" id="14_unn0q"]
+
+[node name="SimulationPhase" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rmpuu")
+
+[node name="TopBarMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.5
+offset_right = 256.5
+offset_bottom = 150.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBarMargin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LeftButtonBlock" type="VBoxContainer" parent="TopBarMargin/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PastSimulationsButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/LeftButtonBlock"]
+layout_mode = 2
+texture_normal = ExtResource("1_rnxl8")
+
+[node name="StatsButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/LeftButtonBlock"]
+layout_mode = 2
+size_flags_vertical = 10
+texture_normal = ExtResource("2_6v4u0")
+
+[node name="StandingStatDisplay" type="TextureRect" parent="TopBarMargin/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_861fu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -70.0
+offset_right = 248.0
+offset_bottom = 70.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect2" type="TextureRect" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_4w8hl")
+
+[node name="TextureRect3" type="TextureRect" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_fcxqj")
+
+[node name="TextureRect4" type="TextureRect" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_vm3jq")
+
+[node name="TextureRect5" type="TextureRect" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_6wubk")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PointsMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="PointsText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/PointsMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 30
+text = "1200
+"
+scroll_active = false
+
+[node name="PeopleMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = -6
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="PeopleText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/PeopleMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 30
+text = "1200
+"
+scroll_active = false
+
+[node name="MoneyMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = -6
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="MoneyText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/MoneyMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 30
+text = "1200
+"
+scroll_active = false
+
+[node name="ReputationMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = -7
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ReputationText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/ReputationMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 30
+text = "1200
+"
+scroll_active = false
+
+[node name="RightLabelsContainer" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -70.0
+offset_right = 248.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = -15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 40
+text = "Demand"
+scroll_active = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = -14
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 36
+text = "R"
+scroll_active = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = -14
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer3/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 36
+text = "C"
+scroll_active = false
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 23
+theme_override_constants/margin_top = -14
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/RightLabelsContainer/VBoxContainer/HBoxContainer4/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 36
+text = "I"
+scroll_active = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 47.5
+offset_top = -35.0
+offset_right = 255.5
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="RDemandMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = -5
+
+[node name="RDemandText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/RDemandMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 30
+text = "1200"
+scroll_active = false
+
+[node name="CDemandMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = -5
+
+[node name="CDemandText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/CDemandMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 30
+text = "1200
+"
+scroll_active = false
+
+[node name="IDemandMargin" type="MarginContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = -6
+
+[node name="IDemandText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/IDemandMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 30
+text = "1200
+"
+scroll_active = false
+
+[node name="RightButtonBlock" type="VBoxContainer" parent="TopBarMargin/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SettingsButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/RightButtonBlock"]
+layout_mode = 2
+texture_normal = ExtResource("9_sb6pi")
+
+[node name="ViewButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/RightButtonBlock"]
+layout_mode = 2
+size_flags_vertical = 10
+texture_normal = ExtResource("10_ib8c0")
+
+[node name="BottomRightBlockMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -385.0
+offset_top = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BottomRightBlockMargin" type="HBoxContainer" parent="BottomRightBlockMargin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TurnTracker" type="TextureRect" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
+layout_mode = 2
+texture = ExtResource("11_8ct8o")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 120.0
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = -4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 48
+text = "Turn:"
+scroll_active = false
+
+[node name="CurrentTurnMargin" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432
+anchor_right = 0.637
+anchor_bottom = 1.0
+offset_left = -7.44
+offset_right = 4.08499
+grow_vertical = 2
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = 1
+
+[node name="CurrentTurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/CurrentTurnMargin"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 48
+text = "40"
+scroll_active = false
+text_direction = 2
+
+[node name="TotalTurnMargin" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432
+anchor_right = 0.637
+anchor_bottom = 1.0
+offset_left = 96.56
+offset_right = 108.085
+grow_vertical = 2
+theme_override_constants/margin_top = -4
+
+[node name="TotalTurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/TotalTurnMargin"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_ia8m3")
+theme_override_font_sizes/normal_font_size = 48
+text = "40"
+scroll_active = false
+text_direction = 1
+
+[node name="RunSimulationButton" type="TextureButton" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
+layout_mode = 2
+texture_normal = ExtResource("12_7f38l")
+
+[node name="PauseSimulationButton" type="TextureButton" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("13_m7kmt")
+
+[node name="BottomLeftBlockMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SkipButton" type="TextureButton" parent="BottomLeftBlockMargin"]
+layout_mode = 2
+texture_normal = ExtResource("14_unn0q")
