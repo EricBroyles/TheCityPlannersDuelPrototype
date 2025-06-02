@@ -3,8 +3,6 @@ extends Node2D
 class_name GameboardItem
 const X_DIR: Vector2 = Vector2(1,0)
 const Y_DIR: Vector2 = Vector2(0,1)
-const COLORS = preload("res://Scripts/Constants/ColorConstants.gd")
-const GAMEBOARD = preload("res://Scripts/Constants/GameboardConstants.gd")
 
 var type: String #Type: from TYPES, to be set by each item
 var size: Vector2 #the size to begin with
@@ -13,7 +11,7 @@ var level: float = 0 #Levels: 0 means that it does not have levels, otherwise st
 var max_level: float = 0
 var orientation: Dictionary = {"x_dir": X_DIR, "y_dir": Y_DIR}
 var real_orientation: Dictionary = {"rotation_degrees": 0, "flip_h": false, "flip_v": false}
-var error_layer_color = COLORS.GAMEBOARD_ITEM_ERROR_LAYER
+var error_layer_color = GameConstants.GAMEBOARD_ITEM_ERROR_LAYER
 var main_body_texture: Texture2D
 
 

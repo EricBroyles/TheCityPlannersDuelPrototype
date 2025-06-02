@@ -18,7 +18,7 @@ var right_parking_active: bool = false
 
 
 func _init(parking: bool = false):
-	type = GAMEBOARD.ROAD_2_LANE["type"]
+	type = GameConstants.ROAD_2_LANE["type"]
 	main_body_texture = preload("res://Assets/Roads/Straights/Road 2 Lane.svg")
 	size = main_body_texture.get_size()
 	
@@ -28,7 +28,7 @@ func _init(parking: bool = false):
 		right_parking_active = true
 		
 	##NOTE: this sets the z_index for this item
-	z_index = GAMEBOARD.ROAD_2_LANE["z_index"]
+	z_index = GameConstants.ROAD_2_LANE["z_index"]
 	
 func _ready():
 	set_parking()

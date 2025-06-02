@@ -1,5 +1,6 @@
 extends Node
 
+##THIS JUST MANAGES WHICH User INterface is selected
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

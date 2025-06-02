@@ -14,10 +14,10 @@ class_name ParkingLot1x1
 #max_level: 0 (it does not have levels)
 
 func _init():
-	type = GAMEBOARD.PARKING_LOT_1X1["type"]
+	type = GameConstants.PARKING_LOT_1X1["type"]
 	
 	##NOTE: this sets the z_index for this item
-	z_index = GAMEBOARD.PARKING_LOT_1X1["z_index"]
+	z_index = GameConstants.PARKING_LOT_1X1["z_index"]
 	
 func _ready():
 	#main_body = $MainBody

@@ -4,6 +4,14 @@ var ParkingLot2x2Scene: PackedScene = preload("res://Scenes/Gameboard Items/Park
 
 #@onready var parking_lot_2x2: ParkingLot2x2 = ParkingLot2x2.new()
 
+
+
+
+
+
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	

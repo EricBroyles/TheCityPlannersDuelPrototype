@@ -10,4 +10,4 @@ extends ZoneWalkway
 #y = 96
 
 func _ready():
-	request_walkway_type = GAMEBOARD.CROSSWALK_1_EDGE["type"]
+	request_walkway_type = GameConstants.CROSSWALK_1_EDGE["type"]

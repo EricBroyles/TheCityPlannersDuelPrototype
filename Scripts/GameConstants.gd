@@ -1,4 +1,7 @@
-extends Node
+## This will include the constants needed for the challenge game, duel game mode, creative game mode
+
+## Colors
+const GAMEBOARD_ITEM_ERROR_LAYER: Dictionary = {"hex": "ff0400", "alpha": 180}
 
 
 #•	Layer 1: Game Board Tiles
@@ -10,13 +13,11 @@ extends Node
 #•	Layer 7: People
 #•	Layer Last: Parking Symbol, junction level symbols, curve level items, merge symbols
 
-
-##add a elevation tag to only those that have an elevation that is by default not 0. 
-
 ##Agent Items
 const CAR:   Dictionary = {"type": "car",   "z_index": 60}
 const HUMAN: Dictionary = {"type": "human", "z_index": 70}
 
+## Gameboard Items 
 ## Walkways
 const SIDEWALK_1_EDGE:  Dictionary = {"type": "sidewalk_1_edge",  "z_index": 51}
 const CROSSWALK_1_EDGE: Dictionary = {"type": "crosswalk_1_edge", "z_index": 50}
@@ -25,7 +26,6 @@ const CROSSWALK_2_EDGE: Dictionary = {"type": "crosswalk_2_edge", "z_index": 50}
 ## ParkingLots 
 const PARKING_LOT_1X1: Dictionary = {"type": "parking_lot_1x1", "z_index": 40}
 const PARKING_LOT_2X2: Dictionary = {"type": "parking_lot_1x1", "z_index": 40}
-
 
 ## Roads
 const ROAD_2_LANE: Dictionary = {"type": "road_2_lane", "z_index": 20}
