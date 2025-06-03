@@ -7,10 +7,10 @@ var turn: int = 0
 var points: int = 0
 var population: int = 0
 var money: int = 0
-var reputation: int = 0
-var r_demand: int = 0
-var c_demand: int = 0
-var i_demand: int = 0
+var reputation: int = 100
+var r_demand: int = 100
+var c_demand: int = 20
+var i_demand: int = 20
 
 ## Cards
 var cards_in_deck: int = 20 #current cards in deck
@@ -43,14 +43,3 @@ var i_zone_demand_cost: int = 1
 #maintaince cost of everything.
 #cost of all upgrades
 #cost of all destruction
-
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

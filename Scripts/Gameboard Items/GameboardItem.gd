@@ -4,6 +4,7 @@ class_name GameboardItem
 const X_DIR: Vector2 = Vector2(1,0)
 const Y_DIR: Vector2 = Vector2(0,1)
 
+## all of this will need to be moved out exception things like orientation properties, all custom stats should be moved out !!!!!
 var type: String #Type: from TYPES, to be set by each item
 var size: Vector2 #the size to begin with
 var elevation: float = 0 #Elevation: 0 base, .5 (halfway), 1 (up a level)

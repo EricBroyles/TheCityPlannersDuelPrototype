@@ -239,10 +239,12 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="PastSimulationsButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/LeftButtonBlock"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("13_xsygd")
 
 [node name="StatsButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/LeftButtonBlock"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
 texture_normal = ExtResource("14_6ly0f")
@@ -523,10 +525,12 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="SettingsButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/RightButtonBlock"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("20_qrtf3")
 
 [node name="ViewButton" type="TextureButton" parent="TopBarMargin/HBoxContainer/RightButtonBlock"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
 texture_normal = ExtResource("21_4h4cw")
@@ -560,6 +564,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="ItemInfoButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -570,18 +575,22 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Rotate90Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("23_yp6en")
 
 [node name="FlipVerticalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("24_d5yyw")
 
 [node name="FlipHorizontalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("25_hj3y3")
 
-[node name="XButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer"]
+[node name="ItemPlacerXButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 texture_normal = ExtResource("2_053i0")
@@ -668,11 +677,13 @@ offset_bottom = 55.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 20
 
-[node name="XButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenyXButtonMargin"]
+[node name="BottomMenuXButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenyXButtonMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("2_053i0")
 
 [node name="ZoningOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
+visible = false
 layout_mode = 1
 offset_right = 166.0
 offset_bottom = 152.0
@@ -688,6 +699,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="UnzoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("28_8esui")
 
@@ -697,6 +709,7 @@ position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)
 
 [node name="RZoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("31_ofg41")
 
@@ -710,6 +723,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="CZoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("36_kl0vk")
 
@@ -719,6 +733,7 @@ position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)
 
 [node name="IZoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("38_5rehw")
 
@@ -744,6 +759,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="WalkwayButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("36_6wgcn")
 
@@ -755,11 +771,13 @@ theme_override_constants/margin_left = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="2LaneRoadButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer2/VBoxContainer2"]
+[node name="Road2LaneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer2/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("37_p2kr2")
 
-[node name="2LaneJointButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer2/VBoxContainer2"]
+[node name="Joint2LaneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer2/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("38_4hjv5")
 
@@ -767,7 +785,8 @@ texture_normal = ExtResource("38_4hjv5")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="2LaneParkingButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer3"]
+[node name="Road2LaneParkingButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("39_u44gd")
 
@@ -775,11 +794,13 @@ texture_normal = ExtResource("39_u44gd")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="4LaneRoadButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer4"]
+[node name="Road4LaneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer4"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("40_0nrna")
 
-[node name="4LaneJointButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer4"]
+[node name="Joint4LaneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer4"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("41_jw04p")
 
@@ -787,7 +808,8 @@ texture_normal = ExtResource("41_jw04p")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="4LaneRoadParkingButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer5"]
+[node name="Road4LaneParkingButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer5"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("42_p1mse")
 
@@ -800,6 +822,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Merge2And4Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer/VBoxContainer6"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("43_vmj71")
 
@@ -820,6 +843,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Parking1x1Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("44_e0w5i")
 
@@ -828,10 +852,12 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Parking1x2LongOpeningButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("45_gyb78")
 
 [node name="Parking1x2ShortOpeningButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("46_w6if1")
 
@@ -840,6 +866,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Parking2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("47_g6e6u")
 
@@ -860,6 +887,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Junction1x1Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("48_4n43l")
 
@@ -872,10 +900,12 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Junction4Inlets1x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("49_cuvhh")
 
 [node name="Junction5Inlets1x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("50_cbt1d")
 
@@ -896,10 +926,12 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Junction2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer3/VBoxContainer4"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("52_q84hu")
 
 [node name="Junction5Inlets2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer3/VBoxContainer4"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("53_cbe6h")
 
@@ -908,10 +940,12 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Junction6Inlets2x2AcrossButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer5"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("54_wlth0")
 
 [node name="Junction6Inlets2x2NextButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer5"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("55_eqds7")
 
@@ -920,54 +954,58 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Junction7Inlets2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer6"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("56_ux5gi")
 
 [node name="Junction8Inlets2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer6"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("57_ux6av")
 
-[node name="BrdigeOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
-visible = false
+[node name="BridgeOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 7
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="BridgeRampButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/VBoxContainer"]
+[node name="BridgeRampButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("58_yqb4p")
 
-[node name="MarginContainer" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="BridgeStraightButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
+[node name="BridgeStraightButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("59_1r1hs")
 
-[node name="MarginContainer2" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/MarginContainer2"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="BridgeJointButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BrdigeOptions/HBoxContainer/MarginContainer2/VBoxContainer3"]
+[node name="BridgeJointButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/MarginContainer2/VBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("60_wg05m")
 
@@ -985,18 +1023,22 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="RoadOptionsButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("61_tmbwv")
 
 [node name="JunctionOptionsButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("62_ib1in")
 
 [node name="ParkingOptionsButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("63_15lm8")
 
 [node name="BridgeOptionsButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("64_l4t3t")
 
