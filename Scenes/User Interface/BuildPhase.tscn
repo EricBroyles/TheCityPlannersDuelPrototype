@@ -105,14 +105,17 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="BuyLandButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("3_vyd0s")
 
 [node name="ZoningButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("4_denk2")
 
 [node name="BuildButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("5_5mk3k")
 
@@ -121,18 +124,22 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="UpgradeButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("6_cf037")
 
 [node name="DeleteButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("7_2sg0o")
 
 [node name="CardButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("8_6qj7y")
 
 [node name="OpenMarketButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("9_y0tu4")
 
@@ -186,7 +193,7 @@ grow_vertical = 2
 theme_override_constants/margin_top = -4
 theme_override_constants/margin_right = 1
 
-[node name="CurrentTurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/CurrentTurnMargin"]
+[node name="TurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/CurrentTurnMargin"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -206,7 +213,7 @@ offset_right = 108.085
 grow_vertical = 2
 theme_override_constants/margin_top = -4
 
-[node name="TotalTurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/TotalTurnMargin"]
+[node name="TotalTurnsText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/TotalTurnMargin"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -216,6 +223,7 @@ scroll_active = false
 text_direction = 1
 
 [node name="FinishTurnButton" type="TextureButton" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("12_pfxl7")
 
@@ -320,7 +328,7 @@ theme_override_constants/margin_top = -6
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="PeopleText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/PeopleMargin"]
+[node name="PopulationText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/PeopleMargin"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -555,107 +563,109 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 10
 
-[node name="ItemPlacerButtonsMargin" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer"]
+[node name="ItemPlacerButtons" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ItemInfoButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer"]
+[node name="ItemInfoButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture_normal = ExtResource("22_sqij3")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Rotate90Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
+[node name="Rotate90Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("23_yp6en")
 
-[node name="FlipVerticalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
+[node name="FlipVerticalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("24_d5yyw")
 
-[node name="FlipHorizontalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer/HBoxContainer"]
+[node name="FlipHorizontalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("25_hj3y3")
 
-[node name="ItemPlacerXButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtonsMargin/HBoxContainer"]
+[node name="ItemPlacerXButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 texture_normal = ExtResource("2_053i0")
 
-[node name="CardTemplateLayoutMargin" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer"]
+[node name="CardTemplateLayout" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 248
 theme_override_constants/margin_right = 175
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 0
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect2" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect3" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer/HBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect4" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer/HBoxContainer"]
+[node name="TextureRect4" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect5" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer/HBoxContainer"]
+[node name="TextureRect5" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect6" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer/HBoxContainer"]
+[node name="TextureRect6" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect7" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer/HBoxContainer"]
+[node name="TextureRect7" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="MarginContainer" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 
-[node name="TextureRect" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("23_exiae")
 
-[node name="MarginContainer" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 70
 
-[node name="CurrentCardsInDeck" type="RichTextLabel" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayoutMargin/HBoxContainer/MarginContainer/MarginContainer"]
+[node name="CurrentCardsInDeck" type="RichTextLabel" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/MarginContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -663,10 +673,11 @@ theme_override_font_sizes/normal_font_size = 32
 text = "20"
 
 [node name="BottomMenu" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("1_ay4le")
 
-[node name="BottomMenyXButtonMargin" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
+[node name="BottomMenuXButtonMargin" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -677,13 +688,13 @@ offset_bottom = 55.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 20
 
-[node name="BottomMenuXButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenyXButtonMargin"]
+[node name="BottomMenuXButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuXButtonMargin"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("2_053i0")
 
 [node name="ZoningOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
-visible = false
+unique_name_in_owner = true
 layout_mode = 1
 offset_right = 166.0
 offset_bottom = 152.0
@@ -743,6 +754,7 @@ position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)
 
 [node name="RoadOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 0
 offset_right = 40.0
@@ -827,6 +839,7 @@ layout_mode = 2
 texture_normal = ExtResource("43_vmj71")
 
 [node name="ParkingOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 0
 offset_right = 40.0
@@ -842,7 +855,7 @@ theme_override_constants/separation = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Parking1x1Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer"]
+[node name="ParkingLot1x1Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("44_e0w5i")
@@ -851,12 +864,12 @@ texture_normal = ExtResource("44_e0w5i")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Parking1x2LongOpeningButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2"]
+[node name="ParkingLot1x2LongOpenButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("45_gyb78")
 
-[node name="Parking1x2ShortOpeningButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2"]
+[node name="ParkingLot1x2ShortOpenButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("46_w6if1")
@@ -865,12 +878,13 @@ texture_normal = ExtResource("46_w6if1")
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Parking2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer3"]
+[node name="ParkingLot2x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("47_g6e6u")
 
 [node name="JunctionOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 0
 offset_right = 40.0
@@ -914,6 +928,7 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Junction6Inlets1x2Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("51_ysv3c")
 
@@ -964,6 +979,8 @@ layout_mode = 2
 texture_normal = ExtResource("57_ux6av")
 
 [node name="BridgeOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -978,7 +995,7 @@ theme_override_constants/separation = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="BridgeRampButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/VBoxContainer"]
+[node name="BridgeRamp2LaneStraightButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("58_yqb4p")
@@ -991,7 +1008,7 @@ theme_override_constants/margin_left = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="BridgeStraightButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
+[node name="Bridge2LaneStraightButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/MarginContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("59_1r1hs")
@@ -1004,12 +1021,13 @@ theme_override_constants/margin_left = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="BridgeJointButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/MarginContainer2/VBoxContainer3"]
+[node name="Bridge2LaneJointButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/MarginContainer2/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("60_wg05m")
 
 [node name="BottomMenuButtonRow" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 offset_top = -40.0
@@ -1054,6 +1072,7 @@ grow_horizontal = 2
 theme_override_constants/margin_top = 260
 
 [node name="OpenMarketMenu" type="TextureRect" parent="CenterMenusMargin"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture = ExtResource("28_bmcps")
@@ -1081,7 +1100,8 @@ offset_bottom = 55.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 20
 
-[node name="XButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/XButtonMargin"]
+[node name="OpenMarketMenuXButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/XButtonMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("2_053i0")
 
@@ -1120,14 +1140,17 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Buy1RButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("32_3nxra")
 
 [node name="Buy10RButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("33_lil6s")
 
 [node name="Buy100RButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("34_0u0xb")
 
@@ -1151,7 +1174,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="RPriceText" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer2/MarginContainer"]
+[node name="CostPerRDemandText" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer2/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -1179,14 +1203,17 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Buy1CButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("32_3nxra")
 
 [node name="Buy10CButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("33_lil6s")
 
 [node name="Buy100CButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("34_0u0xb")
 
@@ -1210,7 +1237,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="CPriceText" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer"]
+[node name="CostPerCDemandText" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer2/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -1238,14 +1266,17 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Buy1IButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("32_3nxra")
 
 [node name="Buy10IButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("33_lil6s")
 
 [node name="Buy100IButton" type="TextureButton" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("34_0u0xb")
 
@@ -1269,7 +1300,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="IPriceText" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/MarginContainer/HBoxContainer2/MarginContainer"]
+[node name="CostPerIDemandText" type="RichTextLabel" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/MarginContainer/HBoxContainer2/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("11_mlbn8")
@@ -1278,6 +1310,7 @@ text = "1200"
 scroll_active = false
 
 [node name="ViewMenu" type="TextureRect" parent="CenterMenusMargin"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture = ExtResource("39_kup5j")
@@ -1305,7 +1338,8 @@ offset_bottom = 55.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 20
 
-[node name="XButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/XButtonMargin"]
+[node name="ViewMenuXButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/XButtonMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("2_053i0")
 
@@ -1379,10 +1413,12 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="BridgeHideButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("42_6tx07")
 
 [node name="BridgeShowButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
@@ -1392,10 +1428,12 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="RHideButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("42_6tx07")
 
 [node name="RShowButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
@@ -1405,10 +1443,12 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="CHideButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("42_6tx07")
 
 [node name="CShowButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer3"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
@@ -1418,10 +1458,32 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="IHideButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer4"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("42_6tx07")
 
 [node name="IShowButton" type="TextureButton" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer2/HBoxContainer4"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
+
+[connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow/BuyLandButton" to="." method="_on_buy_land_button_pressed"]
+[connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow/ZoningButton" to="." method="_on_zoning_button_pressed"]
+[connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow/BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow/CardButton" to="." method="_on_card_button_pressed"]
+[connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow/OpenMarketButton" to="." method="_on_open_market_button_pressed"]
+[connection signal="pressed" from="TopBarMargin/HBoxContainer/RightButtonBlock/ViewButton" to="." method="_on_view_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/XButtonMargin/OpenMarketMenuXButton" to="." method="_on_open_market_menu_x_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer/Buy1RButton" to="." method="_on_buy_1_r_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer/Buy10RButton" to="." method="_on_buy_10_r_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer/Buy100RButton" to="." method="_on_buy_100_r_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer/Buy1CButton" to="." method="_on_buy_1_c_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer/Buy10CButton" to="." method="_on_buy_10_c_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/HBoxContainer/Buy100CButton" to="." method="_on_buy_100_c_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer/Buy1IButton" to="." method="_on_buy_1_i_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer/Buy10IButton" to="." method="_on_buy_10_i_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/HBoxContainer/Buy100IButton" to="." method="_on_buy_100_i_button_pressed"]
+[connection signal="pressed" from="CenterMenusMargin/ViewMenu/XButtonMargin/ViewMenuXButton" to="." method="_on_view_menu_x_button_pressed"]

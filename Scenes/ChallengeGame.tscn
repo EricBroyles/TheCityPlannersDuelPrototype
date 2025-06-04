@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://crjn5c2upwk07"]
+[gd_scene load_steps=7 format=3 uid="uid://crjn5c2upwk07"]
 
 [ext_resource type="Script" path="res://Scripts/ChallengeGame.gd" id="1_y5k1y"]
 [ext_resource type="Script" path="res://Scripts/User Interface/ChallengeGameUserInterface.gd" id="2_wetfu"]
 [ext_resource type="PackedScene" uid="uid://dfimjfiiwuhtk" path="res://Scenes/User Interface/BuildPhase.tscn" id="2_wuohv"]
 [ext_resource type="PackedScene" uid="uid://c7n23tfkf68cp" path="res://Scenes/User Interface/SimulationPhase.tscn" id="4_io6p8"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="5_6j11q"]
+[ext_resource type="Script" path="res://Scripts/Gameboard.gd" id="6_a8jxb"]
 
 [node name="ChallengeGame" type="Node2D"]
 script = ExtResource("1_y5k1y")
@@ -15,3 +17,15 @@ script = ExtResource("2_wetfu")
 
 [node name="SimulationPhase" parent="ChallengeGameUserInterface" instance=ExtResource("4_io6p8")]
 visible = false
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("5_6j11q")
+
+[node name="Gameboard" type="Node2D" parent="."]
+script = ExtResource("6_a8jxb")
+
+[node name="Tiles" type="Node2D" parent="Gameboard"]
+
+[node name="Items" type="Node2D" parent="Gameboard"]
+
+[node name="ItemPlacer" type="Node2D" parent="Gameboard"]

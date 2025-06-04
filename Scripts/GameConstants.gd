@@ -4,6 +4,9 @@ extends Node
 ## Colors
 const GAMEBOARD_ITEM_ERROR_LAYER: Dictionary = {"hex": "ff0400", "alpha": 180}
 
+## Gameboard
+const GAMEBOARD_TILE_SIZE = 200 #pixels
+
 
 #•	Layer 1: Game Board Tiles
 #•	Layer 2: All roads, curves, junctions, merges, 

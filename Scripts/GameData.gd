@@ -1,5 +1,21 @@
 extends Node
 
+## User Controller
+# User Mouse Controller
+var mouse_button_left = 1
+var mouse_button_right = 2
+var mouse_button_middle = 3
+
+## User Interface
+
+
+## Gameboard
+var gameboard_r: int = 10
+var gameboard_c: int = 20
+
+## Mouse Position
+var mouse_position: Vector2
+
 ## Game Info
 var total_turns: int = 40
 var turn: int = 0
@@ -24,9 +40,9 @@ var money_starting_gift_turns: int = 3 #the number of turns to recieve the gift 
 ##this will likly need to be moved into the class
 ## Costs of Zoning
 #cost to buy demand in points
-var cost_per_r_demand: int = 1200
-var cost_per_c_demand: int = 1200
-var cost_per_i_demand: int = 1200
+var cost_per_r_demand: int = 1100
+var cost_per_c_demand: int = 1100
+var cost_per_i_demand: int = 1100
 
 #cost in demand points to place a one zone tile
 var r_zone_demand_cost: int = 1
