@@ -3,7 +3,7 @@ extends Node2D
 class_name Gameboard
 @onready var gameboard_tiles = $Tiles
 @onready var gameboard_items = $Items
-@onready var item_placer = $ItemPlacer
+#@onready var gameboard_placer = $Placer
 
 var gameboard_items_matrix: Array #3D matrix with array of GameboardItem at each index.
 var top_left_tile_position: Vector2 = Vector2(0,0)

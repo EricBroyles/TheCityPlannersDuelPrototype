@@ -7,6 +7,39 @@ const GAMEBOARD_ITEM_ERROR_LAYER: Dictionary = {"hex": "ff0400", "alpha": 180}
 ## Gameboard
 const GAMEBOARD_TILE_SIZE = 200 #pixels
 
+## Gameboard Placer Modes: the reason I do not combine this with the game components is their is not a one to one (ie road parking)
+const UNSELECTED_MODE: int = 0
+const OWNED_UNZONED_MODE: int = 1
+const R_ZONE_MODE: int = 2
+const C_ZONE_MODE: int = 3
+const I_ZONE_MODE: int = 4
+const WALKWAY_MODE: int = 5
+const ROAD_2_LANE_MODE: int = 6
+const ROAD_2_LANE_PARKING_MODE: int = 7
+const ROAD_4_LANE_MODE: int = 8
+const ROAD_4_LANE_PARKING_MODE: int = 9
+const JOINT_2_LANE_MODE: int = 10
+const JOINT_4_LANE_MODE: int = 11
+const MERGE_2_AND_4_MODE: int = 12
+const PARKING_LOT_1X1_MODE: int = 13
+const PARKING_LOT_1X2_LONG_OPEN_MODE: int = 14
+const PARKING_LOT_1X2_SHORT_OPEN_MODE: int = 15
+const PARKING_LOT_2X2_MODE: int = 16
+const JUNCTION_1X1_MODE: int = 17
+const JUNCTION_4_INLETS_1X2_MODE: int = 18
+const JUNCTION_5_INLETS_1X2_MODE: int = 19
+const JUNCTION_6_INLETS_1X2_MODE: int = 20
+const JUNCTION_2X2_MODE: int = 21
+const JUNCTION_5_INLETS_2X2_MODE: int = 22
+const JUNCTION_6_INLETS_2X2_ACROSS_MODE: int = 23
+const JUNCTION_6_INLETS_2X2_NEXT_MODE: int = 24
+const JUNCTION_7_INLETS_2X2_MODE: int = 25
+const JUNCTION_8_INLETS_2X2_MODE: int = 26
+const BRIDGE_RAMP_2_LANE_STRAIGHT_MODE: int = 27
+const BRIDGE_2_LANE_STRAIGHT_MODE: int = 28
+const BRIDGE_2_LANE_JOINT_MODE: int = 29
+
+
 
 #•	Layer 1: Game Board Tiles
 #•	Layer 2: All roads, curves, junctions, merges, 

@@ -709,12 +709,12 @@ theme_override_constants/separation = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="UnzoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer"]
+[node name="OwnedUnzonedButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("28_8esui")
 
-[node name="OwnedUnzonedTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/UnzoneButton" instance=ExtResource("29_ow1hg")]
+[node name="OwnedUnzonedTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/OwnedUnzonedButton" instance=ExtResource("29_ow1hg")]
 show_behind_parent = true
 position = Vector2(35, 35)
 scale = Vector2(0.35, 0.35)

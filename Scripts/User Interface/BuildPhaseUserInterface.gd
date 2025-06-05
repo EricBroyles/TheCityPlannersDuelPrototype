@@ -52,7 +52,7 @@ extends Node
 @onready var bridge_options_button = %BridgeOptionsButton
 
 #zoning options
-@onready var unzone_button = %UnzoneButton
+@onready var unzone_button = %OwnedUnzonedButton
 @onready var r_zone_button = %RZoneButton
 @onready var c_zone_button = %CZoneButton
 @onready var i_zone_button = %IZoneButton

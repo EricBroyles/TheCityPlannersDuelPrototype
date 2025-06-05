@@ -8,6 +8,7 @@ var mouse_button_middle = 3
 
 ## User Interface
 
+var gameboard_placer_mode: int = 0
 
 ## Gameboard
 var gameboard_r: int = 10
