@@ -85,156 +85,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bkv58")
 
-[node name="BottomLeftButtonBlockMargin" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -150.0
-offset_right = 310.0
-grow_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomLeftButtonBlockMargin"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="TopButtonRow" type="HBoxContainer" parent="BottomLeftButtonBlockMargin/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="BuyLandButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("3_vyd0s")
-
-[node name="ZoningButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("4_denk2")
-
-[node name="BuildButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("5_5mk3k")
-
-[node name="BottomButtonRow" type="HBoxContainer" parent="BottomLeftButtonBlockMargin/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="UpgradeButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("6_cf037")
-
-[node name="DeleteButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("7_2sg0o")
-
-[node name="CardButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("8_6qj7y")
-
-[node name="OpenMarketButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("9_y0tu4")
-
-[node name="BottomRightBlockMargin" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -385.0
-offset_top = -70.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="BottomRightBlockMargin" type="HBoxContainer" parent="BottomRightBlockMargin"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="TurnTracker" type="TextureRect" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
-layout_mode = 2
-texture = ExtResource("10_yhs2l")
-
-[node name="MarginContainer" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 120.0
-grow_vertical = 2
-theme_override_constants/margin_left = 18
-theme_override_constants/margin_top = -4
-
-[node name="RichTextLabel" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/MarginContainer"]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("11_mlbn8")
-theme_override_font_sizes/normal_font_size = 48
-text = "Turn:"
-scroll_active = false
-
-[node name="CurrentTurnMargin" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.432
-anchor_right = 0.637
-anchor_bottom = 1.0
-offset_left = -7.44
-offset_right = 4.08499
-grow_vertical = 2
-theme_override_constants/margin_top = -4
-theme_override_constants/margin_right = 1
-
-[node name="TurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/CurrentTurnMargin"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("11_mlbn8")
-theme_override_font_sizes/normal_font_size = 48
-text = "40"
-scroll_active = false
-text_direction = 2
-
-[node name="TotalTurnMargin" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.432
-anchor_right = 0.637
-anchor_bottom = 1.0
-offset_left = 96.56
-offset_right = 108.085
-grow_vertical = 2
-theme_override_constants/margin_top = -4
-
-[node name="TotalTurnsText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/TotalTurnMargin"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("11_mlbn8")
-theme_override_font_sizes/normal_font_size = 48
-text = "40"
-scroll_active = false
-text_direction = 1
-
-[node name="FinishTurnButton" type="TextureButton" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
-unique_name_in_owner = true
-layout_mode = 2
-texture_normal = ExtResource("12_pfxl7")
-
 [node name="TopBarMargin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -256.5
-offset_right = 256.5
-offset_bottom = 150.0
+offset_left = -346.5
+offset_right = 346.5
+offset_bottom = 160.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 10
 
@@ -551,7 +409,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -653.0
-offset_top = -400.0
+offset_top = -410.0
 offset_right = 653.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -1060,6 +918,148 @@ unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("64_l4t3t")
 
+[node name="BottomLeftButtonBlockMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+offset_right = 310.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomLeftButtonBlockMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TopButtonRow" type="HBoxContainer" parent="BottomLeftButtonBlockMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BuyLandButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("3_vyd0s")
+
+[node name="ZoningButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("4_denk2")
+
+[node name="BuildButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("5_5mk3k")
+
+[node name="BottomButtonRow" type="HBoxContainer" parent="BottomLeftButtonBlockMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="UpgradeButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("6_cf037")
+
+[node name="DeleteButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("7_2sg0o")
+
+[node name="CardButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("8_6qj7y")
+
+[node name="OpenMarketButton" type="TextureButton" parent="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("9_y0tu4")
+
+[node name="BottomRightBlockMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -385.0
+offset_top = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BottomRightBlockMargin" type="HBoxContainer" parent="BottomRightBlockMargin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TurnTracker" type="TextureRect" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
+layout_mode = 2
+texture = ExtResource("10_yhs2l")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 120.0
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = -4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("11_mlbn8")
+theme_override_font_sizes/normal_font_size = 48
+text = "Turn:"
+scroll_active = false
+
+[node name="CurrentTurnMargin" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432
+anchor_right = 0.637
+anchor_bottom = 1.0
+offset_left = -7.44
+offset_right = 4.08499
+grow_vertical = 2
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = 1
+
+[node name="TurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/CurrentTurnMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("11_mlbn8")
+theme_override_font_sizes/normal_font_size = 48
+text = "40"
+scroll_active = false
+text_direction = 2
+
+[node name="TotalTurnMargin" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432
+anchor_right = 0.637
+anchor_bottom = 1.0
+offset_left = 96.56
+offset_right = 108.085
+grow_vertical = 2
+theme_override_constants/margin_top = -4
+
+[node name="TotalTurnsText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/TotalTurnMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("11_mlbn8")
+theme_override_font_sizes/normal_font_size = 48
+text = "40"
+scroll_active = false
+text_direction = 1
+
+[node name="FinishTurnButton" type="TextureButton" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("12_pfxl7")
+
 [node name="CenterMenusMargin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -1468,6 +1468,7 @@ visible = false
 layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
 
+[connection signal="pressed" from="TopBarMargin/HBoxContainer/RightButtonBlock/ViewButton" to="." method="_on_view_button_pressed"]
 [connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow/BuyLandButton" to="." method="_on_buy_land_button_pressed"]
 [connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow/ZoningButton" to="." method="_on_zoning_button_pressed"]
 [connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow/BuildButton" to="." method="_on_build_button_pressed"]
@@ -1475,7 +1476,6 @@ texture_normal = ExtResource("43_k7tsg")
 [connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow/DeleteButton" to="." method="_on_delete_button_pressed"]
 [connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow/CardButton" to="." method="_on_card_button_pressed"]
 [connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/BottomButtonRow/OpenMarketButton" to="." method="_on_open_market_button_pressed"]
-[connection signal="pressed" from="TopBarMargin/HBoxContainer/RightButtonBlock/ViewButton" to="." method="_on_view_button_pressed"]
 [connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/XButtonMargin/OpenMarketMenuXButton" to="." method="_on_open_market_menu_x_button_pressed"]
 [connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer/Buy1RButton" to="." method="_on_buy_1_r_button_pressed"]
 [connection signal="pressed" from="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/HBoxContainer/Buy10RButton" to="." method="_on_buy_10_r_button_pressed"]

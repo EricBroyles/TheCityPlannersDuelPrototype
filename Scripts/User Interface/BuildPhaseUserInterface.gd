@@ -186,6 +186,7 @@ func _process(delta: float) -> void:
 ## Buttons
 #Bottom Left Button Block
 func _on_buy_land_button_pressed() -> void:
+	print("BUY LAND")
 	pass 
 
 func _on_zoning_button_pressed() -> void:
