@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://crjn5c2upwk07"]
+[gd_scene load_steps=9 format=3 uid="uid://crjn5c2upwk07"]
 
 [ext_resource type="Script" path="res://Scripts/ChallengeGame.gd" id="1_y5k1y"]
 [ext_resource type="Script" path="res://Scripts/User Interface/ChallengeGameUserInterface.gd" id="2_wetfu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="5_6j11q"]
 [ext_resource type="Script" path="res://Scripts/Gameboard.gd" id="6_a8jxb"]
 [ext_resource type="Script" path="res://Scripts/GameboardPlacer.gd" id="7_vosyi"]
+[ext_resource type="Script" path="res://Scripts/GameboardSelector.gd" id="8_1b3mj"]
 
 [node name="ChallengeGame" type="Node2D"]
 script = ExtResource("1_y5k1y")
@@ -31,3 +32,6 @@ script = ExtResource("6_a8jxb")
 
 [node name="Placer" type="Node2D" parent="Gameboard"]
 script = ExtResource("7_vosyi")
+
+[node name="Selector" type="Node2D" parent="Gameboard"]
+script = ExtResource("8_1b3mj")

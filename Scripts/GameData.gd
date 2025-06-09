@@ -14,6 +14,8 @@ var gameboard_placer_mode: int = 0
 var gameboard_r: int = 10
 var gameboard_c: int = 20
 
+var gameboard_items_matrix: Array #3D matrix with array of GameboardItem at each index.
+
 ## Mouse Position
 var mouse_position: Vector2
 
@@ -21,7 +23,7 @@ var mouse_position: Vector2
 var total_turns: int = 40
 var turn: int = 0
 
-var points: int = 0
+var points: int = 1000000
 var population: int = 0
 var money: int = 0
 var reputation: int = 100
@@ -45,10 +47,7 @@ var cost_per_r_demand: int = 1100
 var cost_per_c_demand: int = 1100
 var cost_per_i_demand: int = 1100
 
-#cost in demand points to place a one zone tile
-var r_zone_demand_cost: int = 1
-var c_zone_demand_cost: int = 1
-var i_zone_demand_cost: int = 1
+
 
 
 ## probably want these in a dictionary, that utilize the same naming as each game item. 

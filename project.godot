@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.3", "Mobile")
 GameConstants="*res://Scripts/GameConstants.gd"
 GameData="*res://Scripts/GameData.gd"
 GameComponents="*res://Scripts/GameComponents.gd"
+GameHelper="*res://Scripts/GameHelper.gd"
 
 [display]
 

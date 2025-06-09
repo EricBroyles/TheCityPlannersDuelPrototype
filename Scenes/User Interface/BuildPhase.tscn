@@ -1469,6 +1469,11 @@ layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
 
 [connection signal="pressed" from="TopBarMargin/HBoxContainer/RightButtonBlock/ViewButton" to="." method="_on_view_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuXButtonMargin/BottomMenuXButton" to="." method="_on_bottom_menu_x_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer/RoadOptionsButton" to="." method="_on_road_options_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer/JunctionOptionsButton" to="." method="_on_junction_options_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer/ParkingOptionsButton" to="." method="_on_parking_options_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer/BridgeOptionsButton" to="." method="_on_bridge_options_button_pressed"]
 [connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow/BuyLandButton" to="." method="_on_buy_land_button_pressed"]
 [connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow/ZoningButton" to="." method="_on_zoning_button_pressed"]
 [connection signal="pressed" from="BottomLeftButtonBlockMargin/VBoxContainer/TopButtonRow/BuildButton" to="." method="_on_build_button_pressed"]

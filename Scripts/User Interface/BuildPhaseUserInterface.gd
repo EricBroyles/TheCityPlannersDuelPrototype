@@ -131,7 +131,6 @@ extends Node
 @onready var bridge_options = %BridgeOptions
 @onready var bottom_menu_button_row = %BottomMenuButtonRow
 
-## Helpers
 
 
 
@@ -154,7 +153,154 @@ func _ready() -> void:
 	bridge_options.visible = false
 	bottom_menu_button_row.visible = false
 	
+	set_all_text()
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if self.visible:
+		update_all_text()
+		
+
+
+## Buttons
+
+func _on_buy_land_button_pressed() -> void:
+	print("BUY LAND")
+	pass 
+
+func _on_upgrade_button_pressed() -> void:
+	pass 
 	
+func _on_delete_button_pressed() -> void:
+	pass 
+	
+func _on_card_button_pressed() -> void:
+	toggle_card_template_layout()
+	
+
+
+
+func _on_zoning_button_pressed() -> void:
+	if bottom_menu.visible == false:
+		open_bottom_menu("zones")
+	elif bottom_menu.visible and zoning_options.visible == false:
+		open_bottom_menu("zones")
+	else:
+		close_bottom_menu()
+	
+func _on_build_button_pressed() -> void:
+	if bottom_menu.visible == false:
+		open_bottom_menu("roads")
+	elif bottom_menu.visible and zoning_options.visible == true:
+		open_bottom_menu("roads")
+	else:
+		close_bottom_menu()
+
+func _on_road_options_button_pressed() -> void:
+	open_bottom_menu("roads") 
+
+func _on_junction_options_button_pressed() -> void:
+	open_bottom_menu("junctions") 
+
+func _on_parking_options_button_pressed() -> void:
+	open_bottom_menu("parking") 
+	
+func _on_bridge_options_button_pressed() -> void:
+	open_bottom_menu("bridges") 
+
+func _on_bottom_menu_x_button_pressed() -> void:
+	close_bottom_menu()
+
+
+#Open Market Menu
+func _on_open_market_button_pressed() -> void:
+	toggle_open_market_menu()
+	
+func _on_open_market_menu_x_button_pressed() -> void:
+	toggle_open_market_menu() 
+
+func _on_buy_1_r_button_pressed() -> void:
+	GameHelper.buy_demand("r", 1) 
+
+func _on_buy_10_r_button_pressed() -> void:
+	GameHelper.buy_demand("r", 10)  
+
+func _on_buy_100_r_button_pressed() -> void:
+	GameHelper.buy_demand("r", 100)  
+
+func _on_buy_1_c_button_pressed() -> void:
+	GameHelper.buy_demand("c", 1)  
+
+func _on_buy_10_c_button_pressed() -> void:
+	GameHelper.buy_demand("c", 10)   
+
+func _on_buy_100_c_button_pressed() -> void:
+	GameHelper.buy_demand("c", 100)   
+
+func _on_buy_1_i_button_pressed() -> void:
+	GameHelper.buy_demand("i", 1)   
+
+func _on_buy_10_i_button_pressed() -> void:
+	GameHelper.buy_demand("i", 10) 
+
+func _on_buy_100_i_button_pressed() -> void:
+	GameHelper.buy_demand("i", 100) 
+
+
+#View Menu
+func _on_view_button_pressed() -> void:
+	toggle_view_menu() 
+	
+func _on_view_menu_x_button_pressed() -> void:
+	toggle_view_menu() 
+
+## Helpers
+#Toggle: means open if closed, close if open
+func toggle_open_market_menu():
+	open_market_menu.visible = !open_market_menu.visible
+
+func toggle_view_menu():
+	view_menu.visible = !view_menu.visible
+	
+func toggle_card_template_layout():
+	card_template_layout.visible = !card_template_layout.visible
+
+func open_bottom_menu(option: String):
+	bottom_menu.visible = true
+	close_all_bottom_menu_options()
+	match option:
+		"zones":
+			bottom_menu_button_row.visible = false
+			zoning_options.visible = true
+		"roads":
+			bottom_menu_button_row.visible = true
+			road_options.visible = true
+		"junctions":
+			bottom_menu_button_row.visible = true
+			junction_options.visible = true
+		"parking":
+			bottom_menu_button_row.visible = true
+			parking_options.visible = true
+		"bridges":
+			bottom_menu_button_row.visible = true
+			bridge_options.visible = true
+		_:
+			push_error("Unknown bottom menu option: %d" %option)
+func close_bottom_menu():
+	bottom_menu.visible = false
+	close_all_bottom_menu_options()
+	
+func close_all_bottom_menu_options():
+	zoning_options.visible = false
+	road_options.visible = false
+	parking_options.visible = false
+	junction_options.visible = false
+	bridge_options.visible = false
+	
+	
+func set_all_text():
 	points_text.text = str(GameData.points)
 	population_text.text = str(GameData.population)
 	money_text.text = str(GameData.money)
@@ -172,79 +318,25 @@ func _ready() -> void:
 	cost_per_r_demand_text.text = str(GameData.cost_per_r_demand)
 	cost_per_c_demand_text.text = str(GameData.cost_per_c_demand)
 	cost_per_i_demand_text.text = str(GameData.cost_per_i_demand)
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if self.visible:
-		#print(game_manager.turn)
-		pass
-		
-# Open View/Open Market menus -> close all other menus, close the item_placer
-
-## Buttons
-#Bottom Left Button Block
-func _on_buy_land_button_pressed() -> void:
-	print("BUY LAND")
-	pass 
-
-func _on_zoning_button_pressed() -> void:
-	pass 
 	
-func _on_build_button_pressed() -> void:
-	pass 
+func update_all_text():
+	points_text.text = str(GameData.points)
+	population_text.text = str(GameData.population)
+	money_text.text = str(GameData.money)
+	reputation_text.text = str(GameData.reputation)
+
+	r_demand_text.text = str(GameData.r_demand)
+	c_demand_text.text = str(GameData.c_demand)
+	i_demand_text.text = str(GameData.i_demand)
+
+	if card_template_layout.visible:
+		cards_in_deck_text.text = str(GameData.cards_in_deck)
+
+	turn_text.text = str(GameData.turn)
+	#total_turn_text.text = str(GameData.total_turns) Does not chnage
+
+	if open_market_menu.visible:
+		cost_per_r_demand_text.text = str(GameData.cost_per_r_demand)
+		cost_per_c_demand_text.text = str(GameData.cost_per_c_demand)
+		cost_per_i_demand_text.text = str(GameData.cost_per_i_demand)
 	
-func _on_upgrade_button_pressed() -> void:
-	pass 
-	
-func _on_delete_button_pressed() -> void:
-	pass 
-	
-func _on_card_button_pressed() -> void:
-	card_template_layout.visible = !card_template_layout.visible
-	
-
-func _on_open_market_button_pressed() -> void:
-	open_market_menu.visible = !open_market_menu.visible
-	print("Open Market Button Pressed,  Visible: ", open_market_menu.visible)
-
-#Top Bar
-func _on_view_button_pressed() -> void:
-	pass 
-
-#Open Market Menu
-func _on_open_market_menu_x_button_pressed() -> void:
-	pass 
-
-func _on_buy_1_r_button_pressed() -> void:
-	pass 
-
-func _on_buy_10_r_button_pressed() -> void:
-	pass 
-
-func _on_buy_100_r_button_pressed() -> void:
-	pass 
-
-func _on_buy_1_c_button_pressed() -> void:
-	pass 
-
-func _on_buy_10_c_button_pressed() -> void:
-	pass 
-
-func _on_buy_100_c_button_pressed() -> void:
-	pass 
-
-func _on_buy_1_i_button_pressed() -> void:
-	pass 
-
-func _on_buy_10_i_button_pressed() -> void:
-	pass 
-
-func _on_buy_100_i_button_pressed() -> void:
-	pass 
-
-
-#View Menu
-func _on_view_menu_x_button_pressed() -> void:
-	pass # Replace with function body.

@@ -5,7 +5,6 @@ class_name Gameboard
 @onready var gameboard_items = $Items
 #@onready var gameboard_placer = $Placer
 
-var gameboard_items_matrix: Array #3D matrix with array of GameboardItem at each index.
 var top_left_tile_position: Vector2 = Vector2(0,0)
 var tiles_shift: Vector2 = Vector2(GameConstants.GAMEBOARD_TILE_SIZE/2,GameConstants.GAMEBOARD_TILE_SIZE/2) #this exists to shift the tiles so the top left corner of the gameboard is a (0,0), this is needed as center of tile is in its middle
 
@@ -37,7 +36,7 @@ func init_gameboard_items_matrix():
 			row.append([])
 		matrix.append(row)
 		
-	gameboard_items_matrix = matrix
+	GameData.gameboard_items_matrix = matrix
 
 ## Make Gameboard
 #  any size: r x c (r is num of rows and c is num of col)

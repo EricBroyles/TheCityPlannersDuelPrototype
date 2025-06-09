@@ -3,6 +3,7 @@ extends Node
 var active_mode: int = 0 #this is the mode currently being shown, I need this so I can tell when the UI has requested a change, the GameDATA.gameboard_placer_mode is the mode you want to get to
 
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if active_mode != GameData.gameboard_placer_mode:
