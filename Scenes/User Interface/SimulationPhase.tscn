@@ -107,6 +107,7 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="PointsText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/PointsMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("8_ia8m3")
@@ -123,7 +124,8 @@ theme_override_constants/margin_top = -6
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="PeopleText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/PeopleMargin"]
+[node name="PopulationText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/PeopleMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("8_ia8m3")
@@ -141,6 +143,7 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="MoneyText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/MoneyMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("8_ia8m3")
@@ -158,6 +161,7 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="ReputationText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/HBoxContainer/VBoxContainer2/ReputationMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("8_ia8m3")
@@ -277,6 +281,7 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = -5
 
 [node name="RDemandText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/RDemandMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -292,6 +297,7 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = -5
 
 [node name="CDemandText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/CDemandMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -308,6 +314,7 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = -6
 
 [node name="IDemandText" type="RichTextLabel" parent="TopBarMargin/HBoxContainer/StandingStatDisplay/VBoxContainer2/IDemandMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -380,7 +387,8 @@ grow_vertical = 2
 theme_override_constants/margin_top = -4
 theme_override_constants/margin_right = 1
 
-[node name="CurrentTurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/CurrentTurnMargin"]
+[node name="TurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/CurrentTurnMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("8_ia8m3")
 theme_override_font_sizes/normal_font_size = 48
@@ -399,7 +407,8 @@ offset_right = 108.085
 grow_vertical = 2
 theme_override_constants/margin_top = -4
 
-[node name="TotalTurnText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/TotalTurnMargin"]
+[node name="TotalTurnsText" type="RichTextLabel" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker/TotalTurnMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("8_ia8m3")
 theme_override_font_sizes/normal_font_size = 48
@@ -408,10 +417,12 @@ scroll_active = false
 text_direction = 1
 
 [node name="RunSimulationButton" type="TextureButton" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("12_7f38l")
 
 [node name="PauseSimulationButton" type="TextureButton" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("13_m7kmt")
@@ -427,6 +438,11 @@ grow_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SkipButton" type="TextureButton" parent="BottomLeftBlockMargin"]
+[node name="SkipSimulationButton" type="TextureButton" parent="BottomLeftBlockMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("14_unn0q")
+
+[connection signal="pressed" from="BottomRightBlockMargin/BottomRightBlockMargin/RunSimulationButton" to="." method="_on_run_simulation_button_pressed"]
+[connection signal="pressed" from="BottomRightBlockMargin/BottomRightBlockMargin/PauseSimulationButton" to="." method="_on_pause_simulation_button_pressed"]
+[connection signal="pressed" from="BottomLeftBlockMargin/SkipSimulationButton" to="." method="_on_skip_simulation_button_pressed"]

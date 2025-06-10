@@ -1,4 +1,5 @@
 extends Node
+@onready var main_ui = get_parent()
 
 ## Text
 @onready var points_text = %PointsText
@@ -26,7 +27,7 @@ extends Node
 @onready var past_simulations_button = %PastSimulationsButton
 
 #bottom right bar
-@onready var finish_turn_button = %FinishTurnButton
+@onready var end_build_phase_button = %EndBuildPhaseButton
 
 #bottom left bar
 @onready var buy_land_button = %BuyLandButton
@@ -157,7 +158,7 @@ func _ready() -> void:
 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	if self.visible:
 		update_all_text()
@@ -176,12 +177,15 @@ func _on_upgrade_button_pressed() -> void:
 func _on_delete_button_pressed() -> void:
 	pass 
 	
-func _on_card_button_pressed() -> void:
-	toggle_card_template_layout()
+
+
+
+func _on_end_build_phase_button_pressed() -> void:
+	main_ui.start_simulation_phase()
 	
 
 
-
+## Bottom Menu
 func _on_zoning_button_pressed() -> void:
 	if bottom_menu.visible == false:
 		open_bottom_menu("zones")
@@ -212,6 +216,9 @@ func _on_bridge_options_button_pressed() -> void:
 
 func _on_bottom_menu_x_button_pressed() -> void:
 	close_bottom_menu()
+
+func _on_card_button_pressed() -> void:
+	toggle_card_template_layout()
 
 
 #Open Market Menu
@@ -288,6 +295,7 @@ func open_bottom_menu(option: String):
 			bridge_options.visible = true
 		_:
 			push_error("Unknown bottom menu option: %d" %option)
+			
 func close_bottom_menu():
 	bottom_menu.visible = false
 	close_all_bottom_menu_options()

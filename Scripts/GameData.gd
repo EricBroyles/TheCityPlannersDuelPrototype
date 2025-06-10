@@ -39,8 +39,10 @@ var money_starting_gift_amount: int = 10000
 var money_starting_gift_turns: int = 3 #the number of turns to recieve the gift for.
 
 
+##Cost of Buying Land
+# in money
+var cost_per_land_tile: int = 250
 
-##this will likly need to be moved into the class
 ## Costs of Zoning
 #cost to buy demand in points
 var cost_per_r_demand: int = 1100
