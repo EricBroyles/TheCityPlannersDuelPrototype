@@ -49,6 +49,10 @@ var cost_per_r_demand: int = 1100
 var cost_per_c_demand: int = 1100
 var cost_per_i_demand: int = 1100
 
+var hide_bridges: bool = false
+var hide_r_zone: bool = false
+var hide_c_zone: bool = false
+var hide_i_zone: bool = false
 
 
 

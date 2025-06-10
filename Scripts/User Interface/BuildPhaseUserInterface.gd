@@ -262,6 +262,38 @@ func _on_view_button_pressed() -> void:
 	
 func _on_view_menu_x_button_pressed() -> void:
 	toggle_view_menu() 
+	
+func _on_bridge_hide_button_pressed() -> void:
+	GameData.hide_bridges = true
+	update_all_show_hide_buttons()
+
+func _on_bridge_show_button_pressed() -> void:
+	GameData.hide_bridges = false
+	update_all_show_hide_buttons()
+
+func _on_r_hide_button_pressed() -> void:
+	GameData.hide_r_zone = true
+	update_all_show_hide_buttons()
+
+func _on_r_show_button_pressed() -> void:
+	GameData.hide_r_zone = false
+	update_all_show_hide_buttons()
+
+func _on_c_hide_button_pressed() -> void:
+	GameData.hide_c_zone = true
+	update_all_show_hide_buttons()
+
+func _on_c_show_button_pressed() -> void:
+	GameData.hide_c_zone = false
+	update_all_show_hide_buttons()
+
+func _on_i_hide_button_pressed() -> void:
+	GameData.hide_i_zone = true
+	update_all_show_hide_buttons()
+
+func _on_i_show_button_pressed() -> void:
+	GameData.hide_i_zone = false
+	update_all_show_hide_buttons()
 
 ## Helpers
 #Toggle: means open if closed, close if open
@@ -270,6 +302,16 @@ func toggle_open_market_menu():
 
 func toggle_view_menu():
 	view_menu.visible = !view_menu.visible
+	
+func update_all_show_hide_buttons():
+	bridge_hide_button.visible = !GameData.hide_bridges
+	bridge_show_button.visible = GameData.hide_bridges
+	r_hide_button.visible = !GameData.hide_r_zone
+	r_show_button.visible = GameData.hide_r_zone
+	c_hide_button.visible = !GameData.hide_c_zone
+	c_show_button.visible = GameData.hide_c_zone
+	i_hide_button.visible = !GameData.hide_i_zone
+	i_show_button.visible = GameData.hide_i_zone
 	
 func toggle_card_template_layout():
 	card_template_layout.visible = !card_template_layout.visible
