@@ -5,39 +5,93 @@ extends Node
 const GAMEBOARD_ITEM_ERROR_LAYER: Dictionary = {"hex": "ff0400", "alpha": 180}
 
 ## Gameboard
-const GAMEBOARD_TILE_SIZE = 200 #pixels
+const GAMEBOARD_TILE_SIZE = 200 #pixels x pixcels for each tile in the gameboard
 
-## Gameboard Placer Modes: the reason I do not combine this with the game components is their is not a one to one (ie road parking)
-const UNSELECTED_MODE: int = 0
-const OWNED_UNZONED_MODE: int = 1
-const R_ZONE_MODE: int = 2
-const C_ZONE_MODE: int = 3
-const I_ZONE_MODE: int = 4
-const WALKWAY_MODE: int = 5
-const ROAD_2_LANE_MODE: int = 6
-const ROAD_2_LANE_PARKING_MODE: int = 7
-const ROAD_4_LANE_MODE: int = 8
-const ROAD_4_LANE_PARKING_MODE: int = 9
-const JOINT_2_LANE_MODE: int = 10
-const JOINT_4_LANE_MODE: int = 11
-const MERGE_2_AND_4_MODE: int = 12
-const PARKING_LOT_1X1_MODE: int = 13
-const PARKING_LOT_1X2_LONG_OPEN_MODE: int = 14
-const PARKING_LOT_1X2_SHORT_OPEN_MODE: int = 15
-const PARKING_LOT_2X2_MODE: int = 16
-const JUNCTION_1X1_MODE: int = 17
-const JUNCTION_4_INLETS_1X2_MODE: int = 18
-const JUNCTION_5_INLETS_1X2_MODE: int = 19
-const JUNCTION_6_INLETS_1X2_MODE: int = 20
-const JUNCTION_2X2_MODE: int = 21
-const JUNCTION_5_INLETS_2X2_MODE: int = 22
-const JUNCTION_6_INLETS_2X2_ACROSS_MODE: int = 23
-const JUNCTION_6_INLETS_2X2_NEXT_MODE: int = 24
-const JUNCTION_7_INLETS_2X2_MODE: int = 25
-const JUNCTION_8_INLETS_2X2_MODE: int = 26
-const BRIDGE_RAMP_2_LANE_STRAIGHT_MODE: int = 27
-const BRIDGE_2_LANE_STRAIGHT_MODE: int = 28
-const BRIDGE_2_LANE_JOINT_MODE: int = 29
+## Gameboard Placer Modes: these come from a particular UI input from the User
+#the reason I do not combine this with the information about type and z_index is these two things are distinct and while their is some overlap thier is a lot of variation (walkway vs sidewalks, road, road with parking)
+enum MODES {
+	NONE, 
+	MOUSE_POINTER,
+	OWNED_UNZONED,
+	R_ZONE, 
+	C_ZONE,  
+	I_ZONE, 
+	WALKWAY, 
+	ROAD_2_LANE,
+	ROAD_2_LANE_PARKING, 
+	ROAD_4_LANE,
+	ROAD_4_LANE_PARKING,
+	JOINT_2_LANE,
+	JOINT_4_LANE,
+	MERGE_2_AND_4,
+	PARKING_LOT_1X1,
+	PARKING_LOT_1X2_LONG_OPEN,
+	PARKING_LOT_1X2_SHORT_OPEN,
+	PARKING_LOT_2X2,
+	JUNCTION_1X1,
+	JUNCTION_4_INLETS_1X2,
+	JUNCTION_5_INLETS_1X2,
+	JUNCTION_6_INLETS_1X2,
+	JUNCTION_2X2,
+	JUNCTION_5_INLETS_2X2,
+	JUNCTION_6_INLETS_2X2_ACROSS,
+	JUNCTION_6_INLETS_2X2_NEXT,
+	JUNCTION_7_INLETS_2X2,
+	JUNCTION_8_INLETS_2X2,
+	BRIDGE_RAMP_2_LANE_STRAIGHT,
+	BRIDGE_2_LANE_STRAIGHT,
+	BRIDGE_2_LANE_JOINT,
+}
+
+## Types: are unique to each gameboard item, agent, tile
+enum GAMEBOARD_TILE_TYPES {
+	
+}
+
+enum GAMEBOARD_AGENT_TYPES {
+	CAR,
+	HUMAN,
+}
+
+enum GAMEBOARD_ITEM_TYPES {
+	SIDEWALK_1_EDGE,
+	CROSSWALK_1_EDGE,
+	ROAD_2_LANE,
+	ROAD_4_LANE,
+	PARKING_LOT_1X1,
+	PARKING_LOT_2X2,
+}
+
+#const UNSELECTED_MODE: String = "UNSELECTED_MODE"
+#const OWNED_UNZONED_MODE: String = "OWNED_UNZONED_MODE" 
+#const R_ZONE_MODE: String = "R_ZONE_MODE" 
+#const C_ZONE_MODE: String = "C_ZONE_MODE" 
+#const I_ZONE_MODE: String = "I_ZONE_MODE" 
+#const WALKWAY_MODE: String = "WALKWAY_MODE" 
+#const ROAD_2_LANE_MODE: String = "ROAD_2_LANE_MODE" 
+#const ROAD_2_LANE_PARKING_MODE: String = "ROAD_2_LANE_PARKING_MODE" 
+#const ROAD_4_LANE_MODE: String = "ROAD_4_LANE_MODE" 
+#const ROAD_4_LANE_PARKING_MODE: String = "" 
+#const JOINT_2_LANE_MODE: String = "" 
+#const JOINT_4_LANE_MODE: String = "" 
+#const MERGE_2_AND_4_MODE: String = "" 
+#const PARKING_LOT_1X1_MODE: String = "" 
+#const PARKING_LOT_1X2_LONG_OPEN_MODE: String = "" 
+#const PARKING_LOT_1X2_SHORT_OPEN_MODE: String = "" 
+#const PARKING_LOT_2X2_MODE: String = "" 
+#const JUNCTION_1X1_MODE: String = "" 
+#const JUNCTION_4_INLETS_1X2_MODE: String = "" 
+#const JUNCTION_5_INLETS_1X2_MODE: String = "" 
+#const JUNCTION_6_INLETS_1X2_MODE: String = "" 
+#const JUNCTION_2X2_MODE: String = "" 
+#const JUNCTION_5_INLETS_2X2_MODE: String = "" 
+#const JUNCTION_6_INLETS_2X2_ACROSS_MODE: String = "" 
+#const JUNCTION_6_INLETS_2X2_NEXT_MODE: String = "" 
+#const JUNCTION_7_INLETS_2X2_MODE: String = "" 
+#const JUNCTION_8_INLETS_2X2_MODE: String = "" 
+#const BRIDGE_RAMP_2_LANE_STRAIGHT_MODE: String = "" 
+#const BRIDGE_2_LANE_STRAIGHT_MODE: String = "" 
+#const BRIDGE_2_LANE_JOINT_MODE: String = "" 
 
 
 
@@ -49,6 +103,10 @@ const BRIDGE_2_LANE_JOINT_MODE: int = 29
 #•	Layer 6: Cars 
 #•	Layer 7: People
 #•	Layer Last: Parking Symbol, junction level symbols, curve level items, merge symbols
+
+
+## TO BE REMOVED, and PLACE the z inisde of the actual item script
+
 
 ##Agent Items
 const CAR:   Dictionary = {"type": "car",   "z_index": 60}

@@ -1,85 +1,116 @@
 extends Node
 
-var active_mode: int = 0 #this is the mode currently being shown, I need this so I can tell when the UI has requested a change, the GameDATA.gameboard_placer_mode is the mode you want to get to
+## This will handle buying land, zoning, delete, upgrades, placing items
+#this needs to be able to control the itme placer buttons (show/not show, disable)
+#this needs to detect clikc on the gameboard at any time. 
+#by default this detects clicks on the gameboard, but this proceess should be able to be stopped
+#from buton presseed the mode? is switched, is mode just for gameboardd items
+
+#change modes to strings
+#everything gets a mode
+
+#@onready var mouse_tracker = %MouseTracker
+
+## Gameboard Selectors (these are here and not in game components as they are only needed here)
+var BuyLandSelector: PackedScene = preload("res://Scenes/Gameboard Selectors/BuyLandSelector.tscn")
+var DeleteSelector: PackedScene = preload("res://Scenes/Gameboard Selectors/DeleteSelector.tscn")
+var UpgradeSelector: PackedScene = preload("res://Scenes/Gameboard Selectors/UpgradeSelector.tscn")
+
+var buy_land_selector: Node2D = BuyLandSelector.instantiate()
+var delete_selector: Node2D = DeleteSelector.instantiate()
+var upgrade_selector: Node2D = UpgradeSelector.instantiate()
+
+var active_mode: int = GameConstants.MODES.MOUSE_POINTER #this is the mode currently being shown, I need this so I can tell when the UI has requested a change, the GameDATA.gameboard_placer_mode is the mode you want to get to
 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+
+func _process(_delta: float) -> void:
+	#mouse_tracker.update_position()
+	#print(mouse_tracker.position)
+	
 	if active_mode != GameData.gameboard_placer_mode:
+		#then a new mode has been requested by the UI, so end the current one, start the new one, update the active mode
+		config_placer(active_mode, false) # Stop
+		config_placer(GameData.gameboard_placer_mode, true) # Start 
 		active_mode = GameData.gameboard_placer_mode
-		setup_placer(GameData.gameboard_placer_mode)
+		
+
+	
 	
 
-##SETUP PLACER
-#this runs when the gameboard_placer_mode has changed and is not zero
-func setup_placer(mode: int) -> void:
-	
-	
-	#NEED TO KILL THE CURRENT COMPONENT !!!!!!!!!! HERE DO THIS
-	
-	
+#if start == false then run stop code for the mode
+func config_placer(mode: int, start: bool):
 	match mode:
-		GameConstants.UNSELECTED_MODE:
+		GameConstants.MODES.NONE:
 			return
-		GameConstants.OWNED_UNZONED_MODE:
+		GameConstants.MODES.MOUSE_POINTER:
 			return
-		GameConstants.R_ZONE_MODE:
+		GameConstants.MODES.OWNED_UNZONED:
+			#Buy Land
+			if start:
+				#activate the buy land selector
+				
+				BuyLandSelector
+			else:
+				pass
+				
+		GameConstants.MODES.R_ZONE:
 			return
-		GameConstants.C_ZONE_MODE:
+		GameConstants.MODES.C_ZONE:
 			return
-		GameConstants.I_ZONE_MODE:
+		GameConstants.MODES.I_ZONE:
 			return
-		GameConstants.WALKWAY_MODE:
+		GameConstants.MODES.WALKWAY:
 			return
-		GameConstants.ROAD_2_LANE_MODE:
+		GameConstants.MODES.ROAD_2_LANE:
 			return
-		GameConstants.ROAD_2_LANE_PARKING_MODE:
+		GameConstants.MODES.ROAD_2_LANE_PARKING:
 			return
-		GameConstants.ROAD_4_LANE_MODE:
+		GameConstants.MODES.ROAD_4_LANE:
 			return
-		GameConstants.ROAD_4_LANE_PARKING_MODE:
+		GameConstants.MODES.ROAD_4_LANE_PARKING:
 			return
-		GameConstants.JOINT_2_LANE_MODE:
+		GameConstants.MODES.JOINT_2_LANE:
 			return
-		GameConstants.JOINT_4_LANE_MODE:
+		GameConstants.MODES.JOINT_4_LANE:
 			return
-		GameConstants.MERGE_2_AND_4_MODE:
+		GameConstants.MODES.MERGE_2_AND_4:
 			return
-		GameConstants.PARKING_LOT_1X1_MODE:
+		GameConstants.MODES.PARKING_LOT_1X1:
 			return
-		GameConstants.PARKING_LOT_1X2_LONG_OPEN_MODE:
+		GameConstants.MODES.PARKING_LOT_1X2_LONG_OPEN:
 			return
-		GameConstants.PARKING_LOT_1X2_SHORT_OPEN_MODE:
+		GameConstants.MODES.PARKING_LOT_1X2_SHORT_OPEN:
 			return
-		GameConstants.PARKING_LOT_2X2_MODE:
+		GameConstants.MODES.PARKING_LOT_2X2:
 			return
-		GameConstants.JUNCTION_1X1_MODE:
+		GameConstants.MODES.JUNCTION_1X1:
 			return
-		GameConstants.JUNCTION_4_INLETS_1X2_MODE:
+		GameConstants.MODES.JUNCTION_4_INLETS_1X2:
 			return
-		GameConstants.JUNCTION_5_INLETS_1X2_MODE:
+		GameConstants.MODES.JUNCTION_5_INLETS_1X2:
 			return
-		GameConstants.JUNCTION_6_INLETS_1X2_MODE:
+		GameConstants.MODES.JUNCTION_6_INLETS_1X2:
 			return
-		GameConstants.JUNCTION_2X2_MODE:
+		GameConstants.MODES.JUNCTION_2X2:
 			return
-		GameConstants.JUNCTION_5_INLETS_2X2_MODE:
+		GameConstants.MODES.JUNCTION_5_INLETS_2X2:
 			return
-		GameConstants.JUNCTION_6_INLETS_2X2_ACROSS_MODE:
+		GameConstants.MODES.JUNCTION_6_INLETS_2X2_ACROSS:
 			return
-		GameConstants.JUNCTION_6_INLETS_2X2_NEXT_MODE:
+		GameConstants.MODES.JUNCTION_6_INLETS_2X2_NEXT:
 			return
-		GameConstants.JUNCTION_7_INLETS_2X2_MODE:
+		GameConstants.MODES.JUNCTION_7_INLETS_2X2:
 			return
-		GameConstants.JUNCTION_8_INLETS_2X2_MODE:
+		GameConstants.MODES.JUNCTION_8_INLETS_2X2:
 			return
-		GameConstants.BRIDGE_RAMP_2_LANE_STRAIGHT_MODE:
+		GameConstants.MODES.BRIDGE_RAMP_2_LANE_STRAIGHT:
 			return
-		GameConstants.BRIDGE_2_LANE_STRAIGHT_MODE:
+		GameConstants.MODES.BRIDGE_2_LANE_STRAIGHT:
 			return
-		GameConstants.BRIDGE_2_LANE_JOINT_MODE:
+		GameConstants.MODES.BRIDGE_2_LANE_JOINT:
 			return
 		_:
 			push_error("Unknown placer mode: %d" % mode)
-	return
+	

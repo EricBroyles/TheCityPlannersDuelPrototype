@@ -18,7 +18,7 @@ func _ready() -> void:
 	 
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	GameData.mouse_position = camera.get_global_mouse_position()
 	
 

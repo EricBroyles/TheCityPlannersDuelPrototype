@@ -159,7 +159,7 @@ func _ready() -> void:
 
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if self.visible:
 		update_all_text()
 		

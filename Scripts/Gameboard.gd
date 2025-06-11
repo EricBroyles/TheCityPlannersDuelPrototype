@@ -8,7 +8,7 @@ class_name Gameboard
 var top_left_tile_position: Vector2 = Vector2(0,0)
 var tiles_shift: Vector2 = Vector2(GameConstants.GAMEBOARD_TILE_SIZE/2,GameConstants.GAMEBOARD_TILE_SIZE/2) #this exists to shift the tiles so the top left corner of the gameboard is a (0,0), this is needed as center of tile is in its middle
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 ##Get Gameboard size

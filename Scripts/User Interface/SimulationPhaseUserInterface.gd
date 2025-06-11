@@ -21,7 +21,7 @@ extends Node
 func _ready() -> void:
 	set_all_text()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if self.visible:
 		update_all_text()
 		

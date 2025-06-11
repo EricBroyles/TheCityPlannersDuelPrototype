@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu8olqcie7jn3"
-path="res://.godot/imported/Car Bronze.svg-069d0ea877223245498894cd60d31817.ctex"
+uid="uid://eituvqwv3ri2"
+path="res://.godot/imported/Human Bronze.svg-d2789bad371d58677ce027e0ec8673c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Agent Items/Car Bronze.svg"
-dest_files=["res://.godot/imported/Car Bronze.svg-069d0ea877223245498894cd60d31817.ctex"]
+source_file="res://Assets/Gameboard Agents/Human Bronze.svg"
+dest_files=["res://.godot/imported/Human Bronze.svg-d2789bad371d58677ce027e0ec8673c7.ctex"]
 
 [params]
 
