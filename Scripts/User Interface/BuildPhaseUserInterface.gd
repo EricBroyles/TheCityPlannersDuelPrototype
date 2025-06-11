@@ -298,10 +298,18 @@ func _on_i_show_button_pressed() -> void:
 ## Helpers
 #Toggle: means open if closed, close if open
 func toggle_open_market_menu():
-	open_market_menu.visible = !open_market_menu.visible
+	var new_status: bool = !open_market_menu.visible
+	close_all_center_menus()
+	open_market_menu.visible = new_status
 
 func toggle_view_menu():
-	view_menu.visible = !view_menu.visible
+	var new_status: bool = !view_menu.visible
+	close_all_center_menus()
+	view_menu.visible = new_status
+	
+func close_all_center_menus():
+	open_market_menu.visible = false
+	view_menu.visible = false
 	
 func update_all_show_hide_buttons():
 	bridge_hide_button.visible = !GameData.hide_bridges

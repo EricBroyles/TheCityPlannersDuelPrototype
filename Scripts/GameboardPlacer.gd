@@ -34,10 +34,17 @@ func _process(_delta: float) -> void:
 		config_placer(active_mode, false) # Stop
 		config_placer(GameData.gameboard_placer_mode, true) # Start 
 		active_mode = GameData.gameboard_placer_mode
-		
 
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventMouseButton and event.pressed and event.button_index == GameData.mouse_button_left:
+		#print("fuck me pressed") 
+
+# I changed the mouse.filter in BuildPhase, SimPhase, EndPhase to pass.		
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == GameData.mouse_button_left:
+		print("pressed") 
 	
-	
+
 
 #if start == false then run stop code for the mode
 func config_placer(mode: int, start: bool):
