@@ -39,11 +39,10 @@ func _process(_delta: float) -> void:
 	#if event is InputEventMouseButton and event.pressed and event.button_index == GameData.mouse_button_left:
 		#print("fuck me pressed") 
 
-# I changed the mouse.filter in BuildPhase, SimPhase, EndPhase to pass.		
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton and event.pressed and event.button_index == GameData.mouse_button_left:
-		print("pressed") 
-	
+		print("fuck me pressed") 
+
 
 
 #if start == false then run stop code for the mode

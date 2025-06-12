@@ -18,14 +18,17 @@ script = ExtResource("2_wetfu")
 
 [node name="BuildPhase" parent="ChallengeGameUserInterface" instance=ExtResource("2_wuohv")]
 unique_name_in_owner = true
+mouse_filter = 1
 
 [node name="SimulationPhase" parent="ChallengeGameUserInterface" instance=ExtResource("4_io6p8")]
 unique_name_in_owner = true
 visible = false
+mouse_filter = 1
 
 [node name="EndGameScreen" parent="ChallengeGameUserInterface" instance=ExtResource("5_t3rls")]
 unique_name_in_owner = true
 visible = false
+mouse_filter = 1
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("5_6j11q")

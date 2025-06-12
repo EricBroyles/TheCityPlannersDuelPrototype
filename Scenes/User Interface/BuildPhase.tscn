@@ -117,6 +117,7 @@ texture_normal = ExtResource("14_6ly0f")
 
 [node name="StandingStatDisplay" type="TextureRect" parent="TopBarMargin/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 0
 texture = ExtResource("15_pah6u")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TopBarMargin/HBoxContainer/StandingStatDisplay"]
@@ -475,37 +476,38 @@ size_flags_horizontal = 8
 theme_override_constants/separation = 0
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer"]
+[node name="CardMouseStop" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
+mouse_filter = 0
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/CardMouseStop"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect2" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/CardMouseStop"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect3" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/CardMouseStop"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect4" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
+[node name="TextureRect4" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/CardMouseStop"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect5" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
+[node name="TextureRect5" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/CardMouseStop"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect6" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
+[node name="TextureRect6" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/CardMouseStop"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
-[node name="TextureRect7" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/HBoxContainer"]
+[node name="TextureRect7" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/CardMouseStop"]
 layout_mode = 2
 texture = ExtResource("22_xuey4")
 
@@ -513,9 +515,10 @@ texture = ExtResource("22_xuey4")
 layout_mode = 2
 theme_override_constants/margin_left = 20
 
-[node name="TextureRect" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/MarginContainer"]
+[node name="CardsInDeckMouseStop" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 0
 texture = ExtResource("23_exiae")
 
 [node name="MarginContainer" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/CardTemplateLayout/HBoxContainer/MarginContainer"]
@@ -533,6 +536,7 @@ text = "20"
 [node name="BottomMenu" type="TextureRect" parent="BottomMenuMargin/BottomMenuContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 0
 texture = ExtResource("1_ay4le")
 
 [node name="BottomMenuXButtonMargin" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
@@ -996,6 +1000,7 @@ theme_override_constants/separation = 20
 
 [node name="TurnTracker" type="TextureRect" parent="BottomRightBlockMargin/BottomRightBlockMargin"]
 layout_mode = 2
+mouse_filter = 0
 texture = ExtResource("10_yhs2l")
 
 [node name="MarginContainer" type="MarginContainer" parent="BottomRightBlockMargin/BottomRightBlockMargin/TurnTracker"]
@@ -1075,6 +1080,7 @@ theme_override_constants/margin_top = 260
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+mouse_filter = 0
 texture = ExtResource("28_bmcps")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterMenusMargin/OpenMarketMenu"]
@@ -1313,6 +1319,7 @@ scroll_active = false
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+mouse_filter = 0
 texture = ExtResource("39_kup5j")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterMenusMargin/ViewMenu"]
