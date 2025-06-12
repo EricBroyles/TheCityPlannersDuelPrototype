@@ -168,8 +168,9 @@ func _process(_delta: float) -> void:
 ## Buttons
 
 func _on_buy_land_button_pressed() -> void:
-	print("BUY LAND")
-	pass 
+	toggle_buy_land_button()
+	
+	 
 
 func _on_upgrade_button_pressed() -> void:
 	pass 
@@ -295,8 +296,17 @@ func _on_i_show_button_pressed() -> void:
 	GameData.hide_i_zone = false
 	update_all_show_hide_buttons()
 
+## ----------------------------------
 ## Helpers
 #Toggle: means open if closed, close if open
+
+func toggle_buy_land_button():
+	if GameData.gameboard_placer_mode != GameConstants.MODES.OWNED_UNZONED:
+		GameData.gameboard_placer_mode = GameConstants.MODES.OWNED_UNZONED
+	else:
+		GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
+
+
 func toggle_open_market_menu():
 	var new_status: bool = !open_market_menu.visible
 	close_all_center_menus()
