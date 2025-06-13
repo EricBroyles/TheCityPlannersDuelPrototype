@@ -301,8 +301,8 @@ func _on_i_show_button_pressed() -> void:
 #Toggle: means open if closed, close if open
 
 func toggle_buy_land_button():
-	if GameData.gameboard_placer_mode != GameConstants.MODES.OWNED_UNZONED:
-		GameData.gameboard_placer_mode = GameConstants.MODES.OWNED_UNZONED
+	if GameData.gameboard_placer_mode != GameConstants.MODES.BUY_LAND:
+		GameData.gameboard_placer_mode = GameConstants.MODES.BUY_LAND
 	else:
 		GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
 

@@ -12,6 +12,7 @@ const GAMEBOARD_TILE_SIZE = 200 #pixels x pixcels for each tile in the gameboard
 enum MODES {
 	NONE, 
 	MOUSE_POINTER,
+	BUY_LAND, 
 	OWNED_UNZONED,
 	R_ZONE, 
 	C_ZONE,  

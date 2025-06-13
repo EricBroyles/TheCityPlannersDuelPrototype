@@ -1,16 +1,42 @@
 extends Node
 
+class_name GameboardSelector
 
-## this needs to manage upgrading and deleting and also selecting items in the gameboard
+@onready var buy_land_option = %BuyLandOption
+@onready var upgrade_option = %UpgradeOption
+@onready var delete_option = %DeleteOption
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var oriented_size: Vector2 = Vector2(0,0)
+# this does not need a type, as this is never being added to the gameboard, it is just a UI visulaize tool
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-func activate(type: String):
-	pass
+func _ready():
+	self.visible = true
+	
+func close():
+	close_all_options()
+	self.visible = false
+	
+func open_buy_land_selector():
+	close_all_options()
+	self.visible = true
+	buy_land_option.visible = true
+	oriented_size = buy_land_option.texture.get_size()
+	
+func open_upgrade_selector():
+	close_all_options()
+	self.visible = true
+	upgrade_option.visible = true
+	oriented_size = upgrade_option.texture.get_size()
+	
+func open_delete_selector():
+	close_all_options()
+	self.visible = true
+	delete_option.visible = true
+	oriented_size = delete_option.texture.get_size()
+	
+func close_all_options():
+	buy_land_option.visible = false
+	upgrade_option.visible = false
+	delete_option.visible = false
+	oriented_size = Vector2(0,0)
