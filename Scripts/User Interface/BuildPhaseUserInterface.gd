@@ -170,13 +170,11 @@ func _process(_delta: float) -> void:
 func _on_buy_land_button_pressed() -> void:
 	toggle_buy_land_button()
 	
-	 
-
 func _on_upgrade_button_pressed() -> void:
-	pass 
+	toggle_upgrade_button() 
 	
 func _on_delete_button_pressed() -> void:
-	pass 
+	toggle_delete_button()
 	
 
 
@@ -303,6 +301,18 @@ func _on_i_show_button_pressed() -> void:
 func toggle_buy_land_button():
 	if GameData.gameboard_placer_mode != GameConstants.MODES.BUY_LAND:
 		GameData.gameboard_placer_mode = GameConstants.MODES.BUY_LAND
+	else:
+		GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
+		
+func toggle_upgrade_button():
+	if GameData.gameboard_placer_mode != GameConstants.MODES.UPGRADE:
+		GameData.gameboard_placer_mode = GameConstants.MODES.UPGRADE
+	else:
+		GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
+
+func toggle_delete_button():
+	if GameData.gameboard_placer_mode != GameConstants.MODES.DELETE:
+		GameData.gameboard_placer_mode = GameConstants.MODES.DELETE
 	else:
 		GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
 

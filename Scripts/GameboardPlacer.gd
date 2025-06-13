@@ -16,14 +16,14 @@ enum ACTIONS {
 	START,
 	END,
 	CLICK,
-	SNAP_TO_GRID,
+	MOVE,
 }
 
 func _ready():
 	selector.close()
 
 func _process(_delta: float) -> void:
-	update_position()
+	#update_position()
 	
 	if _active_mode != GameData.gameboard_placer_mode:
 		#then a new mode has been requested by the UI, so end the current one, start the new one, update the active mode
@@ -31,16 +31,13 @@ func _process(_delta: float) -> void:
 		handle_placer(GameData.gameboard_placer_mode, ACTIONS.START)  
 		_active_mode = GameData.gameboard_placer_mode
 		
-	#if
+	handle_placer(_active_mode, ACTIONS.MOVE)
 
 
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton and event.pressed and event.button_index == GameData.mouse_button_left:
 		print("fuck me pressed") 
 
-func update_position():
-	self.position = GameData.mouse_position
-	
 func remove_all_body_children():
 	for child in body.get_children():
 		remove_child(child)
@@ -48,15 +45,9 @@ func remove_all_body_children():
 		
 #position is in the center of the object
 func snap_to_grid(position: Vector2, size: Vector2) -> Vector2:
-	var new_position: Vector2
-	
-	#it is a lot easier to thing about this from the top left corner
 	var top_left_position: Vector2 = position - size/2
-	
-	GameConstants.GAMEBOARD_TILE_SIZE #200 int, tile is 200x200
-	GameData.mouse_position
-	
-	
+	var new_top_left_position: Vector2 = round(top_left_position / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE
+	var new_position: Vector2 = new_top_left_position + size/2
 	return new_position
 
 ## Handle Placer
@@ -73,19 +64,39 @@ func handle_placer(mode: int, action: int):
 			#Buy Land
 			match action:
 				ACTIONS.START:
-
 					selector.open_buy_land_selector()
 				ACTIONS.END:
-					
 					selector.close()
-				ACTIONS.SNAP_TO_GRID:
-					## CONTINUE FROM HERE
-					pass
+				ACTIONS.MOVE:
+					self.position = snap_to_grid(GameData.mouse_position, selector.oriented_size)
 				ACTIONS.CLICK:
 					pass
-				_:
-					push_error("Unknown placer action: ", action, "  with mode: ", mode)
-					
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+		GameConstants.MODES.UPGRADE:
+			#Buy Land
+			match action:
+				ACTIONS.START:
+					selector.open_upgrade_selector()
+				ACTIONS.END:
+					selector.close()
+				ACTIONS.MOVE:
+					self.position = snap_to_grid(GameData.mouse_position, selector.oriented_size)
+				ACTIONS.CLICK:
+					pass
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+		GameConstants.MODES.DELETE:
+			#Buy Land
+			match action:
+				ACTIONS.START:
+					selector.open_delete_selector()
+				ACTIONS.END:
+					selector.close()
+				ACTIONS.MOVE:
+					self.position = snap_to_grid(GameData.mouse_position, selector.oriented_size)
+				ACTIONS.CLICK:
+					pass
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+						
 		GameConstants.MODES.OWNED_UNZONED:
 			
 			match action:
@@ -95,8 +106,7 @@ func handle_placer(mode: int, action: int):
 					remove_all_body_children()
 				ACTIONS.CLICK:
 					pass
-				_:
-					push_error("Unknown placer action: ", action, "  with mode: ", mode)
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.R_ZONE:
 			return
 		GameConstants.MODES.C_ZONE:
