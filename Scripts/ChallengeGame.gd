@@ -10,7 +10,7 @@ extends Node
 func _ready() -> void:
 	## Setup gameboard
 	gameboard.make_gameboard()
-	gameboard.init_gameboard_items_matrix()
+	#gameboard.init_gameboard_items_matrix()
 	
 	## Setup Camera
 	camera.center_camera(gameboard)

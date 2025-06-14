@@ -48,7 +48,10 @@ enum MODES {
 
 ## Types: are unique to each gameboard item, agent, tile
 enum GAMEBOARD_TILE_TYPES {
-	
+	OWNED_UNZONED,
+	R_ZONE,
+	C_ZONE,
+	I_ZONE,
 }
 
 enum GAMEBOARD_AGENT_TYPES {

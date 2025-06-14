@@ -14,7 +14,7 @@ var gameboard_placer_mode: int = 0
 var gameboard_r: int = 10
 var gameboard_c: int = 20
 
-var gameboard_items_matrix: Array #3D matrix with array of GameboardItem at each index.
+#var gameboard_items_matrix: Array #3D matrix with array of GameboardItem at each index.
 
 ## Mouse Position
 var mouse_position: Vector2

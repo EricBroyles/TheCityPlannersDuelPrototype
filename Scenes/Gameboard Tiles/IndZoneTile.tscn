@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bgburaidkfnri"]
 
-[ext_resource type="Script" path="res://Scripts/GameboardTile.gd" id="1_upjhg"]
+[ext_resource type="Script" path="res://Scripts/Gameboard Tiles/IZoneTile.gd" id="1_jxevr"]
 
 [node name="IndZoneTile" type="Node2D"]
-script = ExtResource("1_upjhg")
+script = ExtResource("1_jxevr")
 
 [node name="Body" type="ColorRect" parent="."]
 unique_name_in_owner = true

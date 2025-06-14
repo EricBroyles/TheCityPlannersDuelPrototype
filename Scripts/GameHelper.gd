@@ -1,7 +1,7 @@
 extends Node
 
 func buy_demand(type: String, amount: int):
-	var points_cost: float
+	var points_cost: int
 	match type:
 		"r":
 			points_cost = amount * GameData.cost_per_r_demand

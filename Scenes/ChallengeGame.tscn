@@ -39,6 +39,8 @@ script = ExtResource("5_6j11q")
 [node name="Gameboard" type="Node2D" parent="."]
 script = ExtResource("6_a8jxb")
 
+[node name="BaseTiles" type="Node2D" parent="Gameboard"]
+
 [node name="Tiles" type="Node2D" parent="Gameboard"]
 
 [node name="Items" type="Node2D" parent="Gameboard"]

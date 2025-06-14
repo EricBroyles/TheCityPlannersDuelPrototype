@@ -70,6 +70,10 @@ func handle_placer(mode: int, action: int):
 				ACTIONS.MOVE:
 					self.position = snap_to_grid(GameData.mouse_position, selector.oriented_size)
 				ACTIONS.CLICK:
+					## BUY LAND
+					#check am I out of bounds, check am I ontop of land that I already have bought
+					#do I have enough money
+					#if I pass all of these, then spawn in the tile, take the money out
 					pass
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.UPGRADE:

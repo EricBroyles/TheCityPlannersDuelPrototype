@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bb7i87b5jo7io"]
 
-[ext_resource type="Script" path="res://Scripts/GameboardTile.gd" id="1_eyq6d"]
+[ext_resource type="Script" path="res://Scripts/Gameboard Tiles/RZoneTile.gd" id="1_eo2vc"]
 
 [node name="ResZoneTile" type="Node2D"]
-script = ExtResource("1_eyq6d")
+script = ExtResource("1_eo2vc")
 
 [node name="Body" type="ColorRect" parent="."]
 unique_name_in_owner = true
