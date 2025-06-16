@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqtsf8kl2jy8m"]
+[gd_scene load_steps=3 format=3 uid="uid://dqtsf8kl2jy8m"]
 
 [ext_resource type="Script" path="res://Scripts/Gameboard Tiles/CZoneTile.gd" id="1_fws5v"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtevp"]
+size = Vector2(200, 200)
+
 [node name="ComZoneTile" type="Node2D"]
 script = ExtResource("1_fws5v")
+
+[node name="MainBodyHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainBodyHitbox"]
+shape = SubResource("RectangleShape2D_qtevp")
 
 [node name="Body" type="ColorRect" parent="."]
 unique_name_in_owner = true

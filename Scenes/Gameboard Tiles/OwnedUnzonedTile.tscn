@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://j6ige2sf8s5u"]
+[gd_scene load_steps=3 format=3 uid="uid://j6ige2sf8s5u"]
 
 [ext_resource type="Script" path="res://Scripts/Gameboard Tiles/OwnedUnzonedTile.gd" id="1_8e27a"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vml65"]
+size = Vector2(200, 200)
+
 [node name="OwnedUnzonedTile" type="Node2D"]
 script = ExtResource("1_8e27a")
+
+[node name="MainBodyHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainBodyHitbox"]
+shape = SubResource("RectangleShape2D_vml65")
 
 [node name="Body" type="ColorRect" parent="."]
 unique_name_in_owner = true

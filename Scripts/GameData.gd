@@ -8,11 +8,12 @@ var mouse_button_middle = 3
 
 ## User Interface
 
-var gameboard_placer_mode: int = 0
+var gameboard_placer_mode: int = GameConstants.MODES.MOUSE_POINTER
 
 ## Gameboard
 var gameboard_r: int = 10
 var gameboard_c: int = 20
+
 
 #var gameboard_items_matrix: Array #3D matrix with array of GameboardItem at each index.
 
@@ -25,7 +26,7 @@ var turn: int = 0
 
 var points: int = 1000000
 var population: int = 0
-var money: int = 0
+var money: int = 1100000
 var reputation: int = 100
 var r_demand: int = 100
 var c_demand: int = 20

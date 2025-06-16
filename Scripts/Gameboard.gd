@@ -2,6 +2,7 @@ extends Node2D
 
 class_name Gameboard
 @onready var gameboard_base_tiles = $BaseTiles
+@onready var gameboard_tiles = $Tiles
 @onready var gameboard_items = $Items
 #@onready var gameboard_placer = $Placer
 
@@ -53,7 +54,7 @@ func make_gameboard() -> void:
 	for i in range(r):
 		for j in range(c):
 			var type = (i + j) %2
-			tile = GameComponents.GroundTile.instantiate() if type == 1 else GameComponents.LightGroundTile.instantiate() 
+			tile = GameComponents.GROUND_TILE.instantiate() if type == 1 else GameComponents.LIGHT_GROUND_TILE.instantiate() 
 			tile.position = tile_position
 			gameboard_base_tiles.add_child(tile)
 			tile_position.x += GameConstants.GAMEBOARD_TILE_SIZE
@@ -62,4 +63,12 @@ func make_gameboard() -> void:
 		tile_position.y += GameConstants.GAMEBOARD_TILE_SIZE
 	
 	gameboard_base_tiles.position += tiles_shift
+
+
+func get_at_point(point: Vector2) -> Array:
+	return []
 	
+# return an array of the objects at that position
+func grab_items_at_position(position: Vector2) -> Array:
+	
+	return []	

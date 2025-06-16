@@ -4,12 +4,12 @@ extends Node
 
 
 ## Gameboard Tiles
-var GroundTile: PackedScene = preload("res://Scenes/Gameboard Tiles/GroundTile.tscn")
-var LightGroundTile: PackedScene = preload("res://Scenes/Gameboard Tiles/LightGroundTile.tscn")
-var OwnedUnzonedTile: PackedScene = preload("res://Scenes/Gameboard Tiles/OwnedUnzonedTile.tscn")
-var RZoneTile: PackedScene = preload("res://Scenes/Gameboard Tiles/ResZoneTile.tscn")
-var CZoneTile: PackedScene = preload("res://Scenes/Gameboard Tiles/ComZoneTile.tscn")
-var IZoneTile: PackedScene = preload("res://Scenes/Gameboard Tiles/IndZoneTile.tscn")
+const GROUND_TILE: PackedScene = preload("res://Scenes/Gameboard Tiles/GroundTile.tscn")
+const LIGHT_GROUND_TILE: PackedScene = preload("res://Scenes/Gameboard Tiles/LightGroundTile.tscn")
+const OWNED_UNZONED_TILE: PackedScene = preload("res://Scenes/Gameboard Tiles/OwnedUnzonedTile.tscn")
+const R_ZONE_TILE: PackedScene = preload("res://Scenes/Gameboard Tiles/ResZoneTile.tscn")
+const C_ZONE_TILE: PackedScene = preload("res://Scenes/Gameboard Tiles/ComZoneTile.tscn")
+const I_ZONE_TILE: PackedScene = preload("res://Scenes/Gameboard Tiles/IndZoneTile.tscn")
 
 ## Gameboard Agents
 

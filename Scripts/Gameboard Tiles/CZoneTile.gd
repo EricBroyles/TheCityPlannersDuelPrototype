@@ -2,6 +2,6 @@ extends GameboardTile
 
 class_name CZone
 
-func _ready():
-	super._ready() 
-	type = GameConstants.GAMEBOARD_TILE_TYPES.C_ZONE
+#func _ready():
+	#super._ready() 
+	#type = GameConstants.GAMEBOARD_COMPONENTS_TYPE.C_ZONE
