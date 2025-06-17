@@ -53,7 +53,7 @@ extends Node
 @onready var bridge_options_button = %BridgeOptionsButton
 
 #zoning options
-@onready var unzone_button = %OwnedUnzonedButton
+@onready var owned_unzone_button = %OwnedUnzonedButton
 @onready var r_zone_button = %RZoneButton
 @onready var c_zone_button = %CZoneButton
 @onready var i_zone_button = %IZoneButton
@@ -176,6 +176,26 @@ func _on_upgrade_button_pressed() -> void:
 func _on_delete_button_pressed() -> void:
 	toggle_delete_button()
 	
+
+func _on_owned_unzoned_button_pressed() -> void:
+	print("pressing on owned")
+	GameData.gameboard_placer_mode = GameConstants.MODES.OWNED_UNZONED
+	
+func _on_r_zone_button_pressed() -> void:
+	print("being clicked on for r")
+	GameData.gameboard_placer_mode = GameConstants.MODES.R_ZONE
+
+func _on_c_zone_button_pressed() -> void:
+	GameData.gameboard_placer_mode = GameConstants.MODES.C_ZONE
+
+func _on_i_zone_button_pressed() -> void:
+	GameData.gameboard_placer_mode = GameConstants.MODES.I_ZONE
+
+
+func _on_walkway_button_pressed() -> void:
+	print("Pressed the walkway")
+	pass # Replace with function body.
+
 
 
 

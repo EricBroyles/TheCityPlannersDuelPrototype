@@ -63,12 +63,3 @@ func make_gameboard() -> void:
 		tile_position.y += GameConstants.GAMEBOARD_TILE_SIZE
 	
 	gameboard_base_tiles.position += tiles_shift
-
-
-func get_at_point(point: Vector2) -> Array:
-	return []
-	
-# return an array of the objects at that position
-func grab_items_at_position(position: Vector2) -> Array:
-	
-	return []	

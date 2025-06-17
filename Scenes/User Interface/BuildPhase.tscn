@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://dfimjfiiwuhtk"]
+[gd_scene load_steps=78 format=3 uid="uid://dfimjfiiwuhtk"]
 
 [ext_resource type="Texture2D" uid="uid://din0qqbxx12jm" path="res://Assets - User Interface/Areas/Area BW 1306x160.svg" id="1_ay4le"]
 [ext_resource type="Script" path="res://Scripts/User Interface/BuildPhaseUserInterface.gd" id="1_bkv58"]
@@ -20,18 +20,20 @@
 [ext_resource type="Texture2D" uid="uid://cklk1kcmj7mtx" path="res://Assets - User Interface/Icons/Icon W _ 3 People.svg" id="17_6pef7"]
 [ext_resource type="Texture2D" uid="uid://cvb4kkq5vptbb" path="res://Assets - User Interface/Icons/Icon W _ Dollar Sign.svg" id="18_tf15s"]
 [ext_resource type="Texture2D" uid="uid://dr07aywsbkdwm" path="res://Assets - User Interface/Icons/Icon W _ Handshake.svg" id="19_10nbk"]
+[ext_resource type="Texture2D" uid="uid://cq8cuuhymo1oo" path="res://Assets - User Interface/Icons/Icon W Full _ U.svg" id="20_o5c8r"]
 [ext_resource type="Texture2D" uid="uid://cj4jbh4hrhvq" path="res://Assets - User Interface/Buttons/Button BW70 _ Gear.svg" id="20_qrtf3"]
 [ext_resource type="Texture2D" uid="uid://03xqjwjff6de" path="res://Assets - User Interface/Buttons/Button BW70 _ Binoculars.svg" id="21_4h4cw"]
+[ext_resource type="Texture2D" uid="uid://c3xpome8w54kc" path="res://Assets - User Interface/Icons/Icon W Full _ R.svg" id="21_5rc3r"]
+[ext_resource type="Texture2D" uid="uid://brg5whk2mwyoo" path="res://Assets - User Interface/Icons/Icon W Full _ C.svg" id="22_lrob8"]
 [ext_resource type="Texture2D" uid="uid://dv53vsyso2udd" path="res://Assets - User Interface/Buttons/Button BW35 Circle _ i.svg" id="22_sqij3"]
 [ext_resource type="Texture2D" uid="uid://61nhnhkkhwp4" path="res://Assets - User Interface/Areas/Area BW 107x150 _ Card.svg" id="22_xuey4"]
 [ext_resource type="Texture2D" uid="uid://dw8b7b2pwyejo" path="res://Assets - User Interface/Areas/Area BW 54x75 _ 3 Lines.svg" id="23_exiae"]
+[ext_resource type="Texture2D" uid="uid://duxiswnb3tykh" path="res://Assets - User Interface/Icons/Icon W Full _ I.svg" id="23_qey58"]
 [ext_resource type="Texture2D" uid="uid://b6nwcqf3odu6" path="res://Assets - User Interface/Buttons/Button BW70 _ Rotate Arrow.svg" id="23_yp6en"]
 [ext_resource type="Texture2D" uid="uid://bd0mwch5oe0ss" path="res://Assets - User Interface/Buttons/Button BW70 _ Vertical Flip.svg" id="24_d5yyw"]
 [ext_resource type="Texture2D" uid="uid://bijdh6kkjgb1k" path="res://Assets - User Interface/Buttons/Button BW70 _ Horizontal Flip.svg" id="25_hj3y3"]
-[ext_resource type="Texture2D" uid="uid://bqngxxafak7wj" path="res://Assets - User Interface/Icons/Icon W _ U.svg" id="28_8esui"]
 [ext_resource type="Texture2D" uid="uid://d00cn7l3oe7hl" path="res://Assets - User Interface/Areas/Area BW 513x361.svg" id="28_bmcps"]
 [ext_resource type="Texture2D" uid="uid://bbi0x2t12bjn5" path="res://Assets - User Interface/Icons/Icon W _ Shopping Cart.svg" id="29_jw7n4"]
-[ext_resource type="PackedScene" uid="uid://j6ige2sf8s5u" path="res://Scenes/Gameboard Tiles/OwnedUnzonedTile.tscn" id="29_ow1hg"]
 [ext_resource type="PackedScene" uid="uid://bb7i87b5jo7io" path="res://Scenes/Gameboard Tiles/ResZoneTile.tscn" id="30_3xbkf"]
 [ext_resource type="Texture2D" uid="uid://1fkmkn577ysm" path="res://Assets - User Interface/Icons/Icon W _ R.svg" id="31_ofg41"]
 [ext_resource type="Texture2D" uid="uid://dfkc4gw0vf6bk" path="res://Assets - User Interface/Buttons/Button GW70 _ 1.svg" id="32_3nxra"]
@@ -574,22 +576,12 @@ theme_override_constants/separation = 5
 [node name="OwnedUnzonedButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("28_8esui")
-
-[node name="OwnedUnzonedTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/OwnedUnzonedButton" instance=ExtResource("29_ow1hg")]
-show_behind_parent = true
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
+texture_normal = ExtResource("20_o5c8r")
 
 [node name="RZoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("31_ofg41")
-
-[node name="ResZoneTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/RZoneButton" instance=ExtResource("30_3xbkf")]
-show_behind_parent = true
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
+texture_normal = ExtResource("21_5rc3r")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer"]
 layout_mode = 2
@@ -598,22 +590,12 @@ theme_override_constants/separation = 5
 [node name="CZoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("36_kl0vk")
-
-[node name="ComZoneTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2/CZoneButton" instance=ExtResource("35_wksfd")]
-show_behind_parent = true
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
+texture_normal = ExtResource("22_lrob8")
 
 [node name="IZoneButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("38_5rehw")
-
-[node name="IndZoneTile" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2/IZoneButton" instance=ExtResource("37_mkajr")]
-show_behind_parent = true
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
+texture_normal = ExtResource("23_qey58")
 
 [node name="RoadOptions" type="MarginContainer" parent="BottomMenuMargin/BottomMenuContainer/BottomMenu"]
 unique_name_in_owner = true
@@ -1477,6 +1459,11 @@ texture_normal = ExtResource("43_k7tsg")
 
 [connection signal="pressed" from="TopBarMargin/HBoxContainer/RightButtonBlock/ViewButton" to="." method="_on_view_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuXButtonMargin/BottomMenuXButton" to="." method="_on_bottom_menu_x_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/OwnedUnzonedButton" to="." method="_on_owned_unzoned_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/RZoneButton" to="." method="_on_r_zone_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2/CZoneButton" to="." method="_on_c_zone_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2/IZoneButton" to="." method="_on_i_zone_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer/WalkwayButton" to="." method="_on_walkway_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer/RoadOptionsButton" to="." method="_on_road_options_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer/JunctionOptionsButton" to="." method="_on_junction_options_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer/ParkingOptionsButton" to="." method="_on_parking_options_button_pressed"]

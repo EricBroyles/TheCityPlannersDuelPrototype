@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://Scripts/Gameboard Tiles/IZoneTile.gd" id="1_jxevr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhhi5"]
-size = Vector2(200, 200)
+size = Vector2(192, 192)
 
 [node name="IndZoneTile" type="Node2D"]
 script = ExtResource("1_jxevr")
 
 [node name="MainBodyHitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MainBodyHitbox"]
 shape = SubResource("RectangleShape2D_lhhi5")

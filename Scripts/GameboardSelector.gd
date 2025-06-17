@@ -7,8 +7,9 @@ class_name GameboardSelector
 @onready var delete_option = %DeleteOption
 @onready var selector_1x1_hitbox = %Selector1x1Hitbox
 
-var oriented_size: Vector2 = Vector2(0,0)
+var size: Vector2 = Vector2(0,0)
 # this does not need a type, as this is never being added to the gameboard, it is just a UI visulaize tool
+
 
 	
 func close():
@@ -21,27 +22,27 @@ func open_buy_land_selector():
 	open_selector_1x1_hitbox()
 	self.visible = true
 	buy_land_option.visible = true
-	oriented_size = buy_land_option.texture.get_size()
+	size = buy_land_option.texture.get_size()
 	
 func open_upgrade_selector():
 	close_all_options()
 	open_selector_1x1_hitbox()
 	self.visible = true
 	upgrade_option.visible = true
-	oriented_size = upgrade_option.texture.get_size()
+	size = upgrade_option.texture.get_size()
 	
 func open_delete_selector():
 	close_all_options()
 	open_selector_1x1_hitbox()
 	self.visible = true
 	delete_option.visible = true
-	oriented_size = delete_option.texture.get_size()
+	size = delete_option.texture.get_size()
 	
 func close_all_options():
 	buy_land_option.visible = false
 	upgrade_option.visible = false
 	delete_option.visible = false
-	oriented_size = Vector2(0,0)
+	size = Vector2(0,0)
 	
 func close_selector_1x1_hitbox():
 	selector_1x1_hitbox.monitorable = false
