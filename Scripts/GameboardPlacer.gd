@@ -264,9 +264,53 @@ func handle_placer(mode: int, action: int):
 			
 			
 		GameConstants.MODES.C_ZONE:
-			return
+			match action:
+				ACTIONS.START:
+					add_body_child(GameComponents.C_ZONE_TILE.instantiate())
+				ACTIONS.END:
+					remove_all_body_children()
+				ACTIONS.MOVE:
+					self.position = snap_to_grid(GameData.mouse_position, get_body_child().size)
+				ACTIONS.CLICK:
+					## Attempting to Add ZoneC: add ZoneC, remove Owned_Unzoned @ the placers position
+					var tile = GameComponents.C_ZONE_TILE.instantiate()
+					if GameData.c_demand < 1: return
+					if is_out_of_bounds(self.position, tile.size): return
+					var overlapping_areas: Array = get_body_child().find_overlapping_areas() 
+					for area in overlapping_areas:
+						var obj = area.get_owner()
+						if GameHelper.is_owned_tile(obj) and not obj is CZone:
+							remove_tile(obj) #remove owned_unzoned R I
+							GameHelper.refund_demand_units(obj, 1) #refund R I tile, can pass in Owned_unzoned, it refunds nothing
+							place_tile(tile)
+							GameData.c_demand -= 1
+							return
+					
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.I_ZONE:
-			return
+			match action:
+				ACTIONS.START:
+					add_body_child(GameComponents.I_ZONE_TILE.instantiate())
+				ACTIONS.END:
+					remove_all_body_children()
+				ACTIONS.MOVE:
+					self.position = snap_to_grid(GameData.mouse_position, get_body_child().size)
+				ACTIONS.CLICK:
+					## Attempting to Add ZoneI: add ZoneI, remove Owned_Unzoned @ the placers position
+					var tile = GameComponents.I_ZONE_TILE.instantiate()
+					if GameData.i_demand < 1: return
+					if is_out_of_bounds(self.position, tile.size): return
+					var overlapping_areas: Array = get_body_child().find_overlapping_areas() 
+					for area in overlapping_areas:
+						var obj = area.get_owner()
+						if GameHelper.is_owned_tile(obj) and not obj is IZone:
+							remove_tile(obj) #remove owned_unzoned R C 
+							GameHelper.refund_demand_units(obj, 1) #refund R C  tile, can pass in Owned_unzoned, it refunds nothing
+							place_tile(tile)
+							GameData.i_demand -= 1
+							return
+					
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 			
 			
 		GameConstants.MODES.WALKWAY:
