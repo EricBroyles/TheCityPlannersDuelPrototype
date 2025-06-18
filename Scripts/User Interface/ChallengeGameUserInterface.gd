@@ -9,6 +9,7 @@ func _ready() -> void:
 	start_build_phase()
 
 func start_build_phase():
+	GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
 	if GameData.turn < GameData.total_turns:
 		GameData.turn += 1
 		build_phase.visible = true
@@ -22,3 +23,4 @@ func start_build_phase():
 func start_simulation_phase():
 	build_phase.visible = false
 	simulation_phase.visible = true
+	GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER

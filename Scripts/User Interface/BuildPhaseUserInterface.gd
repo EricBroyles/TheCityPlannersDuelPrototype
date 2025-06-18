@@ -156,9 +156,6 @@ func _ready() -> void:
 	
 	set_all_text()
 
-
-
-
 func _process(_delta: float) -> void:
 	if self.visible:
 		update_all_text()
@@ -168,28 +165,26 @@ func _process(_delta: float) -> void:
 ## Buttons
 
 func _on_buy_land_button_pressed() -> void:
-	toggle_buy_land_button()
+	standard_toggle_mode(GameConstants.MODES.BUY_LAND)
 	
 func _on_upgrade_button_pressed() -> void:
-	toggle_upgrade_button() 
+	standard_toggle_mode(GameConstants.MODES.UPGRADE) 
 	
 func _on_delete_button_pressed() -> void:
-	toggle_delete_button()
+	standard_toggle_mode(GameConstants.MODES.DELETE)
 	
 
 func _on_owned_unzoned_button_pressed() -> void:
-	print("pressing on owned")
-	GameData.gameboard_placer_mode = GameConstants.MODES.OWNED_UNZONED
+	standard_toggle_mode(GameConstants.MODES.OWNED_UNZONED)
 	
 func _on_r_zone_button_pressed() -> void:
-	print("being clicked on for r")
-	GameData.gameboard_placer_mode = GameConstants.MODES.R_ZONE
+	standard_toggle_mode(GameConstants.MODES.R_ZONE)
 
 func _on_c_zone_button_pressed() -> void:
-	GameData.gameboard_placer_mode = GameConstants.MODES.C_ZONE
+	standard_toggle_mode(GameConstants.MODES.C_ZONE)
 
 func _on_i_zone_button_pressed() -> void:
-	GameData.gameboard_placer_mode = GameConstants.MODES.I_ZONE
+	standard_toggle_mode(GameConstants.MODES.I_ZONE)
 
 
 func _on_walkway_button_pressed() -> void:
@@ -318,23 +313,29 @@ func _on_i_show_button_pressed() -> void:
 ## Helpers
 #Toggle: means open if closed, close if open
 
-func toggle_buy_land_button():
-	if GameData.gameboard_placer_mode != GameConstants.MODES.BUY_LAND:
-		GameData.gameboard_placer_mode = GameConstants.MODES.BUY_LAND
-	else:
-		GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
-		
-func toggle_upgrade_button():
-	if GameData.gameboard_placer_mode != GameConstants.MODES.UPGRADE:
-		GameData.gameboard_placer_mode = GameConstants.MODES.UPGRADE
+func standard_toggle_mode(mode: int):
+	if GameData.gameboard_placer_mode != mode:
+		GameData.gameboard_placer_mode = mode
 	else:
 		GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
 
-func toggle_delete_button():
-	if GameData.gameboard_placer_mode != GameConstants.MODES.DELETE:
-		GameData.gameboard_placer_mode = GameConstants.MODES.DELETE
-	else:
-		GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
+#func toggle_buy_land_button():
+	#if GameData.gameboard_placer_mode != GameConstants.MODES.BUY_LAND:
+		#GameData.gameboard_placer_mode = GameConstants.MODES.BUY_LAND
+	#else:
+		#GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
+		#
+#func toggle_upgrade_button():
+	#if GameData.gameboard_placer_mode != GameConstants.MODES.UPGRADE:
+		#GameData.gameboard_placer_mode = GameConstants.MODES.UPGRADE
+	#else:
+		#GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
+#
+#func toggle_delete_button():
+	#if GameData.gameboard_placer_mode != GameConstants.MODES.DELETE:
+		#GameData.gameboard_placer_mode = GameConstants.MODES.DELETE
+	#else:
+		#GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
 
 
 func toggle_open_market_menu():
@@ -367,6 +368,7 @@ func toggle_card_template_layout():
 func open_bottom_menu(option: String):
 	bottom_menu.visible = true
 	close_all_bottom_menu_options()
+	GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
 	match option:
 		"zones":
 			bottom_menu_button_row.visible = false
@@ -389,6 +391,7 @@ func open_bottom_menu(option: String):
 func close_bottom_menu():
 	bottom_menu.visible = false
 	close_all_bottom_menu_options()
+	GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
 	
 func close_all_bottom_menu_options():
 	zoning_options.visible = false
