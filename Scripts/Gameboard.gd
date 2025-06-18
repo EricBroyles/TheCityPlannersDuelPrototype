@@ -21,8 +21,7 @@ func get_gameboard_size() -> Vector2:
 ##Get Gameboard Center
 #  returns vector2(x,y) of the center of the gameboard
 func get_gameboard_center() -> Vector2:
-	var center = Vector2(GameData.gameboard_c * GameConstants.GAMEBOARD_TILE_SIZE / 2, GameData.gameboard_r * GameConstants.GAMEBOARD_TILE_SIZE / 2)
-	return center
+	return Vector2(int(GameData.gameboard_c * GameConstants.GAMEBOARD_TILE_SIZE / 2.0), int(GameData.gameboard_r * GameConstants.GAMEBOARD_TILE_SIZE / 2.0))
 	
 ###Init Gameboard Matrix
 ##  any size: r x c (r is num of rows and c is num of col)

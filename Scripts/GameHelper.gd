@@ -17,8 +17,8 @@ func buy_demand(type: String, amount: int) -> int:
 			push_error("Unknown buy_demand type: %s" % type)
 			return 0
 
-	var max_affordable: int = GameData.points / cost_per_demand_unit
-	var amount_to_buy: int = min(amount, max_affordable)
+	var max_affordable_demand_units: int = int(GameData.points / float(cost_per_demand_unit))
+	var amount_to_buy: int = min(amount, max_affordable_demand_units) #demand units to buy
 	var points_cost: int = amount_to_buy * cost_per_demand_unit
 
 	# Deduct and apply
@@ -35,7 +35,7 @@ func buy_demand(type: String, amount: int) -> int:
 	
 	
 func amount_land_tiles_can_buy() -> int:
-	return GameData.money / GameData.cost_per_land_tile
+	return int(GameData.money / float(GameData.cost_per_land_tile))
 
 #amount is number of tiles of land
 func buy_land(amount: int) -> int:
