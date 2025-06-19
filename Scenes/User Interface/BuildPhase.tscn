@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://dfimjfiiwuhtk"]
+[gd_scene load_steps=72 format=3 uid="uid://dfimjfiiwuhtk"]
 
 [ext_resource type="Texture2D" uid="uid://din0qqbxx12jm" path="res://Assets - User Interface/Areas/Area BW 1306x160.svg" id="1_ay4le"]
 [ext_resource type="Script" path="res://Scripts/User Interface/BuildPhaseUserInterface.gd" id="1_bkv58"]
@@ -34,18 +34,12 @@
 [ext_resource type="Texture2D" uid="uid://bijdh6kkjgb1k" path="res://Assets - User Interface/Buttons/Button BW70 _ Horizontal Flip.svg" id="25_hj3y3"]
 [ext_resource type="Texture2D" uid="uid://d00cn7l3oe7hl" path="res://Assets - User Interface/Areas/Area BW 513x361.svg" id="28_bmcps"]
 [ext_resource type="Texture2D" uid="uid://bbi0x2t12bjn5" path="res://Assets - User Interface/Icons/Icon W _ Shopping Cart.svg" id="29_jw7n4"]
-[ext_resource type="PackedScene" uid="uid://bb7i87b5jo7io" path="res://Scenes/Gameboard Tiles/ResZoneTile.tscn" id="30_3xbkf"]
-[ext_resource type="Texture2D" uid="uid://1fkmkn577ysm" path="res://Assets - User Interface/Icons/Icon W _ R.svg" id="31_ofg41"]
 [ext_resource type="Texture2D" uid="uid://dfkc4gw0vf6bk" path="res://Assets - User Interface/Buttons/Button GW70 _ 1.svg" id="32_3nxra"]
 [ext_resource type="Texture2D" uid="uid://c7skn2o2jjgqj" path="res://Assets - User Interface/Buttons/Button GW70 _ 10.svg" id="33_lil6s"]
 [ext_resource type="Texture2D" uid="uid://bbxpfru6dl3cd" path="res://Assets - User Interface/Buttons/Button GW70 _ 100.svg" id="34_0u0xb"]
-[ext_resource type="PackedScene" uid="uid://dqtsf8kl2jy8m" path="res://Scenes/Gameboard Tiles/ComZoneTile.tscn" id="35_wksfd"]
 [ext_resource type="Texture2D" uid="uid://diec1vq0n1g5r" path="res://Assets - User Interface/Buttons/Button GW70 _ Walkway.svg" id="36_6wgcn"]
-[ext_resource type="Texture2D" uid="uid://bloh38y0extra" path="res://Assets - User Interface/Icons/Icon W _ C.svg" id="36_kl0vk"]
-[ext_resource type="PackedScene" uid="uid://bgburaidkfnri" path="res://Scenes/Gameboard Tiles/IndZoneTile.tscn" id="37_mkajr"]
 [ext_resource type="Texture2D" uid="uid://d0pq2isedblsn" path="res://Assets - User Interface/Buttons/Button GW70 _ 2 Lane Road.svg" id="37_p2kr2"]
 [ext_resource type="Texture2D" uid="uid://doht0vjrthdc4" path="res://Assets - User Interface/Buttons/Button GW70 _ Joint 2 Lane.svg" id="38_4hjv5"]
-[ext_resource type="Texture2D" uid="uid://bx7ya71dis2rb" path="res://Assets - User Interface/Icons/Icon W _ I.svg" id="38_5rehw"]
 [ext_resource type="Texture2D" uid="uid://d073kv8mxtqra" path="res://Assets - User Interface/Areas/Area BW 513x620.svg" id="39_kup5j"]
 [ext_resource type="Texture2D" uid="uid://dr0eboewwvjvq" path="res://Assets - User Interface/Buttons/Button GW70 _ 2 Lane Road Parking.svg" id="39_u44gd"]
 [ext_resource type="Texture2D" uid="uid://bfjyathy3n78s" path="res://Assets - User Interface/Buttons/Button GW70 _ 4 Lane Road.svg" id="40_0nrna"]
@@ -1115,13 +1109,9 @@ theme_override_constants/separation = 10
 [node name="CenterContainer" type="CenterContainer" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="ResZoneTile" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/CenterContainer" instance=ExtResource("30_3xbkf")]
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
-
 [node name="TextureRect" type="TextureRect" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer/CenterContainer"]
 layout_mode = 2
-texture = ExtResource("31_ofg41")
+texture = ExtResource("21_5rc3r")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -1178,13 +1168,9 @@ theme_override_constants/separation = 10
 [node name="CenterContainer" type="CenterContainer" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="ComZoneTile" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/CenterContainer" instance=ExtResource("35_wksfd")]
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
-
 [node name="TextureRect" type="TextureRect" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2/CenterContainer"]
 layout_mode = 2
-texture = ExtResource("36_kl0vk")
+texture = ExtResource("22_lrob8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -1241,13 +1227,9 @@ theme_override_constants/separation = 10
 [node name="CenterContainer" type="CenterContainer" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 
-[node name="IndZoneTile" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/CenterContainer" instance=ExtResource("37_mkajr")]
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
-
 [node name="TextureRect" type="TextureRect" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3/CenterContainer"]
 layout_mode = 2
-texture = ExtResource("38_5rehw")
+texture = ExtResource("23_qey58")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterMenusMargin/OpenMarketMenu/MarginContainer3/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
@@ -1361,37 +1343,25 @@ texture = ExtResource("41_lky78")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ResZoneTile" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer/CenterContainer2" instance=ExtResource("30_3xbkf")]
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
-
 [node name="TextureRect" type="TextureRect" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer/CenterContainer2"]
 layout_mode = 2
-texture = ExtResource("31_ofg41")
+texture = ExtResource("21_5rc3r")
 
 [node name="CenterContainer3" type="CenterContainer" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ComZoneTile" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer/CenterContainer3" instance=ExtResource("35_wksfd")]
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
-
 [node name="TextureRect2" type="TextureRect" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer/CenterContainer3"]
 layout_mode = 2
-texture = ExtResource("36_kl0vk")
+texture = ExtResource("22_lrob8")
 
 [node name="CenterContainer4" type="CenterContainer" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="IndZoneTile" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer/CenterContainer4" instance=ExtResource("37_mkajr")]
-position = Vector2(35, 35)
-scale = Vector2(0.35, 0.35)
-
 [node name="TextureRect3" type="TextureRect" parent="CenterMenusMargin/ViewMenu/HBoxContainer/VBoxContainer/CenterContainer4"]
 layout_mode = 2
-texture = ExtResource("38_5rehw")
+texture = ExtResource("23_qey58")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterMenusMargin/ViewMenu/HBoxContainer"]
 layout_mode = 2

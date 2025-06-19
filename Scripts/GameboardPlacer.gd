@@ -10,11 +10,9 @@ extends Node
 @onready var selector = %Selector
 @onready var body = %Body
 @onready var mouse_hitbox = %MouseHitbox
-#@onready var gameboard_1x1_hitbox = %Gameboard1x1Hitbox
 
+var current_drag_modified_positions: Dictionary = {} #Notice that these are positions that are not neccisarily the same as tile positons (2x2 object is in center)
 var _active_mode: int = GameConstants.MODES.MOUSE_POINTER #this is the mode currently being shown, I need this so I can tell when the UI has requested a change, the GameDATA.gameboard_placer_mode is the mode you want to get to
-#var area_1x1_overlap: Array = []
-#var mouse_area_overlap: Array = []
 
 enum ACTIONS {
 	START,
@@ -30,6 +28,8 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	
+	#print(len(gameboard.gameboard_tiles.get_children()))
+	
 	if _active_mode != GameData.gameboard_placer_mode:
 		#then a new mode has been requested by the UI, so end the current one, start the new one, update the active mode
 		handle_placer(_active_mode, ACTIONS.END) 
@@ -41,11 +41,24 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent):
-	if event is InputEventMouseButton and event.pressed and event.button_index == GameData.mouse_button_left:
-		handle_placer(_active_mode, ACTIONS.CLICK)
-	
-	#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	#if event is InputEventMouseButton and event.pressed and event.button_index == GameData.mouse_button_left:
 		#handle_placer(_active_mode, ACTIONS.CLICK)
+		
+	#print(GameData.gameboard_placer_mode, "    ", _active_mode, "   r:", GameConstants.MODES.R_ZONE, " c:", GameConstants.MODES.C_ZONE)
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		handle_placer(_active_mode, ACTIONS.CLICK)
+		
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if not event.pressed:
+				current_drag_modified_positions.clear()
+			#if event.pressed:
+				## Start click (or drag)
+				#handle_placer(_active_mode, ACTIONS.CLICK)
+			#else:
+				## Released mouse button → clear positions tracked during this drag
+				#current_drag_modified_positions.clear()
 
 
 func get_body_child() -> Node2D:
@@ -59,8 +72,8 @@ func remove_all_body_children():
 		body.remove_child(child)
 		#child.queue_free()
 		
-func place_tile(tile: GameboardTile):
-	tile.position = self.position
+func place_tile(tile: GameboardTile, pos: Vector2):
+	tile.position = self.position #round(pos)
 	gameboard.gameboard_tiles.add_child(tile)
 	
 func remove_tile(tile: GameboardTile):
@@ -176,12 +189,18 @@ func handle_placer(mode: int, action: int):
 					var tile = GameComponents.OWNED_UNZONED_TILE.instantiate()
 					if GameHelper.amount_land_tiles_can_buy() < 1: return #need to be able to buy at least one
 					if is_out_of_bounds(self.position, tile.size): return
+					
+					var grid_pos = snap_to_grid(self.position, tile.size)
+					if current_drag_modified_positions.has(round(grid_pos)): return
+					
 					var overlapping_areas: Array = selector.find_overlapping_areas() #yes this is supposed to use the selector
 					for area in overlapping_areas:
 						var obj = area.get_owner()
 						if GameHelper.is_owned_tile(obj): return
-					place_tile(tile)
+						
+					place_tile(tile, grid_pos)
 					GameHelper.buy_land(1)
+					current_drag_modified_positions[round(grid_pos)] = true
 					
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 				
@@ -223,6 +242,10 @@ func handle_placer(mode: int, action: int):
 					## Attempting To Remove Zoning: place Owned_Unzoned tile and remove zoned tile @ the placers position
 					var tile = GameComponents.OWNED_UNZONED_TILE.instantiate()
 					if is_out_of_bounds(self.position, tile.size): return
+					
+					var grid_pos = snap_to_grid(self.position, tile.size)
+					if current_drag_modified_positions.has(round(grid_pos)): return
+					
 					var overlapping_areas: Array = get_body_child().find_overlapping_areas() 
 					for area in overlapping_areas:
 						var obj = area.get_owner()
@@ -230,7 +253,8 @@ func handle_placer(mode: int, action: int):
 							#remove_child(obj) #remove R C I
 							remove_tile(obj)
 							GameHelper.refund_demand_units(obj, 1) #refund R C I tile
-							place_tile(tile)
+							place_tile(tile, grid_pos)
+							current_drag_modified_positions[round(grid_pos)] = true
 							return
 	
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
@@ -249,14 +273,18 @@ func handle_placer(mode: int, action: int):
 					var tile = GameComponents.R_ZONE_TILE.instantiate()
 					if GameData.r_demand < 1: return
 					if is_out_of_bounds(self.position, tile.size): return
+					
+					var grid_pos = snap_to_grid(self.position, tile.size)
+					if current_drag_modified_positions.has(round(grid_pos)): return
+					
 					var overlapping_areas: Array = get_body_child().find_overlapping_areas() 
 					for area in overlapping_areas:
 						var obj = area.get_owner()
 						if GameHelper.is_owned_tile(obj) and not obj is RZone:
-							#remove_child(obj) #remove owned_unzoned C I
-							remove_tile(obj)
+							remove_tile(obj) #remove owned_unzoned C I
 							GameHelper.refund_demand_units(obj, 1) #refund C I tile, can pass in Owned_unzoned, it refunds nothing
-							place_tile(tile)
+							place_tile(tile, grid_pos)
+							current_drag_modified_positions[round(grid_pos)] = true
 							GameData.r_demand -= 1
 							return
 					
@@ -276,13 +304,18 @@ func handle_placer(mode: int, action: int):
 					var tile = GameComponents.C_ZONE_TILE.instantiate()
 					if GameData.c_demand < 1: return
 					if is_out_of_bounds(self.position, tile.size): return
+					
+					var grid_pos = snap_to_grid(self.position, tile.size)
+					if current_drag_modified_positions.has(round(grid_pos)): return
+					
 					var overlapping_areas: Array = get_body_child().find_overlapping_areas() 
 					for area in overlapping_areas:
 						var obj = area.get_owner()
 						if GameHelper.is_owned_tile(obj) and not obj is CZone:
 							remove_tile(obj) #remove owned_unzoned R I
 							GameHelper.refund_demand_units(obj, 1) #refund R I tile, can pass in Owned_unzoned, it refunds nothing
-							place_tile(tile)
+							place_tile(tile, grid_pos)
+							current_drag_modified_positions[round(grid_pos)] = true
 							GameData.c_demand -= 1
 							return
 					
@@ -300,13 +333,18 @@ func handle_placer(mode: int, action: int):
 					var tile = GameComponents.I_ZONE_TILE.instantiate()
 					if GameData.i_demand < 1: return
 					if is_out_of_bounds(self.position, tile.size): return
+					
+					var grid_pos = snap_to_grid(self.position, tile.size)
+					if current_drag_modified_positions.has(round(grid_pos)): return
+					
 					var overlapping_areas: Array = get_body_child().find_overlapping_areas() 
 					for area in overlapping_areas:
 						var obj = area.get_owner()
 						if GameHelper.is_owned_tile(obj) and not obj is IZone:
 							remove_tile(obj) #remove owned_unzoned R C 
 							GameHelper.refund_demand_units(obj, 1) #refund R C  tile, can pass in Owned_unzoned, it refunds nothing
-							place_tile(tile)
+							place_tile(tile, grid_pos)
+							current_drag_modified_positions[round(grid_pos)] = true
 							GameData.i_demand -= 1
 							return
 					

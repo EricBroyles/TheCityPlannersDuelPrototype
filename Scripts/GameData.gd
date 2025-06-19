@@ -26,7 +26,7 @@ var turn: int = 0
 
 var points: int = 1000000
 var population: int = 0
-var money: int = 1100000
+var money: int = 2500 * 4
 var reputation: int = 100
 var r_demand: int = 100
 var c_demand: int = 20

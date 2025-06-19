@@ -79,3 +79,17 @@ func is_zoned_tile(obj: Variant) -> bool:
 	return false
 	
 	
+	
+	
+	
+## Unused (may be useful later)
+#func find_izone_in_tree(node: Node) -> bool:
+	#if node is IZone:
+		#print("Found IZone at path: ", node.get_path())
+		#return true
+	#for child in node.get_children():
+		#if find_izone_in_tree(child):
+			#return true
+	#return false
+	
+	
