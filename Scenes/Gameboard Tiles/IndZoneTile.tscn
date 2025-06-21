@@ -1,22 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgburaidkfnri"]
+[gd_scene load_steps=3 format=3 uid="uid://bgburaidkfnri"]
 
 [ext_resource type="Script" path="res://Scripts/Gameboard Tiles/IZoneTile.gd" id="1_jxevr"]
 
-[sub_resource type="GDScript" id="GDScript_xmmkx"]
-script/source = "extends Area2D
-
-var type: String = \"I\"
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhhi5"]
-size = Vector2(192, 192)
+size = Vector2(200, 200)
 
 [node name="IndZoneTile" type="Node2D"]
 script = ExtResource("1_jxevr")
 
 [node name="MainBodyHitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-script = SubResource("GDScript_xmmkx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MainBodyHitbox"]
 shape = SubResource("RectangleShape2D_lhhi5")

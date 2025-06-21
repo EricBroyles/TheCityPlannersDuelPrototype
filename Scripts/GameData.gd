@@ -2,9 +2,9 @@ extends Node
 
 ## User Controller
 # User Mouse Controller
-var mouse_button_left = 1
-var mouse_button_right = 2
-var mouse_button_middle = 3
+#var mouse_button_left = 1
+#var mouse_button_right = 2
+#var mouse_button_middle = 3
 
 ## User Interface
 
@@ -26,7 +26,7 @@ var turn: int = 0
 
 var points: int = 1000000
 var population: int = 0
-var money: int = 2500 * 4
+var money: int = 250 * 100
 var reputation: int = 100
 var r_demand: int = 100
 var c_demand: int = 20

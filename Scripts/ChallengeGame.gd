@@ -10,7 +10,9 @@ extends Node
 func _ready() -> void:
 	## Setup gameboard
 	gameboard.make_gameboard()
-	#gameboard.init_gameboard_items_matrix()
+	gameboard.init_boxes()
+	gameboard.init_edges()
+	gameboard.print_edges()
 	
 	## Setup Camera
 	camera.center_camera(gameboard)
@@ -21,7 +23,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	GameData.mouse_position = camera.get_global_mouse_position()
 	
-
 
 
 	#var ParkingLot2x2Scene: PackedScene = preload("res://Scenes/Gameboard Items/ParkingLot2x2.tscn")

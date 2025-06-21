@@ -81,6 +81,19 @@ func is_zoned_tile(obj: Variant) -> bool:
 	
 	
 	
+
+func get_closest_position(target_position: Vector2, positions: Array) -> Vector2:
+	var closest_position: Vector2 = Vector2.INF
+	var min_distance := INF
+	
+	for pos in positions:
+		var distance = target_position.distance_to(pos)
+		if distance < min_distance:
+			min_distance = distance
+			closest_position = pos
+			
+	return closest_position
+	
 	
 ## Unused (may be useful later)
 #func find_izone_in_tree(node: Node) -> bool:

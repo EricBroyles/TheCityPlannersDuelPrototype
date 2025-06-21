@@ -9,7 +9,7 @@ var type: String = \"R\"
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xraih"]
-size = Vector2(192, 192)
+size = Vector2(200, 200)
 
 [node name="ResZoneTile" type="Node2D"]
 script = ExtResource("1_eo2vc")
