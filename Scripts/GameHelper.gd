@@ -93,7 +93,21 @@ func get_closest_position(target_position: Vector2, positions: Array) -> Vector2
 			closest_position = pos
 			
 	return closest_position
+
+
+func is_index_in_matrix(index: Vector2, matrix: Array[Array]) -> bool:
+	var r := int(index.x)
+	var c := int(index.y)
 	
+	#check row bounds
+	if r < 0 or r >= matrix.size():
+		return false
+	
+	#check col bounds
+	if c < 0 or c >= matrix[r].size():
+		return false
+	
+	return true
 	
 ## Unused (may be useful later)
 #func find_izone_in_tree(node: Node) -> bool:

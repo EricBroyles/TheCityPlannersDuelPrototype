@@ -1,4 +1,4 @@
-extends Node2D
+extends GameboardComponent
 
 class_name GameboardItem
 const X_DIR: Vector2 = Vector2(1,0)

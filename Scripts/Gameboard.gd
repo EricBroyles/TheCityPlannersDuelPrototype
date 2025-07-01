@@ -7,8 +7,8 @@ class_name Gameboard
 @onready var gameboard_items = $Items
 @onready var gameboard_placer = $Placer
 
-var boxes: Array[Array] #2D matrix of arrays of objects rxc
-var edges: Array[Array] #2D matrix of arrays of objects larger than rxc
+var boxes: Array[Array] #2D matrix of Boxes
+var edges: Array[Array] #2D matrix of Edges
 
 var top_left_tile_position: Vector2 = Vector2(0,0)
 var tiles_shift: Vector2 = Vector2(int(GameConstants.GAMEBOARD_TILE_SIZE/2.0),int(GameConstants.GAMEBOARD_TILE_SIZE/2.0)) #this exists to shift the tiles so the top left corner of the gameboard is a (0,0), this is needed as center of tile is in its middle
@@ -38,13 +38,37 @@ func init_boxes():
 	for r in GameData.gameboard_r:
 		var row: Array = []
 		for c in GameData.gameboard_c:
-			row.append([])  # Append an empty array
+			var box := Box.new()
+			box.r = r
+			box.c = c
+			row.append(box) 
 		matrix.append(row)
 	boxes = matrix
 
 func print_boxes():
-	for r in boxes:
-		print(r)
+	var file := FileAccess.open("res://Notes/view_boxes.txt", FileAccess.WRITE)
+	if file == null:
+		print("Failed to open file.")
+		return
+	
+	# Write column headers
+	var header := "Row/Col"
+	if boxes.size() > 0:
+		for c in range(boxes[0].size()):
+			header += ",Col %d" % c
+	file.store_line(header)
+	
+	# Write each row
+	for r in range(boxes.size()):
+		var row_data := "Row %d" % r
+		for c in range(boxes[r].size()):
+			var box: Box = boxes[r][c]
+			# You can customize what "contents" means here; converting array to string
+			row_data += "," + str(box.contents)
+		file.store_line(row_data)
+
+	file.close()
+	print("CSV written to res://Notes/view_boxes.txt")
 	
 ## Init Edges
 func init_edges():
@@ -52,14 +76,20 @@ func init_edges():
 	for r in GameData.gameboard_r + 1:
 		var row: Array = []
 		for c in GameData.gameboard_c:
-			row.append([])  # Append an empty array
+			var edge := Edge.new()
+			edge.r = r
+			edge.c = c
+			row.append(edge) 
 		horizontal_edges.append(row)
 	
 	var vertical_edges: Array[Array] = []
 	for r in GameData.gameboard_r:
 		var row: Array = []
 		for c in GameData.gameboard_c + 1:
-			row.append([])  # Append an empty array
+			var edge := Edge.new()
+			edge.r = r
+			edge.c = c
+			row.append(edge) 
 		vertical_edges.append(row)
 		
 	#merge these two together by alternating rows of hor then vert
@@ -72,8 +102,29 @@ func init_edges():
 	edges = matrix
 	
 func print_edges():
-	for r in edges:
-		print(r)
+	var file := FileAccess.open("res://Notes/view_edges.txt", FileAccess.WRITE)
+	if file == null:
+		print("Failed to open file.")
+		return
+	
+	# Write column headers
+	var header := "Row/Col"
+	if edges.size() > 0:
+		for c in range(edges[0].size()):
+			header += ",Col %d" % c
+	file.store_line(header)
+	
+	# Write each row
+	for r in range(edges.size()):
+		var row_data := "Row %d" % r
+		for c in range(edges[r].size()):
+			var edge: Edge = edges[r][c]
+			# You can customize what "contents" means here; converting array to string
+			row_data += "," + str(edge.contents)
+		file.store_line(row_data)
+
+	file.close()
+	print("CSV written to res://Notes/view_edges.txt")
 			
 func get_gameboard_size() -> Vector2:
 	return Vector2(GameData.gameboard_c * GameConstants.GAMEBOARD_TILE_SIZE, GameData.gameboard_r * GameConstants.GAMEBOARD_TILE_SIZE) #(width, height)
@@ -81,21 +132,21 @@ func get_gameboard_size() -> Vector2:
 func get_gameboard_center() -> Vector2:
 	return Vector2(int(GameData.gameboard_c * GameConstants.GAMEBOARD_TILE_SIZE / 2.0), int(GameData.gameboard_r * GameConstants.GAMEBOARD_TILE_SIZE / 2.0))
 	
-# returns: {"boxes": Array[Vector2], "is_fully_contained": bool}
+# returns: {"boxes": Array[Box], "is_fully_contained": bool}
 func contained_by_boxes(component: GameboardComponent) -> Dictionary:
-	var component_inside_these_boxes: Array[Vector2] = []
+	var component_inside_these_boxes: Array[Box] = []
 	var is_fully_contained: bool = true
 	
 	var size: Vector2 = component.get_oriented_size()
 	var size_in_tile_units: Vector2 = round(Vector2(size.y, size.x) / GameConstants.GAMEBOARD_TILE_SIZE) #(num rows, num cols)
-	var top_left_point: Vector2 = component.position - size / 2
+	var top_left_point: Vector2 = component.get_top_left_position()
 	var top_left_index: Vector2 = round(Vector2(top_left_point.y, top_left_point.x) / GameConstants.GAMEBOARD_TILE_SIZE)
 	
 	for r in range(size_in_tile_units.x):
 		for c in range(size_in_tile_units.y):
 			var component_section_index: Vector2 = top_left_index + Vector2(r, c)
-			if is_index_in_matrix(component_section_index, boxes):
-				component_inside_these_boxes.append(component_section_index)
+			if GameHelper.is_index_in_matrix(component_section_index, boxes):
+				component_inside_these_boxes.append(boxes[r][c])
 			else:
 				is_fully_contained = false
 				
@@ -105,14 +156,19 @@ func contained_by_boxes(component: GameboardComponent) -> Dictionary:
 	}
 	return result
 
+#see whatever the fuck  did for contained_by_boxes
 # returns: {"edges": Array[Vector2], "is_fully_contained": bool}
 func contained_by_edges(component: GameboardComponent) -> Dictionary:
 	## TO BE FINISHED
 	return {}
-
+	
+#assumes that components position pointer is at their center	
+#returns a positon that the component should be placed at to keep it centered on the grid
 func snap_to_boxes(requested_position: Vector2, component: GameboardComponent) -> Vector2:
-	## TO BE FINISHED
-	return Vector2(0,0)
+	var requested_top_left_position: Vector2 = requested_position - component.get_oriented_size()/2
+	var new_top_left_position: Vector2 = round(requested_top_left_position / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE
+	var snapped_position: Vector2 = new_top_left_position + component.get_oriented_size()/2
+	return round(snapped_position)
 	
 func snap_to_edges(requested_position: Vector2, component: GameboardComponent) -> Vector2:
 	## TO BE FINISHED
@@ -122,17 +178,41 @@ func snap_to_edges(requested_position: Vector2, component: GameboardComponent) -
 # look up its boxes (contained_by_boxes)
 # return all the objects inside of the boxes that this componet is on.
 func shares_boxes_with(component: GameboardComponent) -> Array[GameboardComponent]:
-	return []
+	var unique_dict := {}  # Keys will be the components, values don't matter
+	for box in contained_by_boxes(component)["boxes"]:
+		for comp in box.contents:
+			unique_dict[comp] = true  # Add as key; duplicates will be overwritten
+	return unique_dict.keys()  # This returns a unique Array of components
 
 func shares_edges_with(component: GameboardComponent) -> Array[GameboardComponent]:
 	return []
+
+#assumes component is snaped to boxes
+#this does not error handle. if you call this it will place it at all the boxes it is inside
+func add_to_gameboard(component: GameboardComponent):
+	#add to the matrix
+	add_to_boxes(component)
+	#add to the scene
+	if component is GameboardTile:
+		gameboard_tiles.add_child(component)
+	elif component is GameboardItem:
+		gameboard_items.add_child(component)
+	else:
+		push_error("Failed to add component: ", component, " to gameboard as it is not type Tile or Item")
 	
+
+#assumes component is snaped to boxes
+#this does not error handle. if you call this it will place it at all the boxes it is inside
 func add_to_boxes(component: GameboardComponent):
-	#add to the game scene and add to the matrix
-	pass
+	var add_to_these_boxes: Array[Box] = contained_by_boxes(component)["boxes"]
+	for box in add_to_these_boxes:
+		box.add(component)
+	
+
 	
 func remove_from_boxes(component: GameboardComponent):
 	#remove from the game scene and add to the matrix
+	#do I passs the item I want to remove, or pass in the type at some index?
 	pass
 	
 
@@ -158,20 +238,8 @@ func get_hitboxes_at(point: Vector2) -> Array[Area2D]:
 func get_hitbox_owner(hitbox: Area2D) -> Variant:
 	return hitbox.get_owner()
 	
-## Helpers
-func is_index_in_matrix(index: Vector2, matrix: Array[Array]) -> bool:
-	var r := int(index.x)
-	var c := int(index.y)
-	
-	#check row bounds
-	if r < 0 or r >= matrix.size():
-		return false
-	
-	#check col bounds
-	if c < 0 or c >= matrix[r].size():
-		return false
-	
-	return true
+
+
 
 
 
