@@ -63,8 +63,8 @@ func print_boxes():
 		var row_data := "Row %d" % r
 		for c in range(boxes[r].size()):
 			var box: Box = boxes[r][c]
-			# You can customize what "contents" means here; converting array to string
-			row_data += "," + str(box.contents)
+			# You can customize what "components" means here; converting array to string
+			row_data += "," + str(box.components)
 		file.store_line(row_data)
 
 	file.close()
@@ -119,8 +119,8 @@ func print_edges():
 		var row_data := "Row %d" % r
 		for c in range(edges[r].size()):
 			var edge: Edge = edges[r][c]
-			# You can customize what "contents" means here; converting array to string
-			row_data += "," + str(edge.contents)
+			# You can customize what "components" means here; converting array to string
+			row_data += "," + str(edge.components)
 		file.store_line(row_data)
 
 	file.close()
@@ -134,6 +134,7 @@ func get_gameboard_center() -> Vector2:
 	
 # returns: {"boxes": Array[Box], "is_fully_contained": bool}
 func contained_by_boxes(component: GameboardComponent) -> Dictionary:
+
 	var component_inside_these_boxes: Array[Box] = []
 	var is_fully_contained: bool = true
 	
@@ -144,9 +145,9 @@ func contained_by_boxes(component: GameboardComponent) -> Dictionary:
 	
 	for r in range(size_in_tile_units.x):
 		for c in range(size_in_tile_units.y):
-			var component_section_index: Vector2 = top_left_index + Vector2(r, c)
+			var component_section_index: Vector2 = top_left_index + Vector2(r, c) #this is like each tile of a component
 			if GameHelper.is_index_in_matrix(component_section_index, boxes):
-				component_inside_these_boxes.append(boxes[r][c])
+				component_inside_these_boxes.append(boxes[component_section_index.x][component_section_index.y])
 			else:
 				is_fully_contained = false
 				
@@ -163,7 +164,7 @@ func contained_by_edges(component: GameboardComponent) -> Dictionary:
 	return {}
 	
 #assumes that components position pointer is at their center	
-#returns a positon that the component should be placed at to keep it centered on the grid
+#sets the position of the component to the proper location to keep it snaped to boxes
 func snap_to_boxes(requested_position: Vector2, component: GameboardComponent) -> Vector2:
 	var requested_top_left_position: Vector2 = requested_position - component.get_oriented_size()/2
 	var new_top_left_position: Vector2 = round(requested_top_left_position / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE
@@ -177,44 +178,56 @@ func snap_to_edges(requested_position: Vector2, component: GameboardComponent) -
 # given a component. be sure to set its position to reflect where you want it in game space
 # look up its boxes (contained_by_boxes)
 # return all the objects inside of the boxes that this componet is on.
-func shares_boxes_with(component: GameboardComponent) -> Array[GameboardComponent]:
+func get_components_in_shared_boxes(component: GameboardComponent) -> Array[GameboardComponent]:
 	var unique_dict := {}  # Keys will be the components, values don't matter
 	for box in contained_by_boxes(component)["boxes"]:
-		for comp in box.contents:
+		for comp in box.components:
 			unique_dict[comp] = true  # Add as key; duplicates will be overwritten
-	return unique_dict.keys()  # This returns a unique Array of components
+			
+	var components_array: Array[GameboardComponent] = []
+	for comp in unique_dict.keys():
+		components_array.append(comp as GameboardComponent)  # Safe cast per element
+	return components_array
 
+#get_components_in_shared_boxes
 func shares_edges_with(component: GameboardComponent) -> Array[GameboardComponent]:
 	return []
+	
 
-#assumes component is snaped to boxes
-#this does not error handle. if you call this it will place it at all the boxes it is inside
-func add_to_gameboard(component: GameboardComponent):
-	#add to the matrix
-	add_to_boxes(component)
-	#add to the scene
+## USE add_to_boxes and remove_from_boxes to add/remove items in general
+func add_to_boxes(component: GameboardComponent):
+	#assumes component is snaped to boxes
+	#this does not error handle. if you call this it will place it at all the boxes it is inside
+	var add_to_these_boxes: Array[Box] = contained_by_boxes(component)["boxes"]
+	for box in add_to_these_boxes:
+		box.add(component)
+		
+	_add_to_scene(component)
+
+func remove_from_boxes(component: GameboardComponent):
+	var remove_from_these_boxes: Array[Box] = contained_by_boxes(component)["boxes"]
+	for box in remove_from_these_boxes:
+		box.remove(component)
+		
+	_remove_from_scene(component)
+
+
+## add_to_scene and remove_from_scene are just helpers for add_to_boxes and remove_from_boxes
+func _add_to_scene(component: GameboardComponent):
 	if component is GameboardTile:
 		gameboard_tiles.add_child(component)
 	elif component is GameboardItem:
 		gameboard_items.add_child(component)
 	else:
 		push_error("Failed to add component: ", component, " to gameboard as it is not type Tile or Item")
-	
 
-#assumes component is snaped to boxes
-#this does not error handle. if you call this it will place it at all the boxes it is inside
-func add_to_boxes(component: GameboardComponent):
-	var add_to_these_boxes: Array[Box] = contained_by_boxes(component)["boxes"]
-	for box in add_to_these_boxes:
-		box.add(component)
-	
-
-	
-func remove_from_boxes(component: GameboardComponent):
-	#remove from the game scene and add to the matrix
-	#do I passs the item I want to remove, or pass in the type at some index?
-	pass
-	
+func _remove_from_scene(component: GameboardComponent):
+	if component is GameboardTile:
+		gameboard_tiles.remove_child(component)
+	elif component is GameboardItem:
+		gameboard_items.remove_child(component)
+	else:
+		push_error("Failed to remove component: ", component, " from gameboard as it is not type Tile or Item")
 
 	
 ## Hitboxes

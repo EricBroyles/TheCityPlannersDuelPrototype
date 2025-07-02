@@ -14,7 +14,7 @@ enum ACTIONS {
 #var current_drag_modified_positions: Array[Vector2] = [] #Notice that these are positions that are not neccisarily the same as tile positons (2x2 object is in center)
 var _active_mode: int = GameConstants.MODES.MOUSE_POINTER #this is the mode currently being shown, I need this so I can tell when the UI has requested a change, the GameDATA.gameboard_placer_mode is the mode you want to get to
 #var current_mouse_drag_positions: Array[Vector2] = []
-var placer_obj: Variant #the tile or item to be placed that is being tracked by the mouse
+var placer_component: GameboardComponent #the tile or item to be placed that is being tracked by the mouse
 
 
 func _ready():
@@ -41,7 +41,7 @@ func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if not event.pressed:
-				
+				#click release
 				#current_mouse_drag_positions.clear()
 				pass
 			
@@ -132,32 +132,32 @@ func handle_placer(mode: int, action: int):
 			match action:
 				ACTIONS.START:
 					selector.open_buy_land_selector()
-					placer_obj = GameComponents.OWNED_UNZONED_TILE.instantiate()
+					add_body_child(GameComponents.OWNED_UNZONED_TILE.instantiate())
 				ACTIONS.END:
+					remove_all_body_children()
 					selector.close()
-					placer_obj = null
 				ACTIONS.MOVE:
-					self.position = gameboard.snap_position_to_grid_centers(GameData.mouse_position, placer_obj.size)
+					self.position = gameboard.snap_to_boxes(GameData.mouse_position, get_body_child())
 				ACTIONS.CLICK:
 					## Attempting To BUY LAND: place Owned_Unzoned tile @ the placers position
 					var tile: GameboardTile = GameComponents.OWNED_UNZONED_TILE.instantiate()
-					tile.set_properties_from(placer_obj)
-					var tile_grid_centers: Array[Vector2] = gameboard.get_obj_grid_centers(self.position, tile.size)
+					tile.set_properties_from(get_body_child())
+					tile.position = self.position
+
+					#do I have the money to buy a land tile
 					if GameHelper.amount_land_tiles_can_buy() < 1: return #need to be able to buy at least one
-					var all_overlap_objs: Array = gameboard.get_objs_at_grid_centers(tile_grid_centers) #array of array of obj, and array of null
-					print("overlap_areas:", all_overlap_objs)
-					for overlap_objs in all_overlap_objs:
-						if overlap_objs == null:
-							return #out of bounds
-						for overlap_obj in overlap_objs:
-							if GameHelper.is_owned_tile(overlap_obj): return
-						
-						
-					print("snapping to", gameboard.snap_position_to_grid_centers(GameData.mouse_position, placer_obj.size))
-					gameboard.add_tile(tile, gameboard.snap_position_to_grid_centers(GameData.mouse_position, placer_obj.size))
 					
+					#is the land tile out of bounds
+					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
+					
+					#have I already bought this tile
+					for comp in gameboard.get_components_in_shared_boxes(tile):
+						if GameHelper.is_owned_tile(comp): return #I already own this tile
+				
+					#buy the tile and add it to the gameboard
+					gameboard.add_to_boxes(tile)
 					GameHelper.buy_land(1)
-					
+				
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 				
 		GameConstants.MODES.UPGRADE:
@@ -188,127 +188,140 @@ func handle_placer(mode: int, action: int):
 				#_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 						
 		GameConstants.MODES.OWNED_UNZONED:
-			pass
-			#match action:
-				#ACTIONS.START:
-					#add_body_child(GameComponents.OWNED_UNZONED_TILE.instantiate())
-				#ACTIONS.END:
-					#remove_all_body_children()
-				#ACTIONS.MOVE:
-					#self.position = snap_to_grid(GameData.mouse_position, get_body_child().size)
-				#ACTIONS.CLICK:
-					### Attempting To Remove Zoning: place Owned_Unzoned tile and remove zoned tile @ the placers position
-					#var tile = GameComponents.OWNED_UNZONED_TILE.instantiate()
-					#if is_out_of_bounds(self.position, tile.size): return
-					#
-					#var grid_pos = snap_to_grid(self.position, tile.size) #already rounded
-					#if grid_pos in current_drag_modified_positions: return
-					#
-					#var overlapping_areas: Array = get_body_child().find_overlapping_areas() 
-					#for area in overlapping_areas:
-						#var obj = area.get_owner()
-						#if GameHelper.is_zoned_tile(obj):
-							##remove_child(obj) #remove R C I
-							#remove_tile(obj)
-							#GameHelper.refund_demand_units(obj, 1) #refund R C I tile
-							#place_tile(tile, grid_pos)
-							#current_drag_modified_positions.append(grid_pos)
-							#return
-	#
-				#_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+			match action:
+				ACTIONS.START:
+					add_body_child(GameComponents.OWNED_UNZONED_TILE.instantiate())
+				ACTIONS.END:
+					remove_all_body_children()
+				ACTIONS.MOVE:
+					self.position = gameboard.snap_to_boxes(GameData.mouse_position, get_body_child())
+				ACTIONS.CLICK:
+					## Attempting To Remove Zoning: place Owned_Unzoned tile and remove zoned tile @ the placers position
+					var tile: GameboardTile = GameComponents.OWNED_UNZONED_TILE.instantiate()
+					tile.set_properties_from(get_body_child())
+					tile.position = self.position
+					
+					#is the land tile out of bounds
+					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
+					
+					for comp in gameboard.get_components_in_shared_boxes(tile):
+						if GameHelper.is_zoned_tile(comp): 
+							
+							# remove the comp (it is a zoned tile)
+							gameboard.remove_from_boxes(comp)
+							# add the unzoned_owned tile
+							gameboard.add_to_boxes(tile)
+							#refund the demand
+							GameHelper.refund_demand_units(comp, 1) #refund R C I tile
+							return 
+				
+				
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 				
 		GameConstants.MODES.R_ZONE:
-			pass
-			#match action:
-				#ACTIONS.START:
-					#add_body_child(GameComponents.R_ZONE_TILE.instantiate())
-				#ACTIONS.END:
-					#remove_all_body_children()
-				#ACTIONS.MOVE:
-					#self.position = snap_to_grid(GameData.mouse_position, get_body_child().size)
-				#ACTIONS.CLICK:
-					### Attempting to Add ZoneR: add ZoneR, remove Owned_Unzoned @ the placers position
-					#var tile = GameComponents.R_ZONE_TILE.instantiate()
-					#if GameData.r_demand < 1: return
-					#if is_out_of_bounds(self.position, tile.size): return
-					#
-					#var grid_pos = snap_to_grid(self.position, tile.size) #already rounded
-					#if grid_pos in current_drag_modified_positions: return
-					#
-					#var overlapping_areas: Array = get_body_child().find_overlapping_areas() 
-					#for area in overlapping_areas:
-						#var obj = area.get_owner()
-						#if GameHelper.is_owned_tile(obj) and not obj is RZone:
-							#remove_tile(obj) #remove owned_unzoned C I
-							#GameHelper.refund_demand_units(obj, 1) #refund C I tile, can pass in Owned_unzoned, it refunds nothing
-							#place_tile(tile, grid_pos)
-							#current_drag_modified_positions.append(grid_pos)
-							#GameData.r_demand -= 1
-							#return
-					#
-				#_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
-			
+			match action:
+				ACTIONS.START:
+					add_body_child(GameComponents.R_ZONE_TILE.instantiate())
+				ACTIONS.END:
+					remove_all_body_children()
+				ACTIONS.MOVE:
+					self.position = gameboard.snap_to_boxes(GameData.mouse_position, get_body_child())
+				ACTIONS.CLICK:
+					## Attempting to Add ZoneR: add ZoneR, remove Owned_Unzoned @ the placers position
+					var tile: GameboardTile = GameComponents.R_ZONE_TILE.instantiate()
+					tile.set_properties_from(get_body_child())
+					tile.position = self.position
+					
+					#is the land tile out of bounds
+					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
+					
+					#do I have enough demand
+					if GameData.r_demand < 1: return
+					
+					for comp in gameboard.get_components_in_shared_boxes(tile):
+						if GameHelper.is_owned_tile(comp) and not comp is RZone: 
+							
+							# remove the comp (it is a zoned tile)
+							gameboard.remove_from_boxes(comp)
+							# add the unzoned_owned tile
+							gameboard.add_to_boxes(tile)
+							#refund the demand
+							GameHelper.refund_demand_units(comp, 1) 
+							#charge the demand
+							GameData.r_demand -= 1
+							return 
+				
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 			
 		GameConstants.MODES.C_ZONE:
-			pass
-			#match action:
-				#ACTIONS.START:
-					#add_body_child(GameComponents.C_ZONE_TILE.instantiate())
-				#ACTIONS.END:
-					#remove_all_body_children()
-				#ACTIONS.MOVE:
-					#self.position = snap_to_grid(GameData.mouse_position, get_body_child().size)
-				#ACTIONS.CLICK:
-					### Attempting to Add ZoneC: add ZoneC, remove Owned_Unzoned @ the placers position
-					#var tile = GameComponents.C_ZONE_TILE.instantiate()
-					#if GameData.c_demand < 1: return
-					#if is_out_of_bounds(self.position, tile.size): return
-					#
-					#var grid_pos = snap_to_grid(self.position, tile.size) #already rounded
-					#if grid_pos in current_drag_modified_positions: return
-					#
-					#var overlapping_areas: Array = get_body_child().find_overlapping_areas() 
-					#for area in overlapping_areas:
-						#var obj = area.get_owner()
-						#if GameHelper.is_owned_tile(obj) and not obj is CZone:
-							#remove_tile(obj) #remove owned_unzoned R I
-							#GameHelper.refund_demand_units(obj, 1) #refund R I tile, can pass in Owned_unzoned, it refunds nothing
-							#place_tile(tile, grid_pos)
-							#current_drag_modified_positions.append(grid_pos)
-							#GameData.c_demand -= 1
-							#return
-					#
-				#_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+			match action:
+				ACTIONS.START:
+					add_body_child(GameComponents.C_ZONE_TILE.instantiate())
+				ACTIONS.END:
+					remove_all_body_children()
+				ACTIONS.MOVE:
+					self.position = gameboard.snap_to_boxes(GameData.mouse_position, get_body_child())
+				ACTIONS.CLICK:
+					## Attempting to Add ZoneC: add ZoneC, remove Owned_Unzoned @ the placers position
+					var tile: GameboardTile = GameComponents.C_ZONE_TILE.instantiate()
+					tile.set_properties_from(get_body_child())
+					tile.position = self.position
+					
+					#is the land tile out of bounds
+					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
+					
+					#do I have enough demand
+					if GameData.c_demand < 1: return
+					
+					for comp in gameboard.get_components_in_shared_boxes(tile):
+						if GameHelper.is_owned_tile(comp) and not comp is CZone: 
+							
+							# remove the comp (it is a zoned tile)
+							gameboard.remove_from_boxes(comp)
+							# add the unzoned_owned tile
+							gameboard.add_to_boxes(tile)
+							#refund the demand
+							GameHelper.refund_demand_units(comp, 1) 
+							#charge the demand
+							GameData.c_demand -= 1
+							return 
+				
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+				
 		GameConstants.MODES.I_ZONE:
-			pass
-			#match action:
-				#ACTIONS.START:
-					#add_body_child(GameComponents.I_ZONE_TILE.instantiate())
-				#ACTIONS.END:
-					#remove_all_body_children()
-				#ACTIONS.MOVE:
-					#self.position = snap_to_grid(GameData.mouse_position, get_body_child().size)
-				#ACTIONS.CLICK:
-					### Attempting to Add ZoneI: add ZoneI, remove Owned_Unzoned @ the placers position
-					#var tile = GameComponents.I_ZONE_TILE.instantiate()
-					#if GameData.i_demand < 1: return
-					#if is_out_of_bounds(self.position, tile.size): return
-					#
-					#var grid_pos = snap_to_grid(self.position, tile.size) #already rounded
-					#if grid_pos in current_drag_modified_positions: return
-					#
-					#var overlapping_areas: Array = get_body_child().find_overlapping_areas() 
-					#for area in overlapping_areas:
-						#var obj = area.get_owner()
-						#if GameHelper.is_owned_tile(obj) and not obj is IZone:
-							#remove_tile(obj) #remove owned_unzoned R C 
-							#GameHelper.refund_demand_units(obj, 1) #refund R C  tile, can pass in Owned_unzoned, it refunds nothing
-							#place_tile(tile, grid_pos)
-							#current_drag_modified_positions.append(grid_pos)
-							#GameData.i_demand -= 1
-							#return
-					#
-				#_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+			match action:
+				ACTIONS.START:
+					add_body_child(GameComponents.I_ZONE_TILE.instantiate())
+				ACTIONS.END:
+					remove_all_body_children()
+				ACTIONS.MOVE:
+					self.position = gameboard.snap_to_boxes(GameData.mouse_position, get_body_child())
+				ACTIONS.CLICK:
+					## Attempting to Add ZoneI: add ZoneI, remove Owned_Unzoned @ the placers position
+					var tile: GameboardTile = GameComponents.I_ZONE_TILE.instantiate()
+					tile.set_properties_from(get_body_child())
+					tile.position = self.position
+					
+					#is the land tile out of bounds
+					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
+					
+					#do I have enough demand
+					if GameData.i_demand < 1: return
+					
+					for comp in gameboard.get_components_in_shared_boxes(tile):
+						if GameHelper.is_owned_tile(comp) and not comp is IZone: 
+							
+							# remove the comp (it is a zoned tile)
+							gameboard.remove_from_boxes(comp)
+							# add the unzoned_owned tile
+							gameboard.add_to_boxes(tile)
+							#refund the demand
+							GameHelper.refund_demand_units(comp, 1) 
+							#charge the demand
+							GameData.i_demand -= 1
+							return 
+				
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 			
 			
 		GameConstants.MODES.WALKWAY:
