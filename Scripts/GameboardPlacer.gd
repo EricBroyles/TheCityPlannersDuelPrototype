@@ -147,9 +147,8 @@ func handle_placer(mode: int, action: int):
 					var tile: GameboardTile = GameComponents.OWNED_UNZONED_TILE.instantiate()
 					tile.set_properties_from(get_body_child())
 
-
 					#do I have the money to buy a land tile
-					if GameHelper.amount_land_tiles_can_buy() < 1: return #need to be able to buy at least one
+					if not tile.can_buy(): return #need to be able to buy at least one
 					
 					#is the land tile out of bounds
 					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
@@ -160,7 +159,7 @@ func handle_placer(mode: int, action: int):
 				
 					#buy the tile and add it to the gameboard
 					gameboard.add_to_boxes(tile)
-					GameHelper.buy_land(1)
+					tile.buy()
 				
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 				
@@ -215,7 +214,7 @@ func handle_placer(mode: int, action: int):
 							# add the unzoned_owned tile
 							gameboard.add_to_boxes(tile)
 							#refund the demand
-							GameHelper.refund_demand_units(comp, 1) #refund R C I tile
+							comp.refund() #refund R C I tile (be carful about refunding Owned_unzoned)
 							return 
 				
 				
@@ -234,11 +233,11 @@ func handle_placer(mode: int, action: int):
 					var tile: GameboardTile = GameComponents.R_ZONE_TILE.instantiate()
 					tile.set_properties_from(get_body_child())
 					
+					#do I have enough demand
+					if not tile.can_buy(): return
+					
 					#is the land tile out of bounds
 					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
-					
-					#do I have enough demand
-					if GameData.r_demand < 1: return
 					
 					for comp in gameboard.get_components_in_shared_boxes(tile):
 						if GameHelper.is_owned_tile(comp) and not comp is RZone: 
@@ -248,9 +247,9 @@ func handle_placer(mode: int, action: int):
 							# add the unzoned_owned tile
 							gameboard.add_to_boxes(tile)
 							#refund the demand
-							GameHelper.refund_demand_units(comp, 1) 
+							comp.refund()
 							#charge the demand
-							GameData.r_demand -= 1
+							tile.buy()
 							return 
 				
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
@@ -268,11 +267,11 @@ func handle_placer(mode: int, action: int):
 					var tile: GameboardTile = GameComponents.C_ZONE_TILE.instantiate()
 					tile.set_properties_from(get_body_child())
 					
+					#do I have enough demand
+					if not tile.can_buy(): return
+					
 					#is the land tile out of bounds
 					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
-					
-					#do I have enough demand
-					if GameData.c_demand < 1: return
 					
 					for comp in gameboard.get_components_in_shared_boxes(tile):
 						if GameHelper.is_owned_tile(comp) and not comp is CZone: 
@@ -282,9 +281,9 @@ func handle_placer(mode: int, action: int):
 							# add the unzoned_owned tile
 							gameboard.add_to_boxes(tile)
 							#refund the demand
-							GameHelper.refund_demand_units(comp, 1) 
+							comp.refund()
 							#charge the demand
-							GameData.c_demand -= 1
+							tile.buy()
 							return 
 				
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
@@ -302,11 +301,11 @@ func handle_placer(mode: int, action: int):
 					var tile: GameboardTile = GameComponents.I_ZONE_TILE.instantiate()
 					tile.set_properties_from(get_body_child())
 					
+					#do I have enough demand
+					if not tile.can_buy(): return
+					
 					#is the land tile out of bounds
 					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
-					
-					#do I have enough demand
-					if GameData.i_demand < 1: return
 					
 					for comp in gameboard.get_components_in_shared_boxes(tile):
 						if GameHelper.is_owned_tile(comp) and not comp is IZone: 
@@ -316,9 +315,9 @@ func handle_placer(mode: int, action: int):
 							# add the unzoned_owned tile
 							gameboard.add_to_boxes(tile)
 							#refund the demand
-							GameHelper.refund_demand_units(comp, 1) 
+							comp.refund()
 							#charge the demand
-							GameData.i_demand -= 1
+							tile.buy()
 							return 
 				
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
@@ -351,6 +350,20 @@ func handle_placer(mode: int, action: int):
 					## Attempting to Add ZoneI: add ZoneI, remove Owned_Unzoned @ the placers position
 					var item: GameboardItem = GameComponents.ROAD_4_LANE.instantiate()
 					item.set_properties_from(get_body_child())
+					
+					# is the item out of bounds
+					# can I buy the item
+					# is the land I am placing this on bought
+					# is it not overlapping any item in a box object with same elevation
+					
+					#leave the zoned tile underneath it
+					#add the item
+					#complete the transaction (have this code inside of the actiual item, as it will have stuff like cost of maintance
+					
+					
+					
+					
+					
 					
 					##is the land tile out of bounds
 					#if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return

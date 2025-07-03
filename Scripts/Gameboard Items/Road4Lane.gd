@@ -7,7 +7,7 @@ class_name Road4Lane
 @onready var left_parking_hitbox = %LeftParkingHitbox
 @onready var right_parking_hitbox = %RightParkingHitbox
 
-@onready var left_parking_col = $Parking/LeftParkingColumn
+#@onready var left_parking_col = $Parking/LeftParkingColumn
 
 const SIZE_IN_TILES: Vector2 = Vector2(1,2) #(r,c)
 const ITEM_Z: int = 20

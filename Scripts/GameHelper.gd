@@ -4,6 +4,7 @@ extends Node
 
 # type: "r", "c", "i"
 # amount: int of number of demand units desired
+#this stays in helper as it is used by UI (technically I could move it, i dont want to tho) (it would get confusing to have it inside the class and i would have to create an instance inside the ui..)
 func buy_demand(type: String, amount: int) -> int:
 	var cost_per_demand_unit: int
 	match type:
@@ -34,38 +35,34 @@ func buy_demand(type: String, amount: int) -> int:
 	return amount_to_buy
 	
 	
-func amount_land_tiles_can_buy() -> int:
-	return int(GameData.money / float(GameData.cost_per_land_tile))
+
 
 #amount is number of tiles of land
-func buy_land(amount: int) -> int:
-	var amount_land_to_buy = min(amount, amount_land_tiles_can_buy())
-	var total_cost = amount_land_to_buy * GameData.cost_per_land_tile
-
-	GameData.money -= total_cost
-
-	return amount_land_to_buy
+#func buy_land(amount: int) -> int:
+	#var amount_land_to_buy = min(amount, amount_land_tiles_can_buy())
+	#var total_cost = amount_land_to_buy * GameData.cost_per_land_tile
+#
+	#GameData.money -= total_cost
+#
+	#return amount_land_to_buy
 
 #this is used for when the player unzones land and then gets those demand units (this is not refunding the points purchase the player made to get the demand)
 #tile: either a RZone, CZone, IZone tile
-func refund_demand_units(tile: GameboardTile, amount: int):
-	if tile is RZone:
-		GameData.r_demand += amount
-	elif tile is CZone:
-		GameData.c_demand += amount
-	elif tile is IZone:
-		GameData.i_demand += amount
-	elif tile is OwnedUnzoned:
-		return
-	else:
-		push_error("Did Not Refund ---- due to unknown refund demand tile : ", tile)
+#func refund_demand_units(tile: GameboardTile, amount: int):
+	#if tile is RZone:
+		#GameData.r_demand += amount
+	#elif tile is CZone:
+		#GameData.c_demand += amount
+	#elif tile is IZone:
+		#GameData.i_demand += amount
+	#elif tile is OwnedUnzoned:
+		#return
+	#else:
+		#push_error("Did Not Refund ---- due to unknown refund demand tile : ", tile)
 
 
 
-#func is_unowned_unzoned_tile(obj: Variant) -> bool:
-	#if obj is OwnedUnzoned or obj is RZone or obj is CZone or obj is IZone:
-		#return false
-	#return true
+
 
 #if it is zoned, then it must also be owned
 func is_owned_tile(obj: Variant) -> bool:
@@ -116,6 +113,11 @@ func rotate_vector_90_cw(vec: Vector2, times: int) -> Vector2:
 		2:return Vector2(-vec.x, -vec.y)
 		3:return Vector2(vec.y, -vec.x)
 	return vec # fallback (should never reach here)
+	
+	
+	
+	
+	
 	
 ## Unused (may be useful later)
 #func find_izone_in_tree(node: Node) -> bool:
