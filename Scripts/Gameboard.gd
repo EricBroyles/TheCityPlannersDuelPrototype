@@ -169,7 +169,9 @@ func snap_to_boxes(requested_position: Vector2, component: GameboardComponent) -
 	var requested_top_left_position: Vector2 = requested_position - component.get_oriented_size()/2
 	var new_top_left_position: Vector2 = round(requested_top_left_position / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE
 	var snapped_position: Vector2 = new_top_left_position + component.get_oriented_size()/2
+	print(component.get_oriented_size())
 	return round(snapped_position)
+	
 	
 func snap_to_edges(requested_position: Vector2, component: GameboardComponent) -> Vector2:
 	## TO BE FINISHED

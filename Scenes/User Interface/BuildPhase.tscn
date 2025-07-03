@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://dfimjfiiwuhtk"]
+[gd_scene load_steps=75 format=3 uid="uid://dfimjfiiwuhtk"]
 
 [ext_resource type="Texture2D" uid="uid://din0qqbxx12jm" path="res://Assets - User Interface/Areas/Area BW 1306x160.svg" id="1_ay4le"]
 [ext_resource type="Script" path="res://Scripts/User Interface/BuildPhaseUserInterface.gd" id="1_bkv58"]
@@ -15,9 +15,12 @@
 [ext_resource type="Texture2D" uid="uid://biop4kpdls2mm" path="res://Assets - User Interface/Buttons/Button BW70 _ Checkmark.svg" id="12_pfxl7"]
 [ext_resource type="Texture2D" uid="uid://5u4gxt64hvke" path="res://Assets - User Interface/Buttons/Button BW70 _ City And Undo Arrow.svg" id="13_xsygd"]
 [ext_resource type="Texture2D" uid="uid://dbhejrys1dhdh" path="res://Assets - User Interface/Buttons/Button BW70 _ Magnifying Data.svg" id="14_6ly0f"]
+[ext_resource type="Texture2D" uid="uid://cu7hn250623f1" path="res://Assets - User Interface/Buttons/Button G70 _ Rotate Arrow.svg" id="14_hhmo6"]
 [ext_resource type="Texture2D" uid="uid://b8u2i3a14v2cg" path="res://Assets - User Interface/Areas/Area BW 513x150 _ Even Split.svg" id="15_pah6u"]
+[ext_resource type="Texture2D" uid="uid://b1xgjh558lt86" path="res://Assets - User Interface/Buttons/Button G70 _ Vertical Flip.svg" id="16_h0xay"]
 [ext_resource type="Texture2D" uid="uid://d1ptig6nll6m3" path="res://Assets - User Interface/Icons/Icon W _ Stars.svg" id="16_k3hmb"]
 [ext_resource type="Texture2D" uid="uid://cklk1kcmj7mtx" path="res://Assets - User Interface/Icons/Icon W _ 3 People.svg" id="17_6pef7"]
+[ext_resource type="Texture2D" uid="uid://jewnl5r2k5ka" path="res://Assets - User Interface/Buttons/Button G70 _ Horizontal Flip.svg" id="18_n6elk"]
 [ext_resource type="Texture2D" uid="uid://cvb4kkq5vptbb" path="res://Assets - User Interface/Icons/Icon W _ Dollar Sign.svg" id="18_tf15s"]
 [ext_resource type="Texture2D" uid="uid://dr07aywsbkdwm" path="res://Assets - User Interface/Icons/Icon W _ Handshake.svg" id="19_10nbk"]
 [ext_resource type="Texture2D" uid="uid://cq8cuuhymo1oo" path="res://Assets - User Interface/Icons/Icon W Full _ U.svg" id="20_o5c8r"]
@@ -442,16 +445,19 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("23_yp6en")
+texture_disabled = ExtResource("14_hhmo6")
 
 [node name="FlipVerticalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("24_d5yyw")
+texture_disabled = ExtResource("16_h0xay")
 
 [node name="FlipHorizontalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("25_hj3y3")
+texture_disabled = ExtResource("18_n6elk")
 
 [node name="ItemPlacerXButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer"]
 unique_name_in_owner = true
@@ -1428,12 +1434,40 @@ layout_mode = 2
 texture_normal = ExtResource("43_k7tsg")
 
 [connection signal="pressed" from="TopBarMargin/HBoxContainer/RightButtonBlock/ViewButton" to="." method="_on_view_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer/Rotate90Button" to="." method="_on_rotate_90_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer/FlipVerticalButton" to="." method="_on_flip_vertical_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer/FlipHorizontalButton" to="." method="_on_flip_horizontal_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/ItemPlacerXButton" to="." method="_on_item_placer_x_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuXButtonMargin/BottomMenuXButton" to="." method="_on_bottom_menu_x_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/OwnedUnzonedButton" to="." method="_on_owned_unzoned_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer/RZoneButton" to="." method="_on_r_zone_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2/CZoneButton" to="." method="_on_c_zone_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ZoningOptions/VBoxContainer/HBoxContainer2/IZoneButton" to="." method="_on_i_zone_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer/WalkwayButton" to="." method="_on_walkway_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer2/VBoxContainer2/Road2LaneButton" to="." method="_on_road_2_lane_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer2/VBoxContainer2/Joint2LaneButton" to="." method="_on_joint_2_lane_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer3/Road2LaneParkingButton" to="." method="_on_road_2_lane_parking_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer4/Road4LaneButton" to="." method="_on_road_4_lane_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer4/Joint4LaneButton" to="." method="_on_joint_4_lane_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/VBoxContainer5/Road4LaneParkingButton" to="." method="_on_road_4_lane_parking_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/RoadOptions/HBoxContainer/MarginContainer/VBoxContainer6/Merge2And4Button" to="." method="_on_merge_2_and_4_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer/ParkingLot1x1Button" to="." method="_on_parking_lot_1x_1_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2/ParkingLot1x2LongOpenButton" to="." method="_on_parking_lot_1x_2_long_open_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer2/ParkingLot1x2ShortOpenButton" to="." method="_on_parking_lot_1x_2_short_open_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/ParkingOptions/HBoxContainer/VBoxContainer3/ParkingLot2x2Button" to="." method="_on_parking_lot_2x_2_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer/Junction1x1Button" to="." method="_on_junction_1x_1_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer/VBoxContainer2/Junction4Inlets1x2Button" to="." method="_on_junction_4_inlets_1x_2_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer/VBoxContainer2/Junction5Inlets1x2Button" to="." method="_on_junction_5_inlets_1x_2_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer3/Junction6Inlets1x2Button" to="." method="_on_junction_6_inlets_1x_2_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer3/VBoxContainer4/Junction2x2Button" to="." method="_on_junction_2x_2_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/MarginContainer3/VBoxContainer4/Junction5Inlets2x2Button" to="." method="_on_junction_5_inlets_2x_2_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer5/Junction6Inlets2x2AcrossButton" to="." method="_on_junction_6_inlets_2x_2_across_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer5/Junction6Inlets2x2NextButton" to="." method="_on_junction_6_inlets_2x_2_next_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer6/Junction7Inlets2x2Button" to="." method="_on_junction_7_inlets_2x_2_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/JunctionOptions/HBoxContainer/VBoxContainer6/Junction8Inlets2x2Button" to="." method="_on_junction_8_inlets_2x_2_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/VBoxContainer/BridgeRamp2LaneStraightButton" to="." method="_on_bridge_ramp_2_lane_straight_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/MarginContainer/VBoxContainer2/Bridge2LaneStraightButton" to="." method="_on_bridge_2_lane_straight_button_pressed"]
+[connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BridgeOptions/HBoxContainer/MarginContainer2/VBoxContainer3/Bridge2LaneJointButton" to="." method="_on_bridge_2_lane_joint_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer/RoadOptionsButton" to="." method="_on_road_options_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer/JunctionOptionsButton" to="." method="_on_junction_options_button_pressed"]
 [connection signal="pressed" from="BottomMenuMargin/BottomMenuContainer/BottomMenu/BottomMenuButtonRow/HBoxContainer/ParkingOptionsButton" to="." method="_on_parking_options_button_pressed"]

@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://crjqxfekvmn43"]
+
+[ext_resource type="Script" path="res://Scripts/Gameboard Items/Road4Lane.gd" id="1_1kv5c"]
+[ext_resource type="Texture2D" uid="uid://cxywhsyeot1wj" path="res://Assets/Roads/Straights/Road 4 Lane.svg" id="2_pxwwp"]
+[ext_resource type="Script" path="res://Scripts/CrosswalkHitbox.gd" id="2_qgkbn"]
+[ext_resource type="Texture2D" uid="uid://4mw8x4u6ydyl" path="res://Assets/Roads/Straights/Road Parking.svg" id="3_mfmer"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sc860"]
+size = Vector2(400, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gq2cr"]
+size = Vector2(400, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b33y6"]
+size = Vector2(400, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5faf8"]
+size = Vector2(86, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01mbo"]
+size = Vector2(86, 200)
+
+[node name="Road4Lane" type="Node2D"]
+script = ExtResource("1_1kv5c")
+
+[node name="MainBodyHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainBodyHitbox"]
+shape = SubResource("RectangleShape2D_sc860")
+
+[node name="TopCrosswalkHitbox" type="Area2D" parent="."]
+position = Vector2(0, -100)
+script = ExtResource("2_qgkbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopCrosswalkHitbox"]
+shape = SubResource("RectangleShape2D_gq2cr")
+
+[node name="BottomCrosswalkHitbox" type="Area2D" parent="."]
+position = Vector2(0, 100)
+script = ExtResource("2_qgkbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCrosswalkHitbox"]
+shape = SubResource("RectangleShape2D_b33y6")
+
+[node name="LeftParkingHitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftParkingHitbox"]
+position = Vector2(-157, 0)
+shape = SubResource("RectangleShape2D_5faf8")
+
+[node name="RightParkingHitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightParkingHitbox"]
+position = Vector2(157, 0)
+shape = SubResource("RectangleShape2D_01mbo")
+
+[node name="MainBody" type="Sprite2D" parent="."]
+texture = ExtResource("2_pxwwp")
+
+[node name="LeftParking" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-136, 0)
+texture = ExtResource("3_mfmer")
+
+[node name="RightParking" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(136, 0)
+texture = ExtResource("3_mfmer")
+flip_h = true

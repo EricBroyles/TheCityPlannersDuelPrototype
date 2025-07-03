@@ -5,11 +5,15 @@ enum ACTIONS {
 	END,
 	CLICK,
 	MOVE,
+	ROTATE_90_CW,
+	FLIP_V,
+	FLIP_H,
 }
 
 @onready var gameboard = %Gameboard
 @onready var selector = %Selector
 @onready var body = %Body
+@onready var build_phase_ui = %BuildPhase
 
 #var current_drag_modified_positions: Array[Vector2] = [] #Notice that these are positions that are not neccisarily the same as tile positons (2x2 object is in center)
 var _active_mode: int = GameConstants.MODES.MOUSE_POINTER #this is the mode currently being shown, I need this so I can tell when the UI has requested a change, the GameDATA.gameboard_placer_mode is the mode you want to get to
@@ -142,7 +146,7 @@ func handle_placer(mode: int, action: int):
 					## Attempting To BUY LAND: place Owned_Unzoned tile @ the placers position
 					var tile: GameboardTile = GameComponents.OWNED_UNZONED_TILE.instantiate()
 					tile.set_properties_from(get_body_child())
-					tile.position = self.position
+
 
 					#do I have the money to buy a land tile
 					if GameHelper.amount_land_tiles_can_buy() < 1: return #need to be able to buy at least one
@@ -199,7 +203,6 @@ func handle_placer(mode: int, action: int):
 					## Attempting To Remove Zoning: place Owned_Unzoned tile and remove zoned tile @ the placers position
 					var tile: GameboardTile = GameComponents.OWNED_UNZONED_TILE.instantiate()
 					tile.set_properties_from(get_body_child())
-					tile.position = self.position
 					
 					#is the land tile out of bounds
 					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
@@ -230,7 +233,6 @@ func handle_placer(mode: int, action: int):
 					## Attempting to Add ZoneR: add ZoneR, remove Owned_Unzoned @ the placers position
 					var tile: GameboardTile = GameComponents.R_ZONE_TILE.instantiate()
 					tile.set_properties_from(get_body_child())
-					tile.position = self.position
 					
 					#is the land tile out of bounds
 					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
@@ -265,7 +267,6 @@ func handle_placer(mode: int, action: int):
 					## Attempting to Add ZoneC: add ZoneC, remove Owned_Unzoned @ the placers position
 					var tile: GameboardTile = GameComponents.C_ZONE_TILE.instantiate()
 					tile.set_properties_from(get_body_child())
-					tile.position = self.position
 					
 					#is the land tile out of bounds
 					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
@@ -300,7 +301,6 @@ func handle_placer(mode: int, action: int):
 					## Attempting to Add ZoneI: add ZoneI, remove Owned_Unzoned @ the placers position
 					var tile: GameboardTile = GameComponents.I_ZONE_TILE.instantiate()
 					tile.set_properties_from(get_body_child())
-					tile.position = self.position
 					
 					#is the land tile out of bounds
 					if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
@@ -328,12 +328,62 @@ func handle_placer(mode: int, action: int):
 			return
 		GameConstants.MODES.ROAD_2_LANE:
 			
+			
+			
+			
+			
 			## when snapping to grid be sure to get the updated oriented size
+			## be ure to activate the UI buttons
 			return
 		GameConstants.MODES.ROAD_2_LANE_PARKING:
 			return
 		GameConstants.MODES.ROAD_4_LANE:
-			return
+			match action:
+				ACTIONS.START:
+					add_body_child(GameComponents.ROAD_4_LANE.instantiate())
+					build_phase_ui.open_item_placer_buttons(false, true, true)
+				ACTIONS.END:
+					remove_all_body_children()
+					build_phase_ui.close_item_placer_buttons()
+				ACTIONS.MOVE:
+					self.position = gameboard.snap_to_boxes(GameData.mouse_position, get_body_child())
+				ACTIONS.CLICK:
+					## Attempting to Add ZoneI: add ZoneI, remove Owned_Unzoned @ the placers position
+					var item: GameboardItem = GameComponents.ROAD_4_LANE.instantiate()
+					item.set_properties_from(get_body_child())
+					
+					##is the land tile out of bounds
+					#if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
+					#
+					##do I have enough demand
+					#if GameData.i_demand < 1: return
+					#
+					#for comp in gameboard.get_components_in_shared_boxes(tile):
+						#if GameHelper.is_owned_tile(comp) and not comp is IZone: 
+							#
+							## remove the comp (it is a zoned tile)
+							#gameboard.remove_from_boxes(comp)
+							## add the unzoned_owned tile
+							#gameboard.add_to_boxes(tile)
+							##refund the demand
+							#GameHelper.refund_demand_units(comp, 1) 
+							##charge the demand
+							#GameData.i_demand -= 1
+							#return 
+				ACTIONS.ROTATE_90_CW:
+					get_body_child().rotate_90_cw()
+					
+				ACTIONS.FLIP_V:
+					get_body_child().flip_v()
+					
+				ACTIONS.FLIP_H: 
+					get_body_child().flip_h()
+					
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+			
+			
+			
+			
 		GameConstants.MODES.ROAD_4_LANE_PARKING:
 			return
 		GameConstants.MODES.JOINT_2_LANE:

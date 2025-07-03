@@ -109,6 +109,14 @@ func is_index_in_matrix(index: Vector2, matrix: Array[Array]) -> bool:
 	
 	return true
 	
+func rotate_vector_90_cw(vec: Vector2, times: int) -> Vector2:
+	match times % 4:
+		0:return vec
+		1:return Vector2(-vec.y, vec.x)
+		2:return Vector2(-vec.x, -vec.y)
+		3:return Vector2(vec.y, -vec.x)
+	return vec # fallback (should never reach here)
+	
 ## Unused (may be useful later)
 #func find_izone_in_tree(node: Node) -> bool:
 	#if node is IZone:

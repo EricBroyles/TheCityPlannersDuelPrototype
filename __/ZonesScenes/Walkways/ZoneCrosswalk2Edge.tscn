@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://f3yjo8y6hjdr"]
 
-[ext_resource type="Script" path="res://Scripts/Zones/Walkways/ZoneCrosswalk2Edge.gd" id="1_vkbf6"]
+[ext_resource type="Script" path="res://__/Zones/Walkways/ZoneCrosswalk2Edge.gd" id="1_vkbf6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86cun"]
 size = Vector2(368, 16)

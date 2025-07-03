@@ -1,5 +1,6 @@
 extends Node
 @onready var main_ui = get_parent()
+@onready var placer = main_ui.get_parent().get_node("Gameboard/Placer") ##if this gives null it is a you mistake, you are probably runing build_phase not challenge_game
 
 ## Text
 @onready var points_text = %PointsText
@@ -132,14 +133,6 @@ extends Node
 @onready var bridge_options = %BridgeOptions
 @onready var bottom_menu_button_row = %BottomMenuButtonRow
 
-
-
-
-
-
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
 	open_market_menu.visible = false
@@ -160,10 +153,9 @@ func _process(_delta: float) -> void:
 	if self.visible:
 		update_all_text()
 		
-
-
-## Buttons
-
+func _on_end_build_phase_button_pressed() -> void:
+	main_ui.start_simulation_phase()
+	
 func _on_buy_land_button_pressed() -> void:
 	standard_toggle_mode(GameConstants.MODES.BUY_LAND)
 	
@@ -173,7 +165,10 @@ func _on_upgrade_button_pressed() -> void:
 func _on_delete_button_pressed() -> void:
 	standard_toggle_mode(GameConstants.MODES.DELETE)
 	
-
+	
+	
+## BOTTOM MENU OPTIONS
+# Zoning
 func _on_owned_unzoned_button_pressed() -> void:
 	standard_toggle_mode(GameConstants.MODES.OWNED_UNZONED)
 	
@@ -186,20 +181,87 @@ func _on_c_zone_button_pressed() -> void:
 func _on_i_zone_button_pressed() -> void:
 	standard_toggle_mode(GameConstants.MODES.I_ZONE)
 
-
+# Roads
 func _on_walkway_button_pressed() -> void:
-	print("Pressed the walkway")
-	pass # Replace with function body.
+	standard_toggle_mode(GameConstants.MODES.WALKWAY)
 
+func _on_road_2_lane_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.ROAD_2_LANE)
 
+func _on_road_2_lane_parking_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.ROAD_2_LANE_PARKING)
 
+func _on_joint_2_lane_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JOINT_2_LANE)
 
-func _on_end_build_phase_button_pressed() -> void:
-	main_ui.start_simulation_phase()
+func _on_road_4_lane_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.ROAD_4_LANE)
+
+func _on_road_4_lane_parking_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.ROAD_4_LANE_PARKING)
 	
+func _on_joint_4_lane_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JOINT_4_LANE)
+
+func _on_merge_2_and_4_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.MERGE_2_AND_4)
+
+# Junctins
+func _on_junction_1x_1_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JUNCTION_1X1)
+
+func _on_junction_4_inlets_1x_2_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JUNCTION_4_INLETS_1X2)
+
+func _on_junction_5_inlets_1x_2_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JUNCTION_5_INLETS_1X2)
+
+func _on_junction_6_inlets_1x_2_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JUNCTION_6_INLETS_1X2)
+
+func _on_junction_2x_2_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JUNCTION_2X2)
+
+func _on_junction_5_inlets_2x_2_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JUNCTION_5_INLETS_2X2)
+
+func _on_junction_6_inlets_2x_2_across_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JUNCTION_6_INLETS_2X2_ACROSS)
+
+func _on_junction_6_inlets_2x_2_next_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JUNCTION_6_INLETS_2X2_NEXT)
+	
+func _on_junction_7_inlets_2x_2_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JUNCTION_7_INLETS_2X2)
+
+func _on_junction_8_inlets_2x_2_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.JUNCTION_8_INLETS_2X2)
+
+# Parking
+func _on_parking_lot_1x_1_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.PARKING_LOT_1X1)
+
+func _on_parking_lot_1x_2_long_open_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.PARKING_LOT_1X2_LONG_OPEN)
+
+func _on_parking_lot_1x_2_short_open_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.PARKING_LOT_1X2_SHORT_OPEN)
+
+func _on_parking_lot_2x_2_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.PARKING_LOT_2X2)
+
+# Bridges
+func _on_bridge_ramp_2_lane_straight_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.BRIDGE_RAMP_2_LANE_STRAIGHT)
+
+func _on_bridge_2_lane_straight_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.BRIDGE_2_LANE_STRAIGHT)
+
+func _on_bridge_2_lane_joint_button_pressed() -> void:
+	standard_toggle_mode(GameConstants.MODES.BRIDGE_2_LANE_JOINT)
 
 
-## Bottom Menu
+## Bottom Menu Selectors
 func _on_zoning_button_pressed() -> void:
 	if bottom_menu.visible == false:
 		open_bottom_menu("zones")
@@ -235,7 +297,22 @@ func _on_card_button_pressed() -> void:
 	toggle_card_template_layout()
 
 
-#Open Market Menu
+
+## ITEM PLACER BUTTONS
+func _on_rotate_90_button_pressed() -> void:
+	placer.handle_placer(GameData.gameboard_placer_mode, placer.ACTIONS.ROTATE_90_CW) #warning it is maybe possile that I need _active_placer
+	
+func _on_flip_vertical_button_pressed() -> void:
+	placer.handle_placer(GameData.gameboard_placer_mode, placer.ACTIONS.FLIP_V) #warning it is maybe possile that I need _active_placer
+	
+func _on_flip_horizontal_button_pressed() -> void:
+	placer.handle_placer(GameData.gameboard_placer_mode, placer.ACTIONS.FLIP_H) #warning it is maybe possile that I need _active_placer
+
+func _on_item_placer_x_button_pressed() -> void:
+	close_item_placer_buttons()
+	
+
+## Open Market Menu
 func _on_open_market_button_pressed() -> void:
 	toggle_open_market_menu()
 	
@@ -270,7 +347,7 @@ func _on_buy_100_i_button_pressed() -> void:
 	GameHelper.buy_demand("i", 100) 
 
 
-#View Menu
+## View Menu
 func _on_view_button_pressed() -> void:
 	toggle_view_menu() 
 	
@@ -318,25 +395,6 @@ func standard_toggle_mode(mode: int):
 		GameData.gameboard_placer_mode = mode
 	else:
 		GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
-
-#func toggle_buy_land_button():
-	#if GameData.gameboard_placer_mode != GameConstants.MODES.BUY_LAND:
-		#GameData.gameboard_placer_mode = GameConstants.MODES.BUY_LAND
-	#else:
-		#GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
-		#
-#func toggle_upgrade_button():
-	#if GameData.gameboard_placer_mode != GameConstants.MODES.UPGRADE:
-		#GameData.gameboard_placer_mode = GameConstants.MODES.UPGRADE
-	#else:
-		#GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
-#
-#func toggle_delete_button():
-	#if GameData.gameboard_placer_mode != GameConstants.MODES.DELETE:
-		#GameData.gameboard_placer_mode = GameConstants.MODES.DELETE
-	#else:
-		#GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
-
 
 func toggle_open_market_menu():
 	var new_status: bool = !open_market_menu.visible
@@ -440,4 +498,24 @@ func update_all_text():
 		cost_per_r_demand_text.text = str(GameData.cost_per_r_demand)
 		cost_per_c_demand_text.text = str(GameData.cost_per_c_demand)
 		cost_per_i_demand_text.text = str(GameData.cost_per_i_demand)
+		
+		
+		
+		
+		
+
+
+
+
+func open_item_placer_buttons(disable_rotate: bool = false, disable_flip_v: bool = false, disable_flip_h: bool = false):
+	item_placer_buttons.visible = true
+	rotate_90_button.disabled = disable_rotate
+	flip_vertical_button.disabled = disable_flip_v
+	flip_horizontal_button.disabled = disable_flip_h
+	
+func close_item_placer_buttons():
+	item_placer_buttons.visible = false
+	GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
+	
+
 	
