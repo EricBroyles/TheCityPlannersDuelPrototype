@@ -12,7 +12,6 @@ func _ready() -> void:
 	gameboard.make_gameboard()
 	gameboard.init_boxes()
 	gameboard.init_edges()
-	gameboard.print_edges()
 	
 	## Setup Camera
 	camera.center_camera(gameboard)

@@ -11,6 +11,9 @@ class_name Road4Lane
 
 const SIZE_IN_TILES: Vector2 = Vector2(1,2) #(r,c)
 const ITEM_Z: int = 20
+const MAX_PARKING_SPOTS: int = 4
+
+var speed: float = 40; #mph
 
 var is_parking: bool = false
 var left_parking_active: bool = false
@@ -24,6 +27,47 @@ func _init() -> void:
 	
 func _ready():
 	z_index = ITEM_Z
+
+func get_money_buy_cost() -> int:
+	var money_cost = 2.1 * GameConstants.MONEY_PER_ROAD_2_LANE
+	if is_parking: money_cost += GameConstants.MONEY_PER_PARKING_SPOT * MAX_PARKING_SPOTS #yes just overcharge them I am not going to handle refunding parking spots as they change
+	return money_cost
+
+#to be charged once a turn
+func get_money_upkeep_cost() -> int:
+	var money_cost = 2.1 * GameConstants.MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN
+	if is_parking: money_cost += GameConstants.MONEY_TO_UPKEEP_PARKING_SPOT_PER_TURN * get_amount_of_parking_spots() 
+	return money_cost
+	
+func get_amount_of_parking_spots() -> int:
+	var amount: int = 0
+	if left_parking_active: amount += 2
+	if right_parking_active: amount += 2
+	return amount
+	
+	
+	
+	
+func can_buy() -> bool:
+	if GameData.money < get_money_buy_cost(): return false
+	return true
+	
+	
+func buy():
+	GameData.money -= get_money_buy_cost()
+	
+	
+func refund():
+	GameData.money += get_money_buy_cost()
+	
+# FINISH if need to buy in batches
+func max_amount_can_buy() -> int:
+	return 0
+	
+## FINISH
+func batch_buy(amount: int):
+	print(amount)
+	pass
 	
 	
 func set_parking():

@@ -20,6 +20,8 @@ func refund():
 func max_amount_can_buy() -> int:
 	return 0
 	
+## FINISH
 func batch_buy(amount: int):
+	print(amount)
 	pass
 	

@@ -351,38 +351,37 @@ func handle_placer(mode: int, action: int):
 					var item: GameboardItem = GameComponents.ROAD_4_LANE.instantiate()
 					item.set_properties_from(get_body_child())
 					
-					# is the item out of bounds
-					# can I buy the item
-					# is the land I am placing this on bought
-					# is it not overlapping any item in a box object with same elevation
 					
+					# can I buy the item
+					if not item.can_buy(): return
+					
+					var contained_by_boxes_results: Dictionary = gameboard.contained_by_boxes(item)
+					# is the item out of bounds
+					if not contained_by_boxes_results["is_fully_contained"]: return
+					
+					# is the land I am placing this on bought and not occupied
+					#all ocupied boxes need to have an onwned tile to pass this step
+					#if any box has a gameboard item in it with a matching elevation then dont place
+					for box in contained_by_boxes_results["boxes"]:
+						var box_has_owned_tile = false
+
+						for comp in box.components:
+							if GameHelper.is_owned_tile(comp):
+								box_has_owned_tile = true
+							
+							if comp is GameboardItem and item.elevation == comp.elevation:
+								return
+								
+						if not box_has_owned_tile: return
+						
 					#leave the zoned tile underneath it
 					#add the item
+					gameboard.add_to_boxes(item)
+					
 					#complete the transaction (have this code inside of the actiual item, as it will have stuff like cost of maintance
+					item.buy()
 					
 					
-					
-					
-					
-					
-					##is the land tile out of bounds
-					#if not gameboard.contained_by_boxes(tile)["is_fully_contained"]: return
-					#
-					##do I have enough demand
-					#if GameData.i_demand < 1: return
-					#
-					#for comp in gameboard.get_components_in_shared_boxes(tile):
-						#if GameHelper.is_owned_tile(comp) and not comp is IZone: 
-							#
-							## remove the comp (it is a zoned tile)
-							#gameboard.remove_from_boxes(comp)
-							## add the unzoned_owned tile
-							#gameboard.add_to_boxes(tile)
-							##refund the demand
-							#GameHelper.refund_demand_units(comp, 1) 
-							##charge the demand
-							#GameData.i_demand -= 1
-							#return 
 				ACTIONS.ROTATE_90_CW:
 					get_body_child().rotate_90_cw()
 					

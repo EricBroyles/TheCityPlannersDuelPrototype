@@ -114,7 +114,9 @@ func rotate_vector_90_cw(vec: Vector2, times: int) -> Vector2:
 		3:return Vector2(vec.y, -vec.x)
 	return vec # fallback (should never reach here)
 	
-	
+
+func convert_mph_to_px_per_sec(mph: float) -> float:
+	return mph * 5280 * GameConstants.GAMEBOARD_TILE_SIZE / GameConstants.GAMEBOARD_TILE_SIZE_FT / 3600
 	
 	
 	

@@ -18,6 +18,8 @@ func get_oriented_size() -> Vector2:
 ## USE TO DUPLICATE ITEM
 func set_properties_from(other: GameboardItem):
 	position = other.global_position
+	orientation = other.orientation
+	set_real_orientation()
 	
 	## more to be added
 	
