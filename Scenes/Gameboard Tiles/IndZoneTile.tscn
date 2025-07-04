@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgburaidkfnri"]
+[gd_scene load_steps=4 format=3 uid="uid://bgburaidkfnri"]
 
 [ext_resource type="Script" path="res://Scripts/Gameboard Tiles/IZoneTile.gd" id="1_jxevr"]
+[ext_resource type="Texture2D" uid="uid://dcpqkjprdpnew" path="res://Assets/Gameboard Tiles/White Border Tile 102.svg" id="2_nby31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhhi5"]
 size = Vector2(200, 200)
@@ -28,3 +29,6 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.819608, 0.890196, 0.286275, 1)
+
+[node name="Border" type="Sprite2D" parent="."]
+texture = ExtResource("2_nby31")

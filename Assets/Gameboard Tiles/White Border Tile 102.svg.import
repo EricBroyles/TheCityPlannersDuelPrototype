@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jli5dhxfkyrx"
-path="res://.godot/imported/Gameboard Tile Light.svg-0d1778772dbf7755ed458b644a7e45bc.ctex"
+uid="uid://dcpqkjprdpnew"
+path="res://.godot/imported/White Border Tile 102.svg-c51fcdbb385bd4645f02f607d88372f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Gameboard Tiles/Gameboard Tile Light.svg"
-dest_files=["res://.godot/imported/Gameboard Tile Light.svg-0d1778772dbf7755ed458b644a7e45bc.ctex"]
+source_file="res://Assets/Gameboard Tiles/White Border Tile 102.svg"
+dest_files=["res://.godot/imported/White Border Tile 102.svg-c51fcdbb385bd4645f02f607d88372f5.ctex"]
 
 [params]
 
