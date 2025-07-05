@@ -39,13 +39,23 @@ func get_money_upkeep_cost() -> int:
 	if is_parking: money_cost += GameConstants.MONEY_TO_UPKEEP_PARKING_SPOT_PER_TURN * get_amount_of_parking_spots() 
 	return money_cost
 	
+func get_money_delete_cost() -> int:
+	return get_money_buy_cost() * .1
+	
 func get_amount_of_parking_spots() -> int:
 	var amount: int = 0
 	if left_parking_active: amount += 2
 	if right_parking_active: amount += 2
 	return amount
 	
+func can_delete() -> bool:
+	if GameData.money >= get_money_delete_cost(): return true
+	return false
 	
+func delete_from(gameboard: Gameboard):
+	super(gameboard)
+	GameData.money -= get_money_delete_cost()
+
 	
 	
 func can_buy() -> bool:

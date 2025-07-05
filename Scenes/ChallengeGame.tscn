@@ -10,8 +10,8 @@
 [ext_resource type="Script" path="res://Scripts/GameboardPlacer.gd" id="7_vosyi"]
 [ext_resource type="Script" path="res://Scripts/GameboardSelector.gd" id="8_1b3mj"]
 [ext_resource type="Texture2D" uid="uid://belqafb4kclu6" path="res://Assets - User Interface/Icons/Icon W Border _ Dollar Sign.svg" id="10_2lmyt"]
-[ext_resource type="Texture2D" uid="uid://di7u7hy3oubr1" path="res://Assets - User Interface/Icons/Icon W Border _ Circle Up Arrow.svg" id="11_qge2b"]
-[ext_resource type="Texture2D" uid="uid://63gfe5i8ygjm" path="res://Assets - User Interface/Icons/Icon W Border _ Trashcan.svg" id="12_nm3yb"]
+[ext_resource type="Texture2D" uid="uid://dvm57dbs7ep83" path="res://Assets - User Interface/Icons/Small Icon W Border _ Circle Up Arrow.svg" id="11_idkw4"]
+[ext_resource type="Texture2D" uid="uid://ph3258hefewn" path="res://Assets - User Interface/Icons/Small Icon W Border _ Trashcan.svg" id="12_32htb"]
 
 [node name="ChallengeGame" type="Node2D"]
 script = ExtResource("1_y5k1y")
@@ -63,8 +63,8 @@ texture = ExtResource("10_2lmyt")
 
 [node name="UpgradeOption" type="Sprite2D" parent="Gameboard/Placer/Selector"]
 unique_name_in_owner = true
-texture = ExtResource("11_qge2b")
+texture = ExtResource("11_idkw4")
 
 [node name="DeleteOption" type="Sprite2D" parent="Gameboard/Placer/Selector"]
 unique_name_in_owner = true
-texture = ExtResource("12_nm3yb")
+texture = ExtResource("12_32htb")

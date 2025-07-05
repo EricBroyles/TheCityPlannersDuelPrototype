@@ -132,7 +132,6 @@ func handle_placer(mode: int, action: int):
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 			
 		GameConstants.MODES.BUY_LAND:
-			#Buy Land
 			match action:
 				ACTIONS.START:
 					selector.open_buy_land_selector()
@@ -164,31 +163,53 @@ func handle_placer(mode: int, action: int):
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 				
 		GameConstants.MODES.UPGRADE:
-			pass
-			#Buy Land
-			#match action:
-				#ACTIONS.START:
-					#selector.open_upgrade_selector()
-				#ACTIONS.END:
-					#selector.close()
-				#ACTIONS.MOVE:
-					#self.position = snap_to_grid(GameData.mouse_position, selector.size)
-				#ACTIONS.CLICK:
-					#pass
-				#_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+			#check if is an item I can upgrade, can_upgrade
+			
+			match action:
+				ACTIONS.START:
+					selector.open_upgrade_selector()
+				ACTIONS.END:
+					selector.close()
+				ACTIONS.MOVE:
+					self.position = GameData.mouse_position
+				ACTIONS.CLICK:
+					## Attempting To UPGRADE the top most GameboardItem (in z)
+					var item_to_upgrade: GameboardItem
+					for hitbox in gameboard.get_hitboxes_at(self.position):
+						var hitbox_owner: Variant = gameboard.get_hitbox_owner(hitbox)
+						if hitbox_owner is GameboardItem and hitbox_owner.can_upgrade():
+							if item_to_upgrade == null or item_to_upgrade.z_index < hitbox_owner.z_index:
+								item_to_upgrade = hitbox_owner as GameboardItem 
+					
+					if item_to_upgrade != null:
+						item_to_upgrade.upgrade() #I am upgrading a GameboardItem that can upgrade and is at the top z idex of what I clicked on
+				
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+			
+
 		GameConstants.MODES.DELETE:
-			pass
-			#Buy Land
-			#match action:
-				#ACTIONS.START:
-					#selector.open_delete_selector()
-				#ACTIONS.END:
-					#selector.close()
-				#ACTIONS.MOVE:
-					#self.position = snap_to_grid(GameData.mouse_position, selector.size)
-				#ACTIONS.CLICK:
-					#pass
-				#_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+			match action:
+				ACTIONS.START:
+					selector.open_delete_selector()
+				ACTIONS.END:
+					selector.close()
+				ACTIONS.MOVE:
+					self.position = GameData.mouse_position
+				ACTIONS.CLICK:
+					## Attempting To DELETE the top most GameboardItem (in z)
+					var item_to_remove: GameboardItem
+					for hitbox in gameboard.get_hitboxes_at(self.position):
+						var hitbox_owner: Variant = gameboard.get_hitbox_owner(hitbox)
+						if hitbox_owner is GameboardItem and hitbox_owner.can_delete():
+							if item_to_remove == null or item_to_remove.z_index < hitbox_owner.z_index:
+								item_to_remove = hitbox_owner as GameboardItem 
+					
+					if item_to_remove != null:
+						item_to_remove.delete_from(gameboard) #I am deleting a GameboardItem that can delete and is at the top z idex of what I clicked on
+						
+				
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+
 						
 		GameConstants.MODES.OWNED_UNZONED:
 			match action:
@@ -369,7 +390,7 @@ func handle_placer(mode: int, action: int):
 							if GameHelper.is_owned_tile(comp):
 								box_has_owned_tile = true
 							
-							if comp is GameboardItem and item.elevation == comp.elevation:
+							if comp is GameboardItem and item.shares_elevation_with(comp):
 								return
 								
 						if not box_has_owned_tile: return

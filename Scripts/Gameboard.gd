@@ -168,9 +168,12 @@ func contained_by_edges(component: GameboardComponent) -> Dictionary:
 #assumes that components position pointer is at their center	
 #sets the position of the component to the proper location to keep it snaped to boxes
 func snap_to_boxes(requested_position: Vector2, component: GameboardComponent) -> Vector2:
-	var requested_top_left_position: Vector2 = requested_position - component.get_oriented_size()/2
+	return snap_size_to_boxes(requested_position, component.get_oriented_size())
+	
+func snap_size_to_boxes(requested_position: Vector2, size: Vector2) -> Vector2:
+	var requested_top_left_position: Vector2 = requested_position - size/2
 	var new_top_left_position: Vector2 = round(requested_top_left_position / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE
-	var snapped_position: Vector2 = new_top_left_position + component.get_oriented_size()/2
+	var snapped_position: Vector2 = new_top_left_position + size/2
 	return round(snapped_position)
 	
 	

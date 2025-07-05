@@ -157,13 +157,19 @@ func _on_end_build_phase_button_pressed() -> void:
 	main_ui.start_simulation_phase()
 	
 func _on_buy_land_button_pressed() -> void:
+	close_bottom_menu()
 	standard_toggle_mode(GameConstants.MODES.BUY_LAND)
 	
+	
 func _on_upgrade_button_pressed() -> void:
-	standard_toggle_mode(GameConstants.MODES.UPGRADE) 
+	close_bottom_menu()
+	standard_toggle_mode(GameConstants.MODES.UPGRADE)
+	
 	
 func _on_delete_button_pressed() -> void:
+	close_bottom_menu()
 	standard_toggle_mode(GameConstants.MODES.DELETE)
+	
 	
 	
 	
@@ -310,6 +316,7 @@ func _on_flip_horizontal_button_pressed() -> void:
 
 func _on_item_placer_x_button_pressed() -> void:
 	close_item_placer_buttons()
+	GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
 	
 
 ## Open Market Menu
@@ -515,7 +522,7 @@ func open_item_placer_buttons(disable_rotate: bool = false, disable_flip_v: bool
 	
 func close_item_placer_buttons():
 	item_placer_buttons.visible = false
-	GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
+	#GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
 	
 
 	

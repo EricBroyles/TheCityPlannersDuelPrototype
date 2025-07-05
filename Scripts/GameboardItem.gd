@@ -4,8 +4,8 @@ class_name GameboardItem
 
 var size: Vector2 #the size to begin with
 var elevation: float #Elevation: 0 base, .5 (halfway), 1 (up a level)
-var level: float #Levels: 0 means that it does not have levels, otherwise starts at level 1
-var max_level: float
+var level: int #Levels: 0 means that it does not have levels, otherwise starts at level 1
+var max_level: int
 
 var orientation: Dictionary = {"x_dir": GameConstants.X_DIR, "y_dir": GameConstants.Y_DIR}
 var error_layer_color = GameConstants.GAMEBOARD_ITEM_ERROR_LAYER
@@ -22,7 +22,30 @@ func set_properties_from(other: GameboardItem):
 	set_real_orientation()
 	
 	## more to be added
+
+#my elevation is 0 then I share an elevation with between 0 and .5 (the ramp is .5)
+#my elevation is .5 then I share an elevation with between 0 1
+#my elevation is 1 then I share an elevation with between .5 and 1
+#and so on
+func shares_elevation_with(other_item: GameboardItem) -> bool:
+	var min_elevation = min(elevation, other_item.elevation)
+	var max_elevation = max(elevation, other_item.elevation)
 	
+	# They share elevation if their difference is 0.5 or less
+	return (max_elevation - min_elevation) <= 0.5
+	
+func can_upgrade() -> bool:
+	if self.max_level == 0: return false
+	return true
+	
+func upgrade():
+	return
+	
+func can_delete() -> bool:
+	return true
+	
+func delete_from(gameboard: Gameboard):
+	gameboard.remove_from_boxes(self)
 
 ## ---- Transform ----
 func rotate_90_cw(times: int = 1):
