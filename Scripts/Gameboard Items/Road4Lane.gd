@@ -42,18 +42,18 @@ func set_properties_from(other: GameboardItem):
 
 
 func get_money_buy_cost() -> int:
-	var money_cost = 2.1 * GameConstants.MONEY_PER_ROAD_2_LANE
+	var money_cost: float = 2.1 * GameConstants.MONEY_PER_ROAD_2_LANE
 	if is_parking: money_cost += GameConstants.MONEY_PER_PARKING_SPOT * MAX_PARKING_SPOTS #yes just overcharge them I am not going to handle refunding parking spots as they change
-	return money_cost
+	return int(money_cost)
 
 #to be charged once a turn
 func get_money_upkeep_cost() -> int:
-	var money_cost = 2.1 * GameConstants.MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN
+	var money_cost: float = 2.1 * GameConstants.MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN
 	if is_parking: money_cost += GameConstants.MONEY_TO_UPKEEP_PARKING_SPOT_PER_TURN * get_amount_of_active_parking_spots() 
-	return money_cost
+	return int(money_cost)
 	
 func get_money_delete_cost() -> int:
-	return get_money_buy_cost() * .1
+	return int(get_money_buy_cost() * .1)
 	
 func get_amount_of_active_parking_spots() -> int:
 	var amount: int = 0
@@ -81,14 +81,12 @@ func buy():
 func refund():
 	GameData.money += get_money_buy_cost()
 	
-# FINISH if need to buy in batches
+# this pairs with batch_buy
 func max_amount_can_buy() -> int:
-	return 0
+	return int(GameData.money / float(get_money_buy_cost()))
 	
-## FINISH
 func batch_buy(amount: int):
-	print(amount)
-	pass
+	GameData.money -= amount * get_money_buy_cost()
 	
 	
 func config_parking(status: bool):

@@ -22,9 +22,6 @@ func refund():
 func max_amount_can_buy() -> int:
 	return int(GameData.money / float(GameData.cost_per_land_tile))
 	
-## FINISH
 func batch_buy(amount: int):
-	print(amount)
-	pass
-
+	GameData.money -= amount * GameData.cost_per_land_tile
 	

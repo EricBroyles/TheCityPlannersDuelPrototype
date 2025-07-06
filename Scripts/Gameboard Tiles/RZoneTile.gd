@@ -16,11 +16,9 @@ func refund():
 	GameData.r_demand += 1
 
 
-# FINISH if need to buy in batches
+# this pairs with batch_buy
 func max_amount_can_buy() -> int:
-	return 0
+	return GameData.r_demand
 	
-## FINISH
 func batch_buy(amount: int):
-	print(amount)
-	pass
+	GameData.r_demand -= amount
