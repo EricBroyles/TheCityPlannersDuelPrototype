@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvcx1de0jcvol"]
 
-[ext_resource type="Texture2D" uid="uid://ugaq84rh053p" path="res://Assets/Walkways/Sidewalk1Edge.svg" id="1_ehv2l"]
-[ext_resource type="Texture2D" uid="uid://cp8eqpklvh73t" path="res://Assets/Walkways/Sidewalk Endcap.svg" id="2_r0ld5"]
+[ext_resource type="Texture2D" uid="uid://ugaq84rh053p" path="res://__Assets/Sidewalk1Edge.svg" id="1_ehv2l"]
+[ext_resource type="Texture2D" uid="uid://cp8eqpklvh73t" path="res://__Assets/Sidewalk Endcap.svg" id="2_r0ld5"]
 
 [node name="Sidewalk1Edge" type="Node2D"]
 

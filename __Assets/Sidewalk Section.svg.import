@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b20uf1lpxg1pq"
-path="res://.godot/imported/Crosswalk1Edge.svg-9dfd5e90cfe7f28214cd9b719fc1b485.ctex"
+uid="uid://cvay0p44jkovn"
+path="res://.godot/imported/Sidewalk Section.svg-1e5c0fcc36cdd331b8cd27aa500490e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Walkways/Crosswalk1Edge.svg"
-dest_files=["res://.godot/imported/Crosswalk1Edge.svg-9dfd5e90cfe7f28214cd9b719fc1b485.ctex"]
+source_file="res://__Assets/Sidewalk Section.svg"
+dest_files=["res://.godot/imported/Sidewalk Section.svg-1e5c0fcc36cdd331b8cd27aa500490e7.ctex"]
 
 [params]
 

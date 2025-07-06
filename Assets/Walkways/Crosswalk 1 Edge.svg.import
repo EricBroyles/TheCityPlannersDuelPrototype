@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp8eqpklvh73t"
-path="res://.godot/imported/Sidewalk Endcap.svg-9fa489315baf2832561a75f37909d6f0.ctex"
+uid="uid://cqv13olyj3fu6"
+path="res://.godot/imported/Crosswalk 1 Edge.svg-ba97674a32557c15bc37cfcdde8fbd15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Walkways/Sidewalk Endcap.svg"
-dest_files=["res://.godot/imported/Sidewalk Endcap.svg-9fa489315baf2832561a75f37909d6f0.ctex"]
+source_file="res://Assets/Walkways/Crosswalk 1 Edge.svg"
+dest_files=["res://.godot/imported/Crosswalk 1 Edge.svg-ba97674a32557c15bc37cfcdde8fbd15.ctex"]
 
 [params]
 
@@ -32,6 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=2.0
+svg/scale=1.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://besxeclec63mn"]
 
-[ext_resource type="Texture2D" uid="uid://b20uf1lpxg1pq" path="res://Assets/Walkways/Crosswalk1Edge.svg" id="1_e8ct8"]
+[ext_resource type="Texture2D" uid="uid://b20uf1lpxg1pq" path="res://__Assets/Crosswalk1Edge.svg" id="1_e8ct8"]
 
 [node name="Crosswalk1Edge" type="Node2D"]
 
