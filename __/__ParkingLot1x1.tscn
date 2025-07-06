@@ -1,0 +1,142 @@
+[gd_scene load_steps=12 format=3 uid="uid://d1kdk0oyrix0b"]
+
+[ext_resource type="Script" path="res://__/__Gameboard Items/ParkingLot1x1.gd" id="1_jyt51"]
+[ext_resource type="Texture2D" uid="uid://bcqwchmf3bv66" path="res://Assets/Parking/Parking Lot 1x1.svg" id="2_djhua"]
+[ext_resource type="Texture2D" uid="uid://c3iwwymu6bpn3" path="res://Assets/Parking/Parking Lot Curtain 1x2 Tile 2 Lane.svg" id="3_d484w"]
+[ext_resource type="Texture2D" uid="uid://cwfrfv63curhi" path="res://Assets/Parking/Parking Lot Curtain 1x2 Tile 4 Lane.svg" id="4_xxrun"]
+[ext_resource type="PackedScene" uid="uid://c5rr36k2oko4t" path="res://__/ZonesScenes/Walkways/ZoneSidewalk1Edge.tscn" id="5_bnv33"]
+[ext_resource type="PackedScene" uid="uid://qm886n4dojf7" path="res://__/ZonesScenes/Walkways/ZoneCrosswalk1Edge.tscn" id="6_a0nvk"]
+[ext_resource type="PackedScene" uid="uid://bwe0kni7enc73" path="res://__/ZonesScenes/Navigation/ZoneNavigationHumanEnd.tscn" id="7_llfyd"]
+[ext_resource type="PackedScene" uid="uid://bhpoy3q21drdt" path="res://__/ZonesScenes/Navigation/ZoneNavigationHumanSpawn.tscn" id="8_nnqi8"]
+[ext_resource type="PackedScene" uid="uid://cor1diqoib8h1" path="res://__/ZonesScenes/Navigation/ZoneNavigationCarEnd.tscn" id="9_wecsq"]
+[ext_resource type="PackedScene" uid="uid://c8npqgwi1corb" path="res://__/ZonesScenes/Navigation/ZoneNavigationCarSpawn.tscn" id="10_ltc5d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohbnh"]
+size = Vector2(184, 184)
+
+[node name="ParkingLot1x1" type="Node2D"]
+script = ExtResource("1_jyt51")
+
+[node name="MainBody" type="Sprite2D" parent="."]
+texture = ExtResource("2_djhua")
+
+[node name="Curtain2Lane" type="Sprite2D" parent="."]
+position = Vector2(100, 0)
+texture = ExtResource("3_d484w")
+
+[node name="Curtain4Lane" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(100, 0)
+texture = ExtResource("4_xxrun")
+
+[node name="ParkingSpots" type="Node2D" parent="."]
+
+[node name="ParkingSpot1" type="Node2D" parent="ParkingSpots"]
+position = Vector2(-70, -45)
+
+[node name="ParkingSpot2" type="Node2D" parent="ParkingSpots"]
+position = Vector2(-28, -45)
+
+[node name="ParkingSpot3" type="Node2D" parent="ParkingSpots"]
+position = Vector2(14, -45)
+
+[node name="ParkingSpot4" type="Node2D" parent="ParkingSpots"]
+position = Vector2(56, -45)
+
+[node name="ParkingSpot5" type="Node2D" parent="ParkingSpots"]
+position = Vector2(-70, 45)
+rotation = 3.14159
+
+[node name="ParkingSpot6" type="Node2D" parent="ParkingSpots"]
+position = Vector2(-28, 45)
+rotation = 3.14159
+
+[node name="ParkingSpot7" type="Node2D" parent="ParkingSpots"]
+position = Vector2(14, 45)
+rotation = 3.14159
+
+[node name="ParkingSpot8" type="Node2D" parent="ParkingSpots"]
+position = Vector2(56, 45)
+rotation = 3.14159
+
+[node name="ZoneMainBody" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneMainBody"]
+shape = SubResource("RectangleShape2D_ohbnh")
+
+[node name="ZoneWalkwaysContainer" type="Node2D" parent="."]
+
+[node name="ZoneSidewalk1EdgeObj1" parent="ZoneWalkwaysContainer" instance=ExtResource("5_bnv33")]
+position = Vector2(0, 96)
+
+[node name="ZoneSidewalk1EdgeObj2" parent="ZoneWalkwaysContainer" instance=ExtResource("5_bnv33")]
+position = Vector2(-96, 0)
+rotation = 1.5708
+
+[node name="ZoneSidewalk1EdgeObj3" parent="ZoneWalkwaysContainer" instance=ExtResource("5_bnv33")]
+position = Vector2(0, -96)
+
+[node name="ZoneCrosswalk1EdgeObj1" parent="ZoneWalkwaysContainer" instance=ExtResource("6_a0nvk")]
+position = Vector2(96, 0)
+rotation = 1.5708
+
+[node name="ZoneNavigationContainerHuman" type="Node2D" parent="."]
+
+[node name="HumanSpawnEndPair1" type="Node2D" parent="ZoneNavigationContainerHuman"]
+position = Vector2(-100, 0)
+
+[node name="ZoneNavigationHumanEnd" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair1" instance=ExtResource("7_llfyd")]
+
+[node name="ZoneNavigationHumanSpawn" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair1" instance=ExtResource("8_nnqi8")]
+
+[node name="HumanSpawnEndPair2" type="Node2D" parent="ZoneNavigationContainerHuman"]
+position = Vector2(100, 0)
+
+[node name="ZoneNavigationHumanEnd" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair2" instance=ExtResource("7_llfyd")]
+
+[node name="ZoneNavigationHumanSpawn" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair2" instance=ExtResource("8_nnqi8")]
+
+[node name="HumanSpawnEndPair3" type="Node2D" parent="ZoneNavigationContainerHuman"]
+position = Vector2(0, 100)
+rotation = 1.5708
+
+[node name="ZoneNavigationHumanEnd" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair3" instance=ExtResource("7_llfyd")]
+
+[node name="ZoneNavigationHumanSpawn" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair3" instance=ExtResource("8_nnqi8")]
+
+[node name="HumanSpawnEndPair4" type="Node2D" parent="ZoneNavigationContainerHuman"]
+position = Vector2(0, -100)
+rotation = 1.5708
+
+[node name="ZoneNavigationHumanEnd" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair4" instance=ExtResource("7_llfyd")]
+
+[node name="ZoneNavigationHumanSpawn" parent="ZoneNavigationContainerHuman/HumanSpawnEndPair4" instance=ExtResource("8_nnqi8")]
+
+[node name="ZoneNavigationContainerCar" type="Node2D" parent="."]
+
+[node name="CarSpawnEndPair1" type="Node2D" parent="ZoneNavigationContainerCar"]
+
+[node name="ZoneNavigationCarEnd" parent="ZoneNavigationContainerCar/CarSpawnEndPair1" instance=ExtResource("9_wecsq")]
+position = Vector2(80, -30)
+rotation = 1.5708
+
+[node name="ZoneNavigationCarSpawn" parent="ZoneNavigationContainerCar/CarSpawnEndPair1" instance=ExtResource("10_ltc5d")]
+position = Vector2(96, 30)
+rotation = 1.5708
+
+[node name="NavigationPaths" type="Node2D" parent="."]
+
+[node name="ErrorLayer" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.0156863, 0, 0.705882)

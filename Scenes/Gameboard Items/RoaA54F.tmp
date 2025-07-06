@@ -29,24 +29,18 @@ shape = SubResource("RectangleShape2D_sc860")
 
 [node name="TopCrosswalkHitbox" type="Area2D" parent="."]
 position = Vector2(0, -100)
-collision_layer = 16
-collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopCrosswalkHitbox"]
 shape = SubResource("RectangleShape2D_gq2cr")
 
 [node name="BottomCrosswalkHitbox" type="Area2D" parent="."]
 position = Vector2(0, 100)
-collision_layer = 16
-collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCrosswalkHitbox"]
 shape = SubResource("RectangleShape2D_b33y6")
 
 [node name="LeftParkingHitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 8
-collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftParkingHitbox"]
 position = Vector2(-157, 0)
@@ -54,8 +48,6 @@ shape = SubResource("RectangleShape2D_5faf8")
 
 [node name="RightParkingHitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 8
-collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightParkingHitbox"]
 position = Vector2(157, 0)

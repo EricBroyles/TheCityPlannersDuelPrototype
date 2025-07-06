@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bj2timnmf1iaj"]
 
 [ext_resource type="Texture2D" uid="uid://df834n4r5dr6t" path="res://Assets/Roads/Straights/Road 2 Lane.svg" id="1_e31p8"]
-[ext_resource type="Script" path="res://__/Gameboard Items/Road2Lane.gd" id="1_fcavr"]
+[ext_resource type="Script" path="res://__/__Gameboard Items/Road2Lane.gd" id="1_fcavr"]
 [ext_resource type="PackedScene" uid="uid://qm886n4dojf7" path="res://__/ZonesScenes/Walkways/ZoneCrosswalk1Edge.tscn" id="4_0no1s"]
 [ext_resource type="Texture2D" uid="uid://4mw8x4u6ydyl" path="res://Assets/Roads/Straights/Road Parking.svg" id="4_m50iw"]
 

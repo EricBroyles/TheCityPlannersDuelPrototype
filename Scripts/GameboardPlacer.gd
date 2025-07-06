@@ -174,7 +174,7 @@ func handle_placer(mode: int, action: int):
 					self.position = GameData.mouse_position
 				ACTIONS.CLICK:
 					## Attempting To UPGRADE the top most GameboardItem (in z)
-					var item_to_upgrade: GameboardItem
+					var item_to_upgrade: GameboardItem = null
 					for hitbox in gameboard.get_hitboxes_at(self.position):
 						var hitbox_owner: Variant = gameboard.get_hitbox_owner(hitbox)
 						if hitbox_owner is GameboardItem and hitbox_owner.can_upgrade():
@@ -197,7 +197,7 @@ func handle_placer(mode: int, action: int):
 					self.position = GameData.mouse_position
 				ACTIONS.CLICK:
 					## Attempting To DELETE the top most GameboardItem (in z)
-					var item_to_remove: GameboardItem
+					var item_to_remove: GameboardItem = null
 					for hitbox in gameboard.get_hitboxes_at(self.position):
 						var hitbox_owner: Variant = gameboard.get_hitbox_owner(hitbox)
 						if hitbox_owner is GameboardItem and hitbox_owner.can_delete():
@@ -360,7 +360,70 @@ func handle_placer(mode: int, action: int):
 		GameConstants.MODES.ROAD_4_LANE:
 			match action:
 				ACTIONS.START:
-					add_body_child(GameComponents.ROAD_4_LANE.instantiate())
+					var item: Road4Lane = GameComponents.ROAD_4_LANE.instantiate()
+					item.set_parking(false)
+					add_body_child(item)
+					build_phase_ui.open_item_placer_buttons(false, true, true)
+				ACTIONS.END:
+					remove_all_body_children()
+					build_phase_ui.close_item_placer_buttons()
+				ACTIONS.MOVE:
+					self.position = gameboard.snap_to_boxes(GameData.mouse_position, get_body_child())
+				ACTIONS.CLICK:
+					## Attempting to Add ZoneI: add ZoneI, remove Owned_Unzoned @ the placers position
+					var item: GameboardItem = GameComponents.ROAD_4_LANE.instantiate()
+					item.set_properties_from(get_body_child())
+					
+					# can I buy the item
+					if not item.can_buy(): return
+					
+					var contained_by_boxes_results: Dictionary = gameboard.contained_by_boxes(item)
+					# is the item out of bounds
+					if not contained_by_boxes_results["is_fully_contained"]: return
+					
+					# is the land I am placing this on bought and not occupied
+					#all ocupied boxes need to have an onwned tile to pass this step
+					#if any box has a gameboard item in it with a matching elevation then dont place
+					for box in contained_by_boxes_results["boxes"]:
+						var box_has_owned_tile = false
+
+						for comp in box.components:
+							if GameHelper.is_owned_tile(comp):
+								box_has_owned_tile = true
+							
+							if comp is GameboardItem and item.shares_elevation_with(comp):
+								return
+								
+						if not box_has_owned_tile: return
+						
+					#leave the zoned tile underneath it
+					#add the item
+					gameboard.add_to_boxes(item)
+					
+					#complete the transaction (have this code inside of the actiual item, as it will have stuff like cost of maintance
+					item.buy()
+					
+					
+				ACTIONS.ROTATE_90_CW:
+					get_body_child().rotate_90_cw()
+					
+				ACTIONS.FLIP_V:
+					get_body_child().flip_v()
+					
+				ACTIONS.FLIP_H: 
+					get_body_child().flip_h()
+					
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+			
+			
+			
+			
+		GameConstants.MODES.ROAD_4_LANE_PARKING:
+			match action:
+				ACTIONS.START:
+					var item: Road4Lane = GameComponents.ROAD_4_LANE.instantiate()
+					item.set_parking(true)
+					add_body_child(item)
 					build_phase_ui.open_item_placer_buttons(false, true, true)
 				ACTIONS.END:
 					remove_all_body_children()
@@ -413,12 +476,6 @@ func handle_placer(mode: int, action: int):
 					get_body_child().flip_h()
 					
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
-			
-			
-			
-			
-		GameConstants.MODES.ROAD_4_LANE_PARKING:
-			return
 		GameConstants.MODES.JOINT_2_LANE:
 			return
 		GameConstants.MODES.JOINT_4_LANE:

@@ -10,6 +10,7 @@ var max_level: int
 var orientation: Dictionary = {"x_dir": GameConstants.X_DIR, "y_dir": GameConstants.Y_DIR}
 var error_layer_color = GameConstants.GAMEBOARD_ITEM_ERROR_LAYER
 
+
 func get_oriented_size() -> Vector2:
 	if abs(orientation["x_dir"]) == Vector2(0,1):
 		return Vector2(size.y, size.x)
