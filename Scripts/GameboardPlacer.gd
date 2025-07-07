@@ -361,7 +361,7 @@ func handle_placer(mode: int, action: int):
 			match action:
 				ACTIONS.START:
 					var item: Road4Lane = GameComponents.ROAD_4_LANE.instantiate()
-					item.set_parking(false)
+					item.setup(false) #no parking
 					add_body_child(item)
 					build_phase_ui.open_item_placer_buttons(false, true, true)
 				ACTIONS.END:
@@ -422,7 +422,7 @@ func handle_placer(mode: int, action: int):
 			match action:
 				ACTIONS.START:
 					var item: Road4Lane = GameComponents.ROAD_4_LANE.instantiate()
-					item.set_parking(true)
+					item.setup(true) #yes parking
 					add_body_child(item)
 					build_phase_ui.open_item_placer_buttons(false, true, true)
 				ACTIONS.END:

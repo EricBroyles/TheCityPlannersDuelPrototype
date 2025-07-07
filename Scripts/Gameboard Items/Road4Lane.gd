@@ -1,13 +1,22 @@
 extends GameboardItem
-
 class_name Road4Lane
+
+## Road4Lane Use
+#  Create
+#   1. Create an Instance
+#   2. Call setup with the parking status
+#   3. Now add it to the scene this calls _ready which sets up left and right parking
+#  Duplicate
+#   0. Have an old_instance to copy from
+#   1. Create an Instance
+#   2. (optional: this get override so dont do this) Call setup with the parking status
+#   3. Call set_properties_from(old_instance), this calls setup for the Instance
+#   3. Now add it to the scene this calls _ready which sets up left and right parking
 
 @onready var left_parking = %LeftParking
 @onready var right_parking = %RightParking
 @onready var left_parking_hitbox = %LeftParkingHitbox
 @onready var right_parking_hitbox = %RightParkingHitbox
-
-#@onready var left_parking_col = $Parking/LeftParkingColumn
 
 const SIZE_IN_TILES: Vector2 = Vector2(1,2) #(r,c)
 const ITEM_Z: int = 20
@@ -19,35 +28,54 @@ var is_parking: bool
 var left_parking_active: bool
 var right_parking_active: bool
 
-func _init() -> void:
+func setup(parking_status: bool) -> void:
 	self.size = Vector2(SIZE_IN_TILES.y, SIZE_IN_TILES.x) * GameConstants.GAMEBOARD_TILE_SIZE #the size to begin with
 	self.elevation = 0 #Elevation: 0 base, .5 (halfway), 1 (up a level)
 	self.level = 0 #Levels: 0 means that it does not have levels, otherwise starts at level 1
 	self.max_level = 0
+	self.contained_by = Box.new() #the item is contained inside boxes
+	is_parking = parking_status #notice how left and right parking is set at _ready
 	
-func set_parking(status: bool):
-	is_parking = status
-	#notice that this is intended to be called after init, and left and right parking active are still null. they will be activated or not activated when _ready
+func set_properties_from(other: GameboardItem):
+	super(other) #this sets key info like position and orientation
+	setup(other.is_parking)
 	
 func _ready():
 	z_index = ITEM_Z
+	config_parking(is_parking) #this sets up the left and right parking
+
+func can_delete() -> bool:
+	if GameData.money >= get_money_delete_cost(): return true
+	return false
 	
-	#this sets up the left and right parking
-	config_parking(is_parking)
+func delete_from(gameboard: Gameboard):
+	super(gameboard)
+	GameData.money -= get_money_delete_cost()
 
-#it is assumed that this is called on an instantiated version and then it will be added to the scene
-func set_properties_from(other: GameboardItem):
-	super(other)
-	set_parking(other.is_parking) #when you add it to the scene it does _ready and triggers the congif_parkng
+func can_buy() -> bool:
+	if GameData.money < get_money_buy_cost(): return false
+	return true
 
+func buy():
+	GameData.money -= get_money_buy_cost()
+	
+func refund():
+	GameData.money += get_money_buy_cost()
+	
+func max_amount_can_buy() -> int:
+	# this pairs with batch_buy
+	return int(GameData.money / float(get_money_buy_cost()))
+	
+func batch_buy(amount: int):
+	GameData.money -= amount * get_money_buy_cost()
 
 func get_money_buy_cost() -> int:
 	var money_cost: float = 2.1 * GameConstants.MONEY_PER_ROAD_2_LANE
 	if is_parking: money_cost += GameConstants.MONEY_PER_PARKING_SPOT * MAX_PARKING_SPOTS #yes just overcharge them I am not going to handle refunding parking spots as they change
 	return int(money_cost)
 
-#to be charged once a turn
 func get_money_upkeep_cost() -> int:
+	#to be charged once a turn
 	var money_cost: float = 2.1 * GameConstants.MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN
 	if is_parking: money_cost += GameConstants.MONEY_TO_UPKEEP_PARKING_SPOT_PER_TURN * get_amount_of_active_parking_spots() 
 	return int(money_cost)
@@ -60,34 +88,6 @@ func get_amount_of_active_parking_spots() -> int:
 	if left_parking_active: amount += 2
 	if right_parking_active: amount += 2
 	return amount
-	
-func can_delete() -> bool:
-	if GameData.money >= get_money_delete_cost(): return true
-	return false
-	
-func delete_from(gameboard: Gameboard):
-	super(gameboard)
-	GameData.money -= get_money_delete_cost()
-
-	
-	
-func can_buy() -> bool:
-	if GameData.money < get_money_buy_cost(): return false
-	return true
-
-func buy():
-	GameData.money -= get_money_buy_cost()
-	
-func refund():
-	GameData.money += get_money_buy_cost()
-	
-# this pairs with batch_buy
-func max_amount_can_buy() -> int:
-	return int(GameData.money / float(get_money_buy_cost()))
-	
-func batch_buy(amount: int):
-	GameData.money -= amount * get_money_buy_cost()
-	
 	
 func config_parking(status: bool):
 	left_parking_active = status

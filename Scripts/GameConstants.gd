@@ -18,8 +18,8 @@ const POINTS_PER_I_DEMAND: int = 1100
 #cost of 2 lane of road per tile
 const MONEY_PER_LAND_TILE: int = 250
 
-const MONEY_PER_ROAD_2_LANE: int = int(625000 / float(5280) * GAMEBOARD_TILE_SIZE_FT) #$3800/tile
-const MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN: int = int(5000 / float(5280) *  GAMEBOARD_TILE_SIZE_FT) #$30/tile per turn
+const MONEY_PER_ROAD_2_LANE: int = int(625000 / 5280.0 * GAMEBOARD_TILE_SIZE_FT) #$3800/tile
+const MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN: int = int(5000 / 5280.0 *  GAMEBOARD_TILE_SIZE_FT) #$30/tile per turn
 
 const MONEY_PER_PARKING_SPOT: int = 1500 #$1500 / spot
 const MONEY_TO_UPKEEP_PARKING_SPOT_PER_TURN: int = 20 #$20/tile per turn 
