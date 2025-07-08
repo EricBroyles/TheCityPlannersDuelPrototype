@@ -14,4 +14,5 @@ const I_ZONE_TILE: PackedScene = preload("res://Scenes/Gameboard Tiles/IndZoneTi
 ## Gameboard Agents
 
 ## Gameboard Items
+const WALKWAY: PackedScene = preload("res://Scenes/Gameboard Items/Walkway.tscn")
 const ROAD_4_LANE: PackedScene = preload("res://Scenes/Gameboard Items/Road4Lane.tscn")

@@ -133,7 +133,8 @@ func get_gameboard_size() -> Vector2:
 	
 func get_gameboard_center() -> Vector2:
 	return Vector2(int(GameData.gameboard_c * GameConstants.GAMEBOARD_TILE_SIZE / 2.0), int(GameData.gameboard_r * GameConstants.GAMEBOARD_TILE_SIZE / 2.0))
-	
+
+#assumes the item is snapped to boxes
 # returns: {"boxes": Array[Box], "is_fully_contained": bool}
 func contained_by_boxes(component: GameboardComponent) -> Dictionary:
 
@@ -159,15 +160,16 @@ func contained_by_boxes(component: GameboardComponent) -> Dictionary:
 	}
 	return result
 
+#assumes the item is snapped to edges
 #see whatever the fuck  did for contained_by_boxes
 # returns: {"edges": Array[Vector2], "is_fully_contained": bool}
 func contained_by_edges(component: GameboardComponent) -> Dictionary:
 	## TO BE FINISHED
 	return {}
 	
-#assumes that components position pointer is at their center	
-#sets the position of the component to the proper location to keep it snaped to boxes
 func snap_to_boxes(requested_position: Vector2, component: GameboardComponent) -> Vector2:
+	#assumes that components position pointer is at their center	
+	#sets the position of the component to the proper location to keep it snaped to boxes
 	return snap_size_to_boxes(requested_position, component.get_oriented_size())
 	
 func snap_size_to_boxes(requested_position: Vector2, size: Vector2) -> Vector2:
@@ -175,11 +177,67 @@ func snap_size_to_boxes(requested_position: Vector2, size: Vector2) -> Vector2:
 	var new_top_left_position: Vector2 = round(requested_top_left_position / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE
 	var snapped_position: Vector2 = new_top_left_position + size/2
 	return round(snapped_position)
+
+#WARNING: I am only designing this for stff that fits on 1 edge, may need to redesign for larger (due to the location of the center point for even 2 tile items)
+func snap_to_edges(requested_position: Vector2, component: GameboardComponent, auto_rotate: bool) -> Vector2:
+	#this is the box position that the mouse is pointing at
+	#ex. pointing at the top left most grid tile is 0,0 -> out of bounds is negetive stuff.
+	print(round(requested_position / GameConstants.GAMEBOARD_TILE_SIZE))
+	var req_box_top_left_pos = requested_position - Vector2(1,1) * GameConstants.GAMEBOARD_TILE_SIZE/2.0
+	var req_box_pos: Vector2 = round(req_box_top_left_pos / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE + Vector2(1,1) * GameConstants.GAMEBOARD_TILE_SIZE/2.0
+	
+	#print(req_box_pos)
+	
+	var top_edge_center_pos: Vector2 = req_box_pos + Vector2(.5,0) * GameConstants.GAMEBOARD_TILE_SIZE
+	var bottom_edge_center_pos: Vector2 = top_edge_center_pos + Vector2(0,1) * GameConstants.GAMEBOARD_TILE_SIZE
+	var left_edge_center_pos: Vector2 = req_box_pos + Vector2(0,.5) * GameConstants.GAMEBOARD_TILE_SIZE
+	var right_edge_center_pos: Vector2 = left_edge_center_pos + Vector2(1,0) * GameConstants.GAMEBOARD_TILE_SIZE
+	
+	var closest_edge_pos: Vector2 = round(GameHelper.get_closest_position(requested_position, [top_edge_center_pos,bottom_edge_center_pos,left_edge_center_pos,right_edge_center_pos]))
+	
+	if is_edge_vertical(closest_edge_pos):
+		if not component.check_is_vertical(): #check if the components is not already vertically aligned
+			component.rotate_90_cw()
+	else:
+		if component.check_is_vertical():
+			component.rotate_90_cw()
+			
+	return closest_edge_pos
 	
 	
-func snap_to_edges(requested_position: Vector2, component: GameboardComponent) -> Vector2:
-	## TO BE FINISHED
-	return Vector2(0,0)
+	
+	
+	
+	
+	#var snapped_pos = round(requested_position / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE
+#
+	## Determine whether we're closer to a vertical or horizontal edge
+	#var dist_x = abs(snapped_pos.x - requested_position.x)
+	#var dist_y = abs(snapped_pos.y - requested_position.y)
+#
+	## Decide orientation and snap axis
+	#if dist_x < dist_y:
+		## Closer to vertical edge → vertical placement
+		#snapped_pos += Vector2(0,1) * GameConstants.GAMEBOARD_TILE_SIZE/2
+		#if not component.check_is_vertical():
+			#component.rotate_90_cw()
+	#else:
+		## Closer to horizontal edge → horizontal placement
+		#snapped_pos += Vector2(1,0) * GameConstants.GAMEBOARD_TILE_SIZE/2
+		#if component.check_is_vertical():
+			#component.rotate_90_cw()
+		#
+	## Return the snapped center position
+	#return snapped_pos
+	
+
+	
+	
+func is_edge_vertical(edge_position: Vector2) -> bool:
+	if int(round(edge_position.x)) % GameConstants.GAMEBOARD_TILE_SIZE == 0: return true
+	return false
+		
+	
 
 # given a component. be sure to set its position to reflect where you want it in game space
 # look up its boxes (contained_by_boxes)

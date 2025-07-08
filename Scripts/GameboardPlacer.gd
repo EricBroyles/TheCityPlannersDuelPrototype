@@ -345,13 +345,22 @@ func handle_placer(mode: int, action: int):
 			
 			
 		GameConstants.MODES.WALKWAY:
-			return
+			match action:
+				ACTIONS.START:
+					var item: Walkway = GameComponents.WALKWAY.instantiate()
+					item.setup(item.SETUP.SIDEWALK) #start with sidewalk (the item will detect the need to switch to crosswalk)
+					add_body_child(item)
+					build_phase_ui.open_item_placer_buttons(true, true, true) #all are disabled
+				ACTIONS.END:
+					remove_all_body_children()
+					build_phase_ui.close_item_placer_buttons()
+				ACTIONS.MOVE:
+					self.position = gameboard.snap_to_edges(GameData.mouse_position, get_body_child(), true) #do autorotate
+				ACTIONS.CLICK:
+					var item: Walkway = GameComponents.WALKWAY.instantiate()
+					item.set_properties_from(get_body_child())	
+			
 		GameConstants.MODES.ROAD_2_LANE:
-			
-			
-			
-			
-			
 			## when snapping to grid be sure to get the updated oriented size
 			## be ure to activate the UI buttons
 			return
@@ -361,7 +370,7 @@ func handle_placer(mode: int, action: int):
 			match action:
 				ACTIONS.START:
 					var item: Road4Lane = GameComponents.ROAD_4_LANE.instantiate()
-					item.setup(false) #no parking
+					item.setup(item.SETUP.NO_PARKING) 
 					add_body_child(item)
 					build_phase_ui.open_item_placer_buttons(false, true, true)
 				ACTIONS.END:
@@ -370,7 +379,6 @@ func handle_placer(mode: int, action: int):
 				ACTIONS.MOVE:
 					self.position = gameboard.snap_to_boxes(GameData.mouse_position, get_body_child())
 				ACTIONS.CLICK:
-					## Attempting to Add ZoneI: add ZoneI, remove Owned_Unzoned @ the placers position
 					var item: GameboardItem = GameComponents.ROAD_4_LANE.instantiate()
 					item.set_properties_from(get_body_child())
 					
@@ -422,7 +430,7 @@ func handle_placer(mode: int, action: int):
 			match action:
 				ACTIONS.START:
 					var item: Road4Lane = GameComponents.ROAD_4_LANE.instantiate()
-					item.setup(true) #yes parking
+					item.setup(item.SETUP.PARKING) 
 					add_body_child(item)
 					build_phase_ui.open_item_placer_buttons(false, true, true)
 				ACTIONS.END:
@@ -431,7 +439,6 @@ func handle_placer(mode: int, action: int):
 				ACTIONS.MOVE:
 					self.position = gameboard.snap_to_boxes(GameData.mouse_position, get_body_child())
 				ACTIONS.CLICK:
-					## Attempting to Add ZoneI: add ZoneI, remove Owned_Unzoned @ the placers position
 					var item: GameboardItem = GameComponents.ROAD_4_LANE.instantiate()
 					item.set_properties_from(get_body_child())
 					
