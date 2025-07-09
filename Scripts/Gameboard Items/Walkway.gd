@@ -22,7 +22,7 @@ enum SETUP {
 }
 
 const SIZE_IN_PIXELS: Vector2 = Vector2(16,200) #(x,y), notice how its texture is actually larger than this
-const EDGE_LENGTH_IN_TILES: int = 1 #this item occupies one edge, notice how the item has some overlap. This is used for snap to edges to dictate how it should snap
+const BOX_SIZE_TILES: Vector2 = Vector2(2,1)
 const SIDEWALK_Z: int = 51
 const CROSSWALK_Z: int = 50
 
@@ -55,18 +55,25 @@ func config_walkway():
 		z_index = SIDEWALK_Z
 	crosswalk.visible = is_crosswalk
 	sidewalk.visible = !is_crosswalk
-	
-func check_is_vertical():
+
+#this returns the size of the boxes that this edge item falls onto
+#so an edge item that falls onto two boxes to its left and right would be 400,200. (whihc changes with orientation
+func get_oriented_box_size() -> Vector2:
+	if abs(orientation["x_dir"]) == Vector2(0,1):
+		return Vector2(BOX_SIZE_TILES.y, BOX_SIZE_TILES.x) * GameConstants.GAMEBOARD_TILE_SIZE
+	return BOX_SIZE_TILES * GameConstants.GAMEBOARD_TILE_SIZE
+
+func is_vertical():
 	if abs(self.orientation["x_dir"]) == Vector2(0,1): return false #if the x direction is in the y then it is vertical for this item
 	return true
 	
 func get_money_buy_cost() -> int:
-	var money_cost: float = 2.1 * GameConstants.MONEY_PER_ROAD_2_LANE
+	var money_cost: float = GameConstants.MONEY_PER_WALKWAY
 	return int(money_cost)
 
 #to be charged once a turn
 func get_money_upkeep_cost() -> int:
-	var money_cost: float = 2.1 * GameConstants.MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN
+	var money_cost: float = .01 * GameConstants.MONEY_PER_WALKWAY
 	return int(money_cost)
 	
 func get_money_delete_cost() -> int:

@@ -106,6 +106,12 @@ func is_index_in_matrix(index: Vector2, matrix: Array[Array]) -> bool:
 	
 	return true
 	
+func get_unique_array(arr: Array) -> Array:
+	var dict := {}
+	for a in arr:
+		dict[a] = 1
+	return dict.keys()
+	
 func rotate_vector_90_cw(vec: Vector2, times: int) -> Vector2:
 	match times % 4:
 		0:return vec

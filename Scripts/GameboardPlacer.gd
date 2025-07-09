@@ -350,15 +350,62 @@ func handle_placer(mode: int, action: int):
 					var item: Walkway = GameComponents.WALKWAY.instantiate()
 					item.setup(item.SETUP.SIDEWALK) #start with sidewalk (the item will detect the need to switch to crosswalk)
 					add_body_child(item)
-					build_phase_ui.open_item_placer_buttons(true, true, true) #all are disabled
+					build_phase_ui.open_item_placer_buttons(false, true, true) 
 				ACTIONS.END:
 					remove_all_body_children()
 					build_phase_ui.close_item_placer_buttons()
 				ACTIONS.MOVE:
-					self.position = gameboard.snap_to_edges(GameData.mouse_position, get_body_child(), true) #do autorotate
+					#self.position = gameboard.snap_to_edges(GameData.mouse_position, get_body_child(), true) #do autorotate
+					self.position = gameboard.snap_size_to_boxes(GameData.mouse_position, get_body_child().get_oriented_box_size()) 
+					
 				ACTIONS.CLICK:
 					var item: Walkway = GameComponents.WALKWAY.instantiate()
-					item.set_properties_from(get_body_child())	
+					item.set_properties_from(get_body_child())
+					
+					# can I buy the item
+					if not item.can_buy(): return
+					
+					var contained_by_edges_results: Dictionary = gameboard.contained_by_edges(item)
+					print(contained_by_edges_results)
+					# is the item out of bounds
+					if not contained_by_edges_results["is_fully_contained"]: print("a"); return
+					
+					#do I own the edge I am place in=t on
+					#
+					
+					#I only need one of the boxes to be owned
+					var box_has_owned_tile = false
+					for box in contained_by_edges_results["boxes"]:
+						for comp in box.components:
+							if GameHelper.is_owned_tile(comp):
+								box_has_owned_tile = true
+								break
+						if box_has_owned_tile: break
+					 
+					if not box_has_owned_tile: print("b"); return
+					
+					for edge in contained_by_edges_results["edges"]:
+						for comp in edge.components:
+							if comp is GameboardItem and item.shares_elevation_with(comp):
+								print("c"); return 		
+					#leave the zoned tile underneath it
+					#add the item
+					gameboard.add_to_edges(item)
+					
+					#complete the transaction (have this code inside of the actiual item, as it will have stuff like cost of maintance
+					item.buy()
+					
+					
+				ACTIONS.ROTATE_90_CW:
+					get_body_child().rotate_90_cw()
+					
+				ACTIONS.FLIP_V:
+					get_body_child().flip_v()
+					
+				ACTIONS.FLIP_H: 
+					get_body_child().flip_h()
+					
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 			
 		GameConstants.MODES.ROAD_2_LANE:
 			## when snapping to grid be sure to get the updated oriented size

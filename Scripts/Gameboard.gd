@@ -7,8 +7,7 @@ class_name Gameboard
 @onready var gameboard_items = $Items
 @onready var gameboard_placer = $Placer
 
-var boxes: Array[Array] #2D matrix of Boxes
-var edges: Array[Array] #2D matrix of Edges
+var matrix: Array[Array] #2D matrix of Boxes
 
 var top_left_tile_position: Vector2 = Vector2(0,0)
 var tiles_shift: Vector2 = Vector2(int(GameConstants.GAMEBOARD_TILE_SIZE/2.0),int(GameConstants.GAMEBOARD_TILE_SIZE/2.0)) #this exists to shift the tiles so the top left corner of the gameboard is a (0,0), this is needed as center of tile is in its middle
@@ -31,108 +30,28 @@ func make_gameboard() -> void:
 		tile_position.y += GameConstants.GAMEBOARD_TILE_SIZE
 	
 	gameboard_base_tiles.position += tiles_shift
-	
-	
-	
-## Init Boxes: create a 2D matrix where at each spot their is an empty array
-func init_boxes():
-	var matrix: Array[Array] = []
+
+## Init Boxes: create a 2D matrix where at each spot their is a box with 4 edges (each overlap edge is by reference)
+func init_matrix():
+	matrix = []
 	for r in GameData.gameboard_r:
 		var row: Array = []
 		for c in GameData.gameboard_c:
-			var box := Box.new()
-			box.r = r
-			box.c = c
-			row.append(box) 
+			var top_left_pos: Vector2 = Vector2(c,r) * GameConstants.GAMEBOARD_TILE_SIZE
+			row.append(Box.create(r,c,top_left_pos)) 
 		matrix.append(row)
-	boxes = matrix
-
-func print_boxes():
-	var file := FileAccess.open("res://Notes/view_boxes.txt", FileAccess.WRITE)
-	if file == null:
-		print("Failed to open file.")
-		return
-	
-	# Write column headers
-	var header := "Row/Col"
-	if boxes.size() > 0:
-		for c in range(boxes[0].size()):
-			header += ",Col %d" % c
-	file.store_line(header)
-	
-	# Write each row
-	for r in range(boxes.size()):
-		var row_data := "Row %d" % r
-		for c in range(boxes[r].size()):
-			var box: Box = boxes[r][c]
-			# You can customize what "components" means here; converting array to string
-			row_data += "," + str(box.components)
-		file.store_line(row_data)
-
-	file.close()
-	print("CSV written to res://Notes/view_boxes.txt")
-	
-## Init Edges
-func init_edges():
-	var horizontal_edges: Array[Array] = []
-	for r in GameData.gameboard_r + 1:
-		var row: Array = []
-		for c in GameData.gameboard_c:
-			var edge := Edge.new()
-			edge.r = r
-			edge.c = c
-			row.append(edge) 
-		horizontal_edges.append(row)
-	
-	var vertical_edges: Array[Array] = []
-	for r in GameData.gameboard_r:
-		var row: Array = []
-		for c in GameData.gameboard_c + 1:
-			var edge := Edge.new()
-			edge.r = r
-			edge.c = c
-			row.append(edge) 
-		vertical_edges.append(row)
 		
-	#merge these two together by alternating rows of hor then vert
-	var matrix: Array[Array] = []
-	for r in range(GameData.gameboard_r):
-		matrix.append(horizontal_edges[r])
-		matrix.append(vertical_edges[r])
-	# Add the final bottom row of horizontal_edges
-	matrix.append(horizontal_edges[GameData.gameboard_r])
-	edges = matrix
-	
-func print_edges():
-	var file := FileAccess.open("res://Notes/view_edges.txt", FileAccess.WRITE)
-	if file == null:
-		print("Failed to open file.")
-		return
-	
-	# Write column headers
-	var header := "Row/Col"
-	if edges.size() > 0:
-		for c in range(edges[0].size()):
-			header += ",Col %d" % c
-	file.store_line(header)
-	
-	# Write each row
-	for r in range(edges.size()):
-		var row_data := "Row %d" % r
-		for c in range(edges[r].size()):
-			var edge: Edge = edges[r][c]
-			# You can customize what "components" means here; converting array to string
-			row_data += "," + str(edge.components)
-		file.store_line(row_data)
-
-	file.close()
-	print("CSV written to res://Notes/view_edges.txt")
+	for r in GameData.gameboard_r:
+		for c in GameData.gameboard_c:
+			matrix[r][c].trim_edges(matrix)
 			
 func get_gameboard_size() -> Vector2:
 	return Vector2(GameData.gameboard_c * GameConstants.GAMEBOARD_TILE_SIZE, GameData.gameboard_r * GameConstants.GAMEBOARD_TILE_SIZE) #(width, height)
 	
 func get_gameboard_center() -> Vector2:
 	return Vector2(int(GameData.gameboard_c * GameConstants.GAMEBOARD_TILE_SIZE / 2.0), int(GameData.gameboard_r * GameConstants.GAMEBOARD_TILE_SIZE / 2.0))
+	
+
 
 #assumes the item is snapped to boxes
 # returns: {"boxes": Array[Box], "is_fully_contained": bool}
@@ -149,8 +68,8 @@ func contained_by_boxes(component: GameboardComponent) -> Dictionary:
 	for r in range(size_in_tile_units.x):
 		for c in range(size_in_tile_units.y):
 			var component_section_index: Vector2 = top_left_index + Vector2(r, c) #this is like each tile of a component
-			if GameHelper.is_index_in_matrix(component_section_index, boxes):
-				component_inside_these_boxes.append(boxes[component_section_index.x][component_section_index.y])
+			if GameHelper.is_index_in_matrix(component_section_index, matrix):
+				component_inside_these_boxes.append(matrix[component_section_index.x][component_section_index.y])
 			else:
 				is_fully_contained = false
 				
@@ -159,13 +78,47 @@ func contained_by_boxes(component: GameboardComponent) -> Dictionary:
 		"is_fully_contained": is_fully_contained
 	}
 	return result
-
+	
+	
+func get_box_at_position(pos: Vector2) -> Box:
+	var r: int = int(round((pos.y - GameConstants.GAMEBOARD_TILE_SIZE) / GameConstants.GAMEBOARD_TILE_SIZE))
+	var c: int = int(round((pos.x - GameConstants.GAMEBOARD_TILE_SIZE) / GameConstants.GAMEBOARD_TILE_SIZE))
+	print(r, " ", c)
+	if GameHelper.is_index_in_matrix(Vector2(r,c), matrix): return matrix[r][c]
+	return null
+	
+#WARNING: due to the fact that I dont give a shit anymore this only works for 1 edge items
 #assumes the item is snapped to edges
-#see whatever the fuck  did for contained_by_boxes
 # returns: {"edges": Array[Vector2], "is_fully_contained": bool}
 func contained_by_edges(component: GameboardComponent) -> Dictionary:
-	## TO BE FINISHED
-	return {}
+	print("component size", component.get_oriented_size())
+	var component_inside_these_edges: Array[Edge] = []
+	var component_inside_these_boxes: Array[Box] = []
+	var is_fully_contained: bool = true
+	
+	var read_boxes_at_pos: Array[Vector2] = [component.position - Vector2(component.get_oriented_size().x,0), component.position + Vector2(component.get_oriented_size().x,0)]
+	
+	for box_pos in read_boxes_at_pos:
+		var box = get_box_at_position(box_pos)
+		print("heya ", box)
+		if box != null:
+			component_inside_these_boxes.append(box)
+			var edge_result: Edge = box.get_edge_at_position(component.position)
+			if edge_result != null:
+				
+				component_inside_these_edges.append(edge_result)
+	
+	var unique_component_inside_these_edges: Array[Edge]
+	for edge in GameHelper.get_unique_array(component_inside_these_edges):
+		unique_component_inside_these_edges.append(edge as Edge)
+	is_fully_contained = true if len(unique_component_inside_these_edges) > 0 else false
+	
+	var result: Dictionary = {
+		"boxes": component_inside_these_boxes, #need this to check if I own the land
+		"edges": unique_component_inside_these_edges,
+		"is_fully_contained": is_fully_contained
+	}
+	return result
 	
 func snap_to_boxes(requested_position: Vector2, component: GameboardComponent) -> Vector2:
 	#assumes that components position pointer is at their center	
@@ -178,57 +131,11 @@ func snap_size_to_boxes(requested_position: Vector2, size: Vector2) -> Vector2:
 	var snapped_position: Vector2 = new_top_left_position + size/2
 	return round(snapped_position)
 
-#WARNING: I am only designing this for stff that fits on 1 edge, may need to redesign for larger (due to the location of the center point for even 2 tile items)
-func snap_to_edges(requested_position: Vector2, component: GameboardComponent, auto_rotate: bool) -> Vector2:
-	#this is the box position that the mouse is pointing at
-	#ex. pointing at the top left most grid tile is 0,0 -> out of bounds is negetive stuff.
-	print(round(requested_position / GameConstants.GAMEBOARD_TILE_SIZE))
-	var req_box_top_left_pos = requested_position - Vector2(1,1) * GameConstants.GAMEBOARD_TILE_SIZE/2.0
-	var req_box_pos: Vector2 = round(req_box_top_left_pos / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE + Vector2(1,1) * GameConstants.GAMEBOARD_TILE_SIZE/2.0
-	
-	#print(req_box_pos)
-	
-	var top_edge_center_pos: Vector2 = req_box_pos + Vector2(.5,0) * GameConstants.GAMEBOARD_TILE_SIZE
-	var bottom_edge_center_pos: Vector2 = top_edge_center_pos + Vector2(0,1) * GameConstants.GAMEBOARD_TILE_SIZE
-	var left_edge_center_pos: Vector2 = req_box_pos + Vector2(0,.5) * GameConstants.GAMEBOARD_TILE_SIZE
-	var right_edge_center_pos: Vector2 = left_edge_center_pos + Vector2(1,0) * GameConstants.GAMEBOARD_TILE_SIZE
-	
-	var closest_edge_pos: Vector2 = round(GameHelper.get_closest_position(requested_position, [top_edge_center_pos,bottom_edge_center_pos,left_edge_center_pos,right_edge_center_pos]))
-	
-	if is_edge_vertical(closest_edge_pos):
-		if not component.check_is_vertical(): #check if the components is not already vertically aligned
-			component.rotate_90_cw()
-	else:
-		if component.check_is_vertical():
-			component.rotate_90_cw()
-			
-	return closest_edge_pos
+
+
+
 	
 	
-	
-	
-	
-	
-	#var snapped_pos = round(requested_position / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE
-#
-	## Determine whether we're closer to a vertical or horizontal edge
-	#var dist_x = abs(snapped_pos.x - requested_position.x)
-	#var dist_y = abs(snapped_pos.y - requested_position.y)
-#
-	## Decide orientation and snap axis
-	#if dist_x < dist_y:
-		## Closer to vertical edge → vertical placement
-		#snapped_pos += Vector2(0,1) * GameConstants.GAMEBOARD_TILE_SIZE/2
-		#if not component.check_is_vertical():
-			#component.rotate_90_cw()
-	#else:
-		## Closer to horizontal edge → horizontal placement
-		#snapped_pos += Vector2(1,0) * GameConstants.GAMEBOARD_TILE_SIZE/2
-		#if component.check_is_vertical():
-			#component.rotate_90_cw()
-		#
-	## Return the snapped center position
-	#return snapped_pos
 	
 
 	
@@ -236,7 +143,8 @@ func snap_to_edges(requested_position: Vector2, component: GameboardComponent, a
 func is_edge_vertical(edge_position: Vector2) -> bool:
 	if int(round(edge_position.x)) % GameConstants.GAMEBOARD_TILE_SIZE == 0: return true
 	return false
-		
+
+	
 	
 
 # given a component. be sure to set its position to reflect where you want it in game space
@@ -254,8 +162,8 @@ func get_components_in_shared_boxes(component: GameboardComponent) -> Array[Game
 	return components_array
 
 #get_components_in_shared_boxes
-func shares_edges_with(component: GameboardComponent) -> Array[GameboardComponent]:
-	return []
+#func shares_edges_with(component: GameboardComponent) -> Array[GameboardComponent]:
+	#return []
 	
 
 ## USE add_to_boxes and remove_from_boxes to add/remove items in general
@@ -274,7 +182,20 @@ func remove_from_boxes(component: GameboardComponent):
 		box.remove(component)
 		
 	_remove_from_scene(component)
+	
+func add_to_edges(component: GameboardComponent):
+	var add_to_these_edges: Array[Edge] = contained_by_edges(component)["edges"]
+	for edge in add_to_these_edges:
+		edge.add(component)
+		
+	_add_to_scene(component)
 
+func remove_from_edges(component: GameboardComponent):
+	var remove_from_these_edges: Array[Edge] = contained_by_edges(component)["edges"]
+	for edge in remove_from_these_edges:
+		edge.remove(component)
+		
+	_remove_from_scene(component)
 
 ## add_to_scene and remove_from_scene are just helpers for add_to_boxes and remove_from_boxes
 func _add_to_scene(component: GameboardComponent):
@@ -314,4 +235,51 @@ func get_hitboxes_at(point: Vector2) -> Array[Area2D]:
 	
 func get_hitbox_owner(hitbox: Area2D) -> Variant:
 	return hitbox.get_owner()
+	
+
+## this does not work as it needs the mouse to be pointing at the matrix boxes, but when it goes out of bounds I would need to like create a new box with edges and this gets expensive and confusing
+##box: this func does not handle out of bounds at all and sucks ass
+#func get_box_at_position(pos: Vector2) -> Box:
+	#var r: int = int(round((pos.y - GameConstants.GAMEBOARD_TILE_SIZE) / GameConstants.GAMEBOARD_TILE_SIZE))
+	#var c: int = int(round((pos.x - GameConstants.GAMEBOARD_TILE_SIZE) / GameConstants.GAMEBOARD_TILE_SIZE))
+	#return matrix[r][c]
+##WARNING: I am only designing this for stuff that fits on 1 edge, may need to redesign for larger (due to the location of the center point for even 2 tile items)
+#func snap_to_edges(requested_position: Vector2, component: GameboardComponent, auto_rotate: bool) -> Vector2:
+	#
+	#var pointing_at_box: Box = get_box_at_position(requested_position)
+	#var closest_edge_pos: Vector2 = GameHelper.get_closest_position(requested_position, pointing_at_box.get_edge_positions())
+	#
+	#if auto_rotate:
+		#if is_edge_vertical(closest_edge_pos):
+			#if not component.is_vertical(): #check if the components is not already vertically aligned
+				#component.rotate_90_cw()
+		#else:
+			#if component.is_vertical():
+				#component.rotate_90_cw()
+			#
+	#return closest_edge_pos
+	#
+	#
+	###this is the box position that the mouse is pointing at
+	###ex. pointing at the top left most grid tile is 0,0 -> out of bounds is negetive stuff.
+	##var req_box_top_left_pos = requested_position - Vector2(1,1) * GameConstants.GAMEBOARD_TILE_SIZE/2.0
+	##var req_box_pos: Vector2 = round(req_box_top_left_pos / GameConstants.GAMEBOARD_TILE_SIZE) * GameConstants.GAMEBOARD_TILE_SIZE + Vector2(1,1) * GameConstants.GAMEBOARD_TILE_SIZE/2.0
+	##
+	###print(req_box_pos)
+	##
+	##var top_edge_center_pos: Vector2 = req_box_pos + Vector2(.5,0) * GameConstants.GAMEBOARD_TILE_SIZE
+	##var bottom_edge_center_pos: Vector2 = top_edge_center_pos + Vector2(0,1) * GameConstants.GAMEBOARD_TILE_SIZE
+	##var left_edge_center_pos: Vector2 = req_box_pos + Vector2(0,.5) * GameConstants.GAMEBOARD_TILE_SIZE
+	##var right_edge_center_pos: Vector2 = left_edge_center_pos + Vector2(1,0) * GameConstants.GAMEBOARD_TILE_SIZE
+	##
+	##var closest_edge_pos: Vector2 = round(GameHelper.get_closest_position(requested_position, [top_edge_center_pos,bottom_edge_center_pos,left_edge_center_pos,right_edge_center_pos]))
+	##
+	##if is_edge_vertical(closest_edge_pos):
+		##if not component.check_is_vertical(): #check if the components is not already vertically aligned
+			##component.rotate_90_cw()
+	##else:
+		##if component.check_is_vertical():
+			##component.rotate_90_cw()
+			##
+	##return closest_edge_pos
 	
