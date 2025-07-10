@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://4mw8x4u6ydyl" path="res://Assets/Roads/Straights/Road Parking.svg" id="3_mfmer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc860"]
-size = Vector2(400, 200)
+size = Vector2(398, 198)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gq2cr"]
 size = Vector2(400, 16)
@@ -23,30 +23,31 @@ size = Vector2(86, 200)
 script = ExtResource("1_1kv5c")
 
 [node name="MainBodyHitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MainBodyHitbox"]
 shape = SubResource("RectangleShape2D_sc860")
 
 [node name="TopCrosswalkHitbox" type="Area2D" parent="."]
 position = Vector2(0, -100)
-collision_layer = 16
-collision_mask = 16
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopCrosswalkHitbox"]
 shape = SubResource("RectangleShape2D_gq2cr")
 
 [node name="BottomCrosswalkHitbox" type="Area2D" parent="."]
 position = Vector2(0, 100)
-collision_layer = 16
-collision_mask = 16
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCrosswalkHitbox"]
 shape = SubResource("RectangleShape2D_b33y6")
 
 [node name="LeftParkingHitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 8
-collision_mask = 12
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftParkingHitbox"]
 position = Vector2(-157, 0)

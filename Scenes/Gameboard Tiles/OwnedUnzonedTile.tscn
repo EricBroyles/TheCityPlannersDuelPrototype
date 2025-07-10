@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dcpqkjprdpnew" path="res://Assets/Gameboard Tiles/White Border Tile 102.svg" id="2_db056"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vml65"]
-size = Vector2(200, 200)
+size = Vector2(198, 198)
 
 [node name="OwnedUnzonedTile" type="Node2D"]
 script = ExtResource("1_8e27a")

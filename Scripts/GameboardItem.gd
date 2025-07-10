@@ -1,13 +1,11 @@
 extends GameboardComponent
-
 class_name GameboardItem
 
 var size: Vector2 #the size to begin with
-var elevation: float #Elevation: 0 base, .5 (halfway), 1 (up a level)
+var elevation: float #Elevation: 0 base, .5 (halfway), 1 (up a level) (use this for determining item collisions not z-index, as z-index may vary slightly between items that have the same elevation)
 var level: int #Levels: 0 means that it does not have levels, otherwise starts at level 1
 var max_level: int
 
-var contained_by: GameboardContainer #used to id if this item is attached to boxes or edges
 var orientation: Dictionary = {"x_dir": GameConstants.X_DIR, "y_dir": GameConstants.Y_DIR}
 var error_layer_color = GameConstants.GAMEBOARD_ITEM_ERROR_LAYER
 
@@ -46,14 +44,6 @@ func upgrade():
 func can_delete() -> bool:
 	return true
 	
-func delete_from(gameboard: Gameboard):
-	if contained_by is Box:
-		gameboard.remove_from_boxes(self)
-	elif contained_by is Edge:
-		gameboard.remove_from_edges(self)
-	else:
-		push_error("trying to delete a gameboard item that is not contained by edges or boxes (check that you assigned the item a contained_by)")
-
 ## ---- Transform ----
 func rotate_90_cw(times: int = 1):
 	rotate_90_cw_orientation(times)

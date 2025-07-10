@@ -13,6 +13,7 @@ class_name Road4Lane
 #   3. Call set_properties_from(old_instance), this calls setup for the Instance
 #   3. Now add it to the scene this calls _ready which sets up left and right parking
 
+@onready var main_body_hitbox = %MainBodyHitbox
 @onready var left_parking = %LeftParking
 @onready var right_parking = %RightParking
 @onready var left_parking_hitbox = %LeftParkingHitbox #I need these hitboxes as variables so that I can disable them when they are not needed
@@ -38,7 +39,6 @@ func setup(parking_status: int) -> void:
 	self.elevation = 0 #Elevation: 0 base, .5 (halfway), 1 (up a level)
 	self.level = 0 #Levels: 0 means that it does not have levels, otherwise starts at level 1
 	self.max_level = 0
-	self.contained_by = Box.new() #the item is contained inside boxes
 	
 	#notice how left and right parking is set at _ready
 	is_parking = true if parking_status == SETUP.PARKING else false
@@ -100,8 +100,8 @@ func can_delete() -> bool:
 	if GameData.money >= get_money_delete_cost(): return true
 	return false
 	
-func delete_from(gameboard: Gameboard):
-	super(gameboard)
+func pre_delete_sequence():
+	super()
 	GameData.money -= get_money_delete_cost()
 
 func can_buy() -> bool:

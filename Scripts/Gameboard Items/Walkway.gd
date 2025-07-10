@@ -13,6 +13,7 @@ class_name Walkway
 #   3. Call set_properties_from(old_instance), this calls setup for the Instance
 #   3. Now add it to the scene this calls _ready which sets what crosswalk or sidewalk is visible
 
+@onready var main_body_hitbox = %MainBodyHitbox
 @onready var sidewalk = %Sidewalk
 @onready var crosswalk = %Crosswalk
 
@@ -80,13 +81,12 @@ func get_money_delete_cost() -> int:
 	return int(get_money_buy_cost() * .1)
 	
 	
-	
 func can_delete() -> bool:
 	if GameData.money >= get_money_delete_cost(): return true
 	return false
 	
-func delete_from(gameboard: Gameboard):
-	super(gameboard)
+func pre_delete_sequence():
+	super()
 	GameData.money -= get_money_delete_cost()
 
 func can_buy() -> bool:

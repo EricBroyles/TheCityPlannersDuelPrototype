@@ -60,11 +60,10 @@ window/size/viewport_height=700
 
 [layer_names]
 
-2d_physics/layer_1="boxes"
-2d_physics/layer_2="edges"
-2d_physics/layer_3="curtains"
-2d_physics/layer_4="road_parking"
-2d_physics/layer_5="crosswalk"
+2d_physics/layer_1="main_bodiy_hitboxes"
+2d_physics/layer_2="curtain_hitboxes"
+2d_physics/layer_3="road_parking_hitboxes"
+2d_physics/layer_4="crosswalk_hitboxes"
 
 [rendering]
 

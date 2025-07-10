@@ -1,22 +1,25 @@
 extends GameboardTile
-
 class_name IZone
 
-#only checks for a single tile
+@onready var main_body_hitbox = %MainBodyHitbox
+
 func can_buy() -> bool:
+	#only checks for a single tile
 	if GameData.i_demand < 1: return false
 	return true
+	
+func pre_delete_sequence():
+	super()
+	refund()
 
-#this buys a single tile with no error handling.
 func buy():
+	#this buys a single tile with no error handling.
 	GameData.i_demand -= 1
 	
-#this refunds a single tile with no error handling.
 func refund():
+	#this refunds a single tile with no error handling.
 	GameData.i_demand += 1
 
-
-# this pairs with batch_buy
 func max_amount_can_buy() -> int:
 	return GameData.i_demand
 	

@@ -46,11 +46,8 @@ script = ExtResource("6_a8jxb")
 
 [node name="Items" type="Node2D" parent="Gameboard"]
 
-[node name="Placer" type="Node2D" parent="Gameboard"]
+[node name="Placer" type="Node" parent="Gameboard"]
 script = ExtResource("7_vosyi")
-
-[node name="Body" type="Node2D" parent="Gameboard/Placer"]
-unique_name_in_owner = true
 
 [node name="Selector" type="Node2D" parent="Gameboard/Placer"]
 unique_name_in_owner = true

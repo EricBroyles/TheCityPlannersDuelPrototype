@@ -1,23 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqtsf8kl2jy8m"]
+[gd_scene load_steps=4 format=3 uid="uid://dqtsf8kl2jy8m"]
 
 [ext_resource type="Script" path="res://Scripts/Gameboard Tiles/CZoneTile.gd" id="1_fws5v"]
 [ext_resource type="Texture2D" uid="uid://dcpqkjprdpnew" path="res://Assets/Gameboard Tiles/White Border Tile 102.svg" id="2_bbmij"]
 
-[sub_resource type="GDScript" id="GDScript_w7soq"]
-script/source = "extends Area2D
-
-var type: String = \"C\"
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtevp"]
-size = Vector2(200, 200)
+size = Vector2(198, 198)
 
 [node name="ComZoneTile" type="Node2D"]
 script = ExtResource("1_fws5v")
 
 [node name="MainBodyHitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-script = SubResource("GDScript_w7soq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MainBodyHitbox"]
 shape = SubResource("RectangleShape2D_qtevp")

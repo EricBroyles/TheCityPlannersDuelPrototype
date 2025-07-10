@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dcpqkjprdpnew" path="res://Assets/Gameboard Tiles/White Border Tile 102.svg" id="2_nby31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhhi5"]
-size = Vector2(200, 200)
+size = Vector2(198, 198)
 
 [node name="IndZoneTile" type="Node2D"]
 script = ExtResource("1_jxevr")
