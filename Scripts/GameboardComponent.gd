@@ -1,5 +1,4 @@
 extends Node2D
-
 class_name GameboardComponent
 
 #tile, item, agent

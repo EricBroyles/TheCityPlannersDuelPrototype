@@ -1,18 +1,6 @@
 extends GameboardItem
 class_name Walkway
 
-## Walkway Use
-#  Create
-#   1. Create an Instance
-#   2. Call setup with the crosswalk or not
-#   3. Now add it to the scene this calls _ready which sets what crosswalk or sidewalk is visible
-#  Duplicate
-#   0. Have an old_instance to copy from
-#   1. Create an Instance
-#   2. (optional step: this get override so dont do this) Call setup with the crosswalk or not
-#   3. Call set_properties_from(old_instance), this calls setup for the Instance
-#   3. Now add it to the scene this calls _ready which sets what crosswalk or sidewalk is visible
-
 @onready var sidewalk = %Sidewalk
 @onready var crosswalk = %Crosswalk
 @onready var crosswalk_hitbox = %CrosswalkHitbox
@@ -28,8 +16,7 @@ const SIDEWALK_Z: int = 51 #slightly higher so that sidewalk is always layered o
 const CROSSWALK_Z: int = 50
 
 var speed: float = 3; #mph
-
-var is_crosswalk: bool #if it is not a crosswalk then it must be a sidewalk
+var is_crosswalk: bool 
 
 func setup(type: int) -> void:
 	self.size = SIZE_IN_PIXELS 

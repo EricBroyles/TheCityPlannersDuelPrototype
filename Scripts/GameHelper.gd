@@ -3,7 +3,7 @@ extends Node
 func buy_demand(type: String, amount: int) -> int:
 	# type: "r", "c", "i"
 	# amount: int of number of demand units desired
-	#this stays in helper as it is used by UI (technically I could move it, i dont want to tho) (it would get confusing to have it inside the class and i would have to create an instance inside the ui..)
+	#this stays in helper as it is used by UI (it would get confusing to have it inside the class and i would have to create an instance inside the ui..)
 	var cost_per_demand_unit: int
 	match type:
 		"r":
@@ -89,9 +89,6 @@ func rotate_vector_90_cw(vec: Vector2, times: int) -> Vector2:
 func convert_mph_to_px_per_sec(mph: float) -> float:
 	return mph * 5280 * GameConstants.GAMEBOARD_TILE_SIZE / GameConstants.GAMEBOARD_TILE_SIZE_FT / 3600
 	
-	
-	
-	
 ## Unused (may be useful later)
 #func find_izone_in_tree(node: Node) -> bool:
 	#if node is IZone:
@@ -102,11 +99,6 @@ func convert_mph_to_px_per_sec(mph: float) -> float:
 			#return true
 	#return false
 	
-#func get_unique_array(arr: Array) -> Array:
-	### I FOUND A BETTER WAY BY STORING THE VALUE AT THE KEY, thenfor all unique keys get teh values and place in a list preserving the types without needing another loop
-	#var dict := {}
-	#for a in arr:
-		#dict[a] = 1
-	#return dict.keys()
+
 	
 	

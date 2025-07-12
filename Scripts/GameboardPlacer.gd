@@ -14,6 +14,7 @@ enum ACTIONS {
 @onready var build_phase_ui = %BuildPhase
 @onready var selector = %Selector
 
+const _PLACER_COMPONENT_NAME: String = "PlacerComponent"
 var _active_mode: int = GameConstants.MODES.MOUSE_POINTER 
 
 func _ready():
@@ -34,16 +35,19 @@ func _unhandled_input(_event: InputEvent):
 
 func set_placer_component(component: GameboardComponent):
 	#the reason I do not have a body underneath is due to its position staying at 0,0 when moving the node2D version of placer
-	component.name = "PlacerComponent"
+	component.name = _PLACER_COMPONENT_NAME
 	add_child(component)
 
 func get_placer_component() -> GameboardComponent:
-	if has_node("PlacerComponent"):
-		return get_node("PlacerComponent") as GameboardComponent
+	if has_node(_PLACER_COMPONENT_NAME):
+		return get_node(_PLACER_COMPONENT_NAME) as GameboardComponent
 	return null
+	
+func move_placer_component_to(point: Vector2):
+	get_placer_component().position = point
 
 func clear_placer_component():
-	var placer = get_node("PlacerComponent")
+	var placer = get_node(_PLACER_COMPONENT_NAME)
 	remove_child(placer)
 
 func handle_placer(mode: int, action: int):
@@ -89,28 +93,64 @@ func handle_placer(mode: int, action: int):
 			match action:
 				ACTIONS.START:
 					selector.open_buy_land_selector() #this needs to run before so the selector is on top of the component.
-					set_placer_component(GameComponents.OWNED_UNZONED_TILE.instantiate())
+					set_placer_component(OwnedUnzoned.create())
 				ACTIONS.END:
 					clear_placer_component()
 					selector.close()
 				ACTIONS.MOVE:
 					selector.position = gameboard.snap_to_grid(GameData.mouse_position, get_placer_component())
-					get_placer_component().position = selector.position
+					move_placer_component_to(selector.position)
 				ACTIONS.CLICK:
 					(get_placer_component() as OwnedUnzoned).attempt_to_buy_land(gameboard)
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
-		#GameConstants.MODES.OWNED_UNZONED:
-			#match action:
-				#ACTIONS.START:
-					#add_body_child(GameComponents.OWNED_UNZONED_TILE.instantiate())
-				#ACTIONS.END:
-					#remove_all_body_children()
-				#ACTIONS.MOVE:
-					#self.position = gameboard.snap_to_boxes(GameData.mouse_position, get_body_child())
-				#ACTIONS.CLICK:
-					#(get_body_child() as OwnedUnzoned).attempt_to_unzone(gameboard)
-				#_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
-				
+		GameConstants.MODES.OWNED_UNZONED:
+			match action:
+				ACTIONS.START:
+					set_placer_component(OwnedUnzoned.create())
+				ACTIONS.END:
+					clear_placer_component()
+					selector.close()
+				ACTIONS.MOVE:
+					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
+				ACTIONS.CLICK:
+					(get_placer_component() as OwnedUnzoned).attempt_to_unzone(gameboard)
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+		GameConstants.MODES.R_ZONE:
+			match action:
+				ACTIONS.START:
+					set_placer_component(RZone.create())
+				ACTIONS.END:
+					clear_placer_component()
+					selector.close()
+				ACTIONS.MOVE:
+					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
+				ACTIONS.CLICK:
+					(get_placer_component() as RZone).attempt_to_zone(gameboard)
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+		GameConstants.MODES.C_ZONE:
+			match action:
+				ACTIONS.START:
+					set_placer_component(CZone.create())
+				ACTIONS.END:
+					clear_placer_component()
+					selector.close()
+				ACTIONS.MOVE:
+					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
+				ACTIONS.CLICK:
+					(get_placer_component() as CZone).attempt_to_zone(gameboard)
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+		GameConstants.MODES.I_ZONE:
+			match action:
+				ACTIONS.START:
+					set_placer_component(IZone.create())
+				ACTIONS.END:
+					clear_placer_component()
+					selector.close()
+				ACTIONS.MOVE:
+					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
+				ACTIONS.CLICK:
+					(get_placer_component() as IZone).attempt_to_zone(gameboard)
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 
 
 

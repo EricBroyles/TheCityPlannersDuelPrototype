@@ -1,18 +1,6 @@
 extends GameboardItem
 class_name Road4Lane
 
-## Road4Lane Use
-#  Create
-#   1. Create an Instance
-#   2. Call setup with the parking status
-#   3. Now add it to the scene this calls _ready which sets up left and right parking
-#  Duplicate
-#   0. Have an old_instance to copy from
-#   1. Create an Instance
-#   2. (optional step: this get override so dont do this) Call setup with the parking status
-#   3. Call set_properties_from(old_instance), this calls setup for the Instance
-#   3. Now add it to the scene this calls _ready which sets up left and right parking
-
 @onready var left_parking = %LeftParking
 @onready var right_parking = %RightParking
 @onready var left_curtain_hitbox = %LeftCurtainHitbox #I need these hitboxes as variables so that I can disable them when is_parking = false
