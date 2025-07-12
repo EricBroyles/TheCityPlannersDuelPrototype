@@ -37,7 +37,7 @@ func _init_matrix() -> void:
 		push_error("Tile size must be evenly divisible by container size!")
 		return
 
-	var containers_per_tile: int = round(GameConstants.GAMEBOARD_TILE_SIZE / float(GameConstants.GAMEBOARD_CONTAINER_SIZE))
+	var containers_per_tile: int = int(round(GameConstants.GAMEBOARD_TILE_SIZE / float(GameConstants.GAMEBOARD_CONTAINER_SIZE)))
 	var total_rows: int = GameData.gameboard_r * containers_per_tile
 	var total_cols: int = GameData.gameboard_c * containers_per_tile
 

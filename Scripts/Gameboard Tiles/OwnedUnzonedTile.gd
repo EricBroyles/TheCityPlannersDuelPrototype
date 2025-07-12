@@ -32,16 +32,14 @@ func attempt_to_unzone(gameboard: Gameboard) -> bool:
 	return false
 	
 func can_buy() -> bool:
-	#only checks for a single tile
 	if GameData.money < GameData.cost_per_land_tile: return false
 	return true
 	
-func buy():
-	#this buys a single tile with no error handling.
-	GameData.money -= GameData.cost_per_land_tile
-	
 func max_amount_can_buy() -> int:
 	return int(GameData.money / float(GameData.cost_per_land_tile))
+	
+func buy():
+	GameData.money -= GameData.cost_per_land_tile
 	
 func batch_buy(amount: int):
 	GameData.money -= amount * GameData.cost_per_land_tile
