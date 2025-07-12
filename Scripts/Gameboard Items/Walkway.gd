@@ -42,7 +42,7 @@ func config_walkway():
 	sidewalk.visible = !is_crosswalk
 
 func is_colliding_with_overlapping_item(item: GameboardItem) -> bool:
-	if shares_elevation_with(item) and GameHelper.is_item1_fully_contained_by_item2(self, item): return true
+	if shares_elevation_with(item) and GameHelper.is_comp1_fully_contained_by_comp2(self, item): return true
 	return false
 
 func get_oriented_grid_size() -> Vector2:

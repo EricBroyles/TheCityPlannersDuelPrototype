@@ -187,7 +187,7 @@ func attempt_to_upgrade_item_at(point: Vector2) -> bool:
 	#Attempting to UPGRADE the top most (in z) GameboardItem
 	var item_to_upgrade: GameboardItem = find_top_item_at(point)
 	if item_to_upgrade != null and item_to_upgrade.can_upgrade():
-		item_to_upgrade.upgrade() #I am upgrading a GameboardItem that can upgrade and is at the top z idex of what I clicked on
+		item_to_upgrade.upgrade() #I am upgrading a GameboardItem that can upgrade and is at the top z idex
 		return true
 	return false
 	
@@ -195,12 +195,11 @@ func attempt_to_delete_item_at(point: Vector2) -> bool:
 	#Attempting to DELETE the top most (in z) GameboardItem
 	var item_to_delete: GameboardItem = find_top_item_at(point)
 	if item_to_delete != null and item_to_delete.can_delete():
-		delete_component(item_to_delete) #I am deleting a GameboardItem that can delete and is at the top z idex of what I clicked on
+		delete_component(item_to_delete) #I am deleting a GameboardItem that can delete and is at the top z idex
 		return true
 	return false
 
 func add_component(component: GameboardComponent):
-	#this is used inside of each GameboardComponent class when buying or zoning
 	_add_to_matrix(component)
 	if component is GameboardTile:
 		gameboard_tiles.add_child(component)
@@ -210,7 +209,6 @@ func add_component(component: GameboardComponent):
 		push_error("Failed to add component: ", component, " to gameboard as it is not type Tile or Item")
 
 func delete_component(component: GameboardComponent):
-	#this is what should be used to handle the removal of a component
 	_delete_from_matrix(component)
 	if component is GameboardTile:
 		component.pre_delete_sequence()

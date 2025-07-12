@@ -43,12 +43,12 @@ func is_zoned_tile(obj: Variant) -> bool:
 		return true
 	return false
 	
-func is_item1_fully_contained_by_item2(item1: GameboardItem, item2: GameboardItem) -> bool:
-	var size1 = item1.get_oriented_size()
-	var size2 = item2.get_oriented_size()
+func is_comp1_fully_contained_by_comp2(comp1: GameboardComponent, comp2: GameboardComponent) -> bool:
+	var size1 = comp1.get_oriented_size()
+	var size2 = comp2.get_oriented_size()
 	
-	var rect1 = Rect2(item1.position - size1 * 0.5, size1)
-	var rect2 = Rect2(item2.position - size2 * 0.5, size2)
+	var rect1 = Rect2(comp1.position - size1 * 0.5, size1)
+	var rect2 = Rect2(comp2.position - size2 * 0.5, size2)
 	
 	return rect2.encloses(rect1)
 	
