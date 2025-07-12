@@ -9,7 +9,6 @@ var max_level: int
 var orientation: Dictionary = {"x_dir": GameConstants.X_DIR, "y_dir": GameConstants.Y_DIR}
 var error_layer_color = GameConstants.GAMEBOARD_ITEM_ERROR_LAYER
 
-
 func get_oriented_size() -> Vector2:
 	if abs(orientation["x_dir"]) == Vector2(0,1):
 		return Vector2(size.y, size.x)
@@ -20,20 +19,23 @@ func set_properties_from(other: GameboardItem):
 	position = other.global_position
 	orientation = other.orientation
 	set_real_orientation()
-	
-	## more to be added
 
-#my elevation is 0 then I share an elevation with between 0 and .5 (the ramp is .5)
-#my elevation is .5 then I share an elevation with between 0 1
-#my elevation is 1 then I share an elevation with between .5 and 1
-#and so on
 func shares_elevation_with(other_item: GameboardItem) -> bool:
+	#my elevation is 0 then I share an elevation with between 0 and .5 (the ramp is .5)
+	#my elevation is .5 then I share an elevation with between 0 1
+	#my elevation is 1 then I share an elevation with between .5 and 1
+	#and so on
 	var min_elevation = min(elevation, other_item.elevation)
 	var max_elevation = max(elevation, other_item.elevation)
 	
 	# They share elevation if their difference is 0.5 or less
 	return (max_elevation - min_elevation) <= 0.5
-	
+
+func is_colliding_with_overlapping_item(item: GameboardItem) -> bool:
+	#under most circumstances this is sufficient to determine if two overlapping items are colliding with each other
+	#exception is the sidewalk where you also need to check if the overlap is full (vs for any other a partiall overlap is still a collision
+	return shares_elevation_with(item)
+
 func can_upgrade() -> bool:
 	if self.max_level == 0: return false
 	return true
@@ -57,7 +59,6 @@ func flip_v():
 	flip_v_orientation()
 	set_real_orientation()
 	
-
 ## Transform Helpers
 func rotate_90_cw_orientation(times: int):
 	orientation["x_dir"] = GameHelper.rotate_vector_90_cw(orientation["x_dir"], times)
@@ -121,7 +122,6 @@ func perform_flip_h():
 func perform_flip_v():
 	##NOTE: this actually changes the scale of the top level node (ex ParkingLot1x1)
 	scale = Vector2(-1, 1) #I make the x negetive as I am changing all pos x coords to be negetive, and vice versa
-
 
 ## Orientations (8)
 func orient1():

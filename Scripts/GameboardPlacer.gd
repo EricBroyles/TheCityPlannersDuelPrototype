@@ -14,7 +14,7 @@ enum ACTIONS {
 @onready var build_phase_ui = %BuildPhase
 @onready var selector = %Selector
 
-var _active_mode: int = GameConstants.MODES.MOUSE_POINTER #this is the mode currently being shown, I need this so I can tell when the UI has requested a change, the GameDATA.gameboard_placer_mode is the mode you want to get to
+var _active_mode: int = GameConstants.MODES.MOUSE_POINTER 
 
 func _ready():
 	handle_placer(_active_mode, ACTIONS.START) #I need this as while the proper gamemode has been selected It has not been properly started
@@ -28,30 +28,26 @@ func _process(_delta: float) -> void:
 		_active_mode = GameData.gameboard_placer_mode
 	handle_placer(_active_mode, ACTIONS.MOVE)
 
-func _unhandled_input(event: InputEvent):
+func _unhandled_input(_event: InputEvent):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		handle_placer(_active_mode, ACTIONS.CLICK)
-	if event: #this is so I dont get a dumb fucking warning
-		pass
 
 func set_placer_component(component: GameboardComponent):
+	#the reason I do not have a body underneath is due to its position staying at 0,0 when moving the node2D version of placer
 	component.name = "PlacerComponent"
 	add_child(component)
-	await get_tree().physics_frame
-	#await component.ready
 
 func get_placer_component() -> GameboardComponent:
-	return get_node("PlacerComponent")
+	if has_node("PlacerComponent"):
+		return get_node("PlacerComponent") as GameboardComponent
+	return null
 
 func clear_placer_component():
-	remove_child(get_node("PlacerComponent"))
-	await get_tree().physics_frame
-	#await get_node("PlacerComponent").tree_exited
+	var placer = get_node("PlacerComponent")
+	remove_child(placer)
 
-## Handle Placer
-#mode: see GameConstants.MODES
-#action: see Actions enum
 func handle_placer(mode: int, action: int):
+	#mode: see GameConstants.MODES, action: see ACTIONS enum
 	match mode:
 		GameConstants.MODES.NONE: 
 			return
@@ -64,7 +60,7 @@ func handle_placer(mode: int, action: int):
 				ACTIONS.MOVE:
 					pass
 				ACTIONS.CLICK:
-					#probaably get the mouse position and then get top component at that spot to select it ...
+					#probably get the mouse position and then get top component at that spot to select it ...
 					pass
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.UPGRADE:
@@ -92,17 +88,16 @@ func handle_placer(mode: int, action: int):
 		GameConstants.MODES.BUY_LAND:
 			match action:
 				ACTIONS.START:
+					selector.open_buy_land_selector() #this needs to run before so the selector is on top of the component.
 					set_placer_component(GameComponents.OWNED_UNZONED_TILE.instantiate())
-					selector.open_buy_land_selector()
 				ACTIONS.END:
 					clear_placer_component()
 					selector.close()
 				ACTIONS.MOVE:
-					selector.position = gameboard.snap_to_boxes(GameData.mouse_position, get_placer_component())
+					selector.position = gameboard.snap_to_grid(GameData.mouse_position, get_placer_component())
 					get_placer_component().position = selector.position
 				ACTIONS.CLICK:
-					var complete: bool = await (get_placer_component() as OwnedUnzoned).attempt_to_buy_land(gameboard)
-					if complete: await get_tree().physics_frame
+					(get_placer_component() as OwnedUnzoned).attempt_to_buy_land(gameboard)
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		#GameConstants.MODES.OWNED_UNZONED:
 			#match action:

@@ -1,11 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://4bb8sc1btoey"]
+[gd_scene load_steps=5 format=3 uid="uid://4bb8sc1btoey"]
 
 [ext_resource type="Texture2D" uid="uid://cu7ijr6j6msdh" path="res://Assets/Walkways/Sidewalk 1 Edge.svg" id="1_13p6w"]
 [ext_resource type="Script" path="res://Scripts/Gameboard Items/Walkway.gd" id="1_noxy4"]
 [ext_resource type="Texture2D" uid="uid://cqv13olyj3fu6" path="res://Assets/Walkways/Crosswalk 1 Edge.svg" id="2_7202x"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0mhw"]
-size = Vector2(14, 198)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1v0f"]
 size = Vector2(14, 198)
@@ -13,15 +10,11 @@ size = Vector2(14, 198)
 [node name="Walkway" type="Node2D"]
 script = ExtResource("1_noxy4")
 
-[node name="MainBodyHitbox" type="Area2D" parent="."]
-unique_name_in_owner = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainBodyHitbox"]
-shape = SubResource("RectangleShape2D_r0mhw")
-
 [node name="CrosswalkHitbox" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 8
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrosswalkHitbox"]
 shape = SubResource("RectangleShape2D_o1v0f")
@@ -33,3 +26,6 @@ texture = ExtResource("1_13p6w")
 [node name="Crosswalk" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture = ExtResource("2_7202x")
+
+[connection signal="area_entered" from="CrosswalkHitbox" to="." method="_on_crosswalk_hitbox_area_entered"]
+[connection signal="area_exited" from="CrosswalkHitbox" to="." method="_on_crosswalk_hitbox_area_exited"]

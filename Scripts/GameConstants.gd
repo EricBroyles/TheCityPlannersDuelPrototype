@@ -9,8 +9,9 @@ const GAMEBOARD_ITEM_ERROR_LAYER: Dictionary = {"hex": "ff0400", "alpha": 180}
 
 ## Gameboard
 const GAMEBOARD_TILE_SIZE: int = 200 #pixels x pixcels for each tile in the gameboard
+const GAMEBOARD_CONTAINER_SIZE: int = 8
 const GAMEBOARD_TILE_SIZE_FT: int = 32; #ft
-const PIXELS_PER_FT = 200 / 32; #6.25 px/ft
+const PIXELS_PER_FT = 200 / 32.0; #6.25 px/ft
 
 const POINTS_PER_R_DEMAND: int = 1100
 const POINTS_PER_C_DEMAND: int = 1100

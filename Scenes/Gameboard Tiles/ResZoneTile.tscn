@@ -1,19 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb7i87b5jo7io"]
+[gd_scene load_steps=3 format=3 uid="uid://bb7i87b5jo7io"]
 
 [ext_resource type="Script" path="res://Scripts/Gameboard Tiles/RZoneTile.gd" id="1_eo2vc"]
 [ext_resource type="Texture2D" uid="uid://dcpqkjprdpnew" path="res://Assets/Gameboard Tiles/White Border Tile 102.svg" id="2_lufmp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xraih"]
-size = Vector2(198, 198)
-
 [node name="ResZoneTile" type="Node2D"]
 script = ExtResource("1_eo2vc")
-
-[node name="MainBodyHitbox" type="Area2D" parent="."]
-unique_name_in_owner = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainBodyHitbox"]
-shape = SubResource("RectangleShape2D_xraih")
 
 [node name="Body" type="ColorRect" parent="."]
 unique_name_in_owner = true

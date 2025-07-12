@@ -1,8 +1,6 @@
 extends GameboardTile
 class_name CZone
 
-@onready var main_body_hitbox = %MainBodyHitbox
-
 func can_buy() -> bool:
 	#only checks for a single tile
 	if GameData.c_demand < 1: return false

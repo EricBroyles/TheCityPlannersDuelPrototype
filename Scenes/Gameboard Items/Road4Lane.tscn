@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://crjqxfekvmn43"]
+[gd_scene load_steps=8 format=3 uid="uid://crjqxfekvmn43"]
 
 [ext_resource type="Script" path="res://Scripts/Gameboard Items/Road4Lane.gd" id="1_1kv5c"]
 [ext_resource type="Texture2D" uid="uid://cxywhsyeot1wj" path="res://Assets/Roads/Straights/Road 4 Lane.svg" id="2_pxwwp"]
 [ext_resource type="Texture2D" uid="uid://4mw8x4u6ydyl" path="res://Assets/Roads/Straights/Road Parking.svg" id="3_mfmer"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sc860"]
-size = Vector2(398, 198)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gq2cr"]
 size = Vector2(400, 16)
@@ -22,43 +19,35 @@ size = Vector2(86, 200)
 [node name="Road4Lane" type="Node2D"]
 script = ExtResource("1_1kv5c")
 
-[node name="MainBodyHitbox" type="Area2D" parent="."]
-unique_name_in_owner = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainBodyHitbox"]
-shape = SubResource("RectangleShape2D_sc860")
-
 [node name="TopCrosswalkHitbox" type="Area2D" parent="."]
 position = Vector2(0, -100)
-collision_layer = 8
-collision_mask = 8
+collision_layer = 2
+collision_mask = 2
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopCrosswalkHitbox"]
 shape = SubResource("RectangleShape2D_gq2cr")
 
 [node name="BottomCrosswalkHitbox" type="Area2D" parent="."]
 position = Vector2(0, 100)
-collision_layer = 8
-collision_mask = 8
+collision_layer = 2
+collision_mask = 2
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCrosswalkHitbox"]
 shape = SubResource("RectangleShape2D_b33y6")
 
-[node name="LeftParkingHitbox" type="Area2D" parent="."]
+[node name="LeftCurtainHitbox" type="Area2D" parent="." groups=["curtain_detectors"]]
 unique_name_in_owner = true
-collision_layer = 4
-collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftParkingHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCurtainHitbox"]
 position = Vector2(-157, 0)
 shape = SubResource("RectangleShape2D_5faf8")
 
-[node name="RightParkingHitbox" type="Area2D" parent="."]
+[node name="RightCurtainHitbox" type="Area2D" parent="." groups=["curtain_detectors"]]
 unique_name_in_owner = true
-collision_layer = 8
-collision_mask = 12
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightParkingHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCurtainHitbox"]
 position = Vector2(157, 0)
 shape = SubResource("RectangleShape2D_01mbo")
 
@@ -78,5 +67,7 @@ position = Vector2(136, 0)
 texture = ExtResource("3_mfmer")
 flip_h = true
 
-[connection signal="area_entered" from="LeftParkingHitbox" to="." method="_on_left_parking_hitbox_area_entered"]
-[connection signal="area_entered" from="RightParkingHitbox" to="." method="_on_right_parking_hitbox_area_entered"]
+[connection signal="area_entered" from="LeftCurtainHitbox" to="." method="_on_left_curtain_hitbox_area_entered"]
+[connection signal="area_exited" from="LeftCurtainHitbox" to="." method="_on_left_curtain_hitbox_area_exited"]
+[connection signal="area_entered" from="RightCurtainHitbox" to="." method="_on_right_curtain_hitbox_area_entered"]
+[connection signal="area_exited" from="RightCurtainHitbox" to="." method="_on_right_curtain_hitbox_area_exited"]

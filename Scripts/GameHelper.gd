@@ -1,11 +1,9 @@
 extends Node
 
-## When buying somthing, if not able to buy the full amount still buy the max amount allowed. return this amount bought
-
-# type: "r", "c", "i"
-# amount: int of number of demand units desired
-#this stays in helper as it is used by UI (technically I could move it, i dont want to tho) (it would get confusing to have it inside the class and i would have to create an instance inside the ui..)
 func buy_demand(type: String, amount: int) -> int:
+	# type: "r", "c", "i"
+	# amount: int of number of demand units desired
+	#this stays in helper as it is used by UI (technically I could move it, i dont want to tho) (it would get confusing to have it inside the class and i would have to create an instance inside the ui..)
 	var cost_per_demand_unit: int
 	match type:
 		"r":
@@ -33,39 +31,9 @@ func buy_demand(type: String, amount: int) -> int:
 			GameData.i_demand += amount_to_buy
 
 	return amount_to_buy
-	
-	
 
-
-#amount is number of tiles of land
-#func buy_land(amount: int) -> int:
-	#var amount_land_to_buy = min(amount, amount_land_tiles_can_buy())
-	#var total_cost = amount_land_to_buy * GameData.cost_per_land_tile
-#
-	#GameData.money -= total_cost
-#
-	#return amount_land_to_buy
-
-#this is used for when the player unzones land and then gets those demand units (this is not refunding the points purchase the player made to get the demand)
-#tile: either a RZone, CZone, IZone tile
-#func refund_demand_units(tile: GameboardTile, amount: int):
-	#if tile is RZone:
-		#GameData.r_demand += amount
-	#elif tile is CZone:
-		#GameData.c_demand += amount
-	#elif tile is IZone:
-		#GameData.i_demand += amount
-	#elif tile is OwnedUnzoned:
-		#return
-	#else:
-		#push_error("Did Not Refund ---- due to unknown refund demand tile : ", tile)
-
-
-
-
-
-#if it is zoned, then it must also be owned
 func is_owned_tile(obj: Variant) -> bool:
+	#if it is zoned, then it must also be owned
 	if obj is OwnedUnzoned or obj is RZone or obj is CZone or obj is IZone:
 		return true
 	return false
@@ -75,10 +43,15 @@ func is_zoned_tile(obj: Variant) -> bool:
 		return true
 	return false
 	
+func is_item1_fully_contained_by_item2(item1: GameboardItem, item2: GameboardItem) -> bool:
+	var size1 = item1.get_oriented_size()
+	var size2 = item2.get_oriented_size()
 	
+	var rect1 = Rect2(item1.position - size1 * 0.5, size1)
+	var rect2 = Rect2(item2.position - size2 * 0.5, size2)
 	
+	return rect2.encloses(rect1)
 	
-
 func get_closest_position(target_position: Vector2, positions: Array) -> Vector2:
 	var closest_position: Vector2 = Vector2.INF
 	var min_distance := INF
@@ -91,10 +64,9 @@ func get_closest_position(target_position: Vector2, positions: Array) -> Vector2
 			
 	return closest_position
 
-
-func is_index_in_matrix(index: Vector2, matrix: Array[Array]) -> bool:
-	var r := int(index.x)
-	var c := int(index.y)
+func is_coord_in_matrix(coord: Vector2, matrix: Array[Array]) -> bool:
+	var r := int(coord.x)
+	var c := int(coord.y)
 	
 	#check row bounds
 	if r < 0 or r >= matrix.size():
@@ -106,12 +78,6 @@ func is_index_in_matrix(index: Vector2, matrix: Array[Array]) -> bool:
 	
 	return true
 	
-func get_unique_array(arr: Array) -> Array:
-	var dict := {}
-	for a in arr:
-		dict[a] = 1
-	return dict.keys()
-	
 func rotate_vector_90_cw(vec: Vector2, times: int) -> Vector2:
 	match times % 4:
 		0:return vec
@@ -120,7 +86,6 @@ func rotate_vector_90_cw(vec: Vector2, times: int) -> Vector2:
 		3:return Vector2(vec.y, -vec.x)
 	return vec # fallback (should never reach here)
 	
-
 func convert_mph_to_px_per_sec(mph: float) -> float:
 	return mph * 5280 * GameConstants.GAMEBOARD_TILE_SIZE / GameConstants.GAMEBOARD_TILE_SIZE_FT / 3600
 	
@@ -136,5 +101,12 @@ func convert_mph_to_px_per_sec(mph: float) -> float:
 		#if find_izone_in_tree(child):
 			#return true
 	#return false
+	
+#func get_unique_array(arr: Array) -> Array:
+	### I FOUND A BETTER WAY BY STORING THE VALUE AT THE KEY, thenfor all unique keys get teh values and place in a list preserving the types without needing another loop
+	#var dict := {}
+	#for a in arr:
+		#dict[a] = 1
+	#return dict.keys()
 	
 	

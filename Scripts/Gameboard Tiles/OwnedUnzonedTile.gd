@@ -1,36 +1,34 @@
 extends GameboardTile
 class_name OwnedUnzoned
 
-@onready var main_body_hitbox = %MainBodyHitbox
+static func create() -> OwnedUnzoned:
+	return GameComponents.OWNED_UNZONED_TILE.instantiate()
+	
+func clone() -> OwnedUnzoned:
+	var new_tile: OwnedUnzoned = OwnedUnzoned.create()
+	new_tile.set_properties_from(self)
+	return new_tile
 
 func attempt_to_buy_land(gameboard: Gameboard) -> bool:
-	print("attempting to buy land ", gameboard.get_number_of_tiles())
-	if not self.can_buy(): print("a"); return false 
-	if not gameboard.is_fully_in_bounds(self): print("b"); return false
-	await get_tree().process_frame
-	for comp in gameboard.get_components_main_body_is_overlapping(self):
-		if GameHelper.is_owned_tile(comp): print("c"); return false #I already own this tile
-		
-	var new_tile: OwnedUnzoned = GameComponents.OWNED_UNZONED_TILE.instantiate()
-	new_tile.set_properties_from(self) #full duplicate of self
-	print("@@@@@@@@@ ADDING")
+	if not self.can_buy(): return false 
+	if not gameboard.is_fully_in_bounds(self): return false
+	for tile in gameboard.get_tiles_overlapping_with(self):
+		if GameHelper.is_owned_tile(tile): return false
+	var new_tile: OwnedUnzoned = self.clone()
 	gameboard.add_component(new_tile)
-	print("--------- ADDING")
 	new_tile.buy()
 	return true
 	
 func attempt_to_unzone(gameboard: Gameboard) -> bool:
 	if not gameboard.is_fully_in_bounds(self): return false
-	for comp in gameboard.get_components_main_body_is_overlapping(self):
-		if GameHelper.is_zoned_tile(comp): 
-			gameboard.delete_component(comp) #delete the zoned tile (this handles the refund as it calls pre_delete_sequence)
-			
-			var new_tile: OwnedUnzoned = GameComponents.OWNED_UNZONED_TILE.instantiate() 
-			new_tile.set_properties_from(self) #full duplicate of self
+	for tile in gameboard.get_tiles_overlapping_with(self):
+		if GameHelper.is_zoned_tile(tile):
+			gameboard.delete_component(tile) #this handles the refund as it calls pre_delete_sequence
+			var new_tile: OwnedUnzoned = self.clone()
 			gameboard.add_component(new_tile)
 			return true
 	return false
-
+	
 func can_buy() -> bool:
 	#only checks for a single tile
 	if GameData.money < GameData.cost_per_land_tile: return false
