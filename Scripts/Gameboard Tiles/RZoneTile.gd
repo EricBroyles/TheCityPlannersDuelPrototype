@@ -6,8 +6,12 @@ static func create() -> RZone:
 	
 func clone() -> RZone:
 	var new_tile: RZone = RZone.create()
-	new_tile.set_properties_from(self)
+	new_tile._set_properties_from(self)
 	return new_tile
+	
+func delete(from_gameboard: Gameboard):
+	refund()
+	from_gameboard.delete_component(self)
 	
 func attempt_to_zone(gameboard: Gameboard) -> bool:
 	if not self.can_buy(): return false
@@ -15,12 +19,15 @@ func attempt_to_zone(gameboard: Gameboard) -> bool:
 	for tile in gameboard.get_tiles_overlapping_with(self):
 		if GameHelper.is_owned_tile(tile) and not tile is RZone:
 			if tile is OwnedUnzoned: (tile as OwnedUnzoned).do_refund = false
-			gameboard.delete_component(tile) #this handles the refund as it calls pre_delete_sequence
+			tile.delete(gameboard) 
 			var new_tile: RZone = self.clone()
 			gameboard.add_component(new_tile)
 			new_tile.buy()
 			return true
 	return false
+
+func get_class_name() -> String:
+	return "RZone"
 
 func can_buy() -> bool:
 	if GameData.r_demand < 1: return false
@@ -34,10 +41,6 @@ func buy():
 	
 func batch_buy(amount: int):
 	GameData.r_demand -= amount
-	
-func pre_delete_sequence():
-	super()
-	refund()
 	
 func refund():
 	GameData.r_demand += 1

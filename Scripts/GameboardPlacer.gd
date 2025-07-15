@@ -32,6 +32,10 @@ func _process(_delta: float) -> void:
 func _unhandled_input(_event: InputEvent):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		handle_placer(_active_mode, ACTIONS.CLICK)
+		
+	if _event is InputEventKey and _event.pressed:
+		if _event.keycode == KEY_O:  # Replace with event.unicode == "o" if you want lowercase "o"
+			gameboard.display_items()
 
 func set_placer_component(component: GameboardComponent):
 	#the reason I do not have a body underneath is due to its position staying at 0,0 when moving the node2D version of placer
@@ -49,6 +53,8 @@ func move_placer_component_to(point: Vector2):
 func clear_placer_component():
 	var placer = get_node(_PLACER_COMPONENT_NAME)
 	remove_child(placer)
+	
+	print(gameboard.count_tiles(), "  ", gameboard.count_items() )
 
 func handle_placer(mode: int, action: int):
 	#mode: see GameConstants.MODES, action: see ACTIONS enum
@@ -109,7 +115,6 @@ func handle_placer(mode: int, action: int):
 					set_placer_component(OwnedUnzoned.create())
 				ACTIONS.END:
 					clear_placer_component()
-					selector.close()
 				ACTIONS.MOVE:
 					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
 				ACTIONS.CLICK:
@@ -121,7 +126,6 @@ func handle_placer(mode: int, action: int):
 					set_placer_component(RZone.create())
 				ACTIONS.END:
 					clear_placer_component()
-					selector.close()
 				ACTIONS.MOVE:
 					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
 				ACTIONS.CLICK:
@@ -133,7 +137,6 @@ func handle_placer(mode: int, action: int):
 					set_placer_component(CZone.create())
 				ACTIONS.END:
 					clear_placer_component()
-					selector.close()
 				ACTIONS.MOVE:
 					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
 				ACTIONS.CLICK:
@@ -145,19 +148,31 @@ func handle_placer(mode: int, action: int):
 					set_placer_component(IZone.create())
 				ACTIONS.END:
 					clear_placer_component()
-					selector.close()
 				ACTIONS.MOVE:
 					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
 				ACTIONS.CLICK:
 					(get_placer_component() as IZone).attempt_to_zone(gameboard)
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+		GameConstants.MODES.WALKWAY:
+			match action:
+				ACTIONS.START:
+					set_placer_component(Walkway.create(Walkway.SETUP.SIDEWALK))
+					build_phase_ui.open_item_placer_buttons(false, true, true) 
+				ACTIONS.END:
+					clear_placer_component()
+					build_phase_ui.close_item_placer_buttons()
+				ACTIONS.MOVE:
+					move_placer_component_to(gameboard.snap_size_to_grid(GameData.mouse_position, (get_placer_component() as Walkway).get_oriented_grid_size()))
+				ACTIONS.CLICK:
+					(get_placer_component() as Walkway).attempt_to_place(gameboard)
+				ACTIONS.ROTATE_90_CW:
+					(get_placer_component() as Walkway).rotate_90_cw()
+				ACTIONS.FLIP_V:
+					(get_placer_component() as Walkway).flip_v()
+				ACTIONS.FLIP_H:
+					(get_placer_component() as Walkway).flip_h()
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 
-
-
-
-
-
-	
 
 
 ## Handle Placer

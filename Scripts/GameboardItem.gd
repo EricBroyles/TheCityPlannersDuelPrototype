@@ -10,34 +10,46 @@ class_name GameboardItem
 #•	Layer 7: People
 #•	Layer Last: Parking Symbol, junction level symbols, curve level items, merge symbols
 
-var size: Vector2 #the size to begin with
-var elevation: float #Elevation: 0 base, .5 (halfway), 1 (up a level) (use this for determining item collisions not z-index, as z-index may vary slightly between items that have the same elevation)
+var size: Vector2 #start size
+var elevation: float #0, .5 (ramp), 1, ... (use this for determining item collisions not z-index, as z-index may vary slightly between items that have the same elevation)
 var level: int #Levels: 0 means that it does not have levels, otherwise starts at level 1
 var max_level: int
 
 var orientation: Dictionary = {"x_dir": GameConstants.X_DIR, "y_dir": GameConstants.Y_DIR}
 var error_layer_color = GameConstants.GAMEBOARD_ITEM_ERROR_LAYER
 
+func delete(from_gameboard: Gameboard):
+	from_gameboard.delete_component(self)
+	
+func attempt_to_delete(from_gameboard: Gameboard) -> bool:
+	if not can_delete(): return false
+	delete(from_gameboard)
+	return true
+	
+func upgrade():
+	return
+	
+func attempt_to_upgrade() -> bool:
+	if not can_upgrade(): return false
+	upgrade()
+	return true
+
+func _set_properties_from(other: GameboardItem):
+	position = other.global_position
+	orientation = other.orientation
+	set_real_orientation()
+
 func get_oriented_size() -> Vector2:
 	if abs(orientation["x_dir"]) == Vector2(0,1):
 		return Vector2(size.y, size.x)
 	return size
 
-func set_properties_from(other: GameboardItem):
-	#use for duplication
-	position = other.global_position
-	orientation = other.orientation
-	set_real_orientation()
-
 func shares_elevation_with(other_item: GameboardItem) -> bool:
 	#my elevation is 0 then I share an elevation with between 0 and .5 (the ramp is .5)
 	#my elevation is .5 then I share an elevation with between 0 1
-	#my elevation is 1 then I share an elevation with between .5 and 1
-	#and so on
+	#my elevation is 1 then I share an elevation with between .5 and 1, ...
 	var min_elevation = min(elevation, other_item.elevation)
 	var max_elevation = max(elevation, other_item.elevation)
-	
-	# They share elevation if their difference is 0.5 or less
 	return (max_elevation - min_elevation) <= 0.5
 
 func is_colliding_with_overlapping_item(item: GameboardItem) -> bool:
@@ -46,9 +58,6 @@ func is_colliding_with_overlapping_item(item: GameboardItem) -> bool:
 func can_upgrade() -> bool:
 	if self.max_level == 0: return false
 	return true
-	
-func upgrade():
-	return
 	
 func can_delete() -> bool:
 	return true

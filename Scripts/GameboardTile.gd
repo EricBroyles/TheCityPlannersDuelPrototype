@@ -6,7 +6,7 @@ class_name GameboardTile
 func get_oriented_size() -> Vector2:
 	return Vector2(GameConstants.GAMEBOARD_TILE_SIZE, GameConstants.GAMEBOARD_TILE_SIZE)
 
-func set_properties_from(other: GameboardTile):
+func _set_properties_from(other: GameboardTile):
 	self.position = other.global_position
 	
 	

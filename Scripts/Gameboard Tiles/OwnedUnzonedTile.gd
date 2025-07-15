@@ -8,8 +8,12 @@ static func create() -> OwnedUnzoned:
 	
 func clone() -> OwnedUnzoned:
 	var new_tile: OwnedUnzoned = OwnedUnzoned.create()
-	new_tile.set_properties_from(self)
+	new_tile._set_properties_from(self)
 	return new_tile
+	
+func delete(from_gameboard: Gameboard):
+	if do_refund: refund()
+	from_gameboard.delete_component(self)
 
 func attempt_to_buy_land(gameboard: Gameboard) -> bool:
 	if not self.can_buy(): return false 
@@ -25,11 +29,14 @@ func attempt_to_unzone(gameboard: Gameboard) -> bool:
 	if not gameboard.is_fully_in_bounds(self): return false
 	for tile in gameboard.get_tiles_overlapping_with(self):
 		if GameHelper.is_zoned_tile(tile):
-			gameboard.delete_component(tile) #this handles the refund as it calls pre_delete_sequence
+			tile.delete(gameboard) 
 			var new_tile: OwnedUnzoned = self.clone()
 			gameboard.add_component(new_tile)
 			return true
 	return false
+	
+func get_class_name() -> String:
+	return "OwnedUnzoned"
 	
 func can_buy() -> bool:
 	if GameData.money < GameData.cost_per_land_tile: return false
@@ -43,10 +50,6 @@ func buy():
 	
 func batch_buy(amount: int):
 	GameData.money -= amount * GameData.cost_per_land_tile
-	
-func pre_delete_sequence():
-	super()
-	if do_refund: refund()
 
 func refund():
 	GameData.money += GameData.cost_per_land_tile

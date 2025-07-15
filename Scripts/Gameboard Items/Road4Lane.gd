@@ -21,7 +21,7 @@ var is_parking: bool
 var left_parking_active: bool
 var right_parking_active: bool
 
-func setup(parking_status: int) -> void:
+func _setup(parking_status: int) -> void:
 	self.size = Vector2(SIZE_IN_TILES.y, SIZE_IN_TILES.x) * GameConstants.GAMEBOARD_TILE_SIZE 
 	self.elevation = 0 
 	self.level = 0 
@@ -30,10 +30,10 @@ func setup(parking_status: int) -> void:
 	#notice how left and right parking is set at _ready
 	is_parking = true if parking_status == SETUP.PARKING else false
 	
-func set_properties_from(other: GameboardItem):
+func _set_properties_from(other: GameboardItem):
 	super(other) #this sets key info like position and orientation
 	var parking_status: int = SETUP.PARKING if other.is_parking else SETUP.NO_PARKING
-	setup(parking_status)
+	_setup(parking_status)
 	
 func _ready():
 	z_index = ITEM_Z
@@ -101,9 +101,9 @@ func can_delete() -> bool:
 	if GameData.money >= get_money_delete_cost(): return true
 	return false
 	
-func pre_delete_sequence():
-	super()
-	GameData.money -= get_money_delete_cost()
+#func pre_delete_sequence():
+	#super()
+	#GameData.money -= get_money_delete_cost()
 
 func can_buy() -> bool:
 	if GameData.money < get_money_buy_cost(): return false

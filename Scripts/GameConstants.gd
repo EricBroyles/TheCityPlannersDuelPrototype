@@ -20,7 +20,7 @@ const POINTS_PER_I_DEMAND: int = 1100
 #cost of 2 lane of road per tile
 const MONEY_PER_LAND_TILE: int = 250
 
-const MONEY_PER_WALKWAY: int = int(2.5 * GAMEBOARD_TILE_SIZE_FT * 6) #width 2.5 x 32 length ft^2 at 6$ a square foot = 480
+const MONEY_PER_WALKWAY: int = int(2.5 * GAMEBOARD_TILE_SIZE_FT * 6) #width 2.5 x 32 length ft^2 at 6$ a square foot = $480/walkway
 
 const MONEY_PER_ROAD_2_LANE: int = int(625000 / 5280.0 * GAMEBOARD_TILE_SIZE_FT) #$3800/tile
 const MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN: int = int(5000 / 5280.0 *  GAMEBOARD_TILE_SIZE_FT) #$30/tile per turn

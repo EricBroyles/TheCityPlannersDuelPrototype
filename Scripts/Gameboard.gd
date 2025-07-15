@@ -57,15 +57,43 @@ func get_gameboard_size() -> Vector2:
 func get_gameboard_center() -> Vector2:
 	return Vector2(int(GameData.gameboard_c * GameConstants.GAMEBOARD_TILE_SIZE / 2.0), int(GameData.gameboard_r * GameConstants.GAMEBOARD_TILE_SIZE / 2.0))
 
-func get_number_of_components_in_tiles() -> int:
+func count_tiles() -> int:
 	return gameboard_tiles.get_child_count()
 	
-func get_number_of_components_in_items() -> int:
+func count_items() -> int:
 	return gameboard_items.get_child_count()
 	
-func get_number_of_components() -> int:
-	return get_number_of_components_in_tiles() + get_number_of_components_in_items()
+func count_components() -> int:
+	return count_tiles() + count_items()
+	
+func display_items():
+	var tile_size := 25  # e.g., 8
 
+	for g_r in GameData.gameboard_r:
+		for g_c in GameData.gameboard_c:
+			print("R:", g_r, " --- C:", g_c)
+
+			var start_row := g_r * tile_size
+			var end_row := start_row + tile_size
+			var start_col := g_c * tile_size
+			var end_col := start_col + tile_size
+
+			for row in range(start_row, end_row):
+				var line := ""
+				for col in range(start_col, end_col):
+					var items := (matrix[row][col] as GameboardContainer).get_items()
+					if items.size() > 0:
+						var labels := []
+						for item in items:
+							labels.append(item.get_class_name()) 
+						line += str(labels)
+					else:
+						line += " []"
+					line += " "
+				line += ""
+				print(line)
+			print("") 
+	
 func snap_to_grid(requested_position: Vector2, component: GameboardComponent) -> Vector2:
 	#assumes that components position pointer is at their center	
 	#sets the position of the component to the proper location to keep it snaped to boxes
@@ -182,22 +210,23 @@ func get_items_colliding_with(item: GameboardItem) -> Array[GameboardItem]:
 		if item.is_colliding_with_overlapping_item(overlap_item):
 			colliding_items.append(overlap_item)
 	return colliding_items
+	
+func is_item_overlapping_owned_tile(item: GameboardItem) -> bool:
+	for tile in get_tiles_overlapping_with(item):
+		if GameHelper.is_owned_tile(tile): return true
+	return false
 
 func attempt_to_upgrade_item_at(point: Vector2) -> bool:
-	#Attempting to UPGRADE the top most (in z) GameboardItem
 	var item_to_upgrade: GameboardItem = find_top_item_at(point)
-	if item_to_upgrade != null and item_to_upgrade.can_upgrade():
-		item_to_upgrade.upgrade() #I am upgrading a GameboardItem that can upgrade and is at the top z idex
-		return true
-	return false
+	if item_to_upgrade == null: return false
+	var did_upgrade: bool = item_to_upgrade.attempt_to_upgrade()
+	return did_upgrade
 	
 func attempt_to_delete_item_at(point: Vector2) -> bool:
-	#Attempting to DELETE the top most (in z) GameboardItem
 	var item_to_delete: GameboardItem = find_top_item_at(point)
-	if item_to_delete != null and item_to_delete.can_delete():
-		delete_component(item_to_delete) #I am deleting a GameboardItem that can delete and is at the top z idex
-		return true
-	return false
+	if item_to_delete == null: return false
+	var did_delete: bool = item_to_delete.attempt_to_delete(self)
+	return did_delete
 
 func add_component(component: GameboardComponent):
 	_add_to_matrix(component)
@@ -211,10 +240,8 @@ func add_component(component: GameboardComponent):
 func delete_component(component: GameboardComponent):
 	_delete_from_matrix(component)
 	if component is GameboardTile:
-		component.pre_delete_sequence()
 		gameboard_tiles.remove_child(component)
 	elif component is GameboardItem:
-		component.pre_delete_sequence()
 		gameboard_items.remove_child(component)
 	else:
 		push_error("Failed to remove component: ", component, " from gameboard as it is not type Tile or Item")
