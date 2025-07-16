@@ -35,8 +35,17 @@ func delete(from_gameboard: Gameboard):
 func attempt_to_place(gameboard: Gameboard) -> bool:
 	if not self.can_buy(): return false
 	if not gameboard.is_fully_in_bounds(self): return false
-	if not gameboard.is_land_fully_owned(self) : return false 
-	if not gameboard.get_items_colliding_with(self).is_empty(): return false
+	if not gameboard.is_land_fully_owned(self) : return false
+
+	var change_existing_road_to_parking: bool = false
+	for colliding_item in gameboard.get_items_colliding_with(self):
+		if colliding_item is Road4Lane and colliding_item.is_parking != self.is_parking and GameHelper.is_comp1_fully_contained_by_comp2(self, colliding_item):
+			(colliding_item as Road4Lane).is_parking = self.is_parking
+			(colliding_item as Road4Lane).config_parking()
+			change_existing_road_to_parking = true; 
+		else: return false
+	if change_existing_road_to_parking: return true
+	
 	var new_road: Road4Lane = self.clone()
 	gameboard.add_component(new_road)
 	new_road.buy()
