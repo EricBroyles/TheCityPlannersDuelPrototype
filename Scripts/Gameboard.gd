@@ -212,16 +212,18 @@ func get_items_colliding_with(item: GameboardItem) -> Array[GameboardItem]:
 	return colliding_items
 	
 func is_land_fully_owned(item: GameboardItem) -> bool:
-	#is_item_fully_overlapping_owned_tiles
-	for tile in get_tiles_overlapping_with(item):
-		if not GameHelper.is_owned_tile(tile): return false
+	#all tiles are owned_tiles (I do not get base_tiles)
+	var size_in_tiles: Vector2 = round(item.get_oriented_size() / GameConstants.GAMEBOARD_TILE_SIZE)
+	var num_tiles_occupied: int = int(size_in_tiles.x * size_in_tiles.y)
+	if len(get_tiles_overlapping_with(item)) < num_tiles_occupied: return false
 	return true
 	
 func is_land_partially_owned(item: GameboardItem) -> bool:
-	#is_item_overlapping_a_owned_tile: best used for walkways
-	for tile in get_tiles_overlapping_with(item):
-		if GameHelper.is_owned_tile(tile): return true
-	return false
+	#all tiles are owned_tiles (I do not get base_tiles)
+	#I am not overlapping any tile so I am overlapping only basetile or nothing
+	if get_tiles_overlapping_with(item).is_empty(): return false 
+	return true
+
 
 func attempt_to_upgrade_item_at(point: Vector2) -> bool:
 	var item_to_upgrade: GameboardItem = find_top_item_at(point)
