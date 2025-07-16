@@ -211,7 +211,14 @@ func get_items_colliding_with(item: GameboardItem) -> Array[GameboardItem]:
 			colliding_items.append(overlap_item)
 	return colliding_items
 	
-func is_item_overlapping_owned_tile(item: GameboardItem) -> bool:
+func is_land_fully_owned(item: GameboardItem) -> bool:
+	#is_item_fully_overlapping_owned_tiles
+	for tile in get_tiles_overlapping_with(item):
+		if not GameHelper.is_owned_tile(tile): return false
+	return true
+	
+func is_land_partially_owned(item: GameboardItem) -> bool:
+	#is_item_overlapping_a_owned_tile: best used for walkways
 	for tile in get_tiles_overlapping_with(item):
 		if GameHelper.is_owned_tile(tile): return true
 	return false

@@ -4,8 +4,8 @@ extends Node
 var gameboard_placer_mode: int = GameConstants.MODES.MOUSE_POINTER
 
 ## Gameboard
-var gameboard_r: int = 4
-var gameboard_c: int = 4
+var gameboard_r: int = 10
+var gameboard_c: int = 20
 
 ## Mouse Position
 var mouse_position: Vector2

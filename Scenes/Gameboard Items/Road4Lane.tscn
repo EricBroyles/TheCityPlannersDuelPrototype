@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://4mw8x4u6ydyl" path="res://Assets/Roads/Straights/Road Parking.svg" id="3_mfmer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gq2cr"]
-size = Vector2(400, 16)
+size = Vector2(240, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b33y6"]
-size = Vector2(400, 16)
+size = Vector2(240, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5faf8"]
 size = Vector2(86, 200)
@@ -26,6 +26,7 @@ collision_mask = 2
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopCrosswalkHitbox"]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_gq2cr")
 
 [node name="BottomCrosswalkHitbox" type="Area2D" parent="."]

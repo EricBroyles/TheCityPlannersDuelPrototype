@@ -34,8 +34,14 @@ func _unhandled_input(_event: InputEvent):
 		handle_placer(_active_mode, ACTIONS.CLICK)
 		
 	if _event is InputEventKey and _event.pressed:
+		#shift and o
 		if _event.keycode == KEY_O:  # Replace with event.unicode == "o" if you want lowercase "o"
-			gameboard.display_items()
+			var n: int = 1
+			for item in gameboard.gameboard_items.get_children():
+				print("ITEM: ", n, " ", item, " Pos: ", item.position, " SIZE: ", item.get_oriented_size())
+				n+= 1
+				
+			print("MY ITEM: ", get_placer_component(), " ", get_placer_component().position, " SIZE: ", get_placer_component().get_oriented_size())
 
 func set_placer_component(component: GameboardComponent):
 	#the reason I do not have a body underneath is due to its position staying at 0,0 when moving the node2D version of placer
@@ -54,7 +60,7 @@ func clear_placer_component():
 	var placer = get_node(_PLACER_COMPONENT_NAME)
 	remove_child(placer)
 	
-	print(gameboard.count_tiles(), "  ", gameboard.count_items() )
+	
 
 func handle_placer(mode: int, action: int):
 	#mode: see GameConstants.MODES, action: see ACTIONS enum
@@ -164,7 +170,14 @@ func handle_placer(mode: int, action: int):
 				ACTIONS.MOVE:
 					move_placer_component_to(gameboard.snap_size_to_grid(GameData.mouse_position, (get_placer_component() as Walkway).get_oriented_grid_size()))
 				ACTIONS.CLICK:
-					(get_placer_component() as Walkway).attempt_to_place(gameboard)
+					var mouse_location: Vector2 = GameData.mouse_position
+					var did_place: bool = (get_placer_component() as Walkway).attempt_to_place(gameboard)
+					if did_place and gameboard.count_items() > 40:
+						print("PLACED WALKWAY. Component Position: ", get_placer_component().position, " --- NUM WALKWAYS: ", gameboard.count_items(), " of MAX NUM: 40",   )
+						print("MOUSE LOCATION: ", mouse_location)
+					elif did_place:
+						print("Placed", gameboard.count_items())
+					
 				ACTIONS.ROTATE_90_CW:
 					(get_placer_component() as Walkway).rotate_90_cw()
 				ACTIONS.FLIP_V:
@@ -172,7 +185,25 @@ func handle_placer(mode: int, action: int):
 				ACTIONS.FLIP_H:
 					(get_placer_component() as Walkway).flip_h()
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
-
+		GameConstants.MODES.ROAD_4_LANE:
+			match action:
+				ACTIONS.START:
+					set_placer_component(Road4Lane.create(Road4Lane.SETUP.NO_PARKING))
+					build_phase_ui.open_item_placer_buttons(false, true, true) 
+				ACTIONS.END:
+					clear_placer_component()
+					build_phase_ui.close_item_placer_buttons()
+				ACTIONS.MOVE:
+					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
+				ACTIONS.CLICK:
+					(get_placer_component() as Road4Lane).attempt_to_place(gameboard)
+				ACTIONS.ROTATE_90_CW:
+					(get_placer_component() as Road4Lane).rotate_90_cw()
+				ACTIONS.FLIP_V:
+					(get_placer_component() as Road4Lane).flip_v()
+				ACTIONS.FLIP_H:
+					(get_placer_component() as Road4Lane).flip_h()
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 
 
 ## Handle Placer

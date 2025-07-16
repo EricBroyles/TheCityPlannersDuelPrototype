@@ -15,7 +15,8 @@ var elevation: float #0, .5 (ramp), 1, ... (use this for determining item collis
 var level: int #Levels: 0 means that it does not have levels, otherwise starts at level 1
 var max_level: int
 
-var orientation: Dictionary = {"x_dir": GameConstants.X_DIR, "y_dir": GameConstants.Y_DIR}
+var x_dir: Vector2 = GameConstants.X_DIR
+var y_dir: Vector2 = GameConstants.Y_DIR
 var error_layer_color = GameConstants.GAMEBOARD_ITEM_ERROR_LAYER
 
 func delete(from_gameboard: Gameboard):
@@ -36,11 +37,12 @@ func attempt_to_upgrade() -> bool:
 
 func _set_properties_from(other: GameboardItem):
 	position = other.global_position
-	orientation = other.orientation
+	x_dir = other.x_dir
+	y_dir = other.y_dir
 	set_real_orientation()
 
 func get_oriented_size() -> Vector2:
-	if abs(orientation["x_dir"]) == Vector2(0,1):
+	if abs(x_dir) == GameConstants.Y_DIR:
 		return Vector2(size.y, size.x)
 	return size
 
@@ -77,22 +79,19 @@ func flip_v():
 	
 ## Transform Helpers
 func rotate_90_cw_orientation(times: int):
-	orientation["x_dir"] = GameHelper.rotate_vector_90_cw(orientation["x_dir"], times)
-	orientation["y_dir"] = GameHelper.rotate_vector_90_cw(orientation["y_dir"], times)
+	x_dir = GameHelper.rotate_vector_90_cw(x_dir, times)
+	y_dir = GameHelper.rotate_vector_90_cw(y_dir, times)
 	
 func flip_h_orientation():
-	orientation["x_dir"] = Vector2(orientation["x_dir"].x, -1 * orientation["x_dir"].y)
-	orientation["y_dir"] = Vector2(orientation["y_dir"].x, -1 * orientation["y_dir"].y)
+	x_dir = Vector2(x_dir.x, -1 * x_dir.y)
+	y_dir = Vector2(y_dir.x, -1 * y_dir.y)
 	
 func flip_v_orientation():
-	orientation["x_dir"] = Vector2(-1 * orientation["x_dir"].x, orientation["x_dir"].y)
-	orientation["y_dir"] = Vector2(-1 * orientation["y_dir"].x, orientation["y_dir"].y)
+	x_dir = Vector2(-1 * x_dir.x, x_dir.y)
+	y_dir = Vector2(-1 * y_dir.x, y_dir.y)
 
 func set_real_orientation():
 	perform_reset_orientation()
-	
-	var x_dir = orientation["x_dir"]
-	var y_dir = orientation["y_dir"]
 	
 	#8 possible orientations of the axis
 	#at original orientation
@@ -121,7 +120,8 @@ func set_real_orientation():
 		orient8()
 
 func reset_orientation():
-	orientation = {"x_dir": GameConstants.X_DIR, "y_dir": GameConstants.Y_DIR}
+	x_dir = GameConstants.X_DIR
+	y_dir = GameConstants.Y_DIR
 
 func perform_reset_orientation():
 	rotation_degrees = 0

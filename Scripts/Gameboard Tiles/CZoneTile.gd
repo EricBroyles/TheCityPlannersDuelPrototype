@@ -6,7 +6,7 @@ static func create() -> CZone:
 	
 func clone() -> CZone:
 	var new_tile: CZone = CZone.create()
-	new_tile.set_properties_from(self)
+	new_tile._set_properties_from(self)
 	return new_tile
 	
 func delete(from_gameboard: Gameboard):

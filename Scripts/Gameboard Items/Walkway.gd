@@ -21,7 +21,7 @@ static func create(type: int) -> Walkway:
 	return walkway
 	
 func clone() -> Walkway:
-	var new_walkway: Walkway = Walkway.create(SETUP.SIDEWALK) #create a temporary walkway
+	var new_walkway: Walkway = Walkway.create(SETUP.SIDEWALK) 
 	new_walkway._set_properties_from(self)
 	return new_walkway
 	
@@ -32,7 +32,7 @@ func delete(from_gameboard: Gameboard):
 func attempt_to_place(gameboard: Gameboard) -> bool:
 	if not self.can_buy(): return false
 	if gameboard.is_fully_out_of_bounds(self): return false
-	if not gameboard.is_item_overlapping_owned_tile(self) : return false
+	if not gameboard.is_land_partially_owned(self) : return false
 	if not gameboard.get_items_colliding_with(self).is_empty(): return false
 	var new_walkway: Walkway = self.clone()
 	gameboard.add_component(new_walkway)
@@ -90,12 +90,12 @@ func is_colliding_with_overlapping_item(item: GameboardItem) -> bool:
 
 func get_oriented_grid_size() -> Vector2:
 	#this is used to place this item onto the snapped grid
-	if abs(orientation["x_dir"]) == Vector2(0,1):
+	if abs(x_dir) == GameConstants.Y_DIR:
 		return Vector2(GRID_SIZE_IN_TILES.y, GRID_SIZE_IN_TILES.x) * GameConstants.GAMEBOARD_TILE_SIZE
 	return GRID_SIZE_IN_TILES * GameConstants.GAMEBOARD_TILE_SIZE
 
 func is_vertical():
-	if abs(self.orientation["x_dir"]) == Vector2(0,1): return false 
+	if abs(x_dir) == GameConstants.Y_DIR: return false 
 	return true
 	
 func get_money_buy_cost() -> int:

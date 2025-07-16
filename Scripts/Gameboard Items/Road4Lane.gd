@@ -3,13 +3,10 @@ class_name Road4Lane
 
 @onready var left_parking = %LeftParking
 @onready var right_parking = %RightParking
-@onready var left_curtain_hitbox = %LeftCurtainHitbox #I need these hitboxes as variables so that I can disable them when is_parking = false
+@onready var left_curtain_hitbox = %LeftCurtainHitbox 
 @onready var right_curtain_hitbox = %RightCurtainHitbox
 
-enum SETUP {
-	PARKING,
-	NO_PARKING
-}
+enum SETUP {PARKING,NO_PARKING}
 
 const SIZE_IN_TILES: Vector2 = Vector2(1,2) #(r,c)
 const ITEM_Z: int = 20
@@ -21,13 +18,35 @@ var is_parking: bool
 var left_parking_active: bool
 var right_parking_active: bool
 
+static func create(type: int) -> Road4Lane:
+	var road: Road4Lane = GameComponents.ROAD_4_LANE.instantiate()
+	road._setup(type)
+	return road
+	
+func clone() -> Road4Lane:
+	var new_road: Road4Lane = Road4Lane.create(SETUP.NO_PARKING) 
+	new_road._set_properties_from(self)
+	return new_road
+	
+func delete(from_gameboard: Gameboard):
+	GameData.money -= get_money_delete_cost()
+	super(from_gameboard)
+	
+func attempt_to_place(gameboard: Gameboard) -> bool:
+	if not self.can_buy(): return false
+	if not gameboard.is_fully_in_bounds(self): return false
+	if not gameboard.is_land_fully_owned(self) : return false 
+	if not gameboard.get_items_colliding_with(self).is_empty(): return false
+	var new_road: Road4Lane = self.clone()
+	gameboard.add_component(new_road)
+	new_road.buy()
+	return true
+
 func _setup(parking_status: int) -> void:
 	self.size = Vector2(SIZE_IN_TILES.y, SIZE_IN_TILES.x) * GameConstants.GAMEBOARD_TILE_SIZE 
 	self.elevation = 0 
 	self.level = 0 
 	self.max_level = 0
-	
-	#notice how left and right parking is set at _ready
 	is_parking = true if parking_status == SETUP.PARKING else false
 	
 func _set_properties_from(other: GameboardItem):
@@ -37,7 +56,10 @@ func _set_properties_from(other: GameboardItem):
 	
 func _ready():
 	z_index = ITEM_Z
-	config_parking() #this sets up the left and right parking
+	config_parking() 
+	
+func get_class_name() -> String:
+	return "Road4Lane"
 
 func config_parking():
 	#I always need the left/right curtain hitboxes to be !!monitorable!! so curtains from parking lots can detect and decide what type of curtain (monitorable = true in editor)
@@ -89,7 +111,6 @@ func get_money_buy_cost() -> int:
 	return int(money_cost)
 
 func get_money_upkeep_cost() -> int:
-	#to be charged once a turn
 	var money_cost: float = 2.1 * GameConstants.MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN
 	if is_parking: money_cost += GameConstants.MONEY_TO_UPKEEP_PARKING_SPOT_PER_TURN * get_amount_of_active_parking_spots() 
 	return int(money_cost)
@@ -100,10 +121,6 @@ func get_money_delete_cost() -> int:
 func can_delete() -> bool:
 	if GameData.money >= get_money_delete_cost(): return true
 	return false
-	
-#func pre_delete_sequence():
-	#super()
-	#GameData.money -= get_money_delete_cost()
 
 func can_buy() -> bool:
 	if GameData.money < get_money_buy_cost(): return false
@@ -112,13 +129,14 @@ func can_buy() -> bool:
 func buy():
 	GameData.money -= get_money_buy_cost()
 	
-func refund():
-	GameData.money += get_money_buy_cost()
-	
 func max_amount_can_buy() -> int:
-	# this pairs with batch_buy
 	return int(GameData.money / float(get_money_buy_cost()))
 	
 func batch_buy(amount: int):
 	GameData.money -= amount * get_money_buy_cost()
+	
+func refund():
+	GameData.money += get_money_buy_cost()
+	
+
 	
