@@ -29,22 +29,16 @@ func _process(_delta: float) -> void:
 		_active_mode = GameData.gameboard_placer_mode
 	handle_placer(_active_mode, ACTIONS.MOVE)
 
-func _unhandled_input(_event: InputEvent):
+func _unhandled_input(event: InputEvent):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		handle_placer(_active_mode, ACTIONS.CLICK)
 		
-	if _event is InputEventKey and _event.pressed:
+	if event is InputEventKey and event.pressed:
 		#shift and o
-		if _event.keycode == KEY_O:  # Replace with event.unicode == "o" if you want lowercase "o"
-			var n: int = 1
-			for item in gameboard.gameboard_items.get_children():
-				print("ITEM: ", n, " ", item, " Pos: ", item.position, " SIZE: ", item.get_oriented_size())
-				n+= 1
-				
-			print("MY ITEM: ", get_placer_component(), " ", get_placer_component().position, " SIZE: ", get_placer_component().get_oriented_size())
+		if event.keycode == KEY_R  and not event.shift_pressed:  # Replace with event.unicode == "o" if you want lowercase "o"
+			handle_placer(_active_mode, ACTIONS.ROTATE_90_CW)
 
 func set_placer_component(component: GameboardComponent):
-	#the reason I do not have a body underneath is due to its position staying at 0,0 when moving the node2D version of placer
 	component.name = _PLACER_COMPONENT_NAME
 	add_child(component)
 
@@ -60,8 +54,6 @@ func clear_placer_component():
 	var placer = get_node(_PLACER_COMPONENT_NAME)
 	remove_child(placer)
 	
-	
-
 func handle_placer(mode: int, action: int):
 	#mode: see GameConstants.MODES, action: see ACTIONS enum
 	match mode:
@@ -81,6 +73,8 @@ func handle_placer(mode: int, action: int):
 						if comp is Walkway:
 							print(comp.is_crosswalk)
 					pass
+				ACTIONS.ROTATE_90_CW:
+					pass
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.UPGRADE:
 			match action:
@@ -92,6 +86,8 @@ func handle_placer(mode: int, action: int):
 					selector.position = GameData.mouse_position
 				ACTIONS.CLICK:
 					gameboard.attempt_to_upgrade_item_at(selector.position)
+				ACTIONS.ROTATE_90_CW:
+					return
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.DELETE:
 			match action:
@@ -103,6 +99,8 @@ func handle_placer(mode: int, action: int):
 					selector.position = GameData.mouse_position
 				ACTIONS.CLICK:
 					gameboard.attempt_to_delete_item_at(selector.position)
+				ACTIONS.ROTATE_90_CW:
+					return
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.BUY_LAND:
 			match action:
@@ -117,6 +115,8 @@ func handle_placer(mode: int, action: int):
 					move_placer_component_to(selector.position)
 				ACTIONS.CLICK:
 					(get_placer_component() as OwnedUnzoned).attempt_to_buy_land(gameboard)
+				ACTIONS.ROTATE_90_CW:
+					return
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.OWNED_UNZONED:
 			match action:
@@ -128,6 +128,8 @@ func handle_placer(mode: int, action: int):
 					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
 				ACTIONS.CLICK:
 					(get_placer_component() as OwnedUnzoned).attempt_to_unzone(gameboard)
+				ACTIONS.ROTATE_90_CW:
+					return
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.R_ZONE:
 			match action:
@@ -139,6 +141,8 @@ func handle_placer(mode: int, action: int):
 					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
 				ACTIONS.CLICK:
 					(get_placer_component() as RZone).attempt_to_zone(gameboard)
+				ACTIONS.ROTATE_90_CW:
+					return
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.C_ZONE:
 			match action:
@@ -150,6 +154,8 @@ func handle_placer(mode: int, action: int):
 					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
 				ACTIONS.CLICK:
 					(get_placer_component() as CZone).attempt_to_zone(gameboard)
+				ACTIONS.ROTATE_90_CW:
+					return
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.I_ZONE:
 			match action:
@@ -161,6 +167,8 @@ func handle_placer(mode: int, action: int):
 					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
 				ACTIONS.CLICK:
 					(get_placer_component() as IZone).attempt_to_zone(gameboard)
+				ACTIONS.ROTATE_90_CW:
+					return
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.WALKWAY:
 			match action:
