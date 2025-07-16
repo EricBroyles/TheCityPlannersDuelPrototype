@@ -5,8 +5,6 @@ class_name Walkway
 @onready var crosswalk = %Crosswalk
 @onready var crosswalk_hitbox = %CrosswalkHitbox
 
-enum SETUP {SIDEWALK, CROSSWALK}
-
 const SIZE_IN_PIXELS: Vector2 = Vector2(16,200) #(x,y), its texture is actually larger than this
 const GRID_SIZE_IN_TILES: Vector2 = Vector2(2,1) #used for snap to grid
 const SIDEWALK_Z: int = 51 #sidewalk is always layered ontop of crosswalk
@@ -15,13 +13,13 @@ const CROSSWALK_Z: int = 50
 var speed: float = 3; #mph
 var is_crosswalk: bool
 
-static func create(type: int) -> Walkway:
+static func create() -> Walkway:
 	var walkway: Walkway = GameComponents.WALKWAY.instantiate()
-	walkway._setup(type)
+	walkway._setup()
 	return walkway
 	
 func clone() -> Walkway:
-	var new_walkway: Walkway = Walkway.create(SETUP.SIDEWALK) 
+	var new_walkway: Walkway = Walkway.create() 
 	new_walkway._set_properties_from(self)
 	return new_walkway
 	
@@ -39,48 +37,37 @@ func attempt_to_place(gameboard: Gameboard) -> bool:
 	new_walkway.buy()
 	return true
 
-func _setup(type: int) -> void:
+func _setup() -> void:
 	self.size = SIZE_IN_PIXELS 
 	self.elevation = 0 
 	self.level = 0 
 	self.max_level = 0
-	is_crosswalk = true if type == SETUP.CROSSWALK else false
 	
 func _set_properties_from(other: GameboardItem):
 	super(other) #this sets key info like position and orientation
-	var type: int = SETUP.CROSSWALK if other.is_crosswalk else SETUP.SIDEWALK
-	_setup(type)
+	_setup()
 
 func _ready():
 	config_walkway()
 	
 func _on_crosswalk_hitbox_area_entered(_area: Area2D) -> void:
-	#I will be entered by other monitorable crosswalks
-	turn_into_crosswalk()
+	config_walkway()
 
 func _on_crosswalk_hitbox_area_exited(_area: Area2D) -> void:
-	#check that I am not overlapping another monitorable crosswalk area
-	if crosswalk_hitbox.get_overlapping_areas().is_empty():
-		turn_into_sidewalk()
-	else: #I am still overlapping a crosswalk
-		turn_into_crosswalk()
+	await get_tree().physics_frame #get_overlapping_areas is slow to register when the area has been removed
+	config_walkway()
 		
 func get_class_name() -> String:
 	return "Walkway"
 	
-func turn_into_crosswalk():
-	_setup(SETUP.CROSSWALK) 
-	config_walkway()
-	
-func turn_into_sidewalk():
-	_setup(SETUP.SIDEWALK) 
-	config_walkway()
-	
 func config_walkway():
-	if is_crosswalk: 
-		z_index = CROSSWALK_Z
-	else: 
+	if crosswalk_hitbox.get_overlapping_areas().is_empty():
 		z_index = SIDEWALK_Z
+		is_crosswalk = false
+	else:
+		z_index = CROSSWALK_Z
+		is_crosswalk = true
+
 	crosswalk.visible = is_crosswalk
 	sidewalk.visible = !is_crosswalk
 

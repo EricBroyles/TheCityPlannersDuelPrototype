@@ -77,6 +77,9 @@ func handle_placer(mode: int, action: int):
 					pass
 				ACTIONS.CLICK:
 					#probably get the mouse position and then get top component at that spot to select it ...
+					for comp in gameboard.get_components_at(GameData.mouse_position):
+						if comp is Walkway:
+							print(comp.is_crosswalk)
 					pass
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 		GameConstants.MODES.UPGRADE:
@@ -162,7 +165,7 @@ func handle_placer(mode: int, action: int):
 		GameConstants.MODES.WALKWAY:
 			match action:
 				ACTIONS.START:
-					set_placer_component(Walkway.create(Walkway.SETUP.SIDEWALK))
+					set_placer_component(Walkway.create())
 					build_phase_ui.open_item_placer_buttons(false, true, true) 
 				ACTIONS.END:
 					clear_placer_component()
@@ -170,14 +173,7 @@ func handle_placer(mode: int, action: int):
 				ACTIONS.MOVE:
 					move_placer_component_to(gameboard.snap_size_to_grid(GameData.mouse_position, (get_placer_component() as Walkway).get_oriented_grid_size()))
 				ACTIONS.CLICK:
-					var mouse_location: Vector2 = GameData.mouse_position
-					var did_place: bool = (get_placer_component() as Walkway).attempt_to_place(gameboard)
-					if did_place and gameboard.count_items() > 40:
-						print("PLACED WALKWAY. Component Position: ", get_placer_component().position, " --- NUM WALKWAYS: ", gameboard.count_items(), " of MAX NUM: 40",   )
-						print("MOUSE LOCATION: ", mouse_location)
-					elif did_place:
-						print("Placed", gameboard.count_items())
-					
+					(get_placer_component() as Walkway).attempt_to_place(gameboard)
 				ACTIONS.ROTATE_90_CW:
 					(get_placer_component() as Walkway).rotate_90_cw()
 				ACTIONS.FLIP_V:

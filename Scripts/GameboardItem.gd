@@ -55,7 +55,10 @@ func shares_elevation_with(other_item: GameboardItem) -> bool:
 	return (max_elevation - min_elevation) <= 0.5
 
 func is_colliding_with_overlapping_item(item: GameboardItem) -> bool:
-	return shares_elevation_with(item)
+	#ignore collisions with walkway unless fully engulfed
+	if not shares_elevation_with(item): return false
+	if item is Walkway and not GameHelper.is_comp1_fully_contained_by_comp2(item, self): return false
+	return true
 
 func can_upgrade() -> bool:
 	if self.max_level == 0: return false
