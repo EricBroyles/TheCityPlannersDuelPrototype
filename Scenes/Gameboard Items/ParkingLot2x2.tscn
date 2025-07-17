@@ -15,34 +15,37 @@ size = Vector2(16, 116)
 script = ExtResource("1_v8aqn")
 
 [node name="MainBody" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("2_mlnkt")
 
-[node name="Curtain2Lane" type="Sprite2D" parent="."]
+[node name="Curtain" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(200, -100)
+
+[node name="Curtain2Lane" type="Sprite2D" parent="Curtain"]
 unique_name_in_owner = true
 visible = false
-position = Vector2(200, -100)
 texture = ExtResource("3_x1s1s")
 
-[node name="Curtain4Lane" type="Sprite2D" parent="."]
+[node name="Curtain4Lane" type="Sprite2D" parent="Curtain"]
 unique_name_in_owner = true
 visible = false
-position = Vector2(200, -100)
 texture = ExtResource("4_p7f6p")
 
-[node name="CrosswalkHitbox" type="Area2D" parent="."]
-position = Vector2(195, -100)
+[node name="CrosswalkHitbox" type="Area2D" parent="Curtain"]
+position = Vector2(-5, 0)
 collision_layer = 2
 collision_mask = 2
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CrosswalkHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Curtain/CrosswalkHitbox"]
 shape = SubResource("RectangleShape2D_rbk70")
 
-[node name="CutainHitbox" type="Area2D" parent="."]
-position = Vector2(200, -100)
+[node name="CurtainHitbox" type="Area2D" parent="Curtain" groups=["actual_curtains"]]
+unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CutainHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Curtain/CurtainHitbox"]
 shape = SubResource("RectangleShape2D_ggcvo")
 
-[connection signal="area_entered" from="CutainHitbox" to="." method="_on_cutain_hitbox_area_entered"]
-[connection signal="area_exited" from="CutainHitbox" to="." method="_on_cutain_hitbox_area_exited"]
+[connection signal="area_entered" from="Curtain/CurtainHitbox" to="." method="_on_cutain_hitbox_area_entered"]
+[connection signal="area_exited" from="Curtain/CurtainHitbox" to="." method="_on_cutain_hitbox_area_exited"]

@@ -27,8 +27,9 @@ window/size/viewport_height=700
 
 [global_group]
 
-curtain_detectors=""
 actual_curtains=""
+curtain_detectors_4_lane=""
+curtain_detectors_2_lane=""
 
 [input]
 

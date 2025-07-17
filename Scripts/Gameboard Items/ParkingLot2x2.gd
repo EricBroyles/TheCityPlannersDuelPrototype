@@ -1,11 +1,15 @@
 extends GameboardItem
 class_name ParkingLot2x2
 
+@onready var main_body = %MainBody
+@onready var curtain = %Curtain
 @onready var curtain_2_lane = %Curtain2Lane
 @onready var curtain_4_lane = %Curtain4Lane
+@onready var curtain_hitbox = %CurtainHitbox
 
 const SIZE_IN_TILES: Vector2 = Vector2(2,2) #(r,c)
 const ITEM_Z: int = 20
+const CURTAIN_START_POSITION = Vector2(200, -100)
 const ROW_1_PARKING_SPOT: Vector3 = Vector3(-171, -146, 0)
 const ROW_2_PARKING_SPOT: Vector3 = Vector3(-171, -54, 180)
 const ROW_3_PARKING_SPOT: Vector3 = Vector3(ROW_1_PARKING_SPOT.x, -ROW_1_PARKING_SPOT.y, ROW_1_PARKING_SPOT.z)
@@ -15,6 +19,9 @@ const PARKING_SPOTS_PER_ROW: int = 9
 
 var cars_per_spot: int = 1
 var parking_obj: Parking
+var main_body_scale: Vector2 = Vector2(1,1)
+var curtain_scale: Vector2 = Vector2(1,1)
+var curtain_position: Vector2 = CURTAIN_START_POSITION
 
 static func create() -> ParkingLot2x2:
 	var lot: ParkingLot2x2 = GameComponents.PARKING_LOT_2X2.instantiate()
@@ -27,6 +34,9 @@ static func create() -> ParkingLot2x2:
 	
 func clone() -> ParkingLot2x2:
 	var new_lot: ParkingLot2x2 = ParkingLot2x2.create() 
+	new_lot.main_body_scale = self.main_body_scale
+	new_lot.curtain_scale = self.curtain_scale
+	new_lot.curtain_position = self.curtain_position
 	new_lot._set_transform_from(self)
 	return new_lot
 	
@@ -46,15 +56,28 @@ func attempt_to_place(gameboard: Gameboard) -> bool:
 	
 func _ready():
 	z_index = ITEM_Z
+	main_body.scale = main_body_scale
+	curtain.scale = curtain_scale
+	curtain.position = curtain_position
 	
 func get_class_name() -> String:
 	return "ParkingLot2x2"
 
 func _on_cutain_hitbox_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+	if area.is_in_group("curtain_detectors_2_lane"):
+		curtain_2_lane.visible = true
+		curtain_4_lane.visible = false
+	elif area.is_in_group("curtain_detectors_4_lane"):
+		curtain_2_lane.visible = false
+		curtain_4_lane.visible = true
+	return
 
-func _on_cutain_hitbox_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.
+func _on_cutain_hitbox_area_exited(_area: Area2D) -> void:
+	await get_tree().physics_frame
+	if curtain_hitbox.get_overlapping_areas().is_empty(): 
+		curtain_2_lane.visible = false
+		curtain_4_lane.visible = false
+	return
 	
 func get_parking_spots() -> Array[Vector3]:
 	var all_parking_spots: Array[Vector3] = []
@@ -96,3 +119,38 @@ func batch_buy(amount: int):
 	
 func refund():
 	GameData.money += get_money_buy_cost()
+	
+##Transforms
+func perform_reset_orientation():
+	super()
+	
+	main_body_scale = Vector2(1,1)
+	curtain_scale = Vector2(1,1)
+	curtain_position = CURTAIN_START_POSITION
+	
+	if main_body == null: return
+	
+	main_body.scale = Vector2(1,1)
+	curtain.scale = Vector2(1,1)
+	curtain.position = CURTAIN_START_POSITION
+
+func perform_flip_h():
+	
+	main_body_scale = Vector2(1, -1)
+	curtain_position.y *= -1
+	
+	if main_body == null: return
+	
+	main_body.scale = Vector2(1, -1)
+	curtain.position.y *= -1
+	
+func perform_flip_v():
+	main_body_scale = Vector2(-1, 1)
+	curtain_position.x *= -1
+	curtain_scale *= -1
+	
+	if main_body == null: return
+	
+	main_body.scale = Vector2(-1, 1)
+	curtain.position.x *= -1
+	curtain.scale *= -1

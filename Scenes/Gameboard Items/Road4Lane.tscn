@@ -51,14 +51,14 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCrosswalkHitbox"]
 shape = SubResource("RectangleShape2D_b33y6")
 
-[node name="LeftCurtainHitbox" type="Area2D" parent="." groups=["curtain_detectors"]]
+[node name="LeftCurtainHitbox" type="Area2D" parent="." groups=["curtain_detectors_4_lane"]]
 unique_name_in_owner = true
 position = Vector2(-157, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCurtainHitbox"]
 shape = SubResource("RectangleShape2D_5faf8")
 
-[node name="RightCurtainHitbox" type="Area2D" parent="." groups=["curtain_detectors"]]
+[node name="RightCurtainHitbox" type="Area2D" parent="." groups=["curtain_detectors_4_lane"]]
 unique_name_in_owner = true
 position = Vector2(157, 0)
 
