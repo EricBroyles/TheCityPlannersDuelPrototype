@@ -227,6 +227,25 @@ func handle_placer(mode: int, action: int):
 				ACTIONS.FLIP_H:
 					(get_placer_component() as Road4Lane).flip_h()
 				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
+		GameConstants.MODES.PARKING_LOT_2X2:
+			match action:
+				ACTIONS.START:
+					set_placer_component(ParkingLot2x2.create())
+					build_phase_ui.open_item_placer_buttons() 
+				ACTIONS.END:
+					clear_placer_component()
+					build_phase_ui.close_item_placer_buttons()
+				ACTIONS.MOVE:
+					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
+				ACTIONS.CLICK:
+					(get_placer_component() as ParkingLot2x2).attempt_to_place(gameboard)
+				ACTIONS.ROTATE_90_CW:
+					(get_placer_component() as ParkingLot2x2).rotate_90_cw()
+				ACTIONS.FLIP_V:
+					(get_placer_component() as ParkingLot2x2).flip_v()
+				ACTIONS.FLIP_H:
+					(get_placer_component() as ParkingLot2x2).flip_h()
+				_: push_error("Unknown placer action: ", action, "  with mode: ", mode)
 
 
 ## Handle Placer

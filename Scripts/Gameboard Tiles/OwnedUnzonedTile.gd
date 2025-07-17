@@ -8,7 +8,7 @@ static func create() -> OwnedUnzoned:
 	
 func clone() -> OwnedUnzoned:
 	var new_tile: OwnedUnzoned = OwnedUnzoned.create()
-	new_tile._set_properties_from(self)
+	new_tile._set_transform_from(self)
 	return new_tile
 	
 func delete(from_gameboard: Gameboard):

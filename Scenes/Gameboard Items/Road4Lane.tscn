@@ -33,10 +33,6 @@ position = Vector2(136, 0)
 texture = ExtResource("3_mfmer")
 flip_h = true
 
-[node name="TopLeftParkingSpot" type="Node2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-136, -46)
-
 [node name="TopCrosswalkHitbox" type="Area2D" parent="."]
 position = Vector2(0, -95)
 collision_layer = 2

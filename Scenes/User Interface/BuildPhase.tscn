@@ -444,6 +444,7 @@ theme_override_constants/separation = 10
 [node name="Rotate90Button" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "press r"
 texture_normal = ExtResource("23_yp6en")
 texture_disabled = ExtResource("14_hhmo6")
 

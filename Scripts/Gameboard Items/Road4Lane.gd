@@ -5,28 +5,32 @@ class_name Road4Lane
 @onready var right_parking = %RightParking
 @onready var left_curtain_hitbox = %LeftCurtainHitbox 
 @onready var right_curtain_hitbox = %RightCurtainHitbox
-@onready var top_left_parking_spot = %TopLeftParkingSpot
 
 enum SETUP {PARKING,NO_PARKING}
 
 const SIZE_IN_TILES: Vector2 = Vector2(1,2) #(r,c)
 const ITEM_Z: int = 20
 
-var cars_per_spot: int = 1
 var speed: float = 40; #mph
 
 var is_parking: bool
+var cars_per_spot: int = 1
 var left_parking_obj: Parking = Parking.create_empty()
 var right_parking_obj: Parking = Parking.create_empty()
+var top_left_parking_spot: Vector3 = Vector3(-136, -46, 0)
 
-static func create(type: int) -> Road4Lane:
+static func create(parking_status: int) -> Road4Lane:
 	var road: Road4Lane = GameComponents.ROAD_4_LANE.instantiate()
-	road._setup(type)
+	road.size = Vector2(SIZE_IN_TILES.y, SIZE_IN_TILES.x) * GameConstants.GAMEBOARD_TILE_SIZE 
+	road.elevation = 0 
+	road.level = 0 
+	road.max_level = 0
+	road.is_parking = true if parking_status == SETUP.PARKING else false
 	return road
 	
 func clone() -> Road4Lane:
-	var new_road: Road4Lane = Road4Lane.create(SETUP.NO_PARKING) 
-	new_road._set_properties_from(self)
+	var new_road: Road4Lane = Road4Lane.create(SETUP.PARKING if self.is_parking else SETUP.NO_PARKING) 
+	new_road._set_transform_from(self)
 	return new_road
 	
 func delete(from_gameboard: Gameboard):
@@ -51,18 +55,6 @@ func attempt_to_place(gameboard: Gameboard) -> bool:
 	gameboard.add_component(new_road)
 	new_road.buy()
 	return true
-
-func _setup(parking_status: int) -> void:
-	self.size = Vector2(SIZE_IN_TILES.y, SIZE_IN_TILES.x) * GameConstants.GAMEBOARD_TILE_SIZE 
-	self.elevation = 0 
-	self.level = 0 
-	self.max_level = 0
-	is_parking = true if parking_status == SETUP.PARKING else false
-	
-func _set_properties_from(other: GameboardItem):
-	super(other) #position and orientation
-	var parking_status: int = SETUP.PARKING if other.is_parking else SETUP.NO_PARKING
-	_setup(parking_status)
 	
 func _ready():
 	z_index = ITEM_Z
@@ -72,13 +64,13 @@ func get_class_name() -> String:
 	return "Road4Lane"
 	
 func get_left_parking_spots() -> Array[Vector3]:
-	var s1: Vector3 = Vector3(top_left_parking_spot.position.x, top_left_parking_spot.position.y, top_left_parking_spot.rotation_degrees)
-	var s2: Vector3 = Vector3(top_left_parking_spot.position.x, -top_left_parking_spot.position.y, top_left_parking_spot.rotation_degrees)
+	var s1: Vector3 = Vector3(top_left_parking_spot.x, top_left_parking_spot.y, top_left_parking_spot.z)
+	var s2: Vector3 = Vector3(top_left_parking_spot.x, -top_left_parking_spot.y, top_left_parking_spot.z)
 	return [s1, s2]
 	
 func get_right_parking_spots() -> Array[Vector3]:
-	var s1: Vector3 = Vector3(-top_left_parking_spot.position.x, top_left_parking_spot.position.y, 0)
-	var s2: Vector3 = Vector3(-top_left_parking_spot.position.x, -top_left_parking_spot.position.y, 0)
+	var s1: Vector3 = Vector3(-top_left_parking_spot.x, top_left_parking_spot.y, 0)
+	var s2: Vector3 = Vector3(-top_left_parking_spot.x, -top_left_parking_spot.y, 0)
 	return [s1, s2]
 
 func config_parking():

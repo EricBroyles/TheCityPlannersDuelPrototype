@@ -15,12 +15,15 @@ var is_crosswalk: bool
 
 static func create() -> Walkway:
 	var walkway: Walkway = GameComponents.WALKWAY.instantiate()
-	walkway._setup()
+	walkway.size = SIZE_IN_PIXELS 
+	walkway.elevation = 0 
+	walkway.level = 0 
+	walkway.max_level = 0
 	return walkway
 	
 func clone() -> Walkway:
 	var new_walkway: Walkway = Walkway.create() 
-	new_walkway._set_properties_from(self)
+	new_walkway._set_transform_from(self)
 	return new_walkway
 	
 func delete(from_gameboard: Gameboard):
@@ -36,16 +39,6 @@ func attempt_to_place(gameboard: Gameboard) -> bool:
 	gameboard.add_component(new_walkway)
 	new_walkway.buy()
 	return true
-
-func _setup() -> void:
-	self.size = SIZE_IN_PIXELS 
-	self.elevation = 0 
-	self.level = 0 
-	self.max_level = 0
-	
-func _set_properties_from(other: GameboardItem):
-	super(other) #position and orientation
-	_setup()
 
 func _ready():
 	config_walkway()

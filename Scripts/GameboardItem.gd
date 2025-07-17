@@ -35,7 +35,7 @@ func attempt_to_upgrade() -> bool:
 	upgrade()
 	return true
 
-func _set_properties_from(other: GameboardItem):
+func _set_transform_from(other: GameboardItem):
 	position = other.global_position
 	x_dir = other.x_dir
 	y_dir = other.y_dir

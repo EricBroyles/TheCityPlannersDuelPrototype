@@ -6,7 +6,7 @@ static func create() -> IZone:
 	
 func clone() -> IZone:
 	var new_tile: IZone = IZone.create()
-	new_tile._set_properties_from(self)
+	new_tile._set_transform_from(self)
 	return new_tile
 	
 func delete(from_gameboard: Gameboard):
