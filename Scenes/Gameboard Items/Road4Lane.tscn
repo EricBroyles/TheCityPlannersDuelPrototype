@@ -24,49 +24,49 @@ texture = ExtResource("2_pxwwp")
 
 [node name="LeftParking" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-visible = false
 position = Vector2(-136, 0)
 texture = ExtResource("3_mfmer")
 
 [node name="RightParking" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-visible = false
 position = Vector2(136, 0)
 texture = ExtResource("3_mfmer")
 flip_h = true
 
+[node name="TopLeftParkingSpot" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-136, -46)
+
 [node name="TopCrosswalkHitbox" type="Area2D" parent="."]
-position = Vector2(0, -100)
+position = Vector2(0, -95)
 collision_layer = 2
 collision_mask = 2
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopCrosswalkHitbox"]
-position = Vector2(0.5, 5)
 shape = SubResource("RectangleShape2D_gq2cr")
 
 [node name="BottomCrosswalkHitbox" type="Area2D" parent="."]
-position = Vector2(0, 100)
+position = Vector2(0, 95)
 collision_layer = 2
 collision_mask = 2
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCrosswalkHitbox"]
-position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_b33y6")
 
 [node name="LeftCurtainHitbox" type="Area2D" parent="." groups=["curtain_detectors"]]
 unique_name_in_owner = true
+position = Vector2(-157, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCurtainHitbox"]
-position = Vector2(-157, 0)
 shape = SubResource("RectangleShape2D_5faf8")
 
 [node name="RightCurtainHitbox" type="Area2D" parent="." groups=["curtain_detectors"]]
 unique_name_in_owner = true
+position = Vector2(157, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightCurtainHitbox"]
-position = Vector2(157, 0)
 shape = SubResource("RectangleShape2D_01mbo")
 
 [connection signal="area_entered" from="LeftCurtainHitbox" to="." method="_on_left_curtain_hitbox_area_entered"]

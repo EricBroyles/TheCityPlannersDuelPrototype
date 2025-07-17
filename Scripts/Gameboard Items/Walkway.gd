@@ -44,7 +44,7 @@ func _setup() -> void:
 	self.max_level = 0
 	
 func _set_properties_from(other: GameboardItem):
-	super(other) #this sets key info like position and orientation
+	super(other) #position and orientation
 	_setup()
 
 func _ready():

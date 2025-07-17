@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlith8vmkidii"]
+
+[ext_resource type="Script" path="res://Scripts/Gameboard Items/ParkingLot2x2.gd" id="1_v8aqn"]
+[ext_resource type="Texture2D" uid="uid://ccg2oijuipnex" path="res://Assets/Parking/Parking Lot 2x2.svg" id="2_mlnkt"]
+[ext_resource type="Texture2D" uid="uid://c3iwwymu6bpn3" path="res://Assets/Parking/Parking Lot Curtain 1x2 Tile 2 Lane.svg" id="3_x1s1s"]
+[ext_resource type="Texture2D" uid="uid://cwfrfv63curhi" path="res://Assets/Parking/Parking Lot Curtain 1x2 Tile 4 Lane.svg" id="4_p7f6p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbk70"]
+size = Vector2(6, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggcvo"]
+size = Vector2(16, 116)
+
+[node name="ParkingLot2x2" type="Node2D"]
+script = ExtResource("1_v8aqn")
+
+[node name="MainBody" type="Sprite2D" parent="."]
+texture = ExtResource("2_mlnkt")
+
+[node name="Curtain2Lane" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(200, -100)
+texture = ExtResource("3_x1s1s")
+
+[node name="Curtain4Lane" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(200, -100)
+texture = ExtResource("4_p7f6p")
+
+[node name="CrosswalkHitbox" type="Area2D" parent="."]
+position = Vector2(195, -100)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrosswalkHitbox"]
+shape = SubResource("RectangleShape2D_rbk70")
+
+[node name="CutainHitbox" type="Area2D" parent="."]
+position = Vector2(200, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutainHitbox"]
+shape = SubResource("RectangleShape2D_ggcvo")
+
+[connection signal="area_entered" from="CutainHitbox" to="." method="_on_cutain_hitbox_area_entered"]
+[connection signal="area_exited" from="CutainHitbox" to="." method="_on_cutain_hitbox_area_exited"]
