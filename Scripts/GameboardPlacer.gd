@@ -111,60 +111,39 @@ func handle_placer(mode: int, action: int):
 					(get_placer_component() as OwnedUnzoned).attempt_to_buy_land(gameboard)
 				_: return
 		GameConstants.MODES.OWNED_UNZONED:
-			match action:
-				ACTIONS.START:
-					set_placer_component(OwnedUnzoned.create())
-				ACTIONS.END:
-					clear_placer_component()
-				ACTIONS.MOVE:
-					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
-				ACTIONS.CLICK:
-					(get_placer_component() as OwnedUnzoned).attempt_to_unzone(gameboard)
-				_: return
+			zone_action_handler(OwnedUnzoned, action, true)
 		GameConstants.MODES.R_ZONE:
-			match action:
-				ACTIONS.START:
-					set_placer_component(RZone.create())
-				ACTIONS.END:
-					clear_placer_component()
-				ACTIONS.MOVE:
-					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
-				ACTIONS.CLICK:
-					(get_placer_component() as RZone).attempt_to_zone(gameboard)
-				_: return
+			zone_action_handler(RZone, action)
 		GameConstants.MODES.C_ZONE:
-			match action:
-				ACTIONS.START:
-					set_placer_component(CZone.create())
-				ACTIONS.END:
-					clear_placer_component()
-				ACTIONS.MOVE:
-					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
-				ACTIONS.CLICK:
-					(get_placer_component() as CZone).attempt_to_zone(gameboard)
-				_: return
+			zone_action_handler(CZone, action)
 		GameConstants.MODES.I_ZONE:
-			match action:
-				ACTIONS.START:
-					set_placer_component(IZone.create())
-				ACTIONS.END:
-					clear_placer_component()
-				ACTIONS.MOVE:
-					move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
-				ACTIONS.CLICK:
-					(get_placer_component() as IZone).attempt_to_zone(gameboard)
-				_: return
+			zone_action_handler(IZone, action)
 		GameConstants.MODES.WALKWAY:
-			standard_item_action_handler(Walkway, action)
+			item_action_handler(Walkway, action, [], true)
 		GameConstants.MODES.ROAD_4_LANE:
-			standard_item_action_handler(Road4Lane, action, [Road4Lane.SETUP.NO_PARKING])
+			item_action_handler(Road4Lane, action, [Road4Lane.SETUP.NO_PARKING])
 		GameConstants.MODES.ROAD_4_LANE_PARKING:
-			standard_item_action_handler(Road4Lane, action, [Road4Lane.SETUP.PARKING])
+			item_action_handler(Road4Lane, action, [Road4Lane.SETUP.PARKING])
 		GameConstants.MODES.PARKING_LOT_2X2:
-			standard_item_action_handler(ParkingLot2x2, action)
+			item_action_handler(ParkingLot2x2, action)
 		_: push_error("Unknown placer mode: %d" % mode)
 
-func standard_item_action_handler(item: Variant, action: int, creation_params: Array = []):
+func zone_action_handler(zone: Variant, action: int, unzone: bool = false):
+	match action:
+		ACTIONS.START:
+			set_placer_component(zone.create())
+		ACTIONS.END:
+			clear_placer_component()
+		ACTIONS.MOVE:
+			move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
+		ACTIONS.CLICK:
+			if unzone:
+				(get_placer_component() as OwnedUnzoned).attempt_to_unzone(gameboard)
+			else:
+				get_placer_component().attempt_to_zone(gameboard)
+		_: return
+
+func item_action_handler(item: Variant, action: int, creation_params: Array = [], use_size_to_snap: bool = false):
 	match action:
 		ACTIONS.START:
 			if creation_params.size() > 0:
@@ -176,8 +155,8 @@ func standard_item_action_handler(item: Variant, action: int, creation_params: A
 			clear_placer_component()
 			build_phase_ui.close_item_placer_buttons()
 		ACTIONS.MOVE:
-			if item is Walkway: 
-				move_placer_component_to(gameboard.snap_size_to_grid(GameData.mouse_position, (get_placer_component() as Walkway).get_oriented_grid_size()))
+			if use_size_to_snap: 
+				move_placer_component_to(gameboard.snap_size_to_grid(GameData.mouse_position, (get_placer_component()).get_oriented_grid_size()))
 			else:
 				move_placer_component_to(gameboard.snap_to_grid(GameData.mouse_position, get_placer_component()))
 		ACTIONS.CLICK:
