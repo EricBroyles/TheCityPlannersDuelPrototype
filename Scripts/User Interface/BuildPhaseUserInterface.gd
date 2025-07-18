@@ -514,15 +514,11 @@ func update_all_text():
 
 
 
-func open_item_placer_buttons(disable_rotate: bool = false, disable_flip_v: bool = false, disable_flip_h: bool = false):
+func open_item_placer_buttons(enable_rotate: bool = true, enable_flip_v: bool = true, enable_flip_h: bool = true):
 	item_placer_buttons.visible = true
-	rotate_90_button.disabled = disable_rotate
-	flip_vertical_button.disabled = disable_flip_v
-	flip_horizontal_button.disabled = disable_flip_h
+	rotate_90_button.disabled = !enable_rotate
+	flip_vertical_button.disabled = !enable_flip_v
+	flip_horizontal_button.disabled = !enable_flip_h
 	
 func close_item_placer_buttons():
 	item_placer_buttons.visible = false
-	#GameData.gameboard_placer_mode = GameConstants.MODES.MOUSE_POINTER
-	
-
-	

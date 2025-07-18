@@ -451,12 +451,14 @@ texture_disabled = ExtResource("14_hhmo6")
 [node name="FlipVerticalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "press t"
 texture_normal = ExtResource("24_d5yyw")
 texture_disabled = ExtResource("16_h0xay")
 
 [node name="FlipHorizontalButton" type="TextureButton" parent="BottomMenuMargin/BottomMenuContainer/ItemPlacerButtons/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "press y"
 texture_normal = ExtResource("25_hj3y3")
 texture_disabled = ExtResource("18_n6elk")
 

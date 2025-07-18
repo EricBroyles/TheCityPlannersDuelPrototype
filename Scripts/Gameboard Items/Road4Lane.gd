@@ -10,6 +10,9 @@ enum SETUP {PARKING,NO_PARKING}
 
 const SIZE_IN_TILES: Vector2 = Vector2(1,2) #(r,c)
 const ITEM_Z: int = 20
+const CAN_ROTATE: bool = true
+const CAN_FLIP_V: bool = false
+const CAN_FLIP_H: bool = false
 
 var speed: float = 40; #mph
 

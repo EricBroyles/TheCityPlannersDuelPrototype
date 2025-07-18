@@ -7,6 +7,9 @@ class_name Walkway
 
 const SIZE_IN_PIXELS: Vector2 = Vector2(16,200) #(x,y), its texture is actually larger than this
 const GRID_SIZE_IN_TILES: Vector2 = Vector2(2,1) #used for snap to grid
+const CAN_ROTATE: bool = true
+const CAN_FLIP_V: bool = false
+const CAN_FLIP_H: bool = false
 const SIDEWALK_Z: int = 51 #sidewalk is always layered ontop of crosswalk
 const CROSSWALK_Z: int = 50
 

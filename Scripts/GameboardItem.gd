@@ -69,14 +69,17 @@ func can_delete() -> bool:
 	
 ## ---- Transform ----
 func rotate_90_cw(times: int = 1):
+	if not self.CAN_ROTATE: return
 	rotate_90_cw_orientation(times)
 	set_real_orientation()
 	
 func flip_h():
+	if not self.CAN_FLIP_H: return
 	flip_h_orientation()
 	set_real_orientation()
 
 func flip_v():
+	if not self.CAN_FLIP_V: return
 	flip_v_orientation()
 	set_real_orientation()
 	

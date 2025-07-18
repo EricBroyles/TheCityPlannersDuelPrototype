@@ -9,6 +9,9 @@ class_name ParkingLot2x2
 
 const SIZE_IN_TILES: Vector2 = Vector2(2,2) #(r,c)
 const ITEM_Z: int = 20
+const CAN_ROTATE: bool = true
+const CAN_FLIP_V: bool = true
+const CAN_FLIP_H: bool = true
 const CURTAIN_START_POSITION = Vector2(200, -100)
 const ROW_1_PARKING_SPOT: Vector3 = Vector3(-171, -146, 0)
 const ROW_2_PARKING_SPOT: Vector3 = Vector3(-171, -54, 180)
