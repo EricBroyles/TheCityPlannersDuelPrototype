@@ -63,7 +63,7 @@ func _ready():
 func get_class_name() -> String:
 	return "ParkingLot2x2"
 
-func _on_cutain_hitbox_area_entered(area: Area2D) -> void:
+func _on_curtain_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("curtain_detectors_2_lane"):
 		curtain_2_lane.visible = true
 		curtain_4_lane.visible = false
@@ -72,7 +72,7 @@ func _on_cutain_hitbox_area_entered(area: Area2D) -> void:
 		curtain_4_lane.visible = true
 	return
 
-func _on_cutain_hitbox_area_exited(_area: Area2D) -> void:
+func _on_curtain_hitbox_area_exited(_area: Area2D) -> void:
 	await get_tree().physics_frame
 	if curtain_hitbox.get_overlapping_areas().is_empty(): 
 		curtain_2_lane.visible = false

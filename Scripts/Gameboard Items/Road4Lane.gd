@@ -95,26 +95,37 @@ func config_parking():
 	right_parking.visible = is_parking
 
 func _on_left_curtain_hitbox_area_entered(area: Area2D) -> void:
-	#the area will be from the layer curtains which has two groups actual_curtains and curtain_detectors
-	#I want to detect when a acutal curtain has collided with this so I can close the parking on this side
+
 	if is_parking and area.is_in_group("actual_curtains"):
 		left_parking.visible = false
 		left_parking_obj.empty_contents()
 	
-func _on_left_curtain_hitbox_area_exited(area: Area2D) -> void:
-	if is_parking and area.is_in_group("actual_curtains"):
+func _on_left_curtain_hitbox_area_exited(_area: Area2D) -> void:
+	if not is_parking: return
+	await get_tree().physics_frame
+	
+	if GameHelper.is_hitbox_overlapping_hitbox_in_group(left_curtain_hitbox, "actual_curtains"):
+		left_parking.visible = false
+		left_parking_obj.empty_contents()
+	else:
 		left_parking.visible = true
-		left_parking_obj = Parking.create(get_left_parking_spots(), cars_per_spot)
-
+		if left_parking_obj.is_empty(): left_parking_obj = Parking.create(get_left_parking_spots(), cars_per_spot)
+		
 func _on_right_curtain_hitbox_area_entered(area: Area2D) -> void:
 	if is_parking and area.is_in_group("actual_curtains"):
 		right_parking.visible = false
 		right_parking_obj.empty_contents()
 	
-func _on_right_curtain_hitbox_area_exited(area: Area2D) -> void:
-	if is_parking and area.is_in_group("actual_curtains"):
+func _on_right_curtain_hitbox_area_exited(_area: Area2D) -> void:
+	if not is_parking: return
+	await get_tree().physics_frame
+	
+	if GameHelper.is_hitbox_overlapping_hitbox_in_group(right_curtain_hitbox, "actual_curtains"):
+		right_parking.visible = false
+		right_parking_obj.empty_contents()
+	else:
 		right_parking.visible = true
-		right_parking_obj = Parking.create(get_right_parking_spots(), cars_per_spot)
+		if right_parking_obj.is_empty(): right_parking_obj = Parking.create(get_right_parking_spots(), cars_per_spot)
 
 func get_money_buy_cost() -> int:
 	var money_cost: float = 2.1 * GameConstants.MONEY_PER_ROAD_2_LANE

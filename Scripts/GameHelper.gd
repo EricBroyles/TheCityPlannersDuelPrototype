@@ -43,6 +43,12 @@ func is_zoned_tile(obj: Variant) -> bool:
 		return true
 	return false
 	
+func is_hitbox_overlapping_hitbox_in_group(hitbox: Area2D, group_name: String) -> bool:
+	var is_overlapping: bool = false
+	for overlap_area in hitbox.get_overlapping_areas():
+		if overlap_area.is_in_group(group_name): is_overlapping = true; break;
+	return is_overlapping
+	
 func is_comp1_fully_contained_by_comp2(comp1: GameboardComponent, comp2: GameboardComponent) -> bool:
 	var size1 = comp1.get_oriented_size()
 	var size2 = comp2.get_oriented_size()

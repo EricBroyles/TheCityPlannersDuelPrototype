@@ -11,10 +11,10 @@ size = Vector2(240, 6)
 size = Vector2(240, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5faf8"]
-size = Vector2(86, 200)
+size = Vector2(86, 180)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01mbo"]
-size = Vector2(86, 200)
+size = Vector2(86, 180)
 
 [node name="Road4Lane" type="Node2D"]
 script = ExtResource("1_1kv5c")
