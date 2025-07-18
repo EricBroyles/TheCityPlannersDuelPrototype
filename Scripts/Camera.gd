@@ -3,7 +3,7 @@ extends Camera2D
 
 @export var camera_move_speed = 500 #the zoom level also impacts this see 1/zoom
 @export var camera_zoom_speed = .02
-@export var camera_start_zoom = .1 #the zoom value on load
+@export var camera_start_zoom = .5 #the zoom value on load
 @export var camera_limit_addition = 100 #pixels more that the camera *center* can move beyond the edge of the gameboard
 
 @export var camera_zoom_out_limit = .02
