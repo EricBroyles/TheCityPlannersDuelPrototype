@@ -3,10 +3,19 @@ extends Node2D
 var speed = 100
 var accel = 7
 
+@onready var camera = %Camera
+@onready var gameboard = %Gameboard
 @onready var agent1 = %Agent1
 @onready var nav_agent1: NavigationAgent2D = %NavigationAgent1
 var end_point: Vector2 = Vector2(1188, 294)
 	
+func _ready() -> void:
+	## Setup gameboard
+	gameboard.make_gameboard()
+	
+	## Setup Camera
+	#camera.center_camera(gameboard)
+	camera.set_camera_limits(gameboard)
 
 func _physics_process(delta: float) -> void:
 	
