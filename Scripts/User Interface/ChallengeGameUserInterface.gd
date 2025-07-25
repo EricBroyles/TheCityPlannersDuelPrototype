@@ -8,7 +8,7 @@ func _ready() -> void:
 	end_game_screen.visible = false
 	start_build_phase()
 	
-func _unhandled_input(event: InputEvent):
+func _unhandled_input(_event: InputEvent):
 	if build_phase.visible:
 		if Input.is_action_just_pressed("ui_cancel"):
 			if GameData.gameboard_placer_mode != GameConstants.MODES.MOUSE_POINTER:

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dahj0usb83rds"]
+
+[ext_resource type="Script" path="res://Scripts/NavigationExperimentAgentController.gd" id="1_cfwh3"]
+[ext_resource type="Texture2D" uid="uid://cg2u5jhqosdu5" path="res://Assets/Gameboard Agents/Car Blue.svg" id="1_ttbo0"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xrxsd"]
+vertices = PackedVector2Array(38.9063, 503.094, 35.0938, 58.75, 79.6875, 62, 205.867, 209.242, 208.141, 376.117, 564, 219.773, 560.25, 68.9063, 1004.23, 65.0781, 726.938, 166, 1232, 342.117, 790.852, 347.867, 789.148, 233, 878, 233, 1008.23, 236.133, 1232, 233.133, 878, 166, 331.109, 59.1094, 332.883, 206.227, 728.938, 509.891, 567.211, 371.883)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 13), PackedInt32Array(13, 14, 9), PackedInt32Array(7, 13, 12, 15), PackedInt32Array(2, 16, 17, 3), PackedInt32Array(18, 0, 4, 19), PackedInt32Array(8, 18, 19, 5), PackedInt32Array(8, 7, 15)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(80, 52, 341, 49, 343, 216, 216, 219, 218, 366, 557, 362, 554, 220, 550, 59, 1014, 55, 1018, 226, 1242, 223, 1242, 352, 781, 358, 779, 223, 868, 223, 868, 176, 737, 176, 739, 520, 29, 513, 25, 48)])
+
+[node name="NavigationExperiment" type="Node2D"]
+script = ExtResource("1_cfwh3")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_xrxsd")
+
+[node name="Agent1" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Agent1" type="Sprite2D" parent="Agent1"]
+position = Vector2(273, 129)
+rotation = -1.5708
+texture = ExtResource("1_ttbo0")
+
+[node name="NavigationAgent1" type="NavigationAgent2D" parent="Agent1"]
+unique_name_in_owner = true
+debug_enabled = true
