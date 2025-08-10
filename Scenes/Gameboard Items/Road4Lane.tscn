@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://crjqxfekvmn43"]
 
-[ext_resource type="Script" path="res://Scripts/Gameboard Items/Road4Lane.gd" id="1_1kv5c"]
+[ext_resource type="Script" uid="uid://c7mj1ll1qufl0" path="res://Scripts/Gameboard Items/Road4Lane.gd" id="1_1kv5c"]
 [ext_resource type="Texture2D" uid="uid://cxywhsyeot1wj" path="res://Assets/Roads/Straights/Road 4 Lane.svg" id="2_pxwwp"]
 [ext_resource type="Texture2D" uid="uid://4mw8x4u6ydyl" path="res://Assets/Roads/Straights/Road Parking.svg" id="3_mfmer"]
 

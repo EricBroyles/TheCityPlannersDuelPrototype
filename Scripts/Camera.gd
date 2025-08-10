@@ -1,24 +1,24 @@
 extends Camera2D
 
 
-@export var camera_move_speed = 500 #the zoom level also impacts this see 1/zoom
-@export var camera_zoom_speed = .02
-@export var camera_start_zoom = .5 #the zoom value on load
-@export var camera_limit_addition = 100 #pixels more that the camera *center* can move beyond the edge of the gameboard
+@export var camera_move_speed: float = 500 #the zoom level also impacts this see 1/zoom
+@export var camera_zoom_speed: float = .02
+@export var camera_start_zoom: float = .5 #the zoom value on load
+@export var camera_limit_addition: float = 100 #pixels more that the camera *center* can move beyond the edge of the gameboard
 
-@export var camera_zoom_out_limit = .02
-@export var camera_zoom_in_limit = 1 #2 would double the size of the assets in the viewport (does not change the actual size)
+@export var camera_zoom_out_limit: float = .02
+@export var camera_zoom_in_limit: float = 1 #2 would double the size of the assets in the viewport (does not change the actual size)
 
 
-var velocity = Vector2.ZERO #init movement velocity
-var zoom_velocity = 0
-var camera_left_limit 
-var camera_right_limit
-var camera_top_limit
-var camera_bottom_limit
+var velocity: Vector2 = Vector2.ZERO #init movement velocity
+var zoom_velocity: float = 0
+var camera_left_limit: float 
+var camera_right_limit: float
+var camera_top_limit: float
+var camera_bottom_limit: float
 
-var new_pos
-var new_zoom
+var new_pos: Vector2
+var new_zoom: Vector2
 
 func _ready() -> void:
 	zoom = Vector2(camera_start_zoom, camera_start_zoom)
@@ -82,7 +82,20 @@ func set_camera_limits(gameboard: Node2D) -> void:
 	camera_right_limit = gameboard_size.x + camera_limit_addition
 	camera_top_limit = -1 * camera_limit_addition
 	camera_bottom_limit = gameboard_size.y + camera_limit_addition
-	
+
+func custom_camera_limits(limits: Array[float]):
+	if limits.size() == 1:
+		camera_left_limit = -1 * limits[0]
+		camera_right_limit = limits[0]
+		camera_top_limit = -1 * limits[0]
+		camera_bottom_limit = limits[0]
+	elif limits.size() == 4:
+		camera_left_limit = limits[0] #be sure to specify neg
+		camera_right_limit = limits[1]
+		camera_top_limit = limits[2] #be sure to specify neg
+		camera_bottom_limit = limits[3]
+	else:
+		push_error("Error with assigning limits. Read this code you dumbass im not explaining the problem.")
 	
 ## Center Camera
 #  Inputs: the gameboard object

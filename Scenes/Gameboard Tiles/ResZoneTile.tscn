@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bb7i87b5jo7io"]
 
-[ext_resource type="Script" path="res://Scripts/Gameboard Tiles/RZoneTile.gd" id="1_eo2vc"]
+[ext_resource type="Script" uid="uid://1gedbp5mo2ce" path="res://Scripts/Gameboard Tiles/RZoneTile.gd" id="1_eo2vc"]
 [ext_resource type="Texture2D" uid="uid://dcpqkjprdpnew" path="res://Assets/Gameboard Tiles/White Border Tile 102.svg" id="2_lufmp"]
 
 [node name="ResZoneTile" type="Node2D"]

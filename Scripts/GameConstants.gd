@@ -10,8 +10,9 @@ const GAMEBOARD_ITEM_ERROR_LAYER: Dictionary = {"hex": "ff0400", "alpha": 180}
 ## Gameboard
 const GAMEBOARD_TILE_SIZE: int = 200 #pixels x pixcels for each tile in the gameboard
 const GAMEBOARD_CONTAINER_SIZE: int = 8
-const GAMEBOARD_TILE_SIZE_FT: int = 32; #ft
-const PIXELS_PER_FT = 200 / 32.0; #6.25 px/ft
+const FEET_PER_TILE: float = 32.0; #ft
+const MILES_PER_TILE: float = FEET_PER_TILE / 5280.0
+const PIXELS_PER_FT: float = 200 / 32.0; #6.25 px/ft
 
 const POINTS_PER_R_DEMAND: int = 1100
 const POINTS_PER_C_DEMAND: int = 1100
@@ -20,10 +21,10 @@ const POINTS_PER_I_DEMAND: int = 1100
 #cost of 2 lane of road per tile
 const MONEY_PER_LAND_TILE: int = 250
 
-const MONEY_PER_WALKWAY: int = int(2.5 * GAMEBOARD_TILE_SIZE_FT * 6) #width 2.5 x 32 length ft^2 at 6$ a square foot = $480/walkway
+const MONEY_PER_WALKWAY: int = int(2.5 * FEET_PER_TILE * 6) #width 2.5 x 32 length ft^2 at 6$ a square foot = $480/walkway
 
-const MONEY_PER_ROAD_2_LANE: int = int(625000 / 5280.0 * GAMEBOARD_TILE_SIZE_FT) #$3800/tile
-const MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN: int = int(5000 / 5280.0 *  GAMEBOARD_TILE_SIZE_FT) #$30/tile per turn
+const MONEY_PER_ROAD_2_LANE: int = int(625000 / 5280.0 * FEET_PER_TILE) #$3800/tile
+const MONEY_TO_UPKEEP_ROAD_2_LANE_PER_TURN: int = int(5000 / 5280.0 *  FEET_PER_TILE) #$30/tile per turn
 
 const MONEY_PER_PARKING_SPOT: int = 1500 #$1500 / spot
 const MONEY_TO_UPKEEP_PARKING_SPOT_PER_TURN: int = 20 #$20/tile per turn 

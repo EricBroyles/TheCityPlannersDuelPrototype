@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dlith8vmkidii"]
 
-[ext_resource type="Script" path="res://Scripts/Gameboard Items/ParkingLot2x2.gd" id="1_v8aqn"]
+[ext_resource type="Script" uid="uid://caafivso6hwut" path="res://Scripts/Gameboard Items/ParkingLot2x2.gd" id="1_v8aqn"]
 [ext_resource type="Texture2D" uid="uid://ccg2oijuipnex" path="res://Assets/Parking/Parking Lot 2x2.svg" id="2_mlnkt"]
 [ext_resource type="Texture2D" uid="uid://c3iwwymu6bpn3" path="res://Assets/Parking/Parking Lot Curtain 1x2 Tile 2 Lane.svg" id="3_x1s1s"]
 [ext_resource type="Texture2D" uid="uid://cwfrfv63curhi" path="res://Assets/Parking/Parking Lot Curtain 1x2 Tile 4 Lane.svg" id="4_p7f6p"]

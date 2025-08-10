@@ -1,7 +1,7 @@
 [gd_scene load_steps=75 format=3 uid="uid://dfimjfiiwuhtk"]
 
 [ext_resource type="Texture2D" uid="uid://din0qqbxx12jm" path="res://Assets - User Interface/Areas/Area BW 1306x160.svg" id="1_ay4le"]
-[ext_resource type="Script" path="res://Scripts/User Interface/BuildPhaseUserInterface.gd" id="1_bkv58"]
+[ext_resource type="Script" uid="uid://dgviykk1jw1mh" path="res://Scripts/User Interface/BuildPhaseUserInterface.gd" id="1_bkv58"]
 [ext_resource type="Texture2D" uid="uid://cj0dvfpbaft5c" path="res://Assets - User Interface/Buttons/Button BW35 Circle _ X.svg" id="2_053i0"]
 [ext_resource type="Texture2D" uid="uid://cohpgvn1l3c2v" path="res://Assets - User Interface/Buttons/Button BW70 _ Buy Land.svg" id="3_vyd0s"]
 [ext_resource type="Texture2D" uid="uid://cigu4fi64jxrn" path="res://Assets - User Interface/Buttons/Button BW70 _ RCI.svg" id="4_denk2"]

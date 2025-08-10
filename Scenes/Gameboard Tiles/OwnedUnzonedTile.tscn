@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://j6ige2sf8s5u"]
 
-[ext_resource type="Script" path="res://Scripts/Gameboard Tiles/OwnedUnzonedTile.gd" id="1_8e27a"]
+[ext_resource type="Script" uid="uid://bte6b73mk4kpx" path="res://Scripts/Gameboard Tiles/OwnedUnzonedTile.gd" id="1_8e27a"]
 [ext_resource type="Texture2D" uid="uid://dcpqkjprdpnew" path="res://Assets/Gameboard Tiles/White Border Tile 102.svg" id="2_db056"]
 
 [node name="OwnedUnzonedTile" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://c7n23tfkf68cp"]
 
-[ext_resource type="Script" path="res://Scripts/User Interface/SimulationPhaseUserInterface.gd" id="1_rmpuu"]
+[ext_resource type="Script" uid="uid://dk3ba838hdv6l" path="res://Scripts/User Interface/SimulationPhaseUserInterface.gd" id="1_rmpuu"]
 [ext_resource type="Texture2D" uid="uid://5u4gxt64hvke" path="res://Assets - User Interface/Buttons/Button BW70 _ City And Undo Arrow.svg" id="1_rnxl8"]
 [ext_resource type="Texture2D" uid="uid://dbhejrys1dhdh" path="res://Assets - User Interface/Buttons/Button BW70 _ Magnifying Data.svg" id="2_6v4u0"]
 [ext_resource type="Texture2D" uid="uid://b8u2i3a14v2cg" path="res://Assets - User Interface/Areas/Area BW 513x150 _ Even Split.svg" id="3_861fu"]

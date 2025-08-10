@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgburaidkfnri"]
 
-[ext_resource type="Script" path="res://Scripts/Gameboard Tiles/IZoneTile.gd" id="1_jxevr"]
+[ext_resource type="Script" uid="uid://bskdrspsjrvn5" path="res://Scripts/Gameboard Tiles/IZoneTile.gd" id="1_jxevr"]
 [ext_resource type="Texture2D" uid="uid://dcpqkjprdpnew" path="res://Assets/Gameboard Tiles/White Border Tile 102.svg" id="2_nby31"]
 
 [node name="IndZoneTile" type="Node2D"]
