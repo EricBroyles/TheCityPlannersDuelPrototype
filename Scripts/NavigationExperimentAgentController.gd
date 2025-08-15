@@ -7,7 +7,7 @@ var accel = 7
 	
 func _ready() -> void:
 	## Setup Camera
-	var limits: Array[float] = [1000.0]
+	var limits: Array[float] = [4000.0]
 	camera.custom_camera_limits(limits)
 
 	

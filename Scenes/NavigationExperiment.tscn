@@ -15,9 +15,9 @@ point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_niplk"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 729, 389, 0, 0, 0, 0, 729, 363, 0, 0, 0, 0, 731, 355, 0, 0, 0, 0, 733, 348, 0, 0, 0, 0, 736.942, 342.415, 0, 0, 0, 0, 742, 338, 0, 0, 0, 0, 749, 334, 0, 0, 0, 0, 758, 332, 0, 0, 0, 0, 768, 331, 0, 0, 0, 0, 781, 330, 0, 0, 0, 0, 801, 330)
+"points": PackedVector2Array(0, 0, 0, 0, 730, 436, 0, 0, 0, 0, 729, 363, 0, 0, 0, 0, 731, 355, 0, 0, 0, 0, 733, 348, 0, 0, 0, 0, 736.942, 342.415, 0, 0, 0, 0, 742, 338, 0, 0, 0, 0, 749, 334, 0, 0, 0, 0, 758, 332, 0, 0, 0, 0, 768, 331, 0, 0, 0, 0, 781, 330, 0, 0, 0, 0, 801, 330, 0, 0, 0, 0, 1000, 330, 0, 0, 0, 0, 3400, 330)
 }
-point_count = 11
+point_count = 13
 
 [node name="NavigationExperiment" type="Node2D"]
 script = ExtResource("1_cfwh3")
@@ -57,13 +57,12 @@ rotation = 1.5708
 texture = ExtResource("4_j53wy")
 metadata/_edit_lock_ = true
 
-[node name="RightTurn" type="Path2D" parent="."]
-curve = SubResource("Curve2D_niplk")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="RightTurn"]
-position = Vector2(729, 389)
-rotation = -1.5708
-
-[node name="Sprite2D" type="Sprite2D" parent="RightTurn/PathFollow2D"]
+[node name="Sprite2D2" type="Sprite2D" parent="Map"]
+position = Vector2(3300, 300)
 rotation = 1.5708
-texture = ExtResource("1_ttbo0")
+texture = ExtResource("4_j53wy")
+metadata/_edit_lock_ = true
+
+[node name="RightTurn" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_niplk")
