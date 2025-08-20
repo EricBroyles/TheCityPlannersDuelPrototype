@@ -95,6 +95,16 @@ func rotate_vector_90_cw(vec: Vector2, times: int) -> Vector2:
 func convert_mph_to_px_per_sec(mph: float) -> float:
 	return mph * 5280 * GameConstants.GAMEBOARD_TILE_SIZE / GameConstants.GAMEBOARD_TILE_SIZE_FT / 3600
 	
+func do_path_projections_collide(rad1: int, path_proj1: Array[Vector2], rad2: int, path_proj2: Array[Vector2]) -> bool:
+	var min_dist := rad1 + rad2
+	for p1 in path_proj1:
+		for p2 in path_proj2:
+			if p1.distance_to(p2) < min_dist:
+				return true
+	return false	
+	
+
+	
 ## Unused (may be useful later)
 #func find_izone_in_tree(node: Node) -> bool:
 	#if node is IZone:

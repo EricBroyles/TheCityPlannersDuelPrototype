@@ -3,6 +3,9 @@ extends Node
 ## User Interface
 var gameboard_placer_mode: int = GameConstants.MODES.MOUSE_POINTER
 
+## Ticks
+var ticks_per_sec: int = 60
+
 ## Gameboard
 var gameboard_r: int = 20
 var gameboard_c: int = 30

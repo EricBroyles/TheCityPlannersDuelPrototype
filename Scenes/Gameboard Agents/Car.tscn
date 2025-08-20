@@ -18,9 +18,11 @@ unique_name_in_owner = true
 
 [node name="BlueBody" type="Sprite2D" parent="Path/Follower"]
 unique_name_in_owner = true
+rotation = 1.5708
 texture = ExtResource("2_alqdi")
 
 [node name="BronzeBody" type="Sprite2D" parent="Path/Follower"]
 unique_name_in_owner = true
 visible = false
+rotation = 1.5708
 texture = ExtResource("3_fws08")

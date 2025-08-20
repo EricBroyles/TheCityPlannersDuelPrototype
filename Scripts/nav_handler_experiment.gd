@@ -11,14 +11,20 @@ var car_speed = 15 #mph
 
 var simulation_status: int = SIM_STATUS.PAUSED
 var simulation_ticks: int = 0
-var ticks_per_sec: int = 60
 var next_tick_progress: float = 0
+var path_projection_ticks: int = 60
 
 var lane_start: Vector2 = Vector2(300,330)
 var lane_end: Vector2 = Vector2(3300,330)
 var lane_cars: Array[Car]
 var turning_car: Car
 var all_cars: Array[Car]
+var all_cars_colliding: Array[bool] = []
+
+   #Array([],  all_cars.size()).fill(false)
+#var simulation_paths_collision_data: Array[Dictionary] = []
+#var car_collision_point_data: Dictionary = {"tick": -1, "car": Car, "location": Vector2(0,0), "is_colliding": false}
+
 
 func _ready() -> void:
 	var lane_spot: Vector2 = lane_start
@@ -42,6 +48,11 @@ func _ready() -> void:
 	for car in lane_cars:
 		all_cars.append(car)
 	all_cars.append(turning_car)
+	
+	all_cars_colliding.resize(all_cars.size()) #array of false
+	
+	
+
 
 	
 
@@ -52,17 +63,25 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	if simulation_status == SIM_STATUS.ACTIVE:
-		next_tick_progress += delta * ticks_per_sec
+		next_tick_progress += delta * GameData.ticks_per_sec
 		if next_tick_progress < 1: return
 		next_tick_progress = 0
 		simulation_ticks += 1
 		## DO THE TICKS ACTIONS
 		
-		for car in all_cars:
-			car.handle_tick(ticks_per_sec)
-		
-		
-		#follower.progress += car_pixel_per_sec * delta
+		for i in all_cars.size():
+			if i+1 == all_cars.size(): break
+			var path_proj_i: Array[Vector2] = all_cars[i].path_projection(path_projection_ticks)
+			for j in range(i+1, all_cars.size()):
+				if GameHelper.do_path_projections_collide(all_cars[i].collision_radius_pixels, path_proj_i, 
+														  all_cars[j].collision_radius_pixels, all_cars[j].path_projection(path_projection_ticks)):
+					all_cars_colliding[i] = true
+					all_cars_colliding[j] = true
+					#cannot break here as I still need to check them all
+
+		for i in all_cars.size():
+			if not all_cars_colliding[i]:
+				all_cars[i].tick_step()
 
 
 
